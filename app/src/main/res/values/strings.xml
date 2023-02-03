@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Project Yorkie</string>
+    <string name="icon_home">Home Page</string>
+    <string name="icon_activities">Activities Page</string>
+    <string name="icon_petting">Petting Page</string>
+    <string name="icon_tournament">Tournament Page</string>
+    <string name="icon_settings">Settings Page</string>
 </resources>
