@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/border_with_dark_bg">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/loki"
+        android:layout_marginEnd="20dp"
+        android:padding="0dp"
+        android:adjustViewBounds="true"
+        android:id="@+id/imgTalent"
+        android:background="@drawable/border_with_light_bg"
+        android:maxHeight="80dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgTalent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:id="@+id/talentName"
+            android:text="@string/app_name" />
+
+    </LinearLayout>
+
+</RelativeLayout>

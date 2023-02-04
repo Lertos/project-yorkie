@@ -5,14 +5,31 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
+
+    private ArrayList<String> talentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
         setupBottomButtonBar();
+
+        RecyclerView talentsRecyclerView = findViewById(R.id.recyclerViewTalents);
+        TalentsViewAdapter talentsViewAdapter = new TalentsViewAdapter(this);
+
+        talentList = new ArrayList<>();
+        talentList.add("Talent 1");
+        talentList.add("Talent 2");
+
+        talentsViewAdapter.setTalentList(talentList);
+        talentsRecyclerView.setAdapter(talentsViewAdapter);
+        talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void switchActivities(Class cls) {
