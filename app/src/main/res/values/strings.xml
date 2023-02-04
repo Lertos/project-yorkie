@@ -5,4 +5,6 @@
     <string name="icon_petting">Petting Page</string>
     <string name="icon_tournament">Tournament Page</string>
     <string name="icon_settings">Settings Page</string>
+    <string name="icon_talents">Talents Tab</string>
+    <string name="icon_pack">Pack Tab</string>
 </resources>
