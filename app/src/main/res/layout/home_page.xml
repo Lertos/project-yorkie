@@ -5,25 +5,153 @@
     android:background="@color/darker_light_blue"
     android:id="@+id/relParent">
 
+    <!-- Parent Minus Button Bar -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/relButtons"
         android:id="@+id/relMain">
 
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Homepage Button" />
-
-        <TextView
+        <!-- Character Section -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/app_name"
-            android:layout_below="@id/button"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/linAvatar"
+            android:background="@drawable/border">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/loki"
+                android:layout_marginEnd="20dp"
+                android:padding="0dp"
+                android:adjustViewBounds="true"
+                android:maxHeight="160dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/border"
+                    android:fontFamily="@font/toxigenesis"
+                    android:textSize="22sp"
+                    android:text="Loki" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/toxigenesis"
+                    android:textSize="17sp"
+                    android:text="Heart Tokens" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow"
+                    android:fontFamily="@font/toxigenesis"
+                    android:textSize="14sp"
+                    android:text="12" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/toxigenesis"
+                    android:textSize="17sp"
+                    android:text="Dogs Collected" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow"
+                    android:fontFamily="@font/toxigenesis"
+                    android:textSize="14sp"
+                    android:text="8 / 27" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Main Inner Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_below="@id/linAvatar"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/toxigenesis"
+                android:textSize="20sp"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/toxigenesis"
+                android:textSize="14sp"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/toxigenesis"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/toxigenesis"
+                android:textSize="14sp"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/toxigenesis"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:text="@string/app_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/toxigenesis"
+                android:textSize="14sp"
+                android:text="@string/app_name" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
