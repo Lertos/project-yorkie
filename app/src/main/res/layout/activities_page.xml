@@ -8,8 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/relLayButtons"
-        android:id="@+id/relLayMain">
+        android:layout_above="@id/relButtons"
+        android:id="@+id/relMain">
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
@@ -24,6 +24,6 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/bottom_button_bar" android:id="@id/relLayButtons"/>
+    <include layout="@layout/bottom_button_bar" android:id="@id/relButtons"/>
 
 </RelativeLayout>
