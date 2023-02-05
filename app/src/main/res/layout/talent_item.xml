@@ -7,8 +7,7 @@
     <RelativeLayout
         android:id="@+id/linInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/talentName"
@@ -27,25 +26,26 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/talentDescription"
+                style="@style/fontSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Provides a better chance at love." />
+
+            <TextView
                 android:id="@+id/talentLevel"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Level 10" />
+                android:text="Current Level: 10" />
 
             <TextView
                 android:id="@+id/talentCurrentBonus"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Bonus: +10%" />
-
-            <TextView
-                android:id="@+id/talentNextBonus"
-                style="@style/fontSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next Bonus: +2%" />
+                android:text="Current Bonus: +10% (Next: +2%)" />
 
         </LinearLayout>
 
@@ -56,9 +56,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/linInfo"
-        android:gravity="end"
-        android:orientation="vertical">
+        android:gravity="end">
 
         <ImageView
             android:id="@+id/ivUpgrade"
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/heartsToUpgradeIcon"
-                android:text="456"
+                android:text="456.5k"
                 android:textColor="@color/yellow" />
 
         </RelativeLayout>
