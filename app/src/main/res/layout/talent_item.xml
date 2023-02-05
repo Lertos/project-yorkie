@@ -2,32 +2,104 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="@drawable/border_with_dark_bg">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/loki"
-        android:layout_marginEnd="20dp"
-        android:padding="0dp"
-        android:adjustViewBounds="true"
-        android:id="@+id/imgTalent"
-        android:background="@drawable/border_with_light_bg"
-        android:maxHeight="80dp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/imgTalent">
+        android:id="@+id/linInfo"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            style="@style/fontLarge"
+            android:textColor="@color/yellow"
             android:id="@+id/talentName"
-            android:text="@string/app_name" />
+            android:text="Tough Love" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linInfoGroup"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical"
+            android:layout_below="@id/talentName" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/fontSmall"
+                android:id="@+id/talentLevel"
+                android:text="Level 10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/fontSmall"
+                android:id="@+id/talentCurrentBonus"
+                android:text="Current Bonus: +10%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/fontSmall"
+                android:id="@+id/talentNextBonus"
+                android:text="Next Bonus: +2%" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/linInfo"
+        android:id="@+id/linUpgrade">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_upgrade"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/ivUpgrade"
+            android:padding="0dp"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:background="@drawable/border_with_light_bg"
+            android:maxHeight="80dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivUpgrade"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linUpgradeCost">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_heart"
+                android:paddingTop="6dp"
+                android:paddingEnd="4dp"
+                android:id="@+id/heartsToUpgradeIcon"
+                android:adjustViewBounds="true"
+                android:maxHeight="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/fontSmall"
+                android:textColor="@color/yellow"
+                android:layout_toRightOf="@id/heartsToUpgradeIcon"
+                android:id="@+id/heartsToUpgrade"
+                android:text="456" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
