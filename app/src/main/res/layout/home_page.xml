@@ -21,59 +21,66 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+
                 android:adjustViewBounds="true"
                 android:background="@drawable/border_with_light_bg"
-                android:maxHeight="160dp"
+                android:maxHeight="120dp"
                 android:padding="0dp"
+                android:layout_gravity="center"
                 android:src="@mipmap/loki" />
+
+
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/fontHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:padding="3dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/border"
                     android:text="Loki"
+                    android:layout_gravity="center"
                     android:textAlignment="center" />
 
                 <TextView
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Heart Tokens"
-                    android:textAlignment="center" />
+                    android:id="@+id/tcCurrentHearts"
+                    android:text="Hearts: "
+                    android:textAlignment="textStart" />
 
                 <TextView
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="12"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow" />
+                    android:id="@+id/tcCurrentHeartTokens"
+                    android:text="Heart Tokens: "
+                    android:textAlignment="textStart"  />
 
                 <TextView
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dogs Collected"
-                    android:textAlignment="center" />
-
-                <TextView
-                    style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="8 / 27"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow" />
+                    android:id="@+id/tcCurrentDogsCollected"
+                    android:text="Dogs Collected: "
+                    android:textAlignment="textStart" />
 
             </LinearLayout>
 

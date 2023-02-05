@@ -7,4 +7,7 @@
     <string name="icon_settings">Settings Page</string>
     <string name="icon_talents">Talents Tab</string>
     <string name="icon_pack">Pack Tab</string>
+    <string name="character_heart_amount">Hearts:</string>
+    <string name="character_heart_token_amount">Heart Tokens:</string>
+    <string name="character_dogs_collected">Dogs Collected:</string>
 </resources>
