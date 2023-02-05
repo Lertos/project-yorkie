@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lertos.projectyorkie.data.Talent;
+
 import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
 
-    private ArrayList<String> talentList;
+    private ArrayList<Talent> talentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,16 +22,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.home_page);
         setupBottomButtonBar();
 
-        RecyclerView talentsRecyclerView = findViewById(R.id.recyclerViewTalents);
-        TalentsViewAdapter talentsViewAdapter = new TalentsViewAdapter(this);
-
-        talentList = new ArrayList<>();
-        talentList.add("Talent 1");
-        talentList.add("Talent 2");
-
-        talentsViewAdapter.setTalentList(talentList);
-        talentsRecyclerView.setAdapter(talentsViewAdapter);
-        talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        createAndLoadTalents();
     }
 
     private void switchActivities(Class cls) {
@@ -49,6 +42,20 @@ public class HomePage extends AppCompatActivity {
             Toast.makeText(v.getContext(), "Switching to activities page", Toast.LENGTH_SHORT).show();
             switchActivities(ActivityPage.class);
         });
+    }
+
+    private void createAndLoadTalents() {
+        RecyclerView talentsRecyclerView = findViewById(R.id.recyclerViewTalents);
+        TalentsViewAdapter talentsViewAdapter = new TalentsViewAdapter(this);
+
+        talentList = new ArrayList<>();
+        talentList.add(new Talent("Heart Beater", "Increases hearts per second.", 1, 10, 2));
+        talentList.add(new Talent("Lucky Streak", "Increases chance at gaining heart tokens.", 1, 2, 1));
+        talentList.add(new Talent("Bargain Master", "Decreases cost of upgrading talents.", 1, 16, 4));
+
+        talentsViewAdapter.setTalentList(talentList);
+        talentsRecyclerView.setAdapter(talentsViewAdapter);
+        talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
