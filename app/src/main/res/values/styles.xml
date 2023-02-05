@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="fontSmall">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/toxigenesis</item>
+    </style>
+    <style name="fontMedium">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/toxigenesis</item>
+    </style>
+    <style name="fontLarge">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/toxigenesis</item>
+    </style>
+    <style name="fontHeader">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/toxigenesis</item>
+    </style>
+
+</resources>
