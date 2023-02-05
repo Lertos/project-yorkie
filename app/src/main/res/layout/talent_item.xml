@@ -5,46 +5,46 @@
     android:background="@drawable/border_with_dark_bg">
 
     <RelativeLayout
+        android:id="@+id/linInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linInfo"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/talentName"
+            style="@style/fontLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/fontLarge"
-            android:textColor="@color/yellow"
-            android:id="@+id/talentName"
-            android:text="Tough Love" />
+            android:text="Tough Love"
+            android:textColor="@color/yellow" />
 
         <LinearLayout
+            android:id="@+id/linInfoGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/linInfoGroup"
+            android:layout_below="@id/talentName"
             android:layout_marginStart="10dp"
-            android:orientation="vertical"
-            android:layout_below="@id/talentName" >
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/talentLevel"
+                style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/fontSmall"
-                android:id="@+id/talentLevel"
                 android:text="Level 10" />
 
             <TextView
+                android:id="@+id/talentCurrentBonus"
+                style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/fontSmall"
-                android:id="@+id/talentCurrentBonus"
                 android:text="Current Bonus: +10%" />
 
             <TextView
+                android:id="@+id/talentNextBonus"
+                style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/fontSmall"
-                android:id="@+id/talentNextBonus"
                 android:text="Next Bonus: +2%" />
 
         </LinearLayout>
@@ -52,51 +52,51 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/linUpgrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/linInfo"
-        android:id="@+id/linUpgrade">
+        android:gravity="end"
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/ivUpgrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_upgrade"
-            android:layout_marginEnd="20dp"
-            android:id="@+id/ivUpgrade"
-            android:padding="0dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginEnd="20dp"
             android:adjustViewBounds="true"
             android:background="@drawable/border_with_light_bg"
-            android:maxHeight="80dp" />
+            android:maxHeight="80dp"
+            android:padding="0dp"
+            android:src="@mipmap/icon_upgrade" />
 
         <RelativeLayout
+            android:id="@+id/linUpgradeCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ivUpgrade"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/linUpgradeCost">
+            android:layout_centerHorizontal="true">
 
             <ImageView
+                android:id="@+id/heartsToUpgradeIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_heart"
+                android:adjustViewBounds="true"
+                android:maxHeight="16dp"
                 android:paddingTop="6dp"
                 android:paddingEnd="4dp"
-                android:id="@+id/heartsToUpgradeIcon"
-                android:adjustViewBounds="true"
-                android:maxHeight="16dp" />
+                android:src="@mipmap/icon_heart" />
 
             <TextView
+                android:id="@+id/heartsToUpgrade"
+                style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/fontSmall"
-                android:textColor="@color/yellow"
                 android:layout_toRightOf="@id/heartsToUpgradeIcon"
-                android:id="@+id/heartsToUpgrade"
-                android:text="456" />
+                android:text="456"
+                android:textColor="@color/yellow" />
 
         </RelativeLayout>
 

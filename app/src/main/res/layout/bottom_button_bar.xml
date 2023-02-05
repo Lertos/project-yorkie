@@ -1,78 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relButtons"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/darker_light_blue"
     android:layout_alignParentBottom="true"
-    android:id="@+id/relButtons">
+    android:background="@color/darker_light_blue">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/border">
+            android:layout_marginHorizontal="4dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/icon_home"
+            android:maxHeight="72dp"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_home" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginHorizontal="4dp"
-                android:adjustViewBounds="true"
-                android:maxHeight="72dp"
-                android:contentDescription="@string/icon_home"
-                android:id="@+id/button_home"
-                android:src="@mipmap/icon_home" />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginHorizontal="4dp"
-                android:adjustViewBounds="true"
-                android:maxHeight="72dp"
-                android:contentDescription="@string/icon_activities"
-                android:id="@+id/button_activities"
-                android:src="@mipmap/icon_activities" />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginHorizontal="4dp"
-                android:adjustViewBounds="true"
-                android:maxHeight="72dp"
-                android:contentDescription="@string/icon_petting"
-                android:id="@+id/button_petting"
-                android:src="@mipmap/icon_petting" />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginHorizontal="4dp"
-                android:adjustViewBounds="true"
-                android:maxHeight="72dp"
-                android:contentDescription="@string/icon_tournament"
-                android:id="@+id/button_tournament"
-                android:src="@mipmap/icon_tournament" />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:layout_marginHorizontal="4dp"
-                android:adjustViewBounds="true"
-                android:maxHeight="72dp"
-                android:contentDescription="@string/icon_settings"
-                android:id="@+id/button_settings"
-                android:src="@mipmap/icon_settings" />
+        <ImageButton
+            android:id="@+id/button_activities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/icon_activities"
+            android:maxHeight="72dp"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_activities" />
+
+        <ImageButton
+            android:id="@+id/button_petting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/icon_petting"
+            android:maxHeight="72dp"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_petting" />
+
+        <ImageButton
+            android:id="@+id/button_tournament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/icon_tournament"
+            android:maxHeight="72dp"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_tournament" />
+
+        <ImageButton
+            android:id="@+id/button_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/icon_settings"
+            android:maxHeight="72dp"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_settings" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>
