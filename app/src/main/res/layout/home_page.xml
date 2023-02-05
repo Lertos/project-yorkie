@@ -21,25 +21,25 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="40dp"
-            android:orientation="vertical">
-
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="40dp"
+                android:orientation="vertical">
 
-                android:adjustViewBounds="true"
-                android:background="@drawable/border_with_light_bg"
-                android:maxHeight="120dp"
-                android:padding="0dp"
-                android:layout_gravity="center"
-                android:src="@mipmap/loki" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_with_light_bg"
+                    android:maxHeight="120dp"
+                    android:padding="0dp"
+                    android:src="@mipmap/loki" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -51,34 +51,34 @@
                     style="@style/fontHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="3dp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/border"
+                    android:padding="3dp"
                     android:text="Loki"
-                    android:layout_gravity="center"
                     android:textAlignment="center" />
 
                 <TextView
+                    android:id="@+id/tcCurrentHearts"
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tcCurrentHearts"
                     android:text="Hearts: "
                     android:textAlignment="textStart" />
 
                 <TextView
+                    android:id="@+id/tcCurrentHeartTokens"
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tcCurrentHeartTokens"
                     android:text="Heart Tokens: "
-                    android:textAlignment="textStart"  />
+                    android:textAlignment="textStart" />
 
                 <TextView
+                    android:id="@+id/tcCurrentDogsCollected"
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tcCurrentDogsCollected"
                     android:text="Dogs Collected: "
                     android:textAlignment="textStart" />
 
@@ -87,17 +87,17 @@
         </LinearLayout>
 
         <!-- Character/Tab Button -->
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <RelativeLayout
             android:id="@+id/relCharacterButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linAvatar"
+            android:layout_marginTop="0dp"
             android:background="@color/darker_light_blue">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:orientation="horizontal">
