@@ -17,12 +17,9 @@ import java.util.List;
 
 public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.ViewHolder> implements BindDataToView {
 
-    private Context context;
     private List<Talent> talentList = new ArrayList<>();
 
-    public TalentsViewAdapter(Context context) {
-        this.context = context;
-    }
+    public TalentsViewAdapter() {}
 
     public void setDataList(List<?> list) {
         this.talentList = (List<Talent>) list;
