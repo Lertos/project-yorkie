@@ -7,28 +7,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Data {
+public class DataManager {
 
-    private static Data instance;
+    private static DataManager instance;
+    private Player playerData;
     private List<Talent> talentList = new ArrayList<>();
     private List<PackDog> packDogList = new ArrayList<>();
 
-    private Data() {}
+    private DataManager() {}
 
-    public static Data getInstance() {
+    public static DataManager getInstance() {
         if (instance == null) {
-            instance = new Data();
+            instance = new DataManager();
         }
 
         return instance;
     }
 
     public void start() {
+        //TODO: Later on, load (and save) the player data in a file and populate the Player object with the data
+        playerData = new Player(450, 12, 3);
+
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
 
         Talents talents = new Talents();
         talentList = talents.getListTalents();
+    }
+
+    public Player getPlayerData() {
+        return playerData;
     }
 
     public List<PackDog> getPackDogs() {

@@ -16,18 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.adapters.PackViewAdapter;
 import com.lertos.projectyorkie.adapters.TalentsViewAdapter;
-import com.lertos.projectyorkie.data.Data;
+import com.lertos.projectyorkie.data.DataManager;
 
 import java.util.List;
 
 public class HomePage extends AppCompatActivity {
-
-    //TODO: Make a class to hold all of this player data
-    private int highlightColor = Color.YELLOW;
-    private int currentHearts = 450;
-    private int currentHeartTokens = 14;
-    private int dogsCollected = 12;
-    private int maxDogsToCollect = 27;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +36,17 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void loadMainData() {
-        Data.getInstance().start();
+        DataManager.getInstance().start();
 
         createNewRecyclerView(
                 findViewById(R.id.recyclerViewTalents),
-                Data.getInstance().getTalents(),
+                DataManager.getInstance().getTalents(),
                 new TalentsViewAdapter()
         );
 
         createNewRecyclerView(
                 findViewById(R.id.recyclerViewPack),
-                Data.getInstance().getPackDogs(),
+                DataManager.getInstance().getPackDogs(),
                 new PackViewAdapter()
         );
     }
@@ -96,24 +89,24 @@ public class HomePage extends AppCompatActivity {
         currentHearts.setText(
                 createSpannable(
                         getResources().getString(R.string.character_heart_amount),
-                        " " + String.valueOf(this.currentHearts),
-                        highlightColor
+                        " " + String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHearts()),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
         currentHeartTokens.setText(
                 createSpannable(
                         getResources().getString(R.string.character_heart_token_amount),
-                        " " + String.valueOf(this.currentHeartTokens),
-                        highlightColor
+                        " " + String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
         currentDogsCollected.setText(
                 createSpannable(
                         getResources().getString(R.string.character_dogs_collected),
-                        " " + String.valueOf(this.dogsCollected) + " / " + String.valueOf(this.maxDogsToCollect),
-                        highlightColor
+                        " " + String.valueOf(DataManager.getInstance().getPlayerData().getDogsCollected()),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
     }
