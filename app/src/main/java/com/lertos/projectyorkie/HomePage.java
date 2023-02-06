@@ -1,7 +1,6 @@
 package com.lertos.projectyorkie;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -89,7 +88,7 @@ public class HomePage extends AppCompatActivity {
         currentHearts.setText(
                 createSpannable(
                         getResources().getString(R.string.character_heart_amount),
-                        " " + String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHearts()),
+                        " " + DataManager.getInstance().getPlayerData().getCurrentHearts(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -97,7 +96,7 @@ public class HomePage extends AppCompatActivity {
         currentHeartTokens.setText(
                 createSpannable(
                         getResources().getString(R.string.character_heart_token_amount),
-                        " " + String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
+                        " " + DataManager.getInstance().getPlayerData().getCurrentHeartTokens(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -105,7 +104,7 @@ public class HomePage extends AppCompatActivity {
         currentDogsCollected.setText(
                 createSpannable(
                         getResources().getString(R.string.character_dogs_collected),
-                        " " + String.valueOf(DataManager.getInstance().getPlayerData().getDogsCollected()),
+                        " " + DataManager.getInstance().getPlayerData().getDogsCollected(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
