@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PackDogs {
 
-    List<PackDog> listPackDogs;
+    private List<PackDog> listPackDogs;
 
     public PackDogs() {
         this.listPackDogs = new ArrayList<>();
