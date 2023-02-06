@@ -8,7 +8,6 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,14 +17,11 @@ import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.adapters.PackViewAdapter;
 import com.lertos.projectyorkie.adapters.TalentsViewAdapter;
 import com.lertos.projectyorkie.data.Data;
-import com.lertos.projectyorkie.model.Talent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
-    private ArrayList<Talent> talentList;
     //TODO: Make a class to hold all of this player data
     private int highlightColor = Color.YELLOW;
     private int currentHearts = 450;
