@@ -1,4 +1,4 @@
-package com.lertos.projectyorkie;
+package com.lertos.projectyorkie.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,21 +9,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lertos.projectyorkie.data.Talent;
+import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.model.Talent;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.ViewHolder> {
+public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.ViewHolder> implements BindDataToView {
 
     private Context context;
-    private ArrayList<Talent> talentList = new ArrayList<>();
+    private List<Talent> talentList = new ArrayList<>();
 
     public TalentsViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setTalentList(ArrayList<Talent> newTalentList) {
-        this.talentList = newTalentList;
+    public void setDataList(List<?> list) {
+        this.talentList = (List<Talent>) list;
         notifyDataSetChanged();
     }
 
