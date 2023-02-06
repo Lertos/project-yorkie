@@ -131,11 +131,23 @@
         </RelativeLayout>
 
         <!-- Main Inner Section -->
+
+        <!-- Talents Tab -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTalents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relCharacterButtons">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <!-- Pack Tab -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relCharacterButtons"
+            android:visibility="gone">
 
         </androidx.recyclerview.widget.RecyclerView>
 
