@@ -94,16 +94,23 @@ public class HomePage extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
-    public void setupBottomButtonBar() {
-        findViewById(R.id.button_home).setOnClickListener(v -> {
+    public void setupPageButtonBar() {
+        findViewById(R.id.button_talents).setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "Switching to home page", Toast.LENGTH_SHORT).show();
-            switchActivities(HomePage.class);
+            findViewById(R.id.recyclerViewTalents).setVisibility(View.VISIBLE);
+            findViewById(R.id.recyclerViewPack).setVisibility(View.GONE);
         });
 
-        findViewById(R.id.button_activities).setOnClickListener(v -> {
+        findViewById(R.id.button_pack).setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "Switching to activities page", Toast.LENGTH_SHORT).show();
-            switchActivities(ActivityPage.class);
+            findViewById(R.id.recyclerViewTalents).setVisibility(View.GONE);
+            findViewById(R.id.recyclerViewPack).setVisibility(View.VISIBLE);
         });
+    }
+
+    public void setupBottomButtonBar() {
+        findViewById(R.id.button_home).setOnClickListener(v -> { switchActivities(HomePage.class); });
+        findViewById(R.id.button_activities).setOnClickListener(v -> { switchActivities(ActivityPage.class); });
     }
 
     private void setupCharacterInfo() {
