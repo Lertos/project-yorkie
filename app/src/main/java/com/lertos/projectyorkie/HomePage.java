@@ -41,17 +41,6 @@ public class HomePage extends AppCompatActivity {
         //Since this is the main/launcher activity, load the data here
         loadMainData();
 
-        /*
-        RecyclerView talentsRecyclerView = findViewById(R.id.recyclerViewTalents);
-        TalentsViewAdapter talentsViewAdapter = new TalentsViewAdapter(this);
-
-        talentList = new ArrayList<>();
-
-        talentsViewAdapter.setTalentList(talentList);
-        talentsRecyclerView.setAdapter(talentsViewAdapter);
-        talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-         */
-
         setupBottomButtonBar();
         setupPageButtonBar();
         setupCharacterInfo();
@@ -60,15 +49,10 @@ public class HomePage extends AppCompatActivity {
     private void loadMainData() {
         Data.getInstance().start();
 
-        talentList = new ArrayList<>();
-        talentList.add(new Talent("Heart Beater", "Increases hearts per second.", 1, 10, 2));
-        talentList.add(new Talent("Lucky Streak", "Increases chance at gaining heart tokens.", 1, 2, 1));
-        talentList.add(new Talent("Bargain Master", "Decreases cost of upgrading talents.", 1, 16, 4));
-
         createNewRecyclerView(
                 findViewById(R.id.recyclerViewTalents),
-                talentList,
-                new TalentsViewAdapter(this)
+                Data.getInstance().getTalents(),
+                new TalentsViewAdapter()
         );
 
         createNewRecyclerView(
@@ -76,9 +60,6 @@ public class HomePage extends AppCompatActivity {
                 Data.getInstance().getPackDogs(),
                 new PackViewAdapter()
         );
-
-        //TODO: Switch the talents to Talents class and make them in the method below the main above
-        //createAndLoadTalents();
     }
 
     private <T extends BindDataToView> void createNewRecyclerView(RecyclerView recyclerView, List<?> arrayList, T viewAdapter) {
@@ -96,13 +77,11 @@ public class HomePage extends AppCompatActivity {
 
     public void setupPageButtonBar() {
         findViewById(R.id.button_talents).setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "Switching to home page", Toast.LENGTH_SHORT).show();
             findViewById(R.id.recyclerViewTalents).setVisibility(View.VISIBLE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.GONE);
         });
 
         findViewById(R.id.button_pack).setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "Switching to activities page", Toast.LENGTH_SHORT).show();
             findViewById(R.id.recyclerViewTalents).setVisibility(View.GONE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.VISIBLE);
         });
@@ -148,20 +127,6 @@ public class HomePage extends AppCompatActivity {
         spannable.setSpan(new ForegroundColorSpan(color), str.length(), str.length() + appended.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 
         return spannable;
-    }
-
-    private void createAndLoadTalents() {
-        RecyclerView talentsRecyclerView = findViewById(R.id.recyclerViewTalents);
-        TalentsViewAdapter talentsViewAdapter = new TalentsViewAdapter(this);
-
-        talentList = new ArrayList<>();
-        talentList.add(new Talent("Heart Beater", "Increases hearts per second.", 1, 10, 2));
-        talentList.add(new Talent("Lucky Streak", "Increases chance at gaining heart tokens.", 1, 2, 1));
-        talentList.add(new Talent("Bargain Master", "Decreases cost of upgrading talents.", 1, 16, 4));
-
-        talentsViewAdapter.setDataList(talentList);
-        talentsRecyclerView.setAdapter(talentsViewAdapter);
-        talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
