@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,9 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lertos.projectyorkie.data.Talent;
+import com.lertos.projectyorkie.adapters.BindDataToView;
+import com.lertos.projectyorkie.adapters.PackViewAdapter;
+import com.lertos.projectyorkie.adapters.TalentsViewAdapter;
+import com.lertos.projectyorkie.data.Data;
+import com.lertos.projectyorkie.model.Talent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
@@ -31,10 +37,54 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
-        setupBottomButtonBar();
 
+        //Since this is the main/launcher activity, load the data here
+        loadMainData();
+
+        /*
+        RecyclerView talentsRecyclerView = findViewById(R.id.recyclerViewTalents);
+        TalentsViewAdapter talentsViewAdapter = new TalentsViewAdapter(this);
+
+        talentList = new ArrayList<>();
+
+        talentsViewAdapter.setTalentList(talentList);
+        talentsRecyclerView.setAdapter(talentsViewAdapter);
+        talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+         */
+
+        setupBottomButtonBar();
+        setupPageButtonBar();
         setupCharacterInfo();
-        createAndLoadTalents();
+    }
+
+    private void loadMainData() {
+        Data.getInstance().start();
+
+        talentList = new ArrayList<>();
+        talentList.add(new Talent("Heart Beater", "Increases hearts per second.", 1, 10, 2));
+        talentList.add(new Talent("Lucky Streak", "Increases chance at gaining heart tokens.", 1, 2, 1));
+        talentList.add(new Talent("Bargain Master", "Decreases cost of upgrading talents.", 1, 16, 4));
+
+        createNewRecyclerView(
+                findViewById(R.id.recyclerViewTalents),
+                talentList,
+                new TalentsViewAdapter(this)
+        );
+
+        createNewRecyclerView(
+                findViewById(R.id.recyclerViewPack),
+                Data.getInstance().getPackDogs(),
+                new PackViewAdapter()
+        );
+
+        //TODO: Switch the talents to Talents class and make them in the method below the main above
+        //createAndLoadTalents();
+    }
+
+    private <T extends BindDataToView> void createNewRecyclerView(RecyclerView recyclerView, List<?> arrayList, T viewAdapter) {
+        viewAdapter.setDataList(arrayList);
+        recyclerView.setAdapter((RecyclerView.Adapter) viewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void switchActivities(Class cls) {
@@ -102,7 +152,7 @@ public class HomePage extends AppCompatActivity {
         talentList.add(new Talent("Lucky Streak", "Increases chance at gaining heart tokens.", 1, 2, 1));
         talentList.add(new Talent("Bargain Master", "Decreases cost of upgrading talents.", 1, 16, 4));
 
-        talentsViewAdapter.setTalentList(talentList);
+        talentsViewAdapter.setDataList(talentList);
         talentsRecyclerView.setAdapter(talentsViewAdapter);
         talentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
