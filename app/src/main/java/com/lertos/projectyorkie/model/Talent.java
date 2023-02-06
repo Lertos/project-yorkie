@@ -1,4 +1,4 @@
-package com.lertos.projectyorkie.data;
+package com.lertos.projectyorkie.model;
 
 public class Talent {
 
