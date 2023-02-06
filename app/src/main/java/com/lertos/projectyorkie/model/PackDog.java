@@ -3,22 +3,17 @@ package com.lertos.projectyorkie.model;
 public class PackDog {
 
     private final String name;
-    private final String description;
     private final int avatar;
-    private final double addedBonus = 1.05;
+    private final double addedBonus = 2.5;
+    private boolean unlocked = false;
 
-    public PackDog(String name, String description, int avatar) {
+    public PackDog(String name, int avatar) {
         this.name = name;
-        this.description = description;
         this.avatar = avatar;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public int getAvatar() {
@@ -27,5 +22,13 @@ public class PackDog {
 
     public double getAddedBonus() {
         return addedBonus;
+    }
+
+    public boolean isUnlocked() {
+        return unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        this.unlocked = unlocked;
     }
 }

@@ -35,10 +35,15 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.dogAvatar.setImageResource(packList.get(position).getAvatar());
-        holder.dogName.setText(packList.get(position).getName());
-        holder.dogDescription.setText(packList.get(position).getDescription());
-        holder.dogAddedBonus.setText("Added Bonus: " + packList.get(position).getAddedBonus());
+        if (packList.get(position).isUnlocked()) {
+            holder.dogAvatar.setImageResource(packList.get(position).getAvatar());
+            holder.dogName.setText(packList.get(position).getName());
+            holder.dogAddedBonus.setText("Added Bonus: +" + packList.get(position).getAddedBonus() + "%");
+        } else {
+            holder.dogAvatar.setImageResource(R.mipmap.icon_locked);
+            holder.dogName.setText("LOCKED");
+            holder.dogAddedBonus.setText("Win tournaments to unlock new dogs");
+        }
     }
 
     @Override
@@ -50,7 +55,6 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
 
         private ImageView dogAvatar;
         private TextView dogName;
-        private TextView dogDescription;
         private TextView dogAddedBonus;
 
         public ViewHolder(@NonNull View itemView) {
@@ -58,7 +62,6 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
 
             dogAvatar = itemView.findViewById(R.id.ivDogAvatar);
             dogName = itemView.findViewById(R.id.dogName);
-            dogDescription = itemView.findViewById(R.id.dogDescription);
             dogAddedBonus = itemView.findViewById(R.id.dogBonus);
         }
     }
