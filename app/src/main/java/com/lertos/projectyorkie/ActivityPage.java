@@ -9,6 +9,8 @@ import com.lertos.projectyorkie.data.DataManager;
 
 public class ActivityPage extends HomePage {
 
+    static boolean isPageActive = false;
+
     TextView activityCurrentHearts;
 
     @Override
@@ -17,9 +19,10 @@ public class ActivityPage extends HomePage {
         setContentView(R.layout.activities_page);
 
         activityCurrentHearts = findViewById(R.id.activityCurrentHearts);
+        isPageActive = true;
 
         setupBottomButtonBar();
-        continuouslyUpdateHearts();
+        updateUIWithCurrentHearts();
 
         Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewActivities),
@@ -29,16 +32,18 @@ public class ActivityPage extends HomePage {
         );
     }
 
-    private void continuouslyUpdateHearts() {
+    protected void onDestroy() { super.onDestroy(); isPageActive = false; }
+
+    protected void onResume() { super.onResume(); isPageActive = true; }
+
+    protected void onPause() { super.onPause(); isPageActive = false; }
+
+    private void updateUIWithCurrentHearts() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
-                double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
-
-                activityCurrentHearts.setText(String.valueOf(currentHearts));
-                DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
+                activityCurrentHearts.setText(String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHearts()));
 
                 handler.postDelayed(this, 1000);
             }
