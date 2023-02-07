@@ -1,5 +1,6 @@
 package com.lertos.projectyorkie.data;
 
+import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
 
@@ -13,6 +14,7 @@ public class DataManager {
     private Player playerData;
     private List<Talent> talentList = new ArrayList<>();
     private List<PackDog> packDogList = new ArrayList<>();
+    private List<Activity> activityList = new ArrayList<>();
 
     private DataManager() {}
 
@@ -33,6 +35,9 @@ public class DataManager {
 
         Talents talents = new Talents();
         talentList = talents.getListTalents();
+
+        Activities activities = new Activities();
+        activityList = activities.getListActivities();
     }
 
     public Player getPlayerData() {
@@ -45,5 +50,9 @@ public class DataManager {
 
     public List<Talent> getTalents() {
         return Collections.unmodifiableList(talentList);
+    }
+
+    public List<Activity> getActivities() {
+        return Collections.unmodifiableList(activityList);
     }
 }
