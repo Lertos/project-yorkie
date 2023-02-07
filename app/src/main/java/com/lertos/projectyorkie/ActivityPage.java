@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
+import com.lertos.projectyorkie.adapters.ActivityViewAdapter;
 import com.lertos.projectyorkie.data.DataManager;
 
 public class ActivityPage extends HomePage {
@@ -19,6 +20,13 @@ public class ActivityPage extends HomePage {
 
         setupBottomButtonBar();
         continuouslyUpdateHearts();
+
+        Helper.createNewRecyclerView(
+                findViewById(R.id.recyclerViewActivities),
+                DataManager.getInstance().getActivities(),
+                new ActivityViewAdapter(),
+                this
+        );
     }
 
     private void continuouslyUpdateHearts() {

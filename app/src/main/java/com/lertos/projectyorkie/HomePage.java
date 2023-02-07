@@ -2,22 +2,14 @@ package com.lertos.projectyorkie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.adapters.PackViewAdapter;
 import com.lertos.projectyorkie.adapters.TalentsViewAdapter;
 import com.lertos.projectyorkie.data.DataManager;
-
-import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
@@ -37,23 +29,19 @@ public class HomePage extends AppCompatActivity {
     private void loadMainData() {
         DataManager.getInstance().start();
 
-        createNewRecyclerView(
+        Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewTalents),
                 DataManager.getInstance().getTalents(),
-                new TalentsViewAdapter()
+                new TalentsViewAdapter(),
+                this
         );
 
-        createNewRecyclerView(
+        Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewPack),
                 DataManager.getInstance().getPackDogs(),
-                new PackViewAdapter()
+                new PackViewAdapter(),
+                this
         );
-    }
-
-    private <T extends BindDataToView> void createNewRecyclerView(RecyclerView recyclerView, List<?> arrayList, T viewAdapter) {
-        viewAdapter.setDataList(arrayList);
-        recyclerView.setAdapter((RecyclerView.Adapter) viewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void switchActivities(Class cls) {
@@ -86,7 +74,7 @@ public class HomePage extends AppCompatActivity {
         TextView currentDogsCollected = findViewById(R.id.tcCurrentDogsCollected);
 
         currentHearts.setText(
-                createSpannable(
+                Helper.createSpannable(
                         getResources().getString(R.string.character_heart_amount),
                         " " + DataManager.getInstance().getPlayerData().getCurrentHearts(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
@@ -94,7 +82,7 @@ public class HomePage extends AppCompatActivity {
                 TextView.BufferType.SPANNABLE);
 
         currentHeartTokens.setText(
-                createSpannable(
+                Helper.createSpannable(
                         getResources().getString(R.string.character_heart_token_amount),
                         " " + DataManager.getInstance().getPlayerData().getCurrentHeartTokens(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
@@ -102,19 +90,12 @@ public class HomePage extends AppCompatActivity {
                 TextView.BufferType.SPANNABLE);
 
         currentDogsCollected.setText(
-                createSpannable(
+                Helper.createSpannable(
                         getResources().getString(R.string.character_dogs_collected),
                         " " + DataManager.getInstance().getPlayerData().getDogsCollected(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
-    }
-
-    private SpannableStringBuilder createSpannable(String str, String appended, int color) {
-        SpannableStringBuilder spannable = new SpannableStringBuilder(str + appended);
-        spannable.setSpan(new ForegroundColorSpan(color), str.length(), str.length() + appended.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-
-        return spannable;
     }
 
 }
