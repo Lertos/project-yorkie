@@ -2,6 +2,7 @@ package com.lertos.projectyorkie;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,14 +28,41 @@ public class HomePage extends AppCompatActivity {
         }
 
         setupBottomButtonBar();
+        setupRecyclerViews();
         setupPageButtonBar();
         setupCharacterInfo();
     }
 
     private void loadMainData() {
+        //Setup the data and have it all created on startup
         DataManager.getInstance().start();
         DataManager.getInstance().setHeartsPerSecond();
 
+        //Run the game loop - mainly for increasing the hearts per second
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+                double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
+
+                DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
+
+                handler.postDelayed(this, 1000);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    //To ensure the start logic only happens when the app initially starts or this activity is destroyed
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) {
+            hasStarted = false;
+        }
+    }
+
+    private void setupRecyclerViews() {
         Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewTalents),
                 DataManager.getInstance().getTalents(),
