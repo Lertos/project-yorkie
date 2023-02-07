@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darker_light_blue"
-    android:id="@+id/relParent">
+    android:background="@color/darkest_blue">
 
     <RelativeLayout
+        android:id="@+id/relMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/relButtons"
-        android:id="@+id/relMain">
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Activity Button" />
+        android:layout_height="wrap_content">
 
-        <TextView
+        <!-- Top Info Header -->
+        <LinearLayout
+            android:id="@+id/linHeaderInfo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/app_name"
-            android:layout_below="@id/button"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/border_with_light_bg"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hearts"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/activityCurrentHearts"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/yellow"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <!-- Main Inner Section -->
+
+        <!-- Talents Tab -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewActivities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linHeaderInfo">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>
 
-    <include layout="@layout/bottom_button_bar" android:id="@id/relButtons"/>
+    <include
+        android:id="@id/relButtons"
+        layout="@layout/bottom_button_bar" />
 
 </RelativeLayout>
