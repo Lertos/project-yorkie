@@ -38,10 +38,27 @@ public class DataManager {
 
         Activities activities = new Activities();
         activityList = activities.getListActivities();
+
+        //Set the initial hearts per second
+        setHeartsPerSecond();
     }
 
     public Player getPlayerData() {
         return playerData;
+    }
+
+    public void setHeartsPerSecond() {
+        double heartsPerSecond = 0;
+
+        for (Activity activity : activityList) {
+            if (!activity.isUnlocked())
+                break;
+            heartsPerSecond += activity.getCurrentProductionOutput();
+        }
+        //TODO: Apply talent bonuses
+        //TODO: Apply pack bonuses
+
+        playerData.setCurrentHeartsPerSecond(heartsPerSecond);
     }
 
     public List<PackDog> getPackDogs() {

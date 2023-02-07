@@ -28,6 +28,7 @@ public class HomePage extends AppCompatActivity {
 
     private void loadMainData() {
         DataManager.getInstance().start();
+        DataManager.getInstance().setHeartsPerSecond();
 
         Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewTalents),

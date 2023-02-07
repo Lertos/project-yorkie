@@ -35,11 +35,12 @@ public class ActivityPage extends HomePage {
             @Override
             public void run() {
                 double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+                double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
 
                 activityCurrentHearts.setText(String.valueOf(currentHearts));
-                DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + 10);
+                DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
 
-                handler.postDelayed(this, 500);
+                handler.postDelayed(this, 1000);
             }
         };
         handler.post(runnable);
