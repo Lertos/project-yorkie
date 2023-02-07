@@ -4,7 +4,7 @@ public class Activity {
 
     //TODO: Add multipliers to all the get double methods
     private final String name;
-    private int currentLevel;
+    private int currentLevel = 0;
     private final double baseUpgradeCost;
     private final double baseRateGrowth;
     private final double baseProductionOutput;
