@@ -13,13 +13,18 @@ import com.lertos.projectyorkie.data.DataManager;
 
 public class HomePage extends AppCompatActivity {
 
+    static boolean hasStarted = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
         //Since this is the main/launcher activity, load the data here
-        loadMainData();
+        if (!hasStarted) {
+            loadMainData();
+            hasStarted = true;
+        }
 
         setupBottomButtonBar();
         setupPageButtonBar();
