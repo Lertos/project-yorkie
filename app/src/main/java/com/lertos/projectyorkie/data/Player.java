@@ -8,24 +8,33 @@ public class Player {
     private final int highlightColor = Color.YELLOW;
 
     //Player data that will change
-    private int currentHearts;
+    private double currentHeartsPerSecond;
+    private double currentHearts;
     private int currentHeartTokens;
     private int dogsCollected;
 
     //Static data that won't change
     private final int maxDogsToCollect = 27;
 
-    public Player(int currentHearts, int currentHeartTokens, int dogsCollected) {
+    public Player(double currentHearts, int currentHeartTokens, int dogsCollected) {
         this.currentHearts = currentHearts;
         this.currentHeartTokens = currentHeartTokens;
         this.dogsCollected = dogsCollected;
     }
 
-    public int getCurrentHearts() {
+    public double getCurrentHeartsPerSecond() {
+        return currentHeartsPerSecond;
+    }
+
+    public void setCurrentHeartsPerSecond(double currentHeartsPerSecond) {
+        this.currentHeartsPerSecond = currentHeartsPerSecond;
+    }
+
+    public double getCurrentHearts() {
         return currentHearts;
     }
 
-    public void setCurrentHearts(int currentHearts) {
+    public void setCurrentHearts(double currentHearts) {
         this.currentHearts = currentHearts;
     }
 

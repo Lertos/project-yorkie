@@ -34,7 +34,7 @@ public class ActivityPage extends HomePage {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                int currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+                double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
 
                 activityCurrentHearts.setText(String.valueOf(currentHearts));
                 DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + 10);
