@@ -1,6 +1,5 @@
 package com.lertos.projectyorkie.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.talent_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_talent, parent, false);
         ViewHolder holder = new ViewHolder(view);
 
         return holder;
