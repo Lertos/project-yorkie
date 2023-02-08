@@ -21,8 +21,7 @@ import java.util.List;
 public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapter.ViewHolder> implements BindDataToView {
 
     private List<Activity> activityList = new ArrayList<>();
-
-
+    private Toast toastMsg;
 
     public void setDataList(List<?> list) {
         this.activityList = (List<Activity>) list;
@@ -46,7 +45,11 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
 
             if (currentHearts < upgradeCost) {
-                Toast.makeText(v.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+                if (toastMsg != null)
+                    toastMsg.cancel();
+
+                toastMsg = Toast.makeText(v.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+                toastMsg.show();
                 return;
             }
 
@@ -57,8 +60,6 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         });
 
         //Update the info of the activity panel
-        holder.activityName.setText(activityList.get(position).getName());
-        
         refreshChangingData(holder, position);
 
         if (!activityList.get(position).isUnlocked()) {
@@ -69,6 +70,8 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
     }
 
     private void refreshChangingData(ViewHolder holder, int position) {
+        holder.activityName.setText(activityList.get(position).getName());
+
         holder.activityLevel.setText(
                 Helper.createSpannable(
                         "Current Level:",
