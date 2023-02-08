@@ -19,10 +19,14 @@ public class ActivityPage extends HomePage {
         setContentView(R.layout.activities_page);
 
         activityCurrentHearts = findViewById(R.id.activityCurrentHearts);
-        isPageActive = true;
 
         setupBottomButtonBar();
-        updateUIWithCurrentHearts();
+
+        if (!isPageActive) {
+            updateUIWithCurrentHearts();
+            isPageActive = true;
+        }
+
 
         Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewActivities),
@@ -32,11 +36,20 @@ public class ActivityPage extends HomePage {
         );
     }
 
-    protected void onDestroy() { super.onDestroy(); isPageActive = false; }
+    protected void onDestroy() {
+        super.onDestroy();
+        isPageActive = false;
+    }
 
-    protected void onResume() { super.onResume(); isPageActive = true; }
+    protected void onPause() {
+        super.onPause();
+        isPageActive = false;
+    }
 
-    protected void onPause() { super.onPause(); isPageActive = false; }
+    protected void onResume() {
+        super.onResume();
+        isPageActive = true;
+    }
 
     private void updateUIWithCurrentHearts() {
         final Handler handler = new Handler();
@@ -45,7 +58,10 @@ public class ActivityPage extends HomePage {
             public void run() {
                 activityCurrentHearts.setText(String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHearts()));
 
-                handler.postDelayed(this, 100);
+                if(!isPageActive)
+                    handler.removeCallbacks(this);
+                else
+                    handler.postDelayed(this, 1000);
             }
         };
         handler.post(runnable);
