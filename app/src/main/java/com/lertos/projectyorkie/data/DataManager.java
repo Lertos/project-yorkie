@@ -28,7 +28,7 @@ public class DataManager {
 
     public void start() {
         //TODO: Later on, load (and save) the player data in a file and populate the Player object with the data
-        playerData = new Player(450, 12, 3);
+        playerData = new Player(0, 0, 0);
 
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
