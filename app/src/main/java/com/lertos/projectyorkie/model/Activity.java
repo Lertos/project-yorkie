@@ -1,5 +1,7 @@
 package com.lertos.projectyorkie.model;
 
+import com.lertos.projectyorkie.Helper;
+
 public class Activity {
 
     //TODO: Add multipliers to all the get double methods
@@ -25,8 +27,8 @@ public class Activity {
         return currentLevel;
     }
 
-    public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
+    public void levelUp() {
+        this.currentLevel += 1;
     }
 
     public double getBaseUpgradeCost() {
@@ -50,14 +52,14 @@ public class Activity {
     }
 
     public double getNextUpgradeCost() {
-        return baseUpgradeCost * Math.pow(baseRateGrowth, currentLevel);
+        return Helper.roundNumber(baseUpgradeCost * Math.pow(baseRateGrowth, currentLevel));
     }
 
     public double getCurrentProductionOutput() {
-        return baseProductionOutput * currentLevel;
+        return Helper.roundNumber(baseProductionOutput * currentLevel);
     }
 
     public double getNextProductionOutput() {
-        return baseProductionOutput * (currentLevel + 1);
+        return Helper.roundNumber(baseProductionOutput * (currentLevel + 1));
     }
 }

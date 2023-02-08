@@ -2,6 +2,8 @@ package com.lertos.projectyorkie.data;
 
 import android.graphics.Color;
 
+import com.lertos.projectyorkie.Helper;
+
 public class Player {
 
     //Formatting/colorization purposes
@@ -27,7 +29,7 @@ public class Player {
     }
 
     public void setCurrentHeartsPerSecond(double currentHeartsPerSecond) {
-        this.currentHeartsPerSecond = currentHeartsPerSecond;
+        this.currentHeartsPerSecond = Helper.roundNumber(currentHeartsPerSecond);
     }
 
     public double getCurrentHearts() {
@@ -35,7 +37,7 @@ public class Player {
     }
 
     public void setCurrentHearts(double currentHearts) {
-        this.currentHearts = currentHearts;
+        this.currentHearts = Helper.roundNumber(currentHearts);
     }
 
     public int getCurrentHeartTokens() {

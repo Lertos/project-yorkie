@@ -29,4 +29,8 @@ public class Helper {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
+    public static double roundNumber(double number) {
+        return Math.round(number * 100.0) / 100.0;
+    }
+
 }

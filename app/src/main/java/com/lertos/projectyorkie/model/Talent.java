@@ -1,5 +1,7 @@
 package com.lertos.projectyorkie.model;
 
+import com.lertos.projectyorkie.Helper;
+
 public class Talent {
 
     private final String name;
@@ -10,6 +12,7 @@ public class Talent {
 
     //TODO: Need to have enums for the sign of the bonus (increase/decrease)
     //TODO: Need to have enums for the type of the bonus (percentage/whole)
+    //TODO: Need to have unlock order as well as isUnlocked; also the sorting comparator from PackDog
 
     public Talent(String name, String description, int currentLevel, double currentBonus, double nextBonus) {
         this.name = name;
@@ -32,11 +35,11 @@ public class Talent {
     }
 
     public double getCurrentBonus() {
-        return currentBonus;
+        return Helper.roundNumber(currentBonus);
     }
 
     public double getNextBonus() {
-        return nextBonus;
+        return Helper.roundNumber(nextBonus);
     }
 
     public void setCurrentLevel(int currentLevel) {
