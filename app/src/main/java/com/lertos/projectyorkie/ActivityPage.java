@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lertos.projectyorkie.adapters.ActivityViewAdapter;
 import com.lertos.projectyorkie.data.DataManager;
 
-public class ActivityPage extends HomePage {
+public class ActivityPage extends AppCompatActivity {
 
     static boolean isPageActive = false;
 
@@ -20,13 +22,12 @@ public class ActivityPage extends HomePage {
 
         activityCurrentHearts = findViewById(R.id.activityCurrentHearts);
 
-        setupBottomButtonBar();
+        Helper.setupBottomButtonBar(this);
 
         if (!isPageActive) {
             updateUIWithCurrentHearts();
             isPageActive = true;
         }
-
 
         Helper.createNewRecyclerView(
                 findViewById(R.id.recyclerViewActivities),
@@ -36,20 +37,11 @@ public class ActivityPage extends HomePage {
         );
     }
 
-    protected void onDestroy() {
-        super.onDestroy();
-        isPageActive = false;
-    }
+    protected void onDestroy() { super.onDestroy(); isPageActive = false; }
 
-    protected void onPause() {
-        super.onPause();
-        isPageActive = false;
-    }
+    protected void onPause() { super.onPause(); isPageActive = false; }
 
-    protected void onResume() {
-        super.onResume();
-        isPageActive = true;
-    }
+    protected void onResume() { super.onResume(); isPageActive = true; }
 
     private void updateUIWithCurrentHearts() {
         final Handler handler = new Handler();
@@ -61,7 +53,7 @@ public class ActivityPage extends HomePage {
                 if(!isPageActive)
                     handler.removeCallbacks(this);
                 else
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, 500);
             }
         };
         handler.post(runnable);

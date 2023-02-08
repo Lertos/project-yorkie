@@ -1,10 +1,12 @@
 package com.lertos.projectyorkie;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +29,18 @@ public class Helper {
         viewAdapter.setDataList(arrayList);
         recyclerView.setAdapter((RecyclerView.Adapter) viewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+    }
+
+    public static void setupBottomButtonBar(AppCompatActivity activity) {
+        activity.findViewById(R.id.button_home).setOnClickListener(v -> { switchActivities(activity, HomePage.class); });
+        activity.findViewById(R.id.button_activities).setOnClickListener(v -> { switchActivities(activity, ActivityPage.class); });
+    }
+
+    private static void switchActivities(AppCompatActivity activity, Class cls) {
+        Intent intent = new Intent(activity, cls);
+        activity.startActivity(intent);
+        //Stop the animation of switching between activities
+        activity.overridePendingTransition(0, 0);
     }
 
     public static double roundNumber(double number) {

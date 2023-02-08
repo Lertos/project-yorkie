@@ -1,6 +1,5 @@
 package com.lertos.projectyorkie;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.lertos.projectyorkie.data.DataManager;
 public class HomePage extends AppCompatActivity {
 
     static boolean hasStarted = false;
+    static boolean isPageActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,12 @@ public class HomePage extends AppCompatActivity {
             hasStarted = true;
         }
 
-        setupBottomButtonBar();
+        if (!isPageActive) {
+            updateUIWithCurrentHearts();
+            isPageActive = true;
+        }
+
+        Helper.setupBottomButtonBar(this);
         setupRecyclerViews();
         setupPageButtonBar();
         setupCharacterInfo();
@@ -58,10 +63,14 @@ public class HomePage extends AppCompatActivity {
     //To ensure the start logic only happens when the app initially starts or this activity is destroyed
     protected void onDestroy() {
         super.onDestroy();
-        if (isFinishing()) {
+        if (isFinishing())
             hasStarted = false;
-        }
+        isPageActive = false;
     }
+
+    protected void onPause() { super.onPause(); isPageActive = false; }
+
+    protected void onResume() { super.onResume(); isPageActive = true; }
 
     private void setupRecyclerViews() {
         Helper.createNewRecyclerView(
@@ -79,13 +88,6 @@ public class HomePage extends AppCompatActivity {
         );
     }
 
-    private void switchActivities(Class cls) {
-        Intent intent = new Intent(this, cls);
-        startActivity(intent);
-        //Stop the animation of switching between activities
-        overridePendingTransition(0, 0);
-    }
-
     public void setupPageButtonBar() {
         findViewById(R.id.button_talents).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.VISIBLE);
@@ -96,11 +98,6 @@ public class HomePage extends AppCompatActivity {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.GONE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.VISIBLE);
         });
-    }
-
-    public void setupBottomButtonBar() {
-        findViewById(R.id.button_home).setOnClickListener(v -> { switchActivities(HomePage.class); });
-        findViewById(R.id.button_activities).setOnClickListener(v -> { switchActivities(ActivityPage.class); });
     }
 
     private void setupCharacterInfo() {
@@ -131,6 +128,30 @@ public class HomePage extends AppCompatActivity {
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
+    }
+
+    private void updateUIWithCurrentHearts() {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                TextView currentHearts = findViewById(R.id.tcCurrentHearts);
+
+                currentHearts.setText(
+                        Helper.createSpannable(
+                                getResources().getString(R.string.character_heart_amount),
+                                " " + DataManager.getInstance().getPlayerData().getCurrentHearts(),
+                                DataManager.getInstance().getPlayerData().getHighlightColor()
+                        ),
+                        TextView.BufferType.SPANNABLE);
+
+                if(!isPageActive)
+                    handler.removeCallbacks(this);
+                else
+                    handler.postDelayed(this, 500);
+            }
+        };
+        handler.post(runnable);
     }
 
 }
