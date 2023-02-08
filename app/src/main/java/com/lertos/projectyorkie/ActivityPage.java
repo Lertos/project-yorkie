@@ -45,7 +45,7 @@ public class ActivityPage extends HomePage {
             public void run() {
                 activityCurrentHearts.setText(String.valueOf(DataManager.getInstance().getPlayerData().getCurrentHearts()));
 
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 100);
             }
         };
         handler.post(runnable);
