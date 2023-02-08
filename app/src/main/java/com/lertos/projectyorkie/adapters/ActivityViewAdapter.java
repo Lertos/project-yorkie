@@ -3,7 +3,9 @@ package com.lertos.projectyorkie.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,8 @@ import java.util.List;
 public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapter.ViewHolder> implements BindDataToView {
 
     private List<Activity> activityList = new ArrayList<>();
+
+
 
     public void setDataList(List<?> list) {
         this.activityList = (List<Activity>) list;
@@ -36,49 +40,60 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (activityList.get(position).isUnlocked()) {
-            holder.activityName.setText(activityList.get(position).getName());
+        //Set onClick listeners
+        holder.activityUpgradeButton.setOnClickListener(v -> {
+            double upgradeCost = activityList.get(position).getNextUpgradeCost();
+            double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
 
-            holder.activityLevel.setText(
-                    Helper.createSpannable(
-                            "Current Level:",
-                            " " + activityList.get(position).getCurrentLevel(),
-                            DataManager.getInstance().getPlayerData().getHighlightColor()
-                    ),
-                    TextView.BufferType.SPANNABLE);
+            if (currentHearts < upgradeCost) {
+                Toast.makeText(v.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+                return;
+            }
 
-            holder.activityCurrentOutput.setText(
-                    Helper.createSpannable(
-                            "Current Output (H/s):",
-                            " " + activityList.get(position).getCurrentProductionOutput(),
-                            DataManager.getInstance().getPlayerData().getHighlightColor()
-                    ),
-                    TextView.BufferType.SPANNABLE);
+            DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts - upgradeCost);
+            activityList.get(position).levelUp();
 
-            holder.activityNextOutput.setText(
-                    Helper.createSpannable(
-                            "Next Output (H/s):",
-                            " " + activityList.get(position).getNextProductionOutput(),
-                            DataManager.getInstance().getPlayerData().getHighlightColor()
-                    ),
-                    TextView.BufferType.SPANNABLE);
+            refreshChangingData(holder, position);
+        });
 
-            holder.activityUpgradeCost.setText(String.valueOf(activityList.get(position).getNextUpgradeCost()));
-        } else {
+        //Update the info of the activity panel
+        holder.activityName.setText(activityList.get(position).getName());
+        
+        refreshChangingData(holder, position);
+
+        if (!activityList.get(position).isUnlocked()) {
             holder.activityName.setText("LOCKED");
             holder.activityLevel.setText("");
             holder.activityCurrentOutput.setText("");
-
-            holder.activityNextOutput.setText(
-                    Helper.createSpannable(
-                            "Next Output (H/s):",
-                            " " + activityList.get(position).getNextProductionOutput(),
-                            DataManager.getInstance().getPlayerData().getHighlightColor()
-                    ),
-                    TextView.BufferType.SPANNABLE);
-
-            holder.activityUpgradeCost.setText(String.valueOf(activityList.get(position).getNextUpgradeCost()));
         }
+    }
+
+    private void refreshChangingData(ViewHolder holder, int position) {
+        holder.activityLevel.setText(
+                Helper.createSpannable(
+                        "Current Level:",
+                        " " + activityList.get(position).getCurrentLevel(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.activityCurrentOutput.setText(
+                Helper.createSpannable(
+                        "Current Output (H/s):",
+                        " " + activityList.get(position).getCurrentProductionOutput(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.activityNextOutput.setText(
+                Helper.createSpannable(
+                        "Next Output (H/s):",
+                        " " + activityList.get(position).getNextProductionOutput(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.activityUpgradeCost.setText(String.valueOf(activityList.get(position).getNextUpgradeCost()));
     }
 
     @Override
@@ -93,6 +108,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         private TextView activityCurrentOutput;
         private TextView activityNextOutput;
         private TextView activityUpgradeCost;
+        private ImageView activityUpgradeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -102,6 +118,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             activityCurrentOutput = itemView.findViewById(R.id.activityCurrentOutput);
             activityNextOutput = itemView.findViewById(R.id.activityNextOutput);
             activityUpgradeCost = itemView.findViewById(R.id.activityHeartsToUpgrade);
+            activityUpgradeButton = itemView.findViewById(R.id.btnActivityUpgrade);
         }
     }
 
