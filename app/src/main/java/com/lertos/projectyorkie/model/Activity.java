@@ -29,6 +29,9 @@ public class Activity {
 
     public void levelUp() {
         this.currentLevel += 1;
+
+        if (this.currentLevel == 1)
+            this.isUnlocked = true;
     }
 
     public double getBaseUpgradeCost() {
