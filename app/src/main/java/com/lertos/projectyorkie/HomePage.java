@@ -36,13 +36,14 @@ public class HomePage extends AppCompatActivity {
     private void loadMainData() {
         //Setup the data and have it all created on startup
         DataManager.getInstance().start();
-        DataManager.getInstance().setHeartsPerSecond();
 
         //Run the game loop - mainly for increasing the hearts per second
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                DataManager.getInstance().setHeartsPerSecond();
+
                 double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
                 double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
 
