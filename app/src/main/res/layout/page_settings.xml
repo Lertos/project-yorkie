@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkest_blue">
+
+    <!-- Parent Minus Button Bar -->
+    <RelativeLayout
+        android:id="@+id/relMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/relButtons">
+
+        <!-- Character Section -->
+        <LinearLayout
+            android:id="@+id/linSettingsHeader"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_with_dark_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/fontHeader"
+                android:textAlignment="center"
+                android:text="Settings"/>
+
+        </LinearLayout>
+
+        <!-- Settings Page -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/border_with_light_bg"
+            android:layout_margin="30dp"
+            android:layout_below="@id/linSettingsHeader"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.slider.Slider
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@id/relButtons"
+        layout="@layout/bottom_button_bar" />
+
+</RelativeLayout>
