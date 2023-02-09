@@ -16,18 +16,18 @@
         <LinearLayout
             android:id="@+id/linSettingsHeader"
             android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:background="@drawable/border_with_dark_bg"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
+                style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/fontHeader"
-                android:textAlignment="center"
-                android:text="Settings"/>
+                android:text="Settings"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -35,10 +35,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/border_with_light_bg"
-            android:layout_margin="30dp"
             android:layout_below="@id/linSettingsHeader"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:background="@drawable/border_with_light_bg"
             android:gravity="center"
             android:orientation="vertical">
 
