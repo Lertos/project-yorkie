@@ -25,4 +25,27 @@
         <item name="fontFamily">@font/toxigenesis</item>
     </style>
 
+    <style name="basicSlider" parent="@style/Widget.MaterialComponents.Slider">
+        <item name="labelStyle">@style/Widget.App.Tooltip</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Slider</item>
+        <item name="trackHeight">10dp</item>
+        <item name="trackColor">@color/darkest_blue</item>
+        <item name="labelBehavior">floating</item>
+        <item name="thumbColor">@color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.Slider" parent="">
+        <!-- Tooltip Text Color -->
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="Widget.App.Tooltip" parent="Widget.Material3.Tooltip">
+        <item name="android:textAppearance">@style/TextAppearance.App.Tooltip</item>
+    </style>
+
+    <style name="TextAppearance.App.Tooltip" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/toxigenesis</item>
+        <item name="android:fontFamily">@font/toxigenesis</item>
+    </style>
+
 </resources>
