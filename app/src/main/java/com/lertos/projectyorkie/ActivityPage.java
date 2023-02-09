@@ -18,7 +18,7 @@ public class ActivityPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activities_page);
+        setContentView(R.layout.page_activities);
 
         activityCurrentHearts = findViewById(R.id.activityCurrentHearts);
 

@@ -19,7 +19,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.page_home);
 
         //Since this is the main/launcher activity, load the data here
         if (!hasStarted) {
