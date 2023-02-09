@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/relButtons">
 
-        <!-- Character Section -->
+        <!-- Character Info Panel -->
         <LinearLayout
             android:id="@+id/linAvatar"
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
 
         </LinearLayout>
 
-        <!-- Character/Tab Button -->
+        <!-- Talent/Pack Button Panel -->
         <RelativeLayout
             android:id="@+id/relCharacterButtons"
             android:layout_width="match_parent"
@@ -132,7 +132,7 @@
 
         <!-- Main Inner Section -->
 
-        <!-- Talents Tab -->
+        <!-- Main Talents Panel -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTalents"
             android:layout_width="match_parent"
@@ -141,7 +141,7 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <!-- Pack Tab -->
+        <!-- Main Pack Panel -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPack"
             android:layout_width="match_parent"

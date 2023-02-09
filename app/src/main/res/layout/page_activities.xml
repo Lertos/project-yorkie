@@ -10,12 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Top Info Header -->
+        <!-- Page Title -->
+        <LinearLayout
+            android:id="@+id/linActivityHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/border_with_dark_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Activities"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <!-- Hearts Counter Panel -->
         <LinearLayout
             android:id="@+id/linHeaderInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@id/linActivityHeader"
             android:background="@drawable/border_with_light_bg"
             android:orientation="vertical">
 
@@ -31,14 +50,14 @@
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/yellow"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/yellow" />
 
         </LinearLayout>
 
         <!-- Main Inner Section -->
 
-        <!-- Talents Tab -->
+        <!-- Main Activities Panel -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewActivities"
             android:layout_width="match_parent"

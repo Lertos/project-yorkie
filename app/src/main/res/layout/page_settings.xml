@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/relButtons">
 
-        <!-- Character Section -->
+        <!-- Page Title -->
         <LinearLayout
             android:id="@+id/linSettingsHeader"
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
 
         </LinearLayout>
 
-        <!-- Settings Page -->
+        <!-- Settings Panel -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
