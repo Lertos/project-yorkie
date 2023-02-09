@@ -1,5 +1,6 @@
 package com.lertos.projectyorkie;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -16,6 +17,8 @@ public class HomePage extends AppCompatActivity {
     static boolean hasStarted = false;
     static boolean isPageActive = false;
 
+    MediaPlayer mainSongLoop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,11 @@ public class HomePage extends AppCompatActivity {
         //Since this is the main/launcher activity, load the data here
         if (!hasStarted) {
             loadMainData();
+
+            mainSongLoop = MediaPlayer.create(this, R.raw.music_main_loop);
+            mainSongLoop.start();
+            mainSongLoop.setLooping(true);
+
             hasStarted = true;
         }
 
