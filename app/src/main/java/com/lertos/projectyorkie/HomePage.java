@@ -1,6 +1,5 @@
 package com.lertos.projectyorkie;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,8 +16,6 @@ public class HomePage extends AppCompatActivity {
 
     static boolean hasStarted = false;
     static boolean isPageActive = false;
-
-    MediaPlayer mainSongLoop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +97,13 @@ public class HomePage extends AppCompatActivity {
         findViewById(R.id.button_talents).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.VISIBLE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.tvHomepageTabHeader)).setText("Talents");
         });
 
         findViewById(R.id.button_pack).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.GONE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.tvHomepageTabHeader)).setText("Your Pack");
         });
     }
 

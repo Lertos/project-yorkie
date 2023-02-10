@@ -132,12 +132,32 @@
 
         <!-- Main Inner Section -->
 
+        <!-- Tab Title -->
+        <LinearLayout
+            android:id="@+id/linHomepageTabHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relCharacterButtons"
+            android:background="@drawable/border_with_dark_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvHomepageTabHeader"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Talents"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
         <!-- Main Talents Panel -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTalents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/relCharacterButtons">
+            android:layout_below="@id/linHomepageTabHeader">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -146,7 +166,7 @@
             android:id="@+id/recyclerViewPack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/relCharacterButtons"
+            android:layout_below="@id/linHomepageTabHeader"
             android:visibility="gone">
 
         </androidx.recyclerview.widget.RecyclerView>
