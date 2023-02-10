@@ -30,11 +30,15 @@ public class Activity {
         return currentLevel;
     }
 
-    public void levelUp() {
+    //The boolean is to determine if it was a new unlock or not
+    public boolean levelUp() {
         this.currentLevel += 1;
 
-        if (this.currentLevel == 1)
+        if (this.currentLevel == 1) {
             this.isUnlocked = true;
+            return true;
+        }
+        return false;
     }
 
     public double getBaseUpgradeCost() {
