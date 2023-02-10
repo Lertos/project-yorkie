@@ -9,6 +9,8 @@ public class MediaManager {
     private Context context;
     private MediaPlayer trackEffect;
     private MediaPlayer trackSong;
+    private float trackEffectVolume;
+    private float trackSongVolume;
 
     private MediaManager() {}
 
@@ -23,6 +25,9 @@ public class MediaManager {
         this.context = context;
         this.trackEffect = new MediaPlayer();
         this.trackSong = new MediaPlayer();
+        //TODO: Have these saved somewhere in the user prefs
+        this.trackEffectVolume = 0.5f;
+        this.trackSongVolume = 0.5f;
     }
 
     public void playEffectTrack(int resId) {
@@ -30,6 +35,7 @@ public class MediaManager {
             trackEffect.stop();
 
         trackEffect = MediaPlayer.create(this.context, resId);
+        trackEffect.setVolume(trackEffectVolume, trackEffectVolume);
         trackEffect.start();
     }
 
@@ -38,9 +44,20 @@ public class MediaManager {
             trackSong.stop();
 
         trackSong = MediaPlayer.create(this.context, resId);
+        trackSong.setVolume(trackSongVolume, trackSongVolume);
         trackSong.start();
 
         if (loopSong)
             trackSong.setLooping(true);
+    }
+
+    public void changeEffectTrackVolume(float volume) {
+        trackEffectVolume = volume;
+        trackEffect.setVolume(volume, volume);
+    }
+
+    public void changeSongTrackVolume(float volume) {
+        trackSongVolume = volume;
+        trackSong.setVolume(volume, volume);
     }
 }
