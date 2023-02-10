@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lertos.projectyorkie.Helper;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.model.Activity;
 
 import java.util.ArrayList;
@@ -54,7 +55,14 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             }
 
             DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts - upgradeCost);
-            activityList.get(position).levelUp();
+
+            boolean justUnlocked = activityList.get(position).levelUp();
+
+            if (justUnlocked) {
+                MediaManager.getInstance().playEffectTrack(R.raw.effect_dog_bark);
+            } else {
+                MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
+            }
 
             refreshChangingData(holder, position);
         });

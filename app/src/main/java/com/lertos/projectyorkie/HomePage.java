@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lertos.projectyorkie.adapters.PackViewAdapter;
 import com.lertos.projectyorkie.adapters.TalentsViewAdapter;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 
 public class HomePage extends AppCompatActivity {
 
@@ -28,9 +29,7 @@ public class HomePage extends AppCompatActivity {
         if (!hasStarted) {
             loadMainData();
 
-            mainSongLoop = MediaPlayer.create(this, R.raw.music_main_loop);
-            mainSongLoop.start();
-            mainSongLoop.setLooping(true);
+            MediaManager.getInstance().playSongTrack(R.raw.music_main_loop, true);
 
             hasStarted = true;
         }
@@ -49,6 +48,7 @@ public class HomePage extends AppCompatActivity {
     private void loadMainData() {
         //Setup the data and have it all created on startup
         DataManager.getInstance().start();
+        MediaManager.getInstance().start(this);
 
         //Run the game loop - mainly for increasing the hearts per second
         final Handler handler = new Handler();
