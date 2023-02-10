@@ -34,6 +34,7 @@ public class Helper {
     public static void setupBottomButtonBar(AppCompatActivity activity) {
         activity.findViewById(R.id.button_home).setOnClickListener(v -> { switchActivities(activity, HomePage.class); });
         activity.findViewById(R.id.button_activities).setOnClickListener(v -> { switchActivities(activity, ActivityPage.class); });
+        activity.findViewById(R.id.button_petting).setOnClickListener(v -> { switchActivities(activity, PettingPage.class); });
         activity.findViewById(R.id.button_settings).setOnClickListener(v -> { switchActivities(activity, SettingsPage.class); });
     }
 

@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityPage" />
+        <activity android:name=".PettingPage" />
         <activity android:name=".SettingsPage" />
 
     </application>
