@@ -44,8 +44,8 @@ public class HomePage extends AppCompatActivity {
 
     private void loadMainData() {
         //Setup the data and have it all created on startup
-        DataManager.getInstance().start();
         MediaManager.getInstance().start(this);
+        DataManager.getInstance().start();
 
         //Run the game loop - mainly for increasing the hearts per second
         final Handler handler = new Handler();
