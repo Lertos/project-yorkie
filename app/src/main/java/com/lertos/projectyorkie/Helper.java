@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.adapters.BindDataToView;
+import com.lertos.projectyorkie.data.DataManager;
 
 import java.util.List;
 
@@ -47,6 +48,16 @@ public class Helper {
 
     public static double roundNumber(double number) {
         return Math.round(number * 100.0) / 100.0;
+    }
+
+    public static boolean canAffordUpgradeWithHearts(double upgradeCost) {
+        double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+
+        if (currentHearts < upgradeCost)
+            return false;
+
+        DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts - upgradeCost);
+        return true;
     }
 
 }

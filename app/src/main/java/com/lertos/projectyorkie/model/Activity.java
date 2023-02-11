@@ -1,6 +1,8 @@
 package com.lertos.projectyorkie.model;
 
 import com.lertos.projectyorkie.Helper;
+import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.MediaManager;
 
 public class Activity {
 
@@ -30,35 +32,20 @@ public class Activity {
         return currentLevel;
     }
 
-    //The boolean is to determine if it was a new unlock or not
-    public boolean levelUp() {
+    public void setCurrentLevel(int currentLevel) { this.currentLevel = currentLevel; }
+
+    public void levelUp() {
         this.currentLevel += 1;
 
         if (this.currentLevel == 1) {
             this.isUnlocked = true;
-            return true;
-        }
-        return false;
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_dog_bark);
+        } else
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
     }
-
-    public double getBaseUpgradeCost() {
-        return baseUpgradeCost;
-    }
-
-    public double getBaseCostRateGrowth() { return baseCostRateGrowth; }
-
-    public double getBaseProductionOutput() {
-        return baseProductionOutput;
-    }
-
-    public double getBaseProductionGrowth() { return baseProductionGrowth; }
 
     public boolean isUnlocked() {
         return isUnlocked;
-    }
-
-    public void setUnlocked(boolean unlocked) {
-        isUnlocked = unlocked;
     }
 
     public double getNextUpgradeCost() {

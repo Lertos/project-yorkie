@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lertos.projectyorkie.Helper;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
-import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.model.Activity;
 
 import java.util.ArrayList;
@@ -43,9 +42,9 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         //Set onClick listeners
         holder.activityUpgradeButton.setOnClickListener(v -> {
             double upgradeCost = activityList.get(position).getNextUpgradeCost();
-            double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+            boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
-            if (currentHearts < upgradeCost) {
+            if (!canAffordUpgrade) {
                 if (toastMsg != null)
                     toastMsg.cancel();
 
@@ -53,16 +52,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
                 toastMsg.show();
                 return;
             }
-
-            DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts - upgradeCost);
-
-            boolean justUnlocked = activityList.get(position).levelUp();
-
-            if (justUnlocked) {
-                MediaManager.getInstance().playEffectTrack(R.raw.effect_dog_bark);
-            } else {
-                MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
-            }
+            activityList.get(position).levelUp();
 
             refreshChangingData(holder, position);
         });
