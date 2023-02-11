@@ -27,7 +27,7 @@ public class MediaManager {
         this.trackSong = new MediaPlayer();
         //TODO: Have these saved somewhere in the user prefs
         this.trackEffectVolume = 0.5f;
-        this.trackSongVolume = 0.5f;
+        this.trackSongVolume = 0.0f;
     }
 
     public void playEffectTrack(int resId) {
