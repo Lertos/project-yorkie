@@ -28,7 +28,7 @@
             <TextView
                 android:id="@+id/talentDescription"
                 style="@style/fontSmall"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="PH" />
@@ -42,6 +42,13 @@
 
             <TextView
                 android:id="@+id/talentCurrentBonus"
+                style="@style/fontSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PH" />
+
+            <TextView
+                android:id="@+id/talentNextBonus"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,7 +68,7 @@
         android:gravity="end">
 
         <ImageView
-            android:id="@+id/ivUpgrade"
+            android:id="@+id/talentUpgradeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -73,11 +80,11 @@
             android:src="@mipmap/icon_upgrade" />
 
         <TextView
-            android:id="@+id/heartsToUpgrade"
+            android:id="@+id/talentHeartsToUpgrade"
             style="@style/fontSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ivUpgrade"
+            android:layout_below="@id/talentUpgradeButton"
             android:layout_centerHorizontal="true"
             android:text="PH"
             android:textColor="@color/yellow" />
