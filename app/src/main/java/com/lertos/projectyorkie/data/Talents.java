@@ -17,17 +17,8 @@ public class Talents {
                 new Talent(
                         "Heart Beater",
                         "Increases hearts per second.",
-                        1,
-                        10,
-                        2
-                )
-        );
-
-        listTalents.add(
-                new Talent(
-                        "Lucky Streak",
-                        "Increases chance at gaining heart tokens.",
-                        1,
+                        8,
+                        1.19,
                         2,
                         1
                 )
@@ -35,11 +26,23 @@ public class Talents {
 
         listTalents.add(
                 new Talent(
+                        "Lucky Streak",
+                        "Increases chance at gaining heart tokens.",
+                        80,
+                        1.18,
+                        4,
+                        1.5
+                )
+        );
+
+        listTalents.add(
+                new Talent(
                         "Bargain Master",
                         "Decreases cost of upgrading talents.",
-                        1,
-                        16,
-                        4
+                        800,
+                        1.17,
+                        6,
+                        2.4
                 )
         );
     }
