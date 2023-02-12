@@ -3,12 +3,16 @@ package com.lertos.projectyorkie.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lertos.projectyorkie.Helper;
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.Talent;
 
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ import java.util.List;
 public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.ViewHolder> implements BindDataToView {
 
     private List<Talent> talentList = new ArrayList<>();
+    private Toast toastMsg;
 
     public TalentsViewAdapter() {}
 
@@ -36,14 +41,73 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.talentName.setText(talentList.get(position).getName());
-        holder.talentDescription.setText(talentList.get(position).getDescription());
-        holder.talentCurrentLevel.setText("Current Level: " + talentList.get(position).getCurrentLevel());
-        //TODO: Make this a StringBuilder
         //TODO: Need to also check if the bonus is an increase or decrease
-        holder.talentCurrentBonus.setText("Current Bonus: +" + talentList.get(position).getCurrentBonus() + "% (Next: +" + talentList.get(position).getNextBonus() + "%)");
-        //TODO: Need to get this from a calculation in Talent class
-        holder.talentNextCost.setText("456.k");
+
+        //Set onClick listeners
+        holder.talentUpgradeButton.setOnClickListener(v -> {
+            double upgradeCost = talentList.get(position).getNextUpgradeCost();
+            boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
+
+            if (!canAffordUpgrade) {
+                if (toastMsg != null)
+                    toastMsg.cancel();
+
+                toastMsg = Toast.makeText(v.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+                toastMsg.show();
+                return;
+            }
+            talentList.get(position).levelUp();
+
+            refreshChangingData(holder, position);
+        });
+
+        //Update the info of the activity panel
+        refreshChangingData(holder, position);
+
+        if (!talentList.get(position).isUnlocked()) {
+            holder.talentName.setText("LOCKED");
+            holder.talentCurrentLevel.setText("");
+            holder.talentCurrentBonus.setText("");
+            holder.talentNextBonus.setText("");
+        }
+    }
+
+    private void refreshChangingData(ViewHolder holder, int position) {
+        holder.talentName.setText(talentList.get(position).getName());
+
+        holder.talentDescription.setText(
+                Helper.createSpannable(
+                        "",
+                        talentList.get(position).getDescription(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.talentCurrentLevel.setText(
+                Helper.createSpannable(
+                        "Current Level:",
+                        " " + talentList.get(position).getCurrentLevel(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.talentCurrentBonus.setText(
+                Helper.createSpannable(
+                        "Current Bonus:",
+                        " " + talentList.get(position).getCurrentBonus(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.talentNextBonus.setText(
+                Helper.createSpannable(
+                        "Next Bonus:",
+                        " " + talentList.get(position).getNextBonus(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        holder.talentNextCost.setText(String.valueOf(talentList.get(position).getNextUpgradeCost()));
     }
 
     @Override
@@ -57,7 +121,9 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         private TextView talentDescription;
         private TextView talentCurrentLevel;
         private TextView talentCurrentBonus;
+        private TextView talentNextBonus;
         private TextView talentNextCost;
+        private ImageView talentUpgradeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +132,9 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
             talentDescription = itemView.findViewById(R.id.talentDescription);
             talentCurrentLevel = itemView.findViewById(R.id.talentLevel);
             talentCurrentBonus = itemView.findViewById(R.id.talentCurrentBonus);
-            talentNextCost = itemView.findViewById(R.id.heartsToUpgrade);
+            talentNextBonus = itemView.findViewById(R.id.talentNextBonus);
+            talentNextCost = itemView.findViewById(R.id.talentHeartsToUpgrade);
+            talentUpgradeButton = itemView.findViewById(R.id.talentUpgradeButton);
         }
     }
 
