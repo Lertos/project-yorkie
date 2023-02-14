@@ -10,13 +10,17 @@ import java.util.List;
 public class Talents {
 
     private List<Talent> listTalents;
+    public static final String talentHeartBeater = "Heart Beater";
+    public static final String talentLuckyStreak = "Lucky Streak";
+    public static final String talentBargainMaster = "Bargain Master";
+    //public static final String talent = "";
 
     public Talents() {
         this.listTalents = new ArrayList<>();
 
         listTalents.add(
                 new Talent(
-                        "Heart Beater",
+                        talentHeartBeater,
                         "Increases hearts per second",
                         TalentBonusType.PERCENTAGE,
                         1,
@@ -29,7 +33,7 @@ public class Talents {
 
         listTalents.add(
                 new Talent(
-                        "Lucky Streak",
+                        talentLuckyStreak,
                         "Increases chance at gaining heart tokens",
                         TalentBonusType.PERCENTAGE,
                         1,
@@ -42,7 +46,7 @@ public class Talents {
 
         listTalents.add(
                 new Talent(
-                        "Bargain Master",
+                        talentBargainMaster,
                         "Decreases cost of upgrading talents",
                         TalentBonusType.PERCENTAGE,
                         -1,
@@ -57,6 +61,14 @@ public class Talents {
 
     public List<Talent> getListTalents() {
         return Collections.unmodifiableList(listTalents);
+    }
+
+    public Talent getTalentByName(String name) {
+        for (Talent talent : this.listTalents) {
+            if (talent.getName().equalsIgnoreCase(name))
+                return talent;
+        }
+        return null;
     }
 
 }
