@@ -2,6 +2,7 @@ package com.lertos.projectyorkie;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -49,15 +50,23 @@ public class PettingPage extends AppCompatActivity {
 
     private void setOnClickListeners() {
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
-            Random rng = new Random();
-            int xPos = rng.nextInt(xEnd - xStart) + xStart;
-            int yPos = rng.nextInt(yEnd - yStart) + yStart;
-
-            //TODO: This needs to be so the start button begins the round and each click randomly moves the button
-            focusButton.setX(xPos);
-            focusButton.setY(yPos);
+            moveClickSquare();
+            v.setVisibility(View.INVISIBLE);
             focusButton.setVisibility(View.VISIBLE);
         });
+
+        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> {
+            moveClickSquare();
+        });
+    }
+
+    private void moveClickSquare() {
+        Random rng = new Random();
+        int xPos = rng.nextInt(xEnd - xStart) + xStart;
+        int yPos = rng.nextInt(yEnd - yStart) + yStart;
+
+        focusButton.setX(xPos);
+        focusButton.setY(yPos);
     }
 
 }
