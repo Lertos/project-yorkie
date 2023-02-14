@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.data.DataManager;
 
+import java.util.Formatter;
 import java.util.List;
 
 public class Helper {
@@ -60,4 +61,8 @@ public class Helper {
         return true;
     }
 
+    public static String formatNumber(double number) {
+        Formatter formatter = new Formatter();
+        return formatter.format("%,.2f", number).toString();
+    }
 }

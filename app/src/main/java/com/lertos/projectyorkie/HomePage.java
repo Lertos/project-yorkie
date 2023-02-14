@@ -147,7 +147,7 @@ public class HomePage extends AppCompatActivity {
                 currentHearts.setText(
                         Helper.createSpannable(
                                 getResources().getString(R.string.character_heart_amount),
-                                " " + DataManager.getInstance().getPlayerData().getCurrentHearts(),
+                                " " + Helper.formatNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()),
                                 DataManager.getInstance().getPlayerData().getHighlightColor()
                         ),
                         TextView.BufferType.SPANNABLE);
