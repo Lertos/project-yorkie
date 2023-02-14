@@ -75,13 +75,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
     private void refreshChangingData(ViewHolder holder, int position) {
         holder.talentName.setText(talentList.get(position).getName());
 
-        holder.talentDescription.setText(
-                Helper.createSpannable(
-                        "",
-                        talentList.get(position).getDescription(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
+        holder.talentDescription.setText(talentList.get(position).getDescription());
 
         holder.talentCurrentLevel.setText(
                 Helper.createSpannable(
