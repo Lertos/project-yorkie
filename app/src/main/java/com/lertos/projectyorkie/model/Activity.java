@@ -9,19 +9,22 @@ public class Activity {
     //TODO: Add multipliers to all the get double methods
     private final String name;
     private int currentLevel = 0;
-    private final double powerDivider = 2.0;
-    private final double baseUpgradeCost;
-    private final double baseCostRateGrowth;
-    private final double baseProductionOutput;
-    private final double baseProductionGrowth;
+    private final int orderPosition;
+    private final double costConstant = 8.0;
+    private final double costBase = 36.0;
+    private final double costExponent = 3.0;
+    private final double costGrowthConstant = 1.20;
+    private final double costGrowthMultiplier = 0.001;
+    private final double incomeConstant = 4.0;
+    private final double incomeBase = 15.0;
+    private final double incomeExponent = 2.5;
+    private final double incomeGrowthConstant = 1.05;
+    private final double incomeGrowthMultiplier = 0.001;
     private boolean isUnlocked = false;
 
-    public Activity(String name, double baseUpgradeCost, double baseCostRateGrowth, double baseProductionOutput, double baseProductionGrowth) {
+    public Activity(String name, int orderPosition) {
         this.name = name;
-        this.baseUpgradeCost = baseUpgradeCost;
-        this.baseCostRateGrowth = baseCostRateGrowth;
-        this.baseProductionOutput = baseProductionOutput;
-        this.baseProductionGrowth = baseProductionGrowth;
+        this.orderPosition = orderPosition;
     }
 
     public String getName() {
@@ -49,14 +52,14 @@ public class Activity {
     }
 
     public double getNextUpgradeCost() {
-        return Helper.roundNumber(baseUpgradeCost * Math.pow(baseCostRateGrowth, currentLevel));
+        return Helper.roundNumber((costConstant + costBase * Math.pow(orderPosition, costExponent)) * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel));
     }
 
     public double getCurrentProductionOutput() {
-        return Helper.roundNumber(baseProductionOutput * Math.pow(baseProductionGrowth, (double) currentLevel / powerDivider));
+        return Helper.roundNumber(incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), currentLevel));
     }
 
     public double getNextProductionOutput() {
-        return Helper.roundNumber(baseProductionOutput * Math.pow(baseProductionGrowth, (double) (currentLevel + 1) / powerDivider));
+        return Helper.roundNumber(incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), (currentLevel + 1)));
     }
 }
