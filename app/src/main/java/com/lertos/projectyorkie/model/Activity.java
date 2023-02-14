@@ -12,14 +12,14 @@ public class Activity {
     private final int orderPosition;
     private final double costConstant = 8.0;
     private final double costBase = 36.0;
-    private final double costExponent = 3.0;
-    private final double costGrowthConstant = 1.20;
-    private final double costGrowthMultiplier = 0.001;
+    private final double costExponent = 2.5;
+    private final double costGrowthConstant = 1.30;
+    private final double costGrowthMultiplier = 0.005;
     private final double incomeConstant = 4.0;
     private final double incomeBase = 15.0;
-    private final double incomeExponent = 2.5;
+    private final double incomeExponent = 1.5;
     private final double incomeGrowthConstant = 1.05;
-    private final double incomeGrowthMultiplier = 0.001;
+    private final double incomeGrowthMultiplier = 0.0025;
     private boolean isUnlocked = false;
 
     public Activity(String name, int orderPosition) {

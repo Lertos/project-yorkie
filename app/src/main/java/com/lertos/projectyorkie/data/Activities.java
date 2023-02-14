@@ -13,9 +13,9 @@ public class Activities {
     public Activities() {
         this.listActivities = new ArrayList<>();
 
-        listActivities.add(new Activity("Pet Their Head", 1));
-        listActivities.add(new Activity("Throw The Ball Around", 2));
-        listActivities.add(new Activity("Go For A Walk", 3));
+        listActivities.add(new Activity("Pet Their Head", 2));
+        listActivities.add(new Activity("Throw The Ball Around", 3));
+        listActivities.add(new Activity("Go For A Walk", 4));
 
         //TODO: Read from the file - or update the list after reading the player data "dogs_unlocked" section
         listActivities.get(0).levelUp();
