@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie.data;
 
 import com.lertos.projectyorkie.model.Talent;
+import com.lertos.projectyorkie.model.TalentBonusType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,35 +17,42 @@ public class Talents {
         listTalents.add(
                 new Talent(
                         "Heart Beater",
-                        "Increases hearts per second.",
-                        8,
-                        1.19,
-                        2,
-                        1
+                        "Increases hearts per second",
+                        TalentBonusType.PERCENTAGE,
+                        1,
+                        5,
+                        0,
+                        3,
+                        50
                 )
         );
 
         listTalents.add(
                 new Talent(
                         "Lucky Streak",
-                        "Increases chance at gaining heart tokens.",
-                        80,
-                        1.18,
-                        4,
-                        1.5
+                        "Increases chance at gaining heart tokens",
+                        TalentBonusType.PERCENTAGE,
+                        1,
+                        5,
+                        0,
+                        3,
+                        50
                 )
         );
 
         listTalents.add(
                 new Talent(
                         "Bargain Master",
-                        "Decreases cost of upgrading talents.",
-                        800,
-                        1.17,
+                        "Decreases cost of upgrading talents",
+                        TalentBonusType.PERCENTAGE,
+                        -1,
                         6,
-                        2.4
+                        0,
+                        2,
+                        25
                 )
         );
+
     }
 
     public List<Talent> getListTalents() {

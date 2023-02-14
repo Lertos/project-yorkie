@@ -8,24 +8,26 @@ public class Talent {
 
     private final String name;
     private final String description;
+    private final TalentBonusType bonusType;
+    private final int bonusSign;
+    private final double costConstant = 500.0;
+    private final double costBase = 5.0;
+    private final double costExponentNumerator;
+    private final double bonusBase;
+    private final double bonusAddedPerLevel;
+    private final int maxLevel;
     private int currentLevel;
-    private final double baseUpgradeCost;
-    private final double baseCostRateGrowth;
-    private final double baseBonus;
-    private final double baseBonusAddedPerLevel;
     private boolean isUnlocked = false;
 
-    //TODO: Need to have enums for the sign of the bonus (increase/decrease)
-    //TODO: Need to have enums for the type of the bonus (percentage/whole)
-
-
-    public Talent(String name, String description, double baseUpgradeCost, double baseCostRateGrowth, double baseBonus, double baseBonusAddedPerLevel) {
+    public Talent(String name, String description, TalentBonusType bonusType, int bonusSign, double costExponentNumerator, double bonusBase, double bonusAddedPerLevel, int maxLevel) {
         this.name = name;
         this.description = description;
-        this.baseUpgradeCost = baseUpgradeCost;
-        this.baseCostRateGrowth = baseCostRateGrowth;
-        this.baseBonus = baseBonus;
-        this.baseBonusAddedPerLevel = baseBonusAddedPerLevel;
+        this.bonusType = bonusType;
+        this.bonusSign = bonusSign;
+        this.costExponentNumerator = costExponentNumerator;
+        this.bonusBase = bonusBase;
+        this.bonusAddedPerLevel = bonusAddedPerLevel;
+        this.maxLevel = maxLevel;
     }
 
     public String getName() {
@@ -35,6 +37,12 @@ public class Talent {
     public String getDescription() {
         return description;
     }
+
+    public TalentBonusType getBonusType() { return bonusType; }
+
+    public int getBonusSign() { return bonusSign; }
+
+    public int getMaxLevel() { return maxLevel; }
 
     public int getCurrentLevel() {
         return currentLevel;
@@ -59,15 +67,15 @@ public class Talent {
     }
 
     public double getNextUpgradeCost() {
-        return Helper.roundNumber(baseUpgradeCost * Math.pow(baseCostRateGrowth, currentLevel));
+        return Helper.roundNumber(costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel));
     }
 
     public double getCurrentBonus() {
-        return Helper.roundNumber(baseBonus + (baseBonusAddedPerLevel * currentLevel));
+        return Helper.roundNumber(bonusBase + (bonusAddedPerLevel * currentLevel));
     }
 
     public double getNextBonus() {
-        return Helper.roundNumber(baseBonus + (baseBonusAddedPerLevel * (currentLevel + 1)));
+        return Helper.roundNumber(bonusBase + (bonusAddedPerLevel * (currentLevel + 1)));
     }
 
 }
