@@ -81,7 +81,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         holder.activityCurrentOutput.setText(
                 Helper.createSpannable(
                         "Current Output (H/s):",
-                        " " + activityList.get(position).getCurrentProductionOutput(),
+                        " " + activityList.get(position).getCurrentIncome(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -89,7 +89,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         holder.activityNextOutput.setText(
                 Helper.createSpannable(
                         "Next Output (H/s):",
-                        " " + activityList.get(position).getNextProductionOutput(),
+                        " " + activityList.get(position).getNextIncome(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);

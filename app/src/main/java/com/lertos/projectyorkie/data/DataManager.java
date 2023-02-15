@@ -53,7 +53,7 @@ public class DataManager {
         for (Activity activity : activityList) {
             if (!activity.isUnlocked())
                 break;
-            heartsPerSecond += activity.getCurrentProductionOutput();
+            heartsPerSecond += activity.getCurrentIncome();
         }
         //TODO: Apply talent bonuses
         //TODO: Apply pack bonuses

@@ -3,6 +3,7 @@ package com.lertos.projectyorkie.model;
 import com.lertos.projectyorkie.Helper;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.MediaManager;
+import com.lertos.projectyorkie.data.Talents;
 
 public class Activity {
 
@@ -52,14 +53,32 @@ public class Activity {
     }
 
     public double getNextUpgradeCost() {
-        return Helper.roundNumber((costConstant + costBase * Math.pow(orderPosition, costExponent)) * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel));
+        double totalCost = (costConstant + costBase * Math.pow(orderPosition, costExponent)) * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
+
+        return Helper.roundNumber(totalCost);
     }
 
-    public double getCurrentProductionOutput() {
-        return Helper.roundNumber(incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), currentLevel));
+    private double getIncome(int level) {
+        return incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), level);
     }
 
-    public double getNextProductionOutput() {
-        return Helper.roundNumber(incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), (currentLevel + 1)));
+    public double getCurrentIncome() {
+        double totalIncome = getIncome(currentLevel);
+        double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
+
+        if (heartsMultiplier != 0)
+            totalIncome *= heartsMultiplier;
+
+        return Helper.roundNumber(totalIncome);
+    }
+
+    public double getNextIncome() {
+        double totalIncome = getIncome(currentLevel + 1);
+        double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
+
+        if (heartsMultiplier != 0)
+            totalIncome *= heartsMultiplier;
+
+        return Helper.roundNumber(totalIncome);
     }
 }
