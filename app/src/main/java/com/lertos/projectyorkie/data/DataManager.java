@@ -22,7 +22,6 @@ public class DataManager {
         if (instance == null) {
             instance = new DataManager();
         }
-
         return instance;
     }
 
@@ -55,9 +54,6 @@ public class DataManager {
                 break;
             heartsPerSecond += activity.getCurrentIncome();
         }
-        //TODO: Apply talent bonuses
-        //TODO: Apply pack bonuses
-
         playerData.setCurrentHeartsPerSecond(heartsPerSecond);
     }
 
