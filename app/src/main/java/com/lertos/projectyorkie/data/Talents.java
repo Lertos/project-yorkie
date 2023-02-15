@@ -10,65 +10,47 @@ import java.util.List;
 public class Talents {
 
     private List<Talent> listTalents;
-    public static final String talentHeartBeater = "Heart Beater";
-    public static final String talentLuckyStreak = "Lucky Streak";
-    public static final String talentBargainMaster = "Bargain Master";
-    //public static final String talent = "";
+    public static final Talent heartBeater = new Talent(
+            "Heart Beater",
+            "Increases hearts per second",
+            TalentBonusType.PERCENTAGE,
+            1,
+            5,
+            0,
+            3,
+            50
+    );
+    public final Talent luckyStreak = new Talent(
+            "Lucky Streak",
+            "Increases chance at gaining heart tokens",
+            TalentBonusType.PERCENTAGE,
+            1,
+            5,
+            0,
+            3,
+            50
+    );;
+    public final Talent bargainMaster = new Talent(
+            "Bargain Master",
+            "Decreases cost of upgrading talents",
+            TalentBonusType.PERCENTAGE,
+            -1,
+            6,
+            0,
+            2,
+            25
+    );;
 
     public Talents() {
         this.listTalents = new ArrayList<>();
 
-        listTalents.add(
-                new Talent(
-                        talentHeartBeater,
-                        "Increases hearts per second",
-                        TalentBonusType.PERCENTAGE,
-                        1,
-                        5,
-                        0,
-                        3,
-                        50
-                )
-        );
-
-        listTalents.add(
-                new Talent(
-                        talentLuckyStreak,
-                        "Increases chance at gaining heart tokens",
-                        TalentBonusType.PERCENTAGE,
-                        1,
-                        5,
-                        0,
-                        3,
-                        50
-                )
-        );
-
-        listTalents.add(
-                new Talent(
-                        talentBargainMaster,
-                        "Decreases cost of upgrading talents",
-                        TalentBonusType.PERCENTAGE,
-                        -1,
-                        6,
-                        0,
-                        2,
-                        25
-                )
-        );
-
+        listTalents.add(heartBeater);
+        listTalents.add(luckyStreak);
+        listTalents.add(bargainMaster);
     }
 
     public List<Talent> getListTalents() {
         return Collections.unmodifiableList(listTalents);
-    }
-
-    public Talent getTalentByName(String name) {
-        for (Talent talent : this.listTalents) {
-            if (talent.getName().equalsIgnoreCase(name))
-                return talent;
-        }
-        return null;
     }
 
 }
