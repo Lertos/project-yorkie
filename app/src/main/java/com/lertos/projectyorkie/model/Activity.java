@@ -59,26 +59,21 @@ public class Activity {
     }
 
     private double getIncome(int level) {
-        return incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), level);
+        double totalIncome = incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), level);
+        double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
+
+        //TODO: Apply pack bonuses
+        if (heartsMultiplier != 0)
+            totalIncome *= heartsMultiplier;
+
+        return totalIncome;
     }
 
     public double getCurrentIncome() {
-        double totalIncome = getIncome(currentLevel);
-        double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
-
-        if (heartsMultiplier != 0)
-            totalIncome *= heartsMultiplier;
-
-        return Helper.roundNumber(totalIncome);
+        return Helper.roundNumber(getIncome(currentLevel));
     }
 
     public double getNextIncome() {
-        double totalIncome = getIncome(currentLevel + 1);
-        double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
-
-        if (heartsMultiplier != 0)
-            totalIncome *= heartsMultiplier;
-
-        return Helper.roundNumber(totalIncome);
+        return Helper.roundNumber(getIncome(currentLevel + 1));
     }
 }
