@@ -66,16 +66,40 @@ public class Talent {
         return isUnlocked;
     }
 
+    //TODO: Add multipliers from talents
     public double getNextUpgradeCost() {
         return Helper.roundNumber(costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel));
     }
 
-    public double getCurrentBonus() {
-        return Helper.roundNumber(bonusBase + (bonusAddedPerLevel * currentLevel));
+    private double getBonus(int level) {
+        return bonusBase + (bonusAddedPerLevel * level);
     }
 
-    public double getNextBonus() {
-        return Helper.roundNumber(bonusBase + (bonusAddedPerLevel * (currentLevel + 1)));
+    public double getCurrentDisplayBonus() {
+        double bonus = getBonus(currentLevel);
+
+        bonus *= bonusSign;
+
+        return Helper.roundNumber(bonus);
+    }
+
+    public double getNextDisplayBonus() {
+        double bonus = getBonus(currentLevel + 1);
+
+        bonus *= bonusSign;
+
+        return Helper.roundNumber(bonus);
+    }
+
+    public double getCurrentBonus() {
+        double bonus = getBonus(currentLevel + 1);
+
+        if (bonusType.equals(TalentBonusType.PERCENTAGE))
+            bonus = (1 + bonus / 100);
+
+        bonus *= bonusSign;
+
+        return Helper.roundNumber(bonus);
     }
 
 }
