@@ -54,13 +54,22 @@ public class PettingMaster {
     }
 
     public void handleClickedSquare() {
-        if (currentTimeLeft + secondsGainedWhenCorrect > timerStartValue)
+        currentTimeLeft += secondsGainedWhenCorrect;
+
+        if (currentTimeLeft > timerStartValue)
             currentTimeLeft = timerStartValue;
-        else
-            currentTimeLeft += secondsGainedWhenCorrect;
 
         currentSquareNumber++;
         currentSquareDisappearTime = calculateNextDisappearTime();
+    }
+
+    public void handleMissedSquare() {
+        currentTimeLeft -= secondsLostWhenMissed;
+
+        if (currentTimeLeft < 0) {
+            currentTimeLeft = 0;
+            isActive = false;
+        }
     }
 
     public double getCurrentTimeLeft() {
