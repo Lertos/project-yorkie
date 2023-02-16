@@ -119,7 +119,8 @@ public class PettingPage extends AppCompatActivity {
 
     private void handleSquareClick() {
         pettingMaster.handleClickedSquare();
-
+        //TODO: Remove once you are done debugging
+        Log.d("d",":" + pettingMaster.getCurrentSquareDisappearTime());
         moveClickSquare();
     }
 
