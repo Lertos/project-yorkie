@@ -13,7 +13,8 @@ public class PettingMaster {
     private final double baseDisappearTime = 4.5;
 
     private Square currentSquare;
-    private double currentTimeLeft = 30.0;
+    private final double timerStartValue = 30.0;
+    private double currentTimeLeft;
     private boolean isActive = true;
     private int millisecondsPerUpdate = 50;
 
@@ -22,6 +23,8 @@ public class PettingMaster {
         this.secondsLostWhenMissed = secondsLostWhenMissed;
         this.secondsGainedWhenCorrect = secondsGainedWhenCorrect;
         this.startThreshold = startThreshold;
+
+        currentTimeLeft = timerStartValue;
     }
 
     public void start() {
