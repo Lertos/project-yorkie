@@ -67,7 +67,6 @@ public class PettingPage extends AppCompatActivity {
         //Start the petting mini game
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
             //Create the first square
-            //TODO: Need to create the PettingMaster object here
             moveClickSquare();
 
             //Hide the start button
@@ -92,9 +91,7 @@ public class PettingPage extends AppCompatActivity {
             focusButton.setVisibility(View.VISIBLE);
         });
 
-        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> {
-            moveClickSquare();
-        });
+        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> handleSquareClick() );
     }
 
     private void updateIndicatorWithTime() {
@@ -118,6 +115,12 @@ public class PettingPage extends AppCompatActivity {
             }
         };
         handler.post(runnable);
+    }
+
+    private void handleSquareClick() {
+        pettingMaster.handleClickedSquare();
+
+        moveClickSquare();
     }
 
     private void moveClickSquare() {
