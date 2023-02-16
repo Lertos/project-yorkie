@@ -32,7 +32,7 @@ public class PettingMaster {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                double convertedToSeconds = millisecondsPerUpdate / 1000;
+                double convertedToSeconds = millisecondsPerUpdate / 1000.0;
 
                 if (currentTimeLeft - convertedToSeconds < 0) {
                     currentTimeLeft = 0;
