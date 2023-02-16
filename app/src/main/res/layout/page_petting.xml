@@ -33,6 +33,27 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linPettingStartButtonSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linPettingMainSection"
+            android:layout_below="@id/linPettingHeader"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnStartPetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/linPettingTimerSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,15 +63,23 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/border_with_light_bg"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-            <Button
-                android:id="@+id/btnStartPetting"
-                android:layout_width="wrap_content"
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/indPettingTimer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Start" />
+                android:indeterminate="false"
+                app:trackThickness="40dp" />
+
+            <TextView
+                android:id="@+id/tvPettingTimerInSecs"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
