@@ -1,5 +1,7 @@
 package com.lertos.projectyorkie;
 
+import android.os.Handler;
+
 public class PettingMaster {
 
     private final int puppyPower;
@@ -11,13 +13,50 @@ public class PettingMaster {
     private final double baseDisappearTime = 4.5;
 
     private Square currentSquare;
-    private double currentTimeLeft;
+    private double currentTimeLeft = 30.0;
+    private boolean isActive = true;
+    private int millisecondsPerUpdate = 50;
 
     public PettingMaster(int puppyPower, double secondsLostWhenMissed, double secondsGainedWhenCorrect, int startThreshold) {
         this.puppyPower = puppyPower;
         this.secondsLostWhenMissed = secondsLostWhenMissed;
         this.secondsGainedWhenCorrect = secondsGainedWhenCorrect;
         this.startThreshold = startThreshold;
+    }
+
+    public void start() {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                double convertedToSeconds = millisecondsPerUpdate / 1000;
+
+                if (currentTimeLeft - convertedToSeconds < 0) {
+                    currentTimeLeft = 0;
+                    isActive = false;
+                } else {
+                    currentTimeLeft -= convertedToSeconds;
+                }
+
+                if(!isActive)
+                    handler.removeCallbacks(this);
+                else
+                    handler.postDelayed(this, millisecondsPerUpdate);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    public void stop() {
+        this.isActive = false;
+    }
+
+    public Square getCurrentSquare() {
+        return currentSquare;
+    }
+
+    public double getCurrentTimeLeft() {
+        return currentTimeLeft;
     }
 
     private class Square {
