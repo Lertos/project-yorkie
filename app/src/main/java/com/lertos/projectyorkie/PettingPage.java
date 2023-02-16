@@ -2,14 +2,16 @@ package com.lertos.projectyorkie;
 
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.Random;
 
@@ -49,9 +51,25 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
+        //Start the petting mini game
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
+            //Create the first square
+            //TODO: Need to create the PettingMaster object here
             moveClickSquare();
+
+            //Hide the start button
             v.setVisibility(View.INVISIBLE);
+
+            //Show the timer
+            findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
+
+            //TODO: Remove - just for testing purposes
+            LinearProgressIndicator indicator = findViewById(R.id.indPettingTimer);
+            indicator.setProgressCompat(20, false);
+
+            ((TextView) findViewById(R.id.tvPettingTimerInSecs)).setText("30.26s");
+
+            //Make the generated square visible after setup is done
             focusButton.setVisibility(View.VISIBLE);
         });
 
