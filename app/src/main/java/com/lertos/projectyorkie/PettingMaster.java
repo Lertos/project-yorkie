@@ -16,7 +16,7 @@ public class PettingMaster {
     private final double timerStartValue = 30.0;
     private double currentTimeLeft;
     private boolean isActive = true;
-    private int millisecondsPerUpdate = 50;
+    private int millisecondsPerUpdate = 100;
 
     public PettingMaster(int puppyPower, double secondsLostWhenMissed, double secondsGainedWhenCorrect, int startThreshold) {
         this.puppyPower = puppyPower;
@@ -59,7 +59,15 @@ public class PettingMaster {
     }
 
     public double getCurrentTimeLeft() {
-        return currentTimeLeft;
+        return Helper.roundNumber(currentTimeLeft);
+    }
+
+    public double getTimerStartValue() {
+        return timerStartValue;
+    }
+
+    public int getMillisecondsPerUpdate() {
+        return millisecondsPerUpdate;
     }
 
     private class Square {
