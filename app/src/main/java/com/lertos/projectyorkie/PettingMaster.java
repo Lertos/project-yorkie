@@ -12,7 +12,7 @@ public class PettingMaster {
     private final double rewardMultiplier = 1.5;
     private final double baseDisappearTime = 4.5;
 
-    private Square currentSquare;
+    private double currentSquareDisappearTime;
     private int currentSquarePosition;
     private final double timerStartValue = 30.0;
     private double currentTimeLeft;
@@ -52,10 +52,6 @@ public class PettingMaster {
         handler.post(runnable);
     }
 
-    public void stop() {
-        this.isActive = false;
-    }
-
     public void handleClickedSquare() {
         //TODO: Create a new Square and reassign the current square variable to the new one
         if (currentTimeLeft + secondsGainedWhenCorrect > timerStartValue)
@@ -64,10 +60,6 @@ public class PettingMaster {
             currentTimeLeft += secondsGainedWhenCorrect;
 
         currentSquarePosition++;
-    }
-
-    public Square getCurrentSquare() {
-        return currentSquare;
     }
 
     public double getCurrentTimeLeft() {
@@ -82,23 +74,11 @@ public class PettingMaster {
         return millisecondsPerUpdate;
     }
 
-    private class Square {
-
-        private final int squareNumber;
-        private final double disappearTime;
-
-        public Square(int squareNumber, double disappearTime) {
-            this.squareNumber = squareNumber;
-            this.disappearTime = disappearTime;
-        }
-
-        public int getSquareNumber() {
-            return squareNumber;
-        }
-
-        public double getDisappearTime() {
-            return disappearTime;
-        }
+    public double getCurrentSquareDisappearTime() {
+        return currentSquareDisappearTime;
     }
 
+    public int getCurrentSquarePosition() {
+        return currentSquarePosition;
+    }
 }
