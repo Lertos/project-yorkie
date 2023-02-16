@@ -3,6 +3,7 @@ package com.lertos.projectyorkie;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class PettingPage extends AppCompatActivity {
     private Rect pettingLayout = new Rect();
     private ImageButton focusButton;
     private LinearProgressIndicator indicator;
+    private final int timerMax = 1000;
     private TextView timerInSeconds;
     private double timerStartValue;
     private int xStart, yStart, xEnd, yEnd;
@@ -35,6 +37,9 @@ public class PettingPage extends AppCompatActivity {
         focusButton = findViewById(R.id.btnPettingFocus);
         indicator = findViewById(R.id.indPettingTimer);
         timerInSeconds = findViewById(R.id.tvPettingTimerInSecs);
+
+        //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
+        indicator.setMax(timerMax);
 
         LinearLayout layout = (LinearLayout)findViewById(R.id.linPettingMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
@@ -98,9 +103,9 @@ public class PettingPage extends AppCompatActivity {
             @Override
             public void run() {
                 double currentTimeLeft = pettingMaster.getCurrentTimeLeft();
-                int calculatedProgress = (int) Math.round(currentTimeLeft / timerStartValue);
+                int calculatedProgress = (int) Math.round((currentTimeLeft / timerStartValue) * timerMax);
 
-                indicator.setProgress(calculatedProgress, false);
+                indicator.setProgressCompat(calculatedProgress, false);
                 timerInSeconds.setText(String.valueOf(currentTimeLeft));
 
                 if (currentTimeLeft <= 0)
@@ -113,10 +118,6 @@ public class PettingPage extends AppCompatActivity {
             }
         };
         handler.post(runnable);
-    }
-
-    private double getIndicatorValueOfTimeLeft(double currentTimeLeft) {
-        return Helper.roundNumber(currentTimeLeft / timerStartValue);
     }
 
     private void moveClickSquare() {
