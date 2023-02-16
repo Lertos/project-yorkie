@@ -28,6 +28,8 @@ public class PettingPage extends AppCompatActivity {
     private double timerStartValue;
     private int xStart, yStart, xEnd, yEnd;
     private boolean isPlaying = false;
+    final Handler disappearTimeHandler = new Handler();
+    private Runnable timerRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +68,13 @@ public class PettingPage extends AppCompatActivity {
     private void setOnClickListeners() {
         //Start the petting mini game
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
-            //Create the first square
-            moveClickSquare();
-
-            //Hide the start button
-            v.setVisibility(View.INVISIBLE);
-
-            //Show the timer
-            findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
-
             //Create a new instance of the petting mini game master
             //TODO: Use actual values instead of test values
             pettingMaster = new PettingMaster(1, 5, 1, 1);
             timerStartValue = pettingMaster.getTimerStartValue();
             isPlaying = true;
 
-            indicator.setProgressCompat(100, false);
-            updateIndicatorWithTime();
+            setupUI(v);
 
             //Start the mini game
             pettingMaster.start();
@@ -91,7 +83,22 @@ public class PettingPage extends AppCompatActivity {
             focusButton.setVisibility(View.VISIBLE);
         });
 
-        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> handleSquareClick() );
+        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> handleSquareClick(true) );
+    }
+
+    private void setupUI(View v) {
+        //Create the first square
+        handleSquareClick(false);
+
+        //Hide the start button
+        v.setVisibility(View.INVISIBLE);
+
+        //Show the timer
+        findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
+
+        //Initialize the timer and the UI for it
+        indicator.setProgressCompat(100, false);
+        updateIndicatorWithTime();
     }
 
     private void updateIndicatorWithTime() {
@@ -117,11 +124,20 @@ public class PettingPage extends AppCompatActivity {
         handler.post(runnable);
     }
 
-    private void handleSquareClick() {
-        pettingMaster.handleClickedSquare();
-        //TODO: Remove once you are done debugging
-        Log.d("d",":" + pettingMaster.getCurrentSquareDisappearTime());
+    private void handleSquareClick(boolean wasClicked) {
+        if (wasClicked)
+            pettingMaster.handleClickedSquare();
+
+        disappearTimeHandler.removeCallbacks(timerRunnable);
+        timerRunnable = () -> handleSquareDisappearing();
+        disappearTimeHandler.postDelayed(timerRunnable, (long) Math.round(pettingMaster.getCurrentSquareDisappearTime() * 1000));
+
         moveClickSquare();
+    }
+
+    private void handleSquareDisappearing() {
+        pettingMaster.handleMissedSquare();
+        handleSquareClick(false);
     }
 
     private void moveClickSquare() {
