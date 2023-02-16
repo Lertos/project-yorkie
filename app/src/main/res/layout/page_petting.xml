@@ -32,14 +32,37 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linPettingTimerSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linPettingMainSection"
+            android:layout_below="@id/linPettingHeader"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_with_light_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnStartPetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start" />
+
+        </LinearLayout>
+
         <!-- Petting Panel -->
         <LinearLayout
             android:id="@+id/linPettingMainSection"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/linPettingHeader"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/border_with_light_bg"
             android:gravity="center"
             android:orientation="vertical">
@@ -48,13 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/portrait_loki" />
-
-            <Button
-                android:id="@+id/btnStartPetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/linPettingMainSection"
-                android:text="Start" />
 
         </LinearLayout>
 
