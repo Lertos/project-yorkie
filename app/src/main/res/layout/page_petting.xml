@@ -45,10 +45,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Highest Threshold: 10"
+                android:textAlignment="center" />
+
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Highest Square: 12"
+                android:textAlignment="center" />
+
             <Button
                 android:id="@+id/btnStartPetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Start" />
 
         </LinearLayout>
