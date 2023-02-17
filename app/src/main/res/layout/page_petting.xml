@@ -36,12 +36,7 @@
             android:id="@+id/linPettingStartButtonSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/linPettingMainSection"
-            android:layout_below="@id/linPettingHeader"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -61,9 +56,11 @@
 
             <Button
                 android:id="@+id/btnStartPetting"
+                style="@style/fontLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/darker_light_blue"
                 android:text="Start" />
 
         </LinearLayout>
