@@ -22,15 +22,16 @@ public class PettingMaster {
     private boolean isActive = true;
     private int millisecondsPerUpdate = 100;
 
-    public PettingMaster(int puppyPower, double secondsLostWhenMissed, double secondsGainedWhenCorrect, int startThreshold) {
+    public PettingMaster(int puppyPower, double secondsLostWhenMissed, double secondsGainedWhenCorrect) {
         this.puppyPower = puppyPower;
         this.secondsLostWhenMissed = secondsLostWhenMissed;
         this.secondsGainedWhenCorrect = secondsGainedWhenCorrect;
-        this.startThreshold = startThreshold;
+        //To make sure no matter what the minimum is always 1
+        this.startThreshold = Math.max(1, DataManager.getInstance().getPlayerData().getPettingHighestThreshold() - 10);
 
-        currentSquareNumber = startThreshold;
-        currentSquareDisappearTime = calculateNextDisappearTime();
-        currentTimeLeft = timerStartValue;
+        this.currentSquareNumber = startThreshold;
+        this.currentSquareDisappearTime = calculateNextDisappearTime();
+        this.currentTimeLeft = timerStartValue;
     }
 
     public void start() {
