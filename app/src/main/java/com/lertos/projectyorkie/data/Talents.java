@@ -20,7 +20,7 @@ public class Talents {
             3,
             50
     );
-    public final Talent luckyStreak = new Talent(
+    public static final Talent luckyStreak = new Talent(
             "Lucky Streak",
             "Increases chance at gaining heart tokens",
             TalentBonusType.PERCENTAGE,
@@ -30,7 +30,7 @@ public class Talents {
             3,
             50
     );
-    public final Talent bargainMaster = new Talent(
+    public static final Talent bargainMaster = new Talent(
             "Bargain Master",
             "Decreases cost of upgrading talents",
             TalentBonusType.PERCENTAGE,
@@ -41,7 +41,7 @@ public class Talents {
             25
     );
 
-    public final Talent pettingPower = new Talent(
+    public static final Talent pettingPower = new Talent(
             "Petting Power",
             "Petting Minigame - Squares don't disappear as quick",
             TalentBonusType.FLAT,
@@ -52,7 +52,7 @@ public class Talents {
             100
     );
 
-    public final Talent pupPrecision = new Talent(
+    public static final Talent pupPrecision = new Talent(
             "Pup Precision",
             "Petting Minigame - Correct squares add more time to the timer",
             TalentBonusType.FLAT,
@@ -63,7 +63,7 @@ public class Talents {
             50
     );
 
-    public final Talent laxTreatment = new Talent(
+    public static final Talent laxTreatment = new Talent(
             "Lax Treat-ment",
             "Petting Minigame - Lose less time when missing squares",
             TalentBonusType.FLAT,
