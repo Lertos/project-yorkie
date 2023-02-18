@@ -1,7 +1,6 @@
 package com.lertos.projectyorkie;
 
 import android.os.Handler;
-import android.util.Log;
 
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.Talents;
@@ -9,6 +8,8 @@ import com.lertos.projectyorkie.data.Talents;
 public class PettingMaster {
 
     private final double puppyPower;
+    private final double baseSecondsLostWhenMissed = 4;
+    private final double baseSecondsGainedWhenCorrect = 1;
     private final double secondsLostWhenMissed;
     private final double secondsGainedWhenCorrect;
     private final int startThreshold;
@@ -26,8 +27,8 @@ public class PettingMaster {
 
     public PettingMaster() {
         this.puppyPower = Talents.pettingPower.getCurrentBonus();
-        this.secondsLostWhenMissed = 4 - Talents.laxTreatment.getCurrentBonus();
-        this.secondsGainedWhenCorrect = 1 + Talents.pupPrecision.getCurrentBonus();
+        this.secondsLostWhenMissed = baseSecondsLostWhenMissed - Talents.laxTreatment.getCurrentBonus();
+        this.secondsGainedWhenCorrect = baseSecondsGainedWhenCorrect + Talents.pupPrecision.getCurrentBonus();
         //To make sure no matter what the minimum is always 1
         this.startThreshold = setStartThreshold();
 
@@ -62,15 +63,6 @@ public class PettingMaster {
     public void stop() {
         DataManager.getInstance().getPlayerData().setPettingHighestThreshold(currentThreshold);
         DataManager.getInstance().getPlayerData().setPettingHighestSquare(currentSquareNumber);
-    }
-
-    private double setSecondsLostWhenMissed(double base) {
-        return base - Talents.laxTreatment.getCurrentBonus();
-    }
-
-
-    private double setSecondsGainedWhenCorrect(double base) {
-        return base + Talents.pupPrecision.getCurrentBonus();
     }
 
     private int setStartThreshold() {
