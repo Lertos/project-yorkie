@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.lertos.projectyorkie.data.DataManager;
 
 import java.util.Random;
 
@@ -64,6 +65,7 @@ public class PettingPage extends AppCompatActivity {
         });
 
         Helper.setupBottomButtonBar(this);
+        setPlayerScoreDataUI();
         setOnClickListeners();
     }
 
@@ -72,7 +74,7 @@ public class PettingPage extends AppCompatActivity {
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
             //Create a new instance of the petting mini game master
             //TODO: Use actual values instead of test values
-            pettingMaster = new PettingMaster(10, 5, 1, 1);
+            pettingMaster = new PettingMaster(1, 5, 1, 1);
             timerStartValue = pettingMaster.getTimerStartValue();
             isPlaying = true;
 
@@ -97,7 +99,27 @@ public class PettingPage extends AppCompatActivity {
         processGameStart();
     }
 
+    private void setPlayerScoreDataUI() {
+        ((TextView) findViewById(R.id.tvPettingHighestThreshold)).setText(
+                Helper.createSpannable(
+                        "Highest Threshold:",
+                        " " + DataManager.getInstance().getPlayerData().getPettingHighestThreshold(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        ((TextView) findViewById(R.id.tvPettingHighestSquare)).setText(
+                Helper.createSpannable(
+                        "Highest Square:",
+                        " " + DataManager.getInstance().getPlayerData().getPettingHighestSquare(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+    }
+
     private void processGameStart() {
+        setPlayerScoreDataUI();
+
         //Show the dog portrait background
         findViewById(R.id.linPettingMainSection).setVisibility(View.VISIBLE);
 
@@ -112,6 +134,8 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void processGameOver() {
+        setPlayerScoreDataUI();
+
         //Show the dog portrait background
         findViewById(R.id.linPettingMainSection).setVisibility(View.INVISIBLE);
 
