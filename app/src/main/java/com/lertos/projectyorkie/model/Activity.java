@@ -10,6 +10,7 @@ public class Activity {
     //TODO: Add multipliers to all the get double methods
     private final String name;
     private int currentLevel = 0;
+    private double baseHeartTokensPerSecond;
     private final int orderPosition;
     private final double costConstant = 8.0;
     private final double costBase = 36.0;
@@ -23,9 +24,10 @@ public class Activity {
     private final double incomeGrowthMultiplier = 0.0025;
     private boolean isUnlocked = false;
 
-    public Activity(String name, int orderPosition) {
+    public Activity(String name, int orderPosition, double baseHeartTokensPerSecond) {
         this.name = name;
         this.orderPosition = orderPosition;
+        this.baseHeartTokensPerSecond = baseHeartTokensPerSecond;
     }
 
     public String getName() {
@@ -75,5 +77,10 @@ public class Activity {
 
     public double getNextIncome() {
         return Helper.roundNumber(getIncome(currentLevel + 1));
+    }
+
+    public double getBaseHeartTokensPerSecond() {
+        //TODO: Add talent multipliers
+        return baseHeartTokensPerSecond;
     }
 }
