@@ -162,6 +162,7 @@ public class PettingPage extends AppCompatActivity {
 
                 if (currentTimeLeft <= 0) {
                     isPlaying = false;
+                    pettingMaster.stop();
                     processGameOver();
                 }
 
