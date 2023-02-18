@@ -71,7 +71,8 @@ public class Player {
     }
 
     public void setPettingHighestThreshold(int pettingHighestThreshold) {
-        this.pettingHighestThreshold = pettingHighestThreshold;
+        if (pettingHighestThreshold > this.pettingHighestThreshold)
+            this.pettingHighestThreshold = pettingHighestThreshold;
     }
 
     public int getPettingHighestSquare() {
@@ -79,6 +80,7 @@ public class Player {
     }
 
     public void setPettingHighestSquare(int pettingHighestSquare) {
-        this.pettingHighestSquare = pettingHighestSquare;
+        if (pettingHighestSquare > this.pettingHighestSquare)
+            this.pettingHighestSquare = pettingHighestSquare;
     }
 }

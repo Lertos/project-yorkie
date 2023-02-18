@@ -2,6 +2,8 @@ package com.lertos.projectyorkie;
 
 import android.os.Handler;
 
+import com.lertos.projectyorkie.data.DataManager;
+
 public class PettingMaster {
 
     private final int puppyPower;
@@ -14,6 +16,7 @@ public class PettingMaster {
 
     private double currentSquareDisappearTime;
     private int currentSquareNumber;
+    private int currentThreshold;
     private final double timerStartValue = 30.0;
     private double currentTimeLeft;
     private boolean isActive = true;
@@ -53,11 +56,20 @@ public class PettingMaster {
         handler.post(runnable);
     }
 
+    public void stop() {
+        DataManager.getInstance().getPlayerData().setPettingHighestThreshold(currentThreshold);
+        DataManager.getInstance().getPlayerData().setPettingHighestSquare(currentSquareNumber);
+    }
+
     public void handleClickedSquare() {
         currentTimeLeft += secondsGainedWhenCorrect;
 
         if (currentTimeLeft > timerStartValue)
             currentTimeLeft = timerStartValue;
+
+        //To handle the thresholds
+        if (currentSquareNumber % 10 == 0)
+            currentThreshold = currentSquareNumber;
 
         currentSquareNumber++;
         currentSquareDisappearTime = calculateNextDisappearTime();
