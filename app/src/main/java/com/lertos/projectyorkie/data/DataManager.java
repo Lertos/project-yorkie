@@ -41,8 +41,8 @@ public class DataManager {
         Activities activities = new Activities();
         activityList = activities.getListActivities();
 
-        //Set the initial hearts per second
         setHeartsPerSecond();
+        setHeartTokensPerSecond();
     }
 
     public Player getPlayerData() {
@@ -58,6 +58,17 @@ public class DataManager {
             heartsPerSecond += activity.getCurrentIncome();
         }
         playerData.setCurrentHeartsPerSecond(heartsPerSecond);
+    }
+
+    public void setHeartTokensPerSecond() {
+        double heartTokensPerSecond = 0;
+
+        for (Activity activity : activityList) {
+            if (!activity.isUnlocked())
+                break;
+            heartTokensPerSecond += activity.getBaseHeartTokensPerSecond();
+        }
+        playerData.setCurrentHeartTokensPerSecond(heartTokensPerSecond);
     }
 
     public List<PackDog> getPackDogs() {
