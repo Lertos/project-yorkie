@@ -73,8 +73,7 @@ public class PettingPage extends AppCompatActivity {
         //Start the petting mini game
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
             //Create a new instance of the petting mini game master
-            //TODO: Use actual values instead of test values
-            pettingMaster = new PettingMaster(1, 5, 1);
+            pettingMaster = new PettingMaster();
             timerStartValue = pettingMaster.getTimerStartValue();
             isPlaying = true;
 

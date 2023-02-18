@@ -1,12 +1,14 @@
 package com.lertos.projectyorkie;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.Talents;
 
 public class PettingMaster {
 
-    private final int puppyPower;
+    private final double puppyPower;
     private final double secondsLostWhenMissed;
     private final double secondsGainedWhenCorrect;
     private final int startThreshold;
@@ -22,12 +24,12 @@ public class PettingMaster {
     private boolean isActive = true;
     private int millisecondsPerUpdate = 100;
 
-    public PettingMaster(int puppyPower, double secondsLostWhenMissed, double secondsGainedWhenCorrect) {
-        this.puppyPower = puppyPower;
-        this.secondsLostWhenMissed = secondsLostWhenMissed;
-        this.secondsGainedWhenCorrect = secondsGainedWhenCorrect;
+    public PettingMaster() {
+        this.puppyPower = Talents.pettingPower.getCurrentBonus();
+        this.secondsLostWhenMissed = 4 - Talents.laxTreatment.getCurrentBonus();
+        this.secondsGainedWhenCorrect = 1 + Talents.pupPrecision.getCurrentBonus();
         //To make sure no matter what the minimum is always 1
-        this.startThreshold = Math.max(1, DataManager.getInstance().getPlayerData().getPettingHighestThreshold() - 10);
+        this.startThreshold = setStartThreshold();
 
         this.currentSquareNumber = startThreshold;
         this.currentSquareDisappearTime = calculateNextDisappearTime();
@@ -60,6 +62,22 @@ public class PettingMaster {
     public void stop() {
         DataManager.getInstance().getPlayerData().setPettingHighestThreshold(currentThreshold);
         DataManager.getInstance().getPlayerData().setPettingHighestSquare(currentSquareNumber);
+    }
+
+    private double setSecondsLostWhenMissed(double base) {
+        return base - Talents.laxTreatment.getCurrentBonus();
+    }
+
+
+    private double setSecondsGainedWhenCorrect(double base) {
+        return base + Talents.pupPrecision.getCurrentBonus();
+    }
+
+    private int setStartThreshold() {
+        int currentThreshold = DataManager.getInstance().getPlayerData().getPettingHighestThreshold();
+        currentThreshold -= 10;
+
+        return Math.max(1, currentThreshold);
     }
 
     public void handleClickedSquare() {
