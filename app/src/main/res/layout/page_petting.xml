@@ -41,17 +41,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvPettingHighestThreshold"
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Highest Threshold: 10"
                 android:textAlignment="center" />
 
             <TextView
+                android:id="@+id/tvPettingHighestSquare"
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Highest Square: 12"
                 android:textAlignment="center" />
 
             <Button
