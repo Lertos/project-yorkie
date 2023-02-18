@@ -76,34 +76,53 @@ public class PettingPage extends AppCompatActivity {
             timerStartValue = pettingMaster.getTimerStartValue();
             isPlaying = true;
 
-            setupUI(v);
+            setupUI();
 
             //Start the mini game
             pettingMaster.start();
-
-            //Make the generated square visible after setup is done
-            focusButton.setVisibility(View.VISIBLE);
         });
 
         ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> handleSquareClick(true) );
     }
 
-    private void setupUI(View v) {
-        //Show the dog portrait again
-        findViewById(R.id.linPettingMainSection).setVisibility(View.VISIBLE);
-
+    private void setupUI() {
         //Create the first square
         handleSquareClick(false);
-
-        //Hide the start button
-        v.setVisibility(View.INVISIBLE);
-
-        //Show the timer
-        findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
 
         //Initialize the timer and the UI for it
         indicator.setProgressCompat(100, false);
         updateIndicatorWithTime();
+
+        //Handle visibility of the rest of the UI
+        processGameStart();
+    }
+
+    private void processGameStart() {
+        //Show the dog portrait background
+        findViewById(R.id.linPettingMainSection).setVisibility(View.VISIBLE);
+
+        //Hide the start button
+        findViewById(R.id.btnStartPetting).setVisibility(View.INVISIBLE);
+
+        //Show the timer
+        findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
+
+        //Show the generated square
+        focusButton.setVisibility(View.VISIBLE);
+    }
+
+    private void processGameOver() {
+        //Show the dog portrait background
+        findViewById(R.id.linPettingMainSection).setVisibility(View.INVISIBLE);
+
+        //Hide the start button
+        findViewById(R.id.btnStartPetting).setVisibility(View.VISIBLE);
+
+        //Show the timer
+        findViewById(R.id.linPettingTimerSection).setVisibility(View.INVISIBLE);
+
+        //Show the generated square
+        focusButton.setVisibility(View.INVISIBLE);
     }
 
     private void updateIndicatorWithTime() {
@@ -117,8 +136,10 @@ public class PettingPage extends AppCompatActivity {
                 indicator.setProgressCompat(calculatedProgress, false);
                 timerInSeconds.setText(String.valueOf(currentTimeLeft));
 
-                if (currentTimeLeft <= 0)
+                if (currentTimeLeft <= 0) {
                     isPlaying = false;
+                    processGameOver();
+                }
 
                 if(!isPlaying)
                     handler.removeCallbacks(this);
