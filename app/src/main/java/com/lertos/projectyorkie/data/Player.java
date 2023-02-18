@@ -14,6 +14,8 @@ public class Player {
     private double currentHearts;
     private int currentHeartTokens;
     private int dogsCollected;
+    private int pettingHighestThreshold;
+    private int pettingHighestSquare;
 
     //Static data that won't change
     private final int maxDogsToCollect = 27;
@@ -62,5 +64,21 @@ public class Player {
 
     public int getMaxDogsToCollect() {
         return maxDogsToCollect;
+    }
+
+    public int getPettingHighestThreshold() {
+        return pettingHighestThreshold;
+    }
+
+    public void setPettingHighestThreshold(int pettingHighestThreshold) {
+        this.pettingHighestThreshold = pettingHighestThreshold;
+    }
+
+    public int getPettingHighestSquare() {
+        return pettingHighestSquare;
+    }
+
+    public void setPettingHighestSquare(int pettingHighestSquare) {
+        this.pettingHighestSquare = pettingHighestSquare;
     }
 }

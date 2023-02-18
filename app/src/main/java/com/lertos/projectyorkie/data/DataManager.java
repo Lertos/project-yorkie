@@ -29,6 +29,9 @@ public class DataManager {
         //TODO: Later on, load (and save) the player data in a file and populate the Player object with the data
         playerData = new Player(0, 0, 0);
 
+        playerData.setPettingHighestThreshold(10);
+        playerData.setPettingHighestSquare(13);
+
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
 
