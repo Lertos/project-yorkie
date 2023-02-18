@@ -11,6 +11,7 @@ public class Player {
 
     //Player data that will change
     private double currentHeartsPerSecond;
+    private double currentHeartTokensPerSecond;
     private double currentHearts;
     private int currentHeartTokens;
     private int dogsCollected;
@@ -32,6 +33,14 @@ public class Player {
 
     public void setCurrentHeartsPerSecond(double currentHeartsPerSecond) {
         this.currentHeartsPerSecond = Helper.roundNumber(currentHeartsPerSecond);
+    }
+
+    public double getCurrentHeartTokensPerSecond() {
+        return currentHeartTokensPerSecond;
+    }
+
+    public void setCurrentHeartTokensPerSecond(double currentHeartTokensPerSecond) {
+        this.currentHeartTokensPerSecond = Helper.roundNumber(currentHeartTokensPerSecond);
     }
 
     public double getCurrentHearts() {
