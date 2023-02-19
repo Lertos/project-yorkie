@@ -144,7 +144,7 @@ public class PettingMaster {
         }
 
         //Apply the multiplier
-        return heartsReward * rewardMultiplier;
+        return Helper.roundNumber(heartsReward * rewardMultiplier);
     }
 
     public double getEndReward() {
