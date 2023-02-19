@@ -119,4 +119,26 @@ public class PettingMaster {
     private double calculateNextDisappearTime() {
         return Helper.roundNumber((puppyPower + baseDisappearTime) / (double) currentSquareNumber);
     }
+
+    public double getHeartsReward() {
+        double heartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
+        double heartTokensPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond();
+        double heartsPerToken = heartsPerSecond / heartTokensPerSecond;
+        double heartsReward;
+
+        //Get the reward for threshold, the uncompleted threshold, find the difference, then find the reward for the highest square
+        if (currentSquareNumber % squaresPerThreshold == 0)
+            heartsReward = heartsPerToken * (costHeartTokensPerThreshold * currentThreshold);
+        else {
+            double thresholdReward = heartsPerToken * (costHeartTokensPerThreshold * currentThreshold);
+            double finishedSquares = currentSquareNumber - currentThreshold;
+            double finishedSquaresRatio = finishedSquares / squaresPerThreshold;
+            double rewardForRatio = heartsPerToken * finishedSquaresRatio;
+
+            heartsReward = rewardForRatio;
+        }
+
+        //Apply the multiplier
+        return heartsReward * rewardMultiplier;
+    }
 }
