@@ -13,7 +13,7 @@ public class Player {
     private double currentHeartsPerSecond;
     private double currentHeartTokensPerSecond;
     private double currentHearts;
-    private int currentHeartTokens;
+    private double currentHeartTokens;
     private int dogsCollected;
     private int pettingHighestThreshold;
     private int pettingHighestSquare;
@@ -21,7 +21,7 @@ public class Player {
     //Static data that won't change
     private final int maxDogsToCollect = 27;
 
-    public Player(double currentHearts, int currentHeartTokens, int dogsCollected) {
+    public Player(double currentHearts, double currentHeartTokens, int dogsCollected) {
         this.currentHearts = currentHearts;
         this.currentHeartTokens = currentHeartTokens;
         this.dogsCollected = dogsCollected;
@@ -51,11 +51,11 @@ public class Player {
         this.currentHearts = Helper.roundNumber(currentHearts);
     }
 
-    public int getCurrentHeartTokens() {
+    public double getCurrentHeartTokens() {
         return currentHeartTokens;
     }
 
-    public void setCurrentHeartTokens(int currentHeartTokens) {
+    public void setCurrentHeartTokens(double currentHeartTokens) {
         this.currentHeartTokens = currentHeartTokens;
     }
 
