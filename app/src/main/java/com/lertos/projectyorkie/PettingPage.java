@@ -188,10 +188,13 @@ public class PettingPage extends AppCompatActivity {
             pettingMaster.handleClickedSquare();
 
         disappearTimeHandler.removeCallbacks(timerRunnable);
-        timerRunnable = () -> handleSquareDisappearing();
-        disappearTimeHandler.postDelayed(timerRunnable, (long) Math.round(pettingMaster.getCurrentSquareDisappearTime() * 1000));
 
-        moveClickSquare();
+        if (isPlaying) {
+            timerRunnable = () -> handleSquareDisappearing();
+            disappearTimeHandler.postDelayed(timerRunnable, (long) Math.round(pettingMaster.getCurrentSquareDisappearTime() * 1000));
+
+            moveClickSquare();
+        }
     }
 
     private void handleSquareDisappearing() {
