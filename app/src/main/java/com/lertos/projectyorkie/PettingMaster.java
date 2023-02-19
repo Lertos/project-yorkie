@@ -30,7 +30,6 @@ public class PettingMaster {
         this.puppyPower = Talents.pettingPower.getCurrentBonus();
         this.secondsLostWhenMissed = baseSecondsLostWhenMissed - Talents.laxTreatment.getCurrentBonus();
         this.secondsGainedWhenCorrect = baseSecondsGainedWhenCorrect + Talents.pupPrecision.getCurrentBonus();
-        //To make sure no matter what the minimum is always 1
         this.startThreshold = setStartThreshold();
 
         this.currentSquareNumber = startThreshold;
@@ -115,10 +114,6 @@ public class PettingMaster {
 
     public double getCurrentSquareDisappearTime() {
         return currentSquareDisappearTime;
-    }
-
-    public int getCurrentSquareNumber() {
-        return currentSquareNumber;
     }
 
     private double calculateNextDisappearTime() {
