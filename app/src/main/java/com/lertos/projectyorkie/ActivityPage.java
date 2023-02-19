@@ -37,11 +37,20 @@ public class ActivityPage extends AppCompatActivity {
         );
     }
 
-    protected void onDestroy() { super.onDestroy(); isPageActive = false; }
+    protected void onDestroy() {
+        super.onDestroy();
+        isPageActive = false;
+    }
 
-    protected void onPause() { super.onPause(); isPageActive = false; }
+    protected void onPause() {
+        super.onPause();
+        isPageActive = false;
+    }
 
-    protected void onResume() { super.onResume(); isPageActive = true; }
+    protected void onResume() {
+        super.onResume();
+        isPageActive = true;
+    }
 
     private void updateUIWithCurrentHearts() {
         final Handler handler = new Handler();
@@ -50,7 +59,7 @@ public class ActivityPage extends AppCompatActivity {
             public void run() {
                 activityCurrentHearts.setText(Helper.formatNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
 
-                if(!isPageActive)
+                if (!isPageActive)
                     handler.removeCallbacks(this);
                 else
                     handler.postDelayed(this, 500);

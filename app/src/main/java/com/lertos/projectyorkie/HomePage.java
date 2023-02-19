@@ -73,9 +73,15 @@ public class HomePage extends AppCompatActivity {
         isPageActive = false;
     }
 
-    protected void onPause() { super.onPause(); isPageActive = false; }
+    protected void onPause() {
+        super.onPause();
+        isPageActive = false;
+    }
 
-    protected void onResume() { super.onResume(); isPageActive = true; }
+    protected void onResume() {
+        super.onResume();
+        isPageActive = true;
+    }
 
     private void setupRecyclerViews() {
         Helper.createNewRecyclerView(
@@ -152,7 +158,7 @@ public class HomePage extends AppCompatActivity {
                         ),
                         TextView.BufferType.SPANNABLE);
 
-                if(!isPageActive)
+                if (!isPageActive)
                     handler.removeCallbacks(this);
                 else
                     handler.postDelayed(this, 500);

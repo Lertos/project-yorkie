@@ -12,7 +12,8 @@ public class MediaManager {
     private float trackEffectVolume;
     private float trackSongVolume;
 
-    private MediaManager() {}
+    private MediaManager() {
+    }
 
     public static MediaManager getInstance() {
         if (instance == null) {

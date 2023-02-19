@@ -44,7 +44,7 @@ public class PettingPage extends AppCompatActivity {
         //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
         indicator.setMax(timerMax);
 
-        LinearLayout layout = (LinearLayout)findViewById(R.id.linPettingMainSection);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.linPettingMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -56,9 +56,9 @@ public class PettingPage extends AppCompatActivity {
                 int layoutMargin = 60;
 
                 xStart = pettingLayout.left;
-                yStart = pettingLayout.top  - layoutMargin;
+                yStart = pettingLayout.top - layoutMargin;
                 xEnd = pettingLayout.right - buttonHeight;
-                yEnd = pettingLayout.bottom  - layoutMargin - buttonHeight;
+                yEnd = pettingLayout.bottom - layoutMargin - buttonHeight;
 
                 layout.setVisibility(View.GONE);
             }
@@ -71,7 +71,7 @@ public class PettingPage extends AppCompatActivity {
 
     private void setOnClickListeners() {
         //Start the petting mini game
-        ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener( v -> {
+        ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener(v -> {
             //Create a new instance of the petting mini game master
             pettingMaster = new PettingMaster();
             timerStartValue = pettingMaster.getTimerStartValue();
@@ -83,7 +83,7 @@ public class PettingPage extends AppCompatActivity {
             pettingMaster.start();
         });
 
-        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener( v -> handleSquareClick(true) );
+        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener(v -> handleSquareClick(true));
     }
 
     private void setupUI() {
@@ -165,7 +165,7 @@ public class PettingPage extends AppCompatActivity {
                     processGameOver();
                 }
 
-                if(!isPlaying)
+                if (!isPlaying)
                     handler.removeCallbacks(this);
                 else
                     handler.postDelayed(this, pettingMaster.getMillisecondsPerUpdate());

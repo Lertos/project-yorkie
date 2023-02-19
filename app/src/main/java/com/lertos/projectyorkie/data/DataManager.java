@@ -16,7 +16,8 @@ public class DataManager {
     private List<PackDog> packDogList = new ArrayList<>();
     private List<Activity> activityList = new ArrayList<>();
 
-    private DataManager() {}
+    private DataManager() {
+    }
 
     public static DataManager getInstance() {
         if (instance == null) {

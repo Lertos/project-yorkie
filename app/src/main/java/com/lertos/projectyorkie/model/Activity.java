@@ -38,7 +38,9 @@ public class Activity {
         return currentLevel;
     }
 
-    public void setCurrentLevel(int currentLevel) { this.currentLevel = currentLevel; }
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 
     public void levelUp() {
         this.currentLevel += 1;

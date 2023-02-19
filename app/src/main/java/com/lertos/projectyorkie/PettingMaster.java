@@ -52,7 +52,7 @@ public class PettingMaster {
                     currentTimeLeft -= convertedToSeconds;
                 }
 
-                if(!isActive)
+                if (!isActive)
                     handler.removeCallbacks(this);
                 else
                     handler.postDelayed(this, millisecondsPerUpdate);

@@ -38,11 +38,17 @@ public class Talent {
         return description;
     }
 
-    public TalentBonusType getBonusType() { return bonusType; }
+    public TalentBonusType getBonusType() {
+        return bonusType;
+    }
 
-    public int getBonusSign() { return bonusSign; }
+    public int getBonusSign() {
+        return bonusSign;
+    }
 
-    public int getMaxLevel() { return maxLevel; }
+    public int getMaxLevel() {
+        return maxLevel;
+    }
 
     public int getCurrentLevel() {
         return currentLevel;
