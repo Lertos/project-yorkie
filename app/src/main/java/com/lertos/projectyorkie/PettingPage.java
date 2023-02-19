@@ -125,6 +125,10 @@ public class PettingPage extends AppCompatActivity {
         //Hide the start button
         findViewById(R.id.btnStartPetting).setVisibility(View.INVISIBLE);
 
+        //Hide the reward won
+        findViewById(R.id.tvPettingRewardHeader).setVisibility(View.GONE);
+        findViewById(R.id.tvPettingRewardAmount).setVisibility(View.GONE);
+
         //Show the timer
         findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
 
@@ -135,16 +139,20 @@ public class PettingPage extends AppCompatActivity {
     private void processGameOver() {
         setPlayerScoreDataUI();
 
-        //Show the dog portrait background
+        //Hide the dog portrait background
         findViewById(R.id.linPettingMainSection).setVisibility(View.INVISIBLE);
 
-        //Hide the start button
+        //Show the start button
         findViewById(R.id.btnStartPetting).setVisibility(View.VISIBLE);
 
-        //Show the timer
+        //Show the reward won
+        findViewById(R.id.tvPettingRewardHeader).setVisibility(View.VISIBLE);
+        findViewById(R.id.tvPettingRewardAmount).setVisibility(View.VISIBLE);
+
+        //Hide the timer
         findViewById(R.id.linPettingTimerSection).setVisibility(View.INVISIBLE);
 
-        //Show the generated square
+        //Hide the generated square
         focusButton.setVisibility(View.INVISIBLE);
     }
 
@@ -162,6 +170,7 @@ public class PettingPage extends AppCompatActivity {
                 if (currentTimeLeft <= 0) {
                     isPlaying = false;
                     pettingMaster.stop();
+                    ((TextView) findViewById(R.id.tvPettingRewardAmount)).setText(String.valueOf(pettingMaster.getEndReward()));
                     processGameOver();
                 }
 

@@ -17,7 +17,7 @@ public class PettingMaster {
     private final int squaresPerThreshold = 10;
     private final double rewardMultiplier = 1.5;
     private final double baseDisappearTime = 4.5;
-
+    private double endReward = 0;
     private double currentSquareDisappearTime;
     private int currentSquareNumber;
     private int currentThreshold;
@@ -39,6 +39,8 @@ public class PettingMaster {
     }
 
     public void start() {
+        DataManager.getInstance().getPlayerData().setCurrentHeartTokens(DataManager.getInstance().getPlayerData().getCurrentHeartTokens() - (costHeartTokensPerThreshold * startThreshold));
+
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
@@ -64,6 +66,9 @@ public class PettingMaster {
     public void stop() {
         DataManager.getInstance().getPlayerData().setPettingHighestThreshold(currentThreshold);
         DataManager.getInstance().getPlayerData().setPettingHighestSquare(currentSquareNumber);
+
+        endReward = getHeartsReward();
+        DataManager.getInstance().getPlayerData().setCurrentHearts(DataManager.getInstance().getPlayerData().getCurrentHearts() + endReward);
     }
 
     private int setStartThreshold() {
@@ -140,5 +145,9 @@ public class PettingMaster {
 
         //Apply the multiplier
         return heartsReward * rewardMultiplier;
+    }
+
+    public double getEndReward() {
+        return endReward;
     }
 }

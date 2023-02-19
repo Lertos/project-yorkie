@@ -41,6 +41,25 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvPettingRewardHeader"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hearts Won"
+                android:textAlignment="center"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvPettingRewardAmount"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:textAlignment="center"
+                android:textColor="@color/yellow"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/tvPettingHighestThreshold"
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
