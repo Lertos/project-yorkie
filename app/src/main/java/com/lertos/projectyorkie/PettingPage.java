@@ -38,6 +38,8 @@ public class PettingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_petting);
 
+        pettingMaster = new PettingMaster();
+
         focusButton = findViewById(R.id.btnPettingFocus);
         indicator = findViewById(R.id.indPettingTimer);
         timerInSeconds = findViewById(R.id.tvPettingTimerInSecs);
@@ -112,6 +114,14 @@ public class PettingPage extends AppCompatActivity {
                 Helper.createSpannable(
                         "Highest Square:",
                         " " + DataManager.getInstance().getPlayerData().getPettingHighestSquare(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        ((TextView) findViewById(R.id.tvPettingCostInTokens)).setText(
+                Helper.createSpannable(
+                        "Cost (Heart Tokens):",
+                        " " + pettingMaster.getStartCost(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);

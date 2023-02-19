@@ -77,6 +77,10 @@ public class PettingMaster {
         return Math.max(1, currentThreshold);
     }
 
+    public double getStartCost() {
+        return Math.max(costHeartTokensPerThreshold, costHeartTokensPerThreshold * (startThreshold / squaresPerThreshold));
+    }
+
     public void handleClickedSquare() {
         currentTimeLeft += secondsGainedWhenCorrect;
 
