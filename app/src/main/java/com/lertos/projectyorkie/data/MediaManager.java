@@ -32,7 +32,7 @@ public class MediaManager {
     }
 
     public void playEffectTrack(int resId) {
-        if (trackEffect != null)
+        if (trackEffect.isPlaying())
             trackEffect.stop();
 
         trackEffect = MediaPlayer.create(this.context, resId);
@@ -41,7 +41,7 @@ public class MediaManager {
     }
 
     public void playSongTrack(int resId, boolean loopSong) {
-        if (trackSong != null)
+        if (trackSong.isPlaying())
             trackSong.stop();
 
         trackSong = MediaPlayer.create(this.context, resId);
