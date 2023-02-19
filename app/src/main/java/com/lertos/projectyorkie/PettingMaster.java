@@ -135,12 +135,12 @@ public class PettingMaster {
         if (currentSquareNumber % squaresPerThreshold == 0)
             heartsReward = heartsPerToken * (costHeartTokensPerThreshold * currentThreshold);
         else {
-            double thresholdReward = heartsPerToken * (costHeartTokensPerThreshold * currentThreshold);
+            double thresholdReward = heartsPerToken * (costHeartTokensPerThreshold * (currentThreshold / squaresPerThreshold));
             double finishedSquares = currentSquareNumber - currentThreshold;
             double finishedSquaresRatio = finishedSquares / squaresPerThreshold;
             double rewardForRatio = heartsPerToken * finishedSquaresRatio;
 
-            heartsReward = rewardForRatio;
+            heartsReward = thresholdReward + rewardForRatio;
         }
 
         //Apply the multiplier
