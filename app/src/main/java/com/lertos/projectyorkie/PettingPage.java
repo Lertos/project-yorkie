@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 
 import java.util.Random;
 
@@ -184,8 +185,12 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void handleSquareClick(boolean wasClicked) {
-        if (wasClicked)
+        if (wasClicked) {
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
             pettingMaster.handleClickedSquare();
+        } else {
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
+        }
 
         disappearTimeHandler.removeCallbacks(timerRunnable);
 
