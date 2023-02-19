@@ -32,14 +32,13 @@ public class HomePage extends AppCompatActivity {
         }
 
         if (!isPageActive) {
-            updateUIWithCurrentHearts();
+            updateUIWithCurrentData();
             isPageActive = true;
         }
 
         Helper.setupBottomButtonBar(this);
         setupRecyclerViews();
         setupPageButtonBar();
-        setupCharacterInfo();
     }
 
     private void loadMainData() {
@@ -53,11 +52,15 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void run() {
                 DataManager.getInstance().setHeartsPerSecond();
+                DataManager.getInstance().setHeartTokensPerSecond();
 
                 double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
                 double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
+                double currentHeartTokens = DataManager.getInstance().getPlayerData().getCurrentHeartTokens();
+                double currentHeartTokensPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond();
 
                 DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
+                DataManager.getInstance().getPlayerData().setCurrentHeartTokens(currentHeartTokens + currentHeartTokensPerSecond);
 
                 handler.postDelayed(this, 1000);
             }
@@ -113,47 +116,35 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    private void setupCharacterInfo() {
-        TextView currentHearts = findViewById(R.id.tcCurrentHearts);
-        TextView currentHeartTokens = findViewById(R.id.tcCurrentHeartTokens);
-        TextView currentDogsCollected = findViewById(R.id.tcCurrentDogsCollected);
-
-        currentHearts.setText(
-                Helper.createSpannable(
-                        getResources().getString(R.string.character_heart_amount),
-                        " " + DataManager.getInstance().getPlayerData().getCurrentHearts(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        currentHeartTokens.setText(
-                Helper.createSpannable(
-                        getResources().getString(R.string.character_heart_token_amount),
-                        " " + DataManager.getInstance().getPlayerData().getCurrentHeartTokens(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        currentDogsCollected.setText(
-                Helper.createSpannable(
-                        getResources().getString(R.string.character_dogs_collected),
-                        " " + DataManager.getInstance().getPlayerData().getDogsCollected(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-    }
-
-    private void updateUIWithCurrentHearts() {
+    private void updateUIWithCurrentData() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 TextView currentHearts = findViewById(R.id.tcCurrentHearts);
+                TextView currentHeartTokens = findViewById(R.id.tcCurrentHeartTokens);
+                TextView currentDogsCollected = findViewById(R.id.tcCurrentDogsCollected);
 
                 currentHearts.setText(
                         Helper.createSpannable(
                                 getResources().getString(R.string.character_heart_amount),
-                                " " + Helper.formatNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()),
+                                " " + Helper.roundNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()),
+                                DataManager.getInstance().getPlayerData().getHighlightColor()
+                        ),
+                        TextView.BufferType.SPANNABLE);
+
+                currentHeartTokens.setText(
+                        Helper.createSpannable(
+                                getResources().getString(R.string.character_heart_token_amount),
+                                " " + Helper.roundNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
+                                DataManager.getInstance().getPlayerData().getHighlightColor()
+                        ),
+                        TextView.BufferType.SPANNABLE);
+
+                currentDogsCollected.setText(
+                        Helper.createSpannable(
+                                getResources().getString(R.string.character_dogs_collected),
+                                " " + DataManager.getInstance().getPlayerData().getDogsCollected(),
                                 DataManager.getInstance().getPlayerData().getHighlightColor()
                         ),
                         TextView.BufferType.SPANNABLE);
