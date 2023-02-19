@@ -13,7 +13,8 @@ public class PettingMaster {
     private final double secondsLostWhenMissed;
     private final double secondsGainedWhenCorrect;
     private final int startThreshold;
-
+    private final int costHeartTokensPerThreshold = 1;
+    private final int squaresPerThreshold = 10;
     private final double rewardMultiplier = 1.5;
     private final double baseDisappearTime = 4.5;
 
@@ -67,7 +68,7 @@ public class PettingMaster {
 
     private int setStartThreshold() {
         int currentThreshold = DataManager.getInstance().getPlayerData().getPettingHighestThreshold();
-        currentThreshold -= 10;
+        currentThreshold -= squaresPerThreshold;
 
         return Math.max(1, currentThreshold);
     }
@@ -79,7 +80,7 @@ public class PettingMaster {
             currentTimeLeft = timerStartValue;
 
         //To handle the thresholds
-        if (currentSquareNumber % 10 == 0)
+        if (currentSquareNumber % squaresPerThreshold == 0)
             currentThreshold = currentSquareNumber;
 
         currentSquareNumber++;
