@@ -55,10 +55,6 @@ public class Helper {
         activity.overridePendingTransition(0, 0);
     }
 
-    public static double roundNumber(double number) {
-        return Math.round(number * 100.0) / 100.0;
-    }
-
     public static boolean canAffordUpgradeWithHearts(double upgradeCost) {
         double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
 
@@ -69,8 +65,4 @@ public class Helper {
         return true;
     }
 
-    public static String formatNumber(double number) {
-        Formatter formatter = new Formatter();
-        return formatter.format("%,.2f", number).toString();
-    }
 }
