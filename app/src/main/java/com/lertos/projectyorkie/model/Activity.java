@@ -41,6 +41,8 @@ public class Activity {
         this.currentLevel = currentLevel;
     }
 
+    public void setUnlocked(boolean unlocked) { isUnlocked = unlocked; }
+
     public void levelUp() {
         this.currentLevel += 1;
 
