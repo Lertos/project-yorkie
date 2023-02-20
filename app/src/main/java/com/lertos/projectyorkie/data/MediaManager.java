@@ -24,6 +24,9 @@ public class MediaManager {
 
     public void start(Context context) {
         this.context = context;
+        this.trackEffect = new MediaPlayer();
+        this.trackSong = new MediaPlayer();
+
         //TODO: Have these saved somewhere in the user prefs
         this.trackEffectVolume = 0.5f;
         this.trackSongVolume = 0.0f;
@@ -49,24 +52,24 @@ public class MediaManager {
         if (trackEffect != null)
             resetEffectTrack();
 
-        trackEffect = MediaPlayer.create(this.context, resId);
+            trackEffect = MediaPlayer.create(this.context, resId);
 
-        trackEffect.setOnCompletionListener(player -> resetEffectTrack());
+            trackEffect.setOnCompletionListener(player -> resetEffectTrack());
 
-        trackEffect.setVolume(trackEffectVolume, trackEffectVolume);
-        trackEffect.start();
+            trackEffect.setVolume(trackEffectVolume, trackEffectVolume);
+            trackEffect.start();
     }
 
     public void playSongTrack(int resId, boolean loopSong) {
         if (trackSong != null)
             resetSongTrack();
 
-        trackSong = MediaPlayer.create(this.context, resId);
+            trackSong = MediaPlayer.create(this.context, resId);
 
-        trackEffect.setOnCompletionListener(player -> resetSongTrack());
+            trackEffect.setOnCompletionListener(player -> resetSongTrack());
 
-        trackSong.setVolume(trackSongVolume, trackSongVolume);
-        trackSong.start();
+            trackSong.setVolume(trackSongVolume, trackSongVolume);
+            trackSong.start();
 
         if (loopSong)
             trackSong.setLooping(true);
