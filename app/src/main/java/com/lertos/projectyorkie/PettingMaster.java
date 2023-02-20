@@ -38,7 +38,7 @@ public class PettingMaster {
     }
 
     public void start() {
-        DataManager.getInstance().getPlayerData().setCurrentHeartTokens(DataManager.getInstance().getPlayerData().getCurrentHeartTokens() - (costHeartTokensPerThreshold * startThreshold));
+        DataManager.getInstance().addHeartTokens(costHeartTokensPerThreshold * startThreshold * -1);
 
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -67,7 +67,7 @@ public class PettingMaster {
         DataManager.getInstance().getPlayerData().setPettingHighestSquare(currentSquareNumber);
 
         endReward = getHeartsReward();
-        DataManager.getInstance().getPlayerData().setCurrentHearts(DataManager.getInstance().getPlayerData().getCurrentHearts() + endReward);
+        DataManager.getInstance().addHearts(endReward);
     }
 
     private int setStartThreshold() {
