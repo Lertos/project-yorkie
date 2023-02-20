@@ -46,21 +46,13 @@ public class HomePage extends AppCompatActivity {
         MediaManager.getInstance().start(this);
         DataManager.getInstance().start();
 
-        //Run the game loop - mainly for increasing the hearts per second
+        //Run the game loop
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                DataManager.getInstance().setHeartsPerSecond();
-                DataManager.getInstance().setHeartTokensPerSecond();
-
-                double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
-                double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
-                double currentHeartTokens = DataManager.getInstance().getPlayerData().getCurrentHeartTokens();
-                double currentHeartTokensPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond();
-
-                DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
-                DataManager.getInstance().getPlayerData().setCurrentHeartTokens(currentHeartTokens + currentHeartTokensPerSecond);
+                DataManager.getInstance().calculateHeartsPerSecond();
+                DataManager.getInstance().calculateHeartTokensPerSecond();
 
                 handler.postDelayed(this, 1000);
             }

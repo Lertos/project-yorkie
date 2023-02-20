@@ -72,6 +72,33 @@ public class DataManager {
         playerData.setCurrentHeartTokensPerSecond(heartTokensPerSecond);
     }
 
+    public void addHearts(double hearts) {
+        playerData.setCurrentHearts(playerData.getCurrentHearts() + hearts);
+    }
+
+    public void addHeartTokens(double heartTokens) {
+        playerData.setCurrentHeartTokens(playerData.getCurrentHeartTokens() + heartTokens);
+    }
+
+
+    public void calculateHeartsPerSecond() {
+        DataManager.getInstance().setHeartsPerSecond();
+
+        double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+        double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
+
+        DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
+    }
+
+    public void calculateHeartTokensPerSecond() {
+        DataManager.getInstance().setHeartTokensPerSecond();
+
+        double currentHeartTokens = DataManager.getInstance().getPlayerData().getCurrentHeartTokens();
+        double currentHeartTokensPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond();
+
+        DataManager.getInstance().getPlayerData().setCurrentHeartTokens(currentHeartTokens + currentHeartTokensPerSecond);
+    }
+
     public List<PackDog> getPackDogs() {
         return Collections.unmodifiableList(packDogList);
     }
