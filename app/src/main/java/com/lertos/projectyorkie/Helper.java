@@ -65,7 +65,7 @@ public class Helper {
         if (currentHearts < upgradeCost)
             return false;
 
-        DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts - upgradeCost);
+        DataManager.getInstance().addHearts(-upgradeCost);
         return true;
     }
 
