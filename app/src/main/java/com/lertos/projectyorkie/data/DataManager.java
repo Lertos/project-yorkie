@@ -83,20 +83,12 @@ public class DataManager {
 
     public void calculateHeartsPerSecond() {
         DataManager.getInstance().setHeartsPerSecond();
-
-        double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
-        double currentHeartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
-
-        DataManager.getInstance().getPlayerData().setCurrentHearts(currentHearts + currentHeartsPerSecond);
+        addHearts(playerData.getCurrentHeartsPerSecond());
     }
 
     public void calculateHeartTokensPerSecond() {
         DataManager.getInstance().setHeartTokensPerSecond();
-
-        double currentHeartTokens = DataManager.getInstance().getPlayerData().getCurrentHeartTokens();
-        double currentHeartTokensPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond();
-
-        DataManager.getInstance().getPlayerData().setCurrentHeartTokens(currentHeartTokens + currentHeartTokensPerSecond);
+        addHeartTokens(playerData.getCurrentHeartTokensPerSecond());
     }
 
     public List<PackDog> getPackDogs() {
