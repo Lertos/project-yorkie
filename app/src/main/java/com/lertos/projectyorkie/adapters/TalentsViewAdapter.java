@@ -64,13 +64,6 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
         //Update the info of the activity panel
         refreshChangingData(holder, position);
-
-        if (!talentList.get(position).isUnlocked()) {
-            holder.talentName.setText("LOCKED");
-            holder.talentCurrentLevel.setText("");
-            holder.talentCurrentBonus.setText("");
-            holder.talentNextBonus.setText("");
-        }
     }
 
     private void refreshChangingData(ViewHolder holder, int position) {

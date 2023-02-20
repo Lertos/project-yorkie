@@ -1,6 +1,5 @@
 package com.lertos.projectyorkie.model;
 
-import com.lertos.projectyorkie.Helper;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.MediaManager;
 
@@ -16,8 +15,7 @@ public class Talent {
     private final double bonusBase;
     private final double bonusAddedPerLevel;
     private final int maxLevel;
-    private int currentLevel;
-    private boolean isUnlocked = false;
+    private int currentLevel = 1;
 
     public Talent(String name, String description, TalentBonusType bonusType, int bonusSign, double costExponentNumerator, double bonusBase, double bonusAddedPerLevel, int maxLevel) {
         this.name = name;
@@ -60,21 +58,12 @@ public class Talent {
 
     public void levelUp() {
         this.currentLevel += 1;
-
-        if (this.currentLevel == 1) {
-            this.isUnlocked = true;
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_dog_bark);
-        } else
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
-    }
-
-    public boolean isUnlocked() {
-        return isUnlocked;
+        MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
     }
 
     //TODO: Add multipliers from talents
     public double getNextUpgradeCost() {
-        return Helper.roundNumber(costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel));
+        return costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel);
     }
 
     private double getBonus(int level) {
@@ -86,7 +75,7 @@ public class Talent {
 
         bonus *= bonusSign;
 
-        return Helper.roundNumber(bonus);
+        return bonus;
     }
 
     public double getNextDisplayBonus() {
@@ -94,7 +83,7 @@ public class Talent {
 
         bonus *= bonusSign;
 
-        return Helper.roundNumber(bonus);
+        return bonus;
     }
 
     public double getCurrentBonus() {
@@ -105,7 +94,7 @@ public class Talent {
 
         bonus *= bonusSign;
 
-        return Helper.roundNumber(bonus);
+        return bonus;
     }
 
 }
