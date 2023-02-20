@@ -71,6 +71,21 @@ public class PettingPage extends AppCompatActivity {
         setOnClickListeners();
     }
 
+    protected void onDestroy() {
+        super.onDestroy();
+        isPlaying = false;
+    }
+
+    protected void onPause() {
+        super.onPause();
+        isPlaying = false;
+    }
+
+    protected void onResume() {
+        super.onResume();
+        isPlaying = true;
+    }
+
     private void setOnClickListeners() {
         //Start the petting mini game
         ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener(v -> {
