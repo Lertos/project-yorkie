@@ -100,12 +100,12 @@ public class PettingPage extends AppCompatActivity {
             pettingMaster.start();
         });
 
-        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener(v -> handleSquareClick(true));
+        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener(v -> handleSquareClick(true, false));
     }
 
     private void setupUI() {
         //Create the first square
-        handleSquareClick(false);
+        handleSquareClick(false, true);
 
         //Initialize the timer and the UI for it
         indicator.setProgressCompat(100, false);
@@ -208,12 +208,13 @@ public class PettingPage extends AppCompatActivity {
         handler.post(runnable);
     }
 
-    private void handleSquareClick(boolean wasClicked) {
+    private void handleSquareClick(boolean wasClicked, boolean gameJustStarted) {
         if (wasClicked) {
             MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
             pettingMaster.handleClickedSquare();
         } else {
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
+            if (!gameJustStarted && isPlaying)
+                MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
         }
 
         disappearTimeHandler.removeCallbacks(timerRunnable);
@@ -228,7 +229,7 @@ public class PettingPage extends AppCompatActivity {
 
     private void handleSquareDisappearing() {
         pettingMaster.handleMissedSquare();
-        handleSquareClick(false);
+        handleSquareClick(false, false);
     }
 
     private void moveClickSquare() {
