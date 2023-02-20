@@ -27,7 +27,8 @@ public class Activities {
         listActivities.add(new Activity("Feed Them Premium-Grade Food", 13, 8.9));
 
         //TODO: Read from the file - or update the list after reading the player data "dogs_unlocked" section
-        listActivities.get(0).levelUp();
+        listActivities.get(0).setUnlocked(true);
+        listActivities.get(0).setCurrentLevel(1);
     }
 
     public List<Activity> getListActivities() {
