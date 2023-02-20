@@ -73,10 +73,14 @@ public class DataManager {
     }
 
     public void addHearts(double hearts) {
+        if (hearts < 0 && hearts > playerData.getCurrentHearts())
+            return;
         playerData.setCurrentHearts(playerData.getCurrentHearts() + hearts);
     }
 
     public void addHeartTokens(double heartTokens) {
+        if (heartTokens < 0 && heartTokens > playerData.getCurrentHeartTokens())
+            return;
         playerData.setCurrentHeartTokens(playerData.getCurrentHeartTokens() + heartTokens);
     }
 
