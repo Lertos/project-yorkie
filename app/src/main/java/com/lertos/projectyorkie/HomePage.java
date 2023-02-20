@@ -120,7 +120,7 @@ public class HomePage extends AppCompatActivity {
                 currentHearts.setText(
                         Helper.createSpannable(
                                 getResources().getString(R.string.character_heart_amount),
-                                " " + Helper.roundNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()),
+                                " " + IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()),
                                 DataManager.getInstance().getPlayerData().getHighlightColor()
                         ),
                         TextView.BufferType.SPANNABLE);
@@ -128,7 +128,7 @@ public class HomePage extends AppCompatActivity {
                 currentHeartTokens.setText(
                         Helper.createSpannable(
                                 getResources().getString(R.string.character_heart_token_amount),
-                                " " + Helper.roundNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
+                                " " + IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
                                 DataManager.getInstance().getPlayerData().getHighlightColor()
                         ),
                         TextView.BufferType.SPANNABLE);

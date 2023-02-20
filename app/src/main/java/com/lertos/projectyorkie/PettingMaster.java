@@ -105,7 +105,7 @@ public class PettingMaster {
     }
 
     public double getCurrentTimeLeft() {
-        return Helper.roundNumber(currentTimeLeft);
+        return currentTimeLeft;
     }
 
     public double getTimerStartValue() {
@@ -121,7 +121,7 @@ public class PettingMaster {
     }
 
     private double calculateNextDisappearTime() {
-        return Helper.roundNumber((puppyPower + baseDisappearTime) / (double) currentSquareNumber);
+        return (puppyPower + baseDisappearTime) / (double) currentSquareNumber;
     }
 
     public double getHeartsReward() {
@@ -143,7 +143,7 @@ public class PettingMaster {
         }
 
         //Apply the multiplier
-        return Helper.roundNumber(heartsReward * rewardMultiplier);
+        return heartsReward * rewardMultiplier;
     }
 
     public double getEndReward() {

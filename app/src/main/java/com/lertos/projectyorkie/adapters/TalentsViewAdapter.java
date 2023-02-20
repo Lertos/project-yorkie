@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.Helper;
+import com.lertos.projectyorkie.IdleNumber;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.Talent;
@@ -88,7 +89,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         holder.talentCurrentBonus.setText(
                 Helper.createSpannable(
                         "Current Bonus:",
-                        " " + talentList.get(position).getCurrentDisplayBonus(),
+                        " " + IdleNumber.getStrNumber(talentList.get(position).getCurrentDisplayBonus()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -96,12 +97,12 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         holder.talentNextBonus.setText(
                 Helper.createSpannable(
                         "Next Bonus:",
-                        " " + talentList.get(position).getNextDisplayBonus(),
+                        " " + IdleNumber.getStrNumber(talentList.get(position).getNextDisplayBonus()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.talentNextCost.setText(String.valueOf(talentList.get(position).getNextUpgradeCost()));
+        holder.talentNextCost.setText(IdleNumber.getStrNumber(talentList.get(position).getNextUpgradeCost()));
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.lertos.projectyorkie;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -121,7 +120,7 @@ public class PettingPage extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvPettingCostInTokens)).setText(
                 Helper.createSpannable(
                         "Cost (Heart Tokens):",
-                        " " + pettingMaster.getStartCost(),
+                        " " + IdleNumber.getStrNumber(pettingMaster.getStartCost()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -176,12 +175,12 @@ public class PettingPage extends AppCompatActivity {
                 int calculatedProgress = (int) Math.round((currentTimeLeft / timerStartValue) * timerMax);
 
                 indicator.setProgressCompat(calculatedProgress, false);
-                timerInSeconds.setText(String.valueOf(currentTimeLeft));
+                timerInSeconds.setText(IdleNumber.getStrNumber(currentTimeLeft));
 
                 if (currentTimeLeft <= 0) {
                     isPlaying = false;
                     pettingMaster.stop();
-                    ((TextView) findViewById(R.id.tvPettingRewardAmount)).setText(String.valueOf(pettingMaster.getEndReward()));
+                    ((TextView) findViewById(R.id.tvPettingRewardAmount)).setText(IdleNumber.getStrNumber(pettingMaster.getEndReward()));
                     processGameOver();
                 }
 

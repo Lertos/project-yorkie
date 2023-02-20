@@ -57,7 +57,7 @@ public class ActivityPage extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                activityCurrentHearts.setText(Helper.formatNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
+                activityCurrentHearts.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);

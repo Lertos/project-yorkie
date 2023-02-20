@@ -1,6 +1,5 @@
 package com.lertos.projectyorkie.model;
 
-import com.lertos.projectyorkie.Helper;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.data.Talents;
@@ -59,7 +58,7 @@ public class Activity {
     public double getNextUpgradeCost() {
         double totalCost = (costConstant + costBase * Math.pow(orderPosition, costExponent)) * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
 
-        return Helper.roundNumber(totalCost);
+        return totalCost;
     }
 
     private double getIncome(int level) {
@@ -74,11 +73,11 @@ public class Activity {
     }
 
     public double getCurrentIncome() {
-        return Helper.roundNumber(getIncome(currentLevel));
+        return getIncome(currentLevel);
     }
 
     public double getNextIncome() {
-        return Helper.roundNumber(getIncome(currentLevel + 1));
+        return getIncome(currentLevel + 1);
     }
 
     public double getBaseHeartTokensPerSecond() {

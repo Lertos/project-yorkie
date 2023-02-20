@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.Helper;
+import com.lertos.projectyorkie.IdleNumber;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.Activity;
@@ -81,7 +82,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         holder.activityCurrentOutput.setText(
                 Helper.createSpannable(
                         "Current Output (H/s):",
-                        " " + activityList.get(position).getCurrentIncome(),
+                        " " + IdleNumber.getStrNumber(activityList.get(position).getCurrentIncome()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -89,12 +90,12 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         holder.activityNextOutput.setText(
                 Helper.createSpannable(
                         "Next Output (H/s):",
-                        " " + activityList.get(position).getNextIncome(),
+                        " " + IdleNumber.getStrNumber(activityList.get(position).getNextIncome()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.activityUpgradeCost.setText(String.valueOf(activityList.get(position).getNextUpgradeCost()));
+        holder.activityUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getNextUpgradeCost()));
     }
 
     @Override
