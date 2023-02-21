@@ -3,7 +3,7 @@ package com.lertos.projectyorkie.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +45,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         //TODO: Need to also check if the bonus is an increase or decrease
 
         //Set onClick listeners
-        holder.talentUpgradeButton.setOnClickListener(v -> {
+        holder.talentUpgradeSingleButton.setOnClickListener(v -> {
             double upgradeCost = talentList.get(position).getNextUpgradeCost();
             boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
@@ -121,7 +121,8 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         private TextView talentCurrentBonus;
         private TextView talentNextBonus;
         private TextView talentNextCost;
-        private ImageView talentUpgradeButton;
+        private Button talentUpgradeMaxButton;
+        private Button talentUpgradeSingleButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -132,7 +133,9 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
             talentCurrentBonus = itemView.findViewById(R.id.talentCurrentBonus);
             talentNextBonus = itemView.findViewById(R.id.talentNextBonus);
             talentNextCost = itemView.findViewById(R.id.talentHeartsToUpgrade);
-            talentUpgradeButton = itemView.findViewById(R.id.talentUpgradeButton);
+            talentUpgradeMaxButton = itemView.findViewById(R.id.talentUpgradeMaxButton);
+            talentUpgradeSingleButton = itemView.findViewById(R.id.talentUpgradeSingleButton);
+
         }
     }
 

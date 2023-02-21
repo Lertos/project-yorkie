@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/border_with_dark_bg">
@@ -11,24 +12,27 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true">
 
-        <ImageView
-            android:id="@+id/talentUpgradeButton"
+        <Button
+            android:id="@+id/talentUpgradeMaxButton"
+            style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="20dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/border_with_light_bg"
-            android:maxHeight="80dp"
-            android:padding="0dp"
-            android:src="@mipmap/icon_upgrade" />
+            android:text="MAX" />
+
+        <Button
+            android:id="@+id/talentUpgradeSingleButton"
+            style="@style/baseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/talentUpgradeMaxButton"
+            android:text="1" />
 
         <TextView
             android:id="@+id/talentHeartsToUpgrade"
             style="@style/fontSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/talentUpgradeButton"
+            android:layout_below="@id/talentUpgradeSingleButton"
             android:layout_centerHorizontal="true"
             android:text="PH"
             android:textColor="@color/yellow" />
