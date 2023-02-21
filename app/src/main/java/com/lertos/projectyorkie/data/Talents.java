@@ -74,6 +74,41 @@ public class Talents {
             50
     );
 
+    public static final Talent canineFocus = new Talent(
+            "Canine Focus",
+            "Tournaments - Focus to slow down time",
+            TalentBonusType.FLAT,
+            1,
+            5,
+            0,
+            0.06,
+            50
+    );
+
+    public static final Talent cutenessFactor = new Talent(
+            "Cuteness Factor",
+            "Tournaments - Get more points for each action",
+            TalentBonusType.FLAT,
+            1,
+            5,
+            0,
+            0.06,
+            50
+    );
+
+    /* TEMPLATE
+    public static final Talent  = new Talent(
+            "",
+            "",
+            TalentBonusType.PERCENTAGE,
+            1,
+            5,
+            0,
+            0.06,
+            50
+    );
+    */
+
     public Talents() {
         this.listTalents = new ArrayList<>();
 
@@ -83,6 +118,8 @@ public class Talents {
         listTalents.add(pettingPower);
         listTalents.add(pupPrecision);
         listTalents.add(laxTreatment);
+        listTalents.add(canineFocus);
+        listTalents.add(cutenessFactor);
     }
 
     public List<Talent> getListTalents() {
