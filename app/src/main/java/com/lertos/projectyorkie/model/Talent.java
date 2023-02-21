@@ -40,8 +40,18 @@ public class Talent {
         return bonusType;
     }
 
+    public String getBonusTypeSuffix() {
+        return bonusType.getSuffix();
+    }
+
     public int getBonusSign() {
         return bonusSign;
+    }
+
+    public String getBonusSignPrefix() {
+        if (bonusSign < 0)
+            return "-";
+        return "";
     }
 
     public int getMaxLevel() {
