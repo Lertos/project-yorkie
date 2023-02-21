@@ -41,6 +41,50 @@ public class Talents {
             25
     );
 
+    public static final Talent petLover = new Talent(
+            "Pet Lover",
+            "Decreases cost of upgrading activities",
+            TalentBonusType.PERCENTAGE,
+            -1,
+            6,
+            0,
+            2,
+            25
+    );
+
+    public static final Talent greatMinds = new Talent(
+            "Great Minds",
+            "Decreases cost of unlocking activities",
+            TalentBonusType.PERCENTAGE,
+            -1,
+            6,
+            0,
+            2,
+            25
+    );
+
+    public static final Talent purrsuasion = new Talent(
+            "Purrsuasion",
+            "Use less heart tokens when playing minigames",
+            TalentBonusType.PERCENTAGE,
+            -1,
+            6,
+            0,
+            5,
+            25
+    );
+
+    public static final Talent strengthInNumbers = new Talent(
+            "Strength In Numbers",
+            "Get more hearts based on your pack bonus",
+            TalentBonusType.PERCENTAGE,
+            1,
+            4.5,
+            0,
+            0.06,
+            100
+    );
+
     public static final Talent pettingPower = new Talent(
             "Petting Power",
             "Petting Minigame - Squares don't disappear as quick",
@@ -96,25 +140,16 @@ public class Talents {
             50
     );
 
-    /* TEMPLATE
-    public static final Talent  = new Talent(
-            "",
-            "",
-            TalentBonusType.PERCENTAGE,
-            1,
-            5,
-            0,
-            0.06,
-            50
-    );
-    */
-
     public Talents() {
         this.listTalents = new ArrayList<>();
 
         listTalents.add(heartBeater);
         listTalents.add(luckyStreak);
         listTalents.add(bargainMaster);
+        listTalents.add(petLover);
+        listTalents.add(greatMinds);
+        listTalents.add(purrsuasion);
+        listTalents.add(strengthInNumbers);
         listTalents.add(pettingPower);
         listTalents.add(pupPrecision);
         listTalents.add(laxTreatment);
