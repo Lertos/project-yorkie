@@ -75,11 +75,10 @@
 
             <Button
                 android:id="@+id/btnStartPetting"
-                style="@style/fontLarge"
+                style="@style/baseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/darker_light_blue"
                 android:text="Start" />
 
             <TextView
