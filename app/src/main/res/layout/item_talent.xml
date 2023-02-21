@@ -5,9 +5,42 @@
     android:background="@drawable/border_with_dark_bg">
 
     <RelativeLayout
+        android:id="@+id/linUpgrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/talentUpgradeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="20dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/border_with_light_bg"
+            android:maxHeight="80dp"
+            android:padding="0dp"
+            android:src="@mipmap/icon_upgrade" />
+
+        <TextView
+            android:id="@+id/talentHeartsToUpgrade"
+            style="@style/fontSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/talentUpgradeButton"
+            android:layout_centerHorizontal="true"
+            android:text="PH"
+            android:textColor="@color/yellow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/linInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/linUpgrade">
 
         <TextView
             android:id="@+id/talentName"
@@ -22,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/talentName"
-            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -55,39 +87,6 @@
                 android:text="PH" />
 
         </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/linUpgrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/linInfo"
-        android:gravity="end">
-
-        <ImageView
-            android:id="@+id/talentUpgradeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="20dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/border_with_light_bg"
-            android:maxHeight="80dp"
-            android:padding="0dp"
-            android:src="@mipmap/icon_upgrade" />
-
-        <TextView
-            android:id="@+id/talentHeartsToUpgrade"
-            style="@style/fontSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/talentUpgradeButton"
-            android:layout_centerHorizontal="true"
-            android:text="PH"
-            android:textColor="@color/yellow" />
 
     </RelativeLayout>
 
