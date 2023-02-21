@@ -79,18 +79,28 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
                 ),
                 TextView.BufferType.SPANNABLE);
 
+        StringBuilder currentBonusStr = new StringBuilder(" ");
+        currentBonusStr.append(talentList.get(position).getBonusSignPrefix());
+        currentBonusStr.append(IdleNumber.getStrNumber(talentList.get(position).getCurrentDisplayBonus()));
+        currentBonusStr.append(talentList.get(position).getBonusTypeSuffix());
+
         holder.talentCurrentBonus.setText(
                 Helper.createSpannable(
                         "Current Bonus:",
-                        " " + IdleNumber.getStrNumber(talentList.get(position).getCurrentDisplayBonus()),
+                        currentBonusStr.toString(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
+        StringBuilder nextBonusStr = new StringBuilder(" ");
+        nextBonusStr.append(talentList.get(position).getBonusSignPrefix());
+        nextBonusStr.append(IdleNumber.getStrNumber(talentList.get(position).getNextDisplayBonus()));
+        nextBonusStr.append(talentList.get(position).getBonusTypeSuffix());
+
         holder.talentNextBonus.setText(
                 Helper.createSpannable(
                         "Next Bonus:",
-                        " " + IdleNumber.getStrNumber(talentList.get(position).getNextDisplayBonus()),
+                        nextBonusStr.toString(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
