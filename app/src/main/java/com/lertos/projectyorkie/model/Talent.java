@@ -72,8 +72,10 @@ public class Talent {
     }
 
     //TODO: Add multipliers from talents
-    public double getNextUpgradeCost() {
-        return costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel);
+    public double getUpgradeCost(int level) {
+        if (level == -1)
+            return costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel);
+        return costConstant + (costBase * Math.pow(level, costExponentNumerator) / level);
     }
 
     private double getBonus(int level) {

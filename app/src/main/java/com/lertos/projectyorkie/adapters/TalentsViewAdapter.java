@@ -46,7 +46,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
         //Set onClick listeners
         holder.talentUpgradeSingleButton.setOnClickListener(v -> {
-            double upgradeCost = talentList.get(position).getNextUpgradeCost();
+            double upgradeCost = talentList.get(position).getUpgradeCost(-1);
             boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
             if (!canAffordUpgrade) {
@@ -105,7 +105,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.talentNextCost.setText(IdleNumber.getStrNumber(talentList.get(position).getNextUpgradeCost()));
+        holder.talentNextCost.setText(IdleNumber.getStrNumber(talentList.get(position).getUpgradeCost(-1)));
     }
 
     @Override
