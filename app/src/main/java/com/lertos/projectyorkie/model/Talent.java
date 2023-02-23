@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie.model;
 
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
 
 public class Talent {
@@ -76,6 +77,25 @@ public class Talent {
         if (level == -1)
             return costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel);
         return costConstant + (costBase * Math.pow(level, costExponentNumerator) / level);
+    }
+
+    public void buyMaxLevels() {
+        int level = currentLevel;
+        double currentHearts;
+        double nextCost;
+        boolean canAfford = true;
+
+        while (canAfford) {
+            currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+            nextCost = getUpgradeCost(level);
+
+            if (currentHearts < nextCost)
+                canAfford = false;
+            else {
+                DataManager.getInstance().addHearts(-nextCost);
+                level++;
+            }
+        }
     }
 
     private double getBonus(int level) {

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.model.Talent;
 
 import java.util.Formatter;
 import java.util.List;
@@ -62,6 +63,21 @@ public class Helper {
             return false;
 
         DataManager.getInstance().addHearts(-upgradeCost);
+        return true;
+    }
+
+    public static boolean buyMaxTalentUpgrade(int talentIndex) {
+        if (DataManager.getInstance().getTalents().size() > talentIndex)
+            return false;
+
+        Talent talent = DataManager.getInstance().getTalents().get(talentIndex);
+        double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+        double nextCost = talent.getUpgradeCost(-1);
+
+        if (currentHearts < nextCost)
+            return false;
+
+        talent.buyMaxLevels();
         return true;
     }
 
