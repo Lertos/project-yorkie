@@ -96,6 +96,7 @@ public class Talent {
                 level++;
             }
         }
+        currentLevel = level;
     }
 
     private double getBonus(int level) {
