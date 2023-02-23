@@ -40,23 +40,39 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         return holder;
     }
 
+    private boolean checkIfCanAfford(View view, int position) {
+        double upgradeCost = talentList.get(position).getUpgradeCost(-1);
+        boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
+
+        if (!canAffordUpgrade) {
+            if (toastMsg != null)
+                toastMsg.cancel();
+
+            toastMsg = Toast.makeText(view.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+            toastMsg.show();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //TODO: Need to also check if the bonus is an increase or decrease
 
         //Set onClick listeners
-        holder.talentUpgradeSingleButton.setOnClickListener(v -> {
-            double upgradeCost = talentList.get(position).getUpgradeCost(-1);
-            boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
-
-            if (!canAffordUpgrade) {
-                if (toastMsg != null)
-                    toastMsg.cancel();
-
-                toastMsg = Toast.makeText(v.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
-                toastMsg.show();
+        holder.talentUpgradeMaxButton.setOnClickListener(view -> {
+            if (!checkIfCanAfford(view, position))
                 return;
-            }
+
+            talentList.get(position).buyMaxLevels();
+
+            refreshChangingData(holder, position);
+        });
+
+        holder.talentUpgradeSingleButton.setOnClickListener(view -> {
+            if (!checkIfCanAfford(view, position))
+                return;
+
             talentList.get(position).levelUp();
 
             refreshChangingData(holder, position);
