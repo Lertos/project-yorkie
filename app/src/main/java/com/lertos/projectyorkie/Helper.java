@@ -66,19 +66,4 @@ public class Helper {
         return true;
     }
 
-    public static boolean buyMaxTalentUpgrade(int talentIndex) {
-        if (DataManager.getInstance().getTalents().size() > talentIndex)
-            return false;
-
-        Talent talent = DataManager.getInstance().getTalents().get(talentIndex);
-        double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
-        double nextCost = talent.getUpgradeCost(-1);
-
-        if (currentHearts < nextCost)
-            return false;
-
-        talent.buyMaxLevels();
-        return true;
-    }
-
 }
