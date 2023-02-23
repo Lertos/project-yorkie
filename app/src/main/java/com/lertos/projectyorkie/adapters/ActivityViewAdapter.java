@@ -3,7 +3,7 @@ package com.lertos.projectyorkie.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +41,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Set onClick listeners
-        holder.activityUpgradeButton.setOnClickListener(v -> {
+        holder.activityUpgradeSingleButton.setOnClickListener(v -> {
             double upgradeCost = activityList.get(position).getNextUpgradeCost();
             boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
@@ -110,7 +110,8 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         private TextView activityCurrentOutput;
         private TextView activityNextOutput;
         private TextView activityUpgradeCost;
-        private ImageView activityUpgradeButton;
+        private Button activityUpgradeMaxButton;
+        private Button activityUpgradeSingleButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -120,7 +121,9 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             activityCurrentOutput = itemView.findViewById(R.id.activityCurrentOutput);
             activityNextOutput = itemView.findViewById(R.id.activityNextOutput);
             activityUpgradeCost = itemView.findViewById(R.id.activityHeartsToUpgrade);
-            activityUpgradeButton = itemView.findViewById(R.id.btnActivityUpgrade);
+            activityUpgradeMaxButton = itemView.findViewById(R.id.activityUpgradeMaxButton);
+            activityUpgradeSingleButton = itemView.findViewById(R.id.activityUpgradeSingleButton);
+
         }
     }
 
