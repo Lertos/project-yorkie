@@ -38,21 +38,28 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         return holder;
     }
 
+    private boolean checkIfCanAfford(View view, int position) {
+        double upgradeCost = activityList.get(position).getNextUpgradeCost();
+        boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
+
+        if (!canAffordUpgrade) {
+            if (toastMsg != null)
+                toastMsg.cancel();
+
+            toastMsg = Toast.makeText(view.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+            toastMsg.show();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Set onClick listeners
-        holder.activityUpgradeSingleButton.setOnClickListener(v -> {
-            double upgradeCost = activityList.get(position).getNextUpgradeCost();
-            boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
-
-            if (!canAffordUpgrade) {
-                if (toastMsg != null)
-                    toastMsg.cancel();
-
-                toastMsg = Toast.makeText(v.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
-                toastMsg.show();
+        holder.activityUpgradeSingleButton.setOnClickListener(view -> {
+            if (!checkIfCanAfford(view, position))
                 return;
-            }
+
             activityList.get(position).levelUp();
 
             refreshChangingData(holder, position);
