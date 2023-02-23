@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie.model;
 
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.data.Talents;
 
@@ -57,10 +58,13 @@ public class Activity {
         return isUnlocked;
     }
 
-    public double getNextUpgradeCost() {
-        double totalCost = (costConstant + costBase * Math.pow(orderPosition, costExponent)) * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
+    //TODO: Add multipliers from talents
+    public double getUpgradeCost(int level) {
+        double consistentHalf = costConstant + costBase * Math.pow(orderPosition, costExponent);
 
-        return totalCost;
+        if (level == -1)
+            return consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
+        return consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), level);
     }
 
     private double getIncome(int level) {
@@ -85,5 +89,25 @@ public class Activity {
     public double getBaseHeartTokensPerSecond() {
         //TODO: Add talent multipliers
         return baseHeartTokensPerSecond;
+    }
+
+    public void buyMaxLevels() {
+        int level = currentLevel;
+        double currentHearts;
+        double nextCost;
+        boolean canAfford = true;
+
+        while (canAfford) {
+            currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+            nextCost = getUpgradeCost(level);
+
+            if (currentHearts < nextCost)
+                canAfford = false;
+            else {
+                DataManager.getInstance().addHearts(-nextCost);
+                level++;
+            }
+        }
+        currentLevel = level;
     }
 }
