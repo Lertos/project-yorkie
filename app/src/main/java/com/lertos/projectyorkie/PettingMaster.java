@@ -146,7 +146,12 @@ public class PettingMaster {
             heartsReward = thresholdReward + rewardForRatio;
         }
 
-        //Apply the multiplier
+        //Apply the multipliers
+        double packMultiplier = DataManager.getInstance().getTotalPackMultiplier();
+
+        if (packMultiplier != 0)
+            heartsReward *= packMultiplier;
+
         return heartsReward * rewardMultiplier;
     }
 
