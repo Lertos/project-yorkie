@@ -3,6 +3,7 @@ package com.lertos.projectyorkie.model;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
+import com.lertos.projectyorkie.data.Talents;
 
 public class Talent {
 
@@ -72,11 +73,19 @@ public class Talent {
         MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
     }
 
-    //TODO: Add multipliers from talents
     public double getUpgradeCost(int level) {
+        double cost;
+        double multiplier = Talents.bargainMaster.getCurrentBonus();
+
         if (level == -1)
-            return costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel);
-        return costConstant + (costBase * Math.pow(level, costExponentNumerator) / level);
+            cost = costConstant + (costBase * Math.pow(currentLevel, costExponentNumerator) / currentLevel);
+        else
+            cost = costConstant + (costBase * Math.pow(level, costExponentNumerator) / level);
+
+        if (multiplier != 0)
+            cost -= Math.abs(cost * multiplier) - Math.abs(cost);
+
+        return cost;
     }
 
     public void buyMaxLevels() {
@@ -106,6 +115,17 @@ public class Talent {
         return bonusBase + (bonusAddedPerLevel * level);
     }
 
+    public double getCurrentBonus() {
+        double bonus = getBonus(currentLevel);
+
+        if (bonusType.equals(TalentBonusType.PERCENTAGE))
+            bonus = (1 + bonus / 100);
+
+        bonus *= bonusSign;
+
+        return bonus;
+    }
+
     public double getCurrentDisplayBonus() {
         double bonus = getBonus(currentLevel);
 
@@ -121,16 +141,4 @@ public class Talent {
 
         return bonus;
     }
-
-    public double getCurrentBonus() {
-        double bonus = getBonus(currentLevel);
-
-        if (bonusType.equals(TalentBonusType.PERCENTAGE))
-            bonus = (1 + bonus / 100);
-
-        bonus *= bonusSign;
-
-        return bonus;
-    }
-
 }
