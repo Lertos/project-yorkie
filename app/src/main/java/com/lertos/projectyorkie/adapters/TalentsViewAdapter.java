@@ -1,5 +1,6 @@
 package com.lertos.projectyorkie.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +79,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
             talentList.get(position).buyMaxLevels();
 
             refreshChangingData(holder, position);
+            notifyDataSetChanged();
         });
 
         holder.talentUpgradeSingleButton.setOnClickListener(view -> {
@@ -87,6 +89,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
             talentList.get(position).levelUp();
 
             refreshChangingData(holder, position);
+            notifyDataSetChanged();
         });
 
         //Update the info of the activity panel
