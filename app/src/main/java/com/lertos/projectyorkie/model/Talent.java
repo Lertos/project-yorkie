@@ -89,6 +89,9 @@ public class Talent {
             currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
             nextCost = getUpgradeCost(level);
 
+            if (level + 1 > maxLevel)
+                return;
+
             if (currentHearts < nextCost)
                 canAfford = false;
             else {
