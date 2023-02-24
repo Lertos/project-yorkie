@@ -123,7 +123,7 @@ public class Talent {
     }
 
     public double getCurrentBonus() {
-        double bonus = getBonus(currentLevel + 1);
+        double bonus = getBonus(currentLevel);
 
         if (bonusType.equals(TalentBonusType.PERCENTAGE))
             bonus = (1 + bonus / 100);
