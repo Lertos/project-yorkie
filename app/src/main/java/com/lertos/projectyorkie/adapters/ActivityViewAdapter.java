@@ -130,7 +130,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
         holder.activityLevel.setText(
                 Helper.createSpannable(
-                        "Current Level:",
+                        "Level:",
                         " " + activityList.get(position).getCurrentLevel(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -138,7 +138,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
         holder.activityCurrentOutput.setText(
                 Helper.createSpannable(
-                        "Current Output (H/s):",
+                        "Income:",
                         " " + IdleNumber.getStrNumber(activityList.get(position).getCurrentIncome()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -146,7 +146,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
         holder.activityNextOutput.setText(
                 Helper.createSpannable(
-                        "Next Output (H/s):",
+                        "Next Income:",
                         " " + IdleNumber.getStrNumber(activityList.get(position).getNextIncome()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
