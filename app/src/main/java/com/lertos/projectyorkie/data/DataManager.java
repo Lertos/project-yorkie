@@ -50,6 +50,17 @@ public class DataManager {
         return playerData;
     }
 
+    public double getTotalPackMultiplier() {
+        double multiplier = 0;
+
+        for (PackDog packDog : packDogList) {
+            if (!packDog.isUnlocked())
+                break;
+            multiplier += packDog.getAddedBonus();
+        }
+        return multiplier;
+    }
+
     public void setHeartsPerSecond() {
         double heartsPerSecond = 0;
 
