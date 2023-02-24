@@ -4,18 +4,20 @@
     android:layout_height="wrap_content"
     android:background="@drawable/border_with_dark_bg">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/linActivityUpgrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/activityUpgradeMaxButton"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="MAX" />
 
         <Button
@@ -23,27 +25,34 @@
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/activityUpgradeMaxButton"
+
             android:text="1" />
+
+        <Button
+            android:id="@+id/activityUpgradeUnlockButton"
+            style="@style/baseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buy" />
 
         <TextView
             android:id="@+id/activityHeartsToUpgrade"
             style="@style/fontSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/activityUpgradeSingleButton"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:text="PH"
             android:textColor="@color/yellow" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/linActivityInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_toRightOf="@id/linActivityUpgrade">
+        android:layout_toRightOf="@id/linActivityUpgrade"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/activityName"
@@ -84,6 +93,6 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
