@@ -40,7 +40,20 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         return holder;
     }
 
-    private boolean checkIfCanAfford(View view, int position) {
+    private boolean isValidUpgrade(View view, int position) {
+        Talent talent = talentList.get(position);
+
+        //Check to see if the talent is at max level
+        if (talent.getCurrentLevel() + 1 > talent.getMaxLevel()) {
+            if (toastMsg != null)
+                toastMsg.cancel();
+
+            toastMsg = Toast.makeText(view.getContext(), "This talent is at max level", Toast.LENGTH_SHORT);
+            toastMsg.show();
+            return false;
+        }
+
+        //Check to see if the player can afford to buy the next upgrade
         double upgradeCost = talentList.get(position).getUpgradeCost(-1);
         boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
@@ -57,11 +70,9 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //TODO: Need to also check if the bonus is an increase or decrease
-
         //Set onClick listeners
         holder.talentUpgradeMaxButton.setOnClickListener(view -> {
-            if (!checkIfCanAfford(view, position))
+            if (!isValidUpgrade(view, position))
                 return;
 
             talentList.get(position).buyMaxLevels();
@@ -70,7 +81,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         });
 
         holder.talentUpgradeSingleButton.setOnClickListener(view -> {
-            if (!checkIfCanAfford(view, position))
+            if (!isValidUpgrade(view, position))
                 return;
 
             talentList.get(position).levelUp();
