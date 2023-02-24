@@ -38,7 +38,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         return holder;
     }
 
-    private boolean checkIfCanAfford(View view, int position) {
+    private boolean isValidUpgrade(View view, int position) {
         double upgradeCost = activityList.get(position).getUpgradeCost(-1);
         boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
@@ -57,7 +57,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Set onClick listeners
         holder.activityUpgradeMaxButton.setOnClickListener(view -> {
-            if (!checkIfCanAfford(view, position))
+            if (!isValidUpgrade(view, position))
                 return;
 
             activityList.get(position).buyMaxLevels();
@@ -66,7 +66,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         });
 
         holder.activityUpgradeSingleButton.setOnClickListener(view -> {
-            if (!checkIfCanAfford(view, position))
+            if (!isValidUpgrade(view, position))
                 return;
 
             activityList.get(position).levelUp();
