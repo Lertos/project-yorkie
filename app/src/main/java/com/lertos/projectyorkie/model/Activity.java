@@ -7,7 +7,6 @@ import com.lertos.projectyorkie.data.Talents;
 
 public class Activity {
 
-    //TODO: Add multipliers to all the get double methods
     private final String name;
     private int currentLevel = 0;
     private final int unlockLevel = 15;
@@ -75,8 +74,11 @@ public class Activity {
     private double getIncome(int level) {
         double totalIncome = incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), level);
         double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
+        double packMultiplier = DataManager.getInstance().getTotalPackMultiplier();
 
-        //TODO: Apply pack bonuses
+        if (packMultiplier != 0)
+            totalIncome *= packMultiplier;
+
         if (heartsMultiplier != 0)
             totalIncome *= heartsMultiplier;
 
