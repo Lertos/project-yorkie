@@ -10,6 +10,7 @@ public class Activity {
     //TODO: Add multipliers to all the get double methods
     private final String name;
     private int currentLevel = 0;
+    private final int unlockLevel = 15;
     private double baseHeartTokensPerSecond;
     private final int orderPosition;
     private final double costConstant = 8.0;
@@ -56,6 +57,10 @@ public class Activity {
 
     public boolean isUnlocked() {
         return isUnlocked;
+    }
+
+    public double getUnlockCost() {
+        return getIncome(unlockLevel * orderPosition) / 10.0 + (orderPosition * 2500.0);
     }
 
     //TODO: Add multipliers from talents

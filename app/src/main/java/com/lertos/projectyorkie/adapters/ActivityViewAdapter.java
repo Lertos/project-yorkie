@@ -81,6 +81,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             holder.activityName.setText("LOCKED");
             holder.activityLevel.setText("");
             holder.activityCurrentOutput.setText("");
+            holder.activityUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUnlockCost()));
         }
     }
 
