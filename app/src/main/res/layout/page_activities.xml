@@ -9,14 +9,15 @@
         android:id="@+id/relMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/relButtons">
+        android:layout_above="@id/relButtons"
+        android:layout_alignParentTop="true">
 
         <!-- Page Title -->
         <LinearLayout
             android:id="@+id/linActivityHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+
             android:background="@drawable/border_with_dark_bg"
             android:gravity="center"
             android:orientation="horizontal">
@@ -58,14 +59,21 @@
 
         <!-- Main Inner Section -->
 
-        <!-- Main Activities Panel -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewActivities"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linHeaderInfo">
+            android:layout_below="@+id/linHeaderInfo">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <!-- Main Activities Panel -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewActivities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linHeaderInfo">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

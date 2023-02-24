@@ -111,7 +111,9 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             holder.activityCurrentOutput.setVisibility(View.GONE);
             holder.activityUpgradeMaxButton.setVisibility(View.GONE);
             holder.activityUpgradeSingleButton.setVisibility(View.GONE);
+            holder.activityUpgradeUnlockButton.setVisibility(View.VISIBLE);
         }
+
     }
 
     private void refreshChangingData(ViewHolder holder, int position) {
@@ -122,7 +124,6 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             holder.activityCurrentOutput.setVisibility(View.VISIBLE);
             holder.activityUpgradeMaxButton.setVisibility(View.VISIBLE);
             holder.activityUpgradeSingleButton.setVisibility(View.VISIBLE);
-
         }
 
         holder.activityName.setText(activityList.get(position).getName());
