@@ -70,6 +70,10 @@ public class PettingMaster {
         DataManager.getInstance().addHearts(endReward);
     }
 
+    public int getStartThreshold() {
+        return startThreshold;
+    }
+
     private int setStartThreshold() {
         int currentThreshold = DataManager.getInstance().getPlayerData().getPettingHighestThreshold();
         currentThreshold -= squaresPerThreshold;

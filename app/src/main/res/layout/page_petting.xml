@@ -82,6 +82,13 @@
                 android:text="Start" />
 
             <TextView
+                android:id="@+id/tvPettingStartingThreshold"
+                style="@style/fontMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
+
+            <TextView
                 android:id="@+id/tvPettingCostInTokens"
                 style="@style/fontMedium"
                 android:layout_width="match_parent"

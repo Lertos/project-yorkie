@@ -132,6 +132,14 @@ public class PettingPage extends AppCompatActivity {
                 ),
                 TextView.BufferType.SPANNABLE);
 
+        ((TextView) findViewById(R.id.tvPettingStartingThreshold)).setText(
+                Helper.createSpannable(
+                        "Start Threshold:",
+                        " " + pettingMaster.getStartThreshold(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
         ((TextView) findViewById(R.id.tvPettingCostInTokens)).setText(
                 Helper.createSpannable(
                         "Cost (Heart Tokens):",
