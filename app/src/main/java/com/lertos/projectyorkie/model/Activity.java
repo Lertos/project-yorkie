@@ -93,10 +93,7 @@ public class Activity {
         return getIncome(currentLevel + 1);
     }
 
-    public double getBaseHeartTokensPerSecond() {
-        //TODO: Add talent multipliers
-        return baseHeartTokensPerSecond;
-    }
+    public double getBaseHeartTokensPerSecond() { return baseHeartTokensPerSecond; }
 
     public void buyMaxLevels() {
         int level = currentLevel;
