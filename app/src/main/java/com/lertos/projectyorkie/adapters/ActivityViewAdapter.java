@@ -38,16 +38,31 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         return holder;
     }
 
+    private void displayNotEnoughHeartsToast(View view) {
+        if (toastMsg != null)
+            toastMsg.cancel();
+
+        toastMsg = Toast.makeText(view.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
+        toastMsg.show();
+    }
+
     private boolean isValidUpgrade(View view, int position) {
         double upgradeCost = activityList.get(position).getUpgradeCost(-1);
         boolean canAffordUpgrade = Helper.canAffordUpgradeWithHearts(upgradeCost);
 
         if (!canAffordUpgrade) {
-            if (toastMsg != null)
-                toastMsg.cancel();
+            displayNotEnoughHeartsToast(view);
+            return false;
+        }
+        return true;
+    }
 
-            toastMsg = Toast.makeText(view.getContext(), "You do not have enough hearts", Toast.LENGTH_SHORT);
-            toastMsg.show();
+    private boolean isValidUnlock(View view, int position) {
+        double unlockCost = activityList.get(position).getUnlockCost();
+        boolean canAffordUnlock = Helper.canAffordUpgradeWithHearts(unlockCost);
+
+        if (!canAffordUnlock) {
+            displayNotEnoughHeartsToast(view);
             return false;
         }
         return true;
@@ -74,18 +89,42 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             refreshChangingData(holder, position);
         });
 
+        holder.activityUpgradeUnlockButton.setOnClickListener(view -> {
+            if (!isValidUnlock(view, position))
+                return;
+
+            activityList.get(position).levelUp();
+
+            refreshChangingData(holder, position);
+        });
+
         //Update the info of the activity panel
         refreshChangingData(holder, position);
 
         if (!activityList.get(position).isUnlocked()) {
+            //Set the data to show the locked state
             holder.activityName.setText("LOCKED");
-            holder.activityLevel.setText("");
-            holder.activityCurrentOutput.setText("");
             holder.activityUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUnlockCost()));
+
+            //Set the visibility to shrink the layout to needed items only
+            holder.activityLevel.setVisibility(View.GONE);
+            holder.activityCurrentOutput.setVisibility(View.GONE);
+            holder.activityUpgradeMaxButton.setVisibility(View.GONE);
+            holder.activityUpgradeSingleButton.setVisibility(View.GONE);
         }
     }
 
     private void refreshChangingData(ViewHolder holder, int position) {
+        if (activityList.get(position).isUnlocked()) {
+            holder.activityUpgradeUnlockButton.setVisibility(View.GONE);
+
+            holder.activityLevel.setVisibility(View.VISIBLE);
+            holder.activityCurrentOutput.setVisibility(View.VISIBLE);
+            holder.activityUpgradeMaxButton.setVisibility(View.VISIBLE);
+            holder.activityUpgradeSingleButton.setVisibility(View.VISIBLE);
+
+        }
+
         holder.activityName.setText(activityList.get(position).getName());
 
         holder.activityLevel.setText(
@@ -129,6 +168,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
         private TextView activityUpgradeCost;
         private Button activityUpgradeMaxButton;
         private Button activityUpgradeSingleButton;
+        private Button activityUpgradeUnlockButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -140,6 +180,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             activityUpgradeCost = itemView.findViewById(R.id.activityHeartsToUpgrade);
             activityUpgradeMaxButton = itemView.findViewById(R.id.activityUpgradeMaxButton);
             activityUpgradeSingleButton = itemView.findViewById(R.id.activityUpgradeSingleButton);
+            activityUpgradeUnlockButton = itemView.findViewById(R.id.activityUpgradeUnlockButton);
 
         }
     }
