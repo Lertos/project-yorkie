@@ -80,6 +80,12 @@ public class DataManager {
                 break;
             heartTokensPerSecond += activity.getBaseHeartTokensPerSecond();
         }
+
+        double multiplier = Talents.luckyStreak.getCurrentBonus();
+
+        if (multiplier != 0)
+            heartTokensPerSecond *= multiplier;
+
         playerData.setCurrentHeartTokensPerSecond(heartTokensPerSecond);
     }
 
