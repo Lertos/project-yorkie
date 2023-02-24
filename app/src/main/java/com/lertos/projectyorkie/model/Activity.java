@@ -62,13 +62,20 @@ public class Activity {
         return getIncome(unlockLevel * orderPosition) / 10.0 + (orderPosition * 2500.0);
     }
 
-    //TODO: Add multipliers from talents
     public double getUpgradeCost(int level) {
         double consistentHalf = costConstant + costBase * Math.pow(orderPosition, costExponent);
+        double cost;
+        double multiplier = Talents.petLover.getCurrentBonus();
 
         if (level == -1)
-            return consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
-        return consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), level);
+            cost = consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
+        else
+            cost = consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), level);
+
+        if (multiplier != 0)
+            cost -= Math.abs(cost * multiplier) - Math.abs(cost);
+
+        return cost;
     }
 
     private double getIncome(int level) {
