@@ -10,6 +10,7 @@ import java.util.List;
 public class Talents {
 
     private List<Talent> listTalents;
+    //Finished adding through code
     public static final Talent heartBeater = new Talent(
             "Heart Beater",
             "Increases hearts per second",
@@ -20,6 +21,7 @@ public class Talents {
             3,
             50
     );
+    //Finished adding through code
     public static final Talent luckyStreak = new Talent(
             "Lucky Streak",
             "Increases chance at gaining heart tokens",
@@ -30,6 +32,7 @@ public class Talents {
             3,
             50
     );
+    //Finished adding through code
     public static final Talent bargainMaster = new Talent(
             "Bargain Master",
             "Decreases cost of upgrading talents",
