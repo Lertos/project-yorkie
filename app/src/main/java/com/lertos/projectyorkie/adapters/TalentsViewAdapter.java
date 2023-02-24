@@ -103,7 +103,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
         holder.talentCurrentLevel.setText(
                 Helper.createSpannable(
-                        "Current Level:",
+                        "Level:",
                         " " + talentList.get(position).getCurrentLevel(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -116,7 +116,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
         holder.talentCurrentBonus.setText(
                 Helper.createSpannable(
-                        "Current Bonus:",
+                        "Bonus:",
                         currentBonusStr.toString(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
