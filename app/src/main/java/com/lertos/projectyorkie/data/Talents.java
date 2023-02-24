@@ -43,7 +43,7 @@ public class Talents {
             2,
             25
     );
-
+    //Finished adding through code
     public static final Talent petLover = new Talent(
             "Pet Lover",
             "Decreases cost of upgrading activities",
@@ -54,7 +54,7 @@ public class Talents {
             2,
             25
     );
-
+    //Finished adding through code
     public static final Talent greatMinds = new Talent(
             "Great Minds",
             "Decreases cost of unlocking activities",
