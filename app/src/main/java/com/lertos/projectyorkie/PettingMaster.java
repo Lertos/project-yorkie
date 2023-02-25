@@ -82,7 +82,13 @@ public class PettingMaster {
     }
 
     public double getStartCost() {
-        return Math.max(costHeartTokensPerThreshold, costHeartTokensPerThreshold * (startThreshold / squaresPerThreshold));
+        double cost = Math.max(costHeartTokensPerThreshold, costHeartTokensPerThreshold * (startThreshold / squaresPerThreshold));
+        double multiplier = Talents.purrsuasion.getCurrentBonus();
+
+        if (multiplier != 0)
+            cost -= Math.abs(cost * multiplier) - Math.abs(cost);
+
+        return cost;
     }
 
     public void handleClickedSquare() {
