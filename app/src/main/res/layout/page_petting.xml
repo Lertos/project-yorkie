@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linPettingHeader"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/border_with_light_bg"
             android:orientation="vertical">
 
@@ -62,6 +62,7 @@
             android:id="@+id/linPettingStartScreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/linPettingHeartTokens"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="vertical">
