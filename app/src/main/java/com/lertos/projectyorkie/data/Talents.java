@@ -87,7 +87,7 @@ public class Talents {
             0.06,
             100
     );
-
+    //Finished adding through code
     public static final Talent pettingPower = new Talent(
             "Petting Power",
             "Petting Minigame - Squares don't disappear as quick",
@@ -98,7 +98,7 @@ public class Talents {
             1,
             100
     );
-
+    //Finished adding through code
     public static final Talent pupPrecision = new Talent(
             "Pup Precision",
             "Petting Minigame - Correct squares add more time to the timer",
@@ -109,7 +109,7 @@ public class Talents {
             0.05,
             50
     );
-
+    //Finished adding through code
     public static final Talent laxTreatment = new Talent(
             "Lax Treat-ment",
             "Petting Minigame - Lose less time when missing squares",
