@@ -116,6 +116,14 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void setPlayerScoreDataUI() {
+        ((TextView) findViewById(R.id.pettingCurrentHeartTokens)).setText(
+                Helper.createSpannable(
+                        "",
+                        IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
         ((TextView) findViewById(R.id.tvPettingHighestThreshold)).setText(
                 Helper.createSpannable(
                         "Highest Threshold:",

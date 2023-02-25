@@ -31,6 +31,33 @@
 
         </LinearLayout>
 
+        <!-- Heart Tokens Counter Panel -->
+        <LinearLayout
+            android:id="@+id/linPettingHeartTokens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linPettingHeader"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_with_light_bg"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Heart Tokens"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/pettingCurrentHeartTokens"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/yellow" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linPettingStartScreen"
             android:layout_width="match_parent"
