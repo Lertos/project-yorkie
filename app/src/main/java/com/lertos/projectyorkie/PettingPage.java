@@ -31,11 +31,17 @@ public class PettingPage extends AppCompatActivity {
     private boolean isPlaying = false;
     final Handler disappearTimeHandler = new Handler();
     private Runnable timerRunnable;
+    static boolean isPageActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_petting);
+
+        if (!isPageActive) {
+            updateUIWithCurrentHeartTokens();
+            isPageActive = true;
+        }
 
         pettingMaster = new PettingMaster();
 
@@ -74,16 +80,19 @@ public class PettingPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         isPlaying = false;
+        isPageActive = false;
     }
 
     protected void onPause() {
         super.onPause();
         isPlaying = false;
+        isPageActive = false;
     }
 
     protected void onResume() {
         super.onResume();
         isPlaying = true;
+        isPageActive = true;
     }
 
     private void setOnClickListeners() {
@@ -116,14 +125,6 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void setPlayerScoreDataUI() {
-        ((TextView) findViewById(R.id.pettingCurrentHeartTokens)).setText(
-                Helper.createSpannable(
-                        "",
-                        IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-
         ((TextView) findViewById(R.id.tvPettingHighestThreshold)).setText(
                 Helper.createSpannable(
                         "Highest Threshold:",
@@ -239,6 +240,22 @@ public class PettingPage extends AppCompatActivity {
 
         focusButton.setX(xPos);
         focusButton.setY(yPos);
+    }
+
+    private void updateUIWithCurrentHeartTokens() {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                ((TextView) findViewById(R.id.pettingCurrentHeartTokens)).setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+
+                if (!isPageActive)
+                    handler.removeCallbacks(this);
+                else
+                    handler.postDelayed(this, 1000);
+            }
+        };
+        handler.post(runnable);
     }
 
 }
