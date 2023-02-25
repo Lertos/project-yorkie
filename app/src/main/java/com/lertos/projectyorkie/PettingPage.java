@@ -161,6 +161,7 @@ public class PettingPage extends AppCompatActivity {
     private void processGameStart() {
         setPlayerScoreDataUI();
 
+        findViewById(R.id.linPettingHeartTokens).setVisibility(View.GONE);
         findViewById(R.id.linPettingStartScreen).setVisibility(View.GONE);
         findViewById(R.id.linPettingGameScreen).setVisibility(View.VISIBLE);
 
@@ -171,6 +172,7 @@ public class PettingPage extends AppCompatActivity {
     private void processGameOver() {
         setPlayerScoreDataUI();
 
+        findViewById(R.id.linPettingHeartTokens).setVisibility(View.VISIBLE);
         findViewById(R.id.linPettingStartScreen).setVisibility(View.VISIBLE);
         findViewById(R.id.linPettingGameScreen).setVisibility(View.GONE);
 
