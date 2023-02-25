@@ -62,7 +62,7 @@ public class PettingPage extends AppCompatActivity {
                 xEnd = pettingLayout.right - buttonHeight;
                 yEnd = pettingLayout.bottom - layoutMargin - buttonHeight;
 
-                layout.setVisibility(View.GONE);
+                findViewById(R.id.linPettingGameScreen).setVisibility(View.GONE);
             }
         });
 
@@ -152,18 +152,8 @@ public class PettingPage extends AppCompatActivity {
     private void processGameStart() {
         setPlayerScoreDataUI();
 
-        //Show the dog portrait background
-        findViewById(R.id.linPettingMainSection).setVisibility(View.VISIBLE);
-
-        //Hide the start button
-        findViewById(R.id.btnStartPetting).setVisibility(View.INVISIBLE);
-
-        //Hide the reward won
-        findViewById(R.id.tvPettingRewardHeader).setVisibility(View.GONE);
-        findViewById(R.id.tvPettingRewardAmount).setVisibility(View.GONE);
-
-        //Show the timer
-        findViewById(R.id.linPettingTimerSection).setVisibility(View.VISIBLE);
+        findViewById(R.id.linPettingStartScreen).setVisibility(View.GONE);
+        findViewById(R.id.linPettingGameScreen).setVisibility(View.VISIBLE);
 
         //Show the generated square
         focusButton.setVisibility(View.VISIBLE);
@@ -172,18 +162,12 @@ public class PettingPage extends AppCompatActivity {
     private void processGameOver() {
         setPlayerScoreDataUI();
 
-        //Hide the dog portrait background
-        findViewById(R.id.linPettingMainSection).setVisibility(View.INVISIBLE);
-
-        //Show the start button
-        findViewById(R.id.btnStartPetting).setVisibility(View.VISIBLE);
+        findViewById(R.id.linPettingStartScreen).setVisibility(View.VISIBLE);
+        findViewById(R.id.linPettingGameScreen).setVisibility(View.GONE);
 
         //Show the reward won
         findViewById(R.id.tvPettingRewardHeader).setVisibility(View.VISIBLE);
         findViewById(R.id.tvPettingRewardAmount).setVisibility(View.VISIBLE);
-
-        //Hide the timer
-        findViewById(R.id.linPettingTimerSection).setVisibility(View.INVISIBLE);
 
         //Hide the generated square
         focusButton.setVisibility(View.INVISIBLE);
