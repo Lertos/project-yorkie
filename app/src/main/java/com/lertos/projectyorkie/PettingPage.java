@@ -134,16 +134,16 @@ public class PettingPage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvPettingStartingThreshold)).setText(
                 Helper.createSpannable(
-                        "Start Threshold:",
+                        "Starting Threshold:",
                         " " + pettingMaster.getStartThreshold(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        ((TextView) findViewById(R.id.tvPettingCostInTokens)).setText(
+        ((Button) findViewById(R.id.btnStartPetting)).setText(
                 Helper.createSpannable(
-                        "Cost (Heart Tokens):",
-                        " " + IdleNumber.getStrNumber(pettingMaster.getStartCost()),
+                        "Start\n",
+                        " " + IdleNumber.getStrNumber(pettingMaster.getStartCost()) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
