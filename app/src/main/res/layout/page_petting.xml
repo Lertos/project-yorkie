@@ -20,8 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="@drawable/border_with_dark_bg"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:gravity="center">
 
             <TextView
                 style="@style/fontHeader"
@@ -33,7 +32,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linPettingStartButtonSection"
+            android:id="@+id/linPettingStartScreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -98,52 +97,58 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linPettingTimerSection"
+            android:id="@+id/linPettingGameScreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/linPettingMainSection"
             android:layout_below="@id/linPettingHeader"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/indPettingTimer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:indeterminate="false"
-                app:trackThickness="40dp" />
-
-            <TextView
-                android:id="@+id/tvPettingTimerInSecs"
-                style="@style/fontHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-        <!-- Petting Panel -->
-        <LinearLayout
-            android:id="@+id/linPettingMainSection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/border_with_light_bg"
-            android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linPettingTimerSection"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/portrait_loki" />
+                android:layout_above="@id/linPettingMainSection"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/indPettingTimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:indeterminate="false"
+                    app:trackThickness="40dp" />
+
+                <TextView
+                    android:id="@+id/tvPettingTimerInSecs"
+                    style="@style/fontHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <!-- Petting Panel -->
+            <LinearLayout
+                android:id="@+id/linPettingMainSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_with_light_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/portrait_loki" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
