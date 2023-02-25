@@ -65,7 +65,7 @@ public class Talents {
             2,
             25
     );
-    //Still need it in the tournament logic
+    //TODO: Still need it in the tournament logic
     public static final Talent purrsuasion = new Talent(
             "Purrsuasion",
             "Use less heart tokens when playing minigames",
@@ -76,7 +76,7 @@ public class Talents {
             5,
             25
     );
-
+    //Finished adding through code
     public static final Talent strengthInNumbers = new Talent(
             "Strength In Numbers",
             "Get more hearts based on your pack bonus",

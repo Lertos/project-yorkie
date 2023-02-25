@@ -51,14 +51,19 @@ public class DataManager {
     }
 
     public double getTotalPackMultiplier() {
-        double multiplier = 0;
+        double bonus = 0;
+        double multiplier = Talents.strengthInNumbers.getCurrentBonus();
 
         for (PackDog packDog : packDogList) {
             if (!packDog.isUnlocked())
                 break;
-            multiplier += packDog.getAddedBonus();
+            bonus += packDog.getAddedBonus();
         }
-        return multiplier;
+
+        if (multiplier != 0)
+            bonus *= multiplier;
+
+        return bonus;
     }
 
     public void setHeartsPerSecond() {
