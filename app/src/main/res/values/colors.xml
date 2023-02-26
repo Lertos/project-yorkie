@@ -9,5 +9,6 @@
     <color name="yellow">#FFEB3B</color>
     <color name="pink">#FFA1FD</color>
     <color name="gold">#FFA012</color>
+    <color name="light_gray">#7E7E7E</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
