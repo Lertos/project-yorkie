@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.data.DataManager;
-import com.lertos.projectyorkie.model.Talent;
 
-import java.util.Formatter;
 import java.util.List;
 
 public class Helper {
@@ -43,6 +41,9 @@ public class Helper {
         });
         activity.findViewById(R.id.btnPetting).setOnClickListener(v -> {
             switchActivities(activity, PettingPage.class);
+        });
+        activity.findViewById(R.id.btnTournament).setOnClickListener(v -> {
+            switchActivities(activity, TournamentPage.class);
         });
         activity.findViewById(R.id.btnSettings).setOnClickListener(v -> {
             switchActivities(activity, SettingsPage.class);
