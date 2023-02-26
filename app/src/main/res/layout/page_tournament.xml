@@ -71,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Player Stats"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/gold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,7 +104,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="Game Info"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/gold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,25 +115,20 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvCurrentBracket"
-                    style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center" />
-
                 <Button
                     android:id="@+id/menuButton"
                     style="@style/baseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Difficulty"/>
+                    android:layout_marginBottom="10dp"
+                    android:text="Difficulty"
+                    android:textColor="@color/yellow" />
 
                 <TextView
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Your Bet"
+                    android:text="Bet Amount: 22"
                     android:textAlignment="center" />
 
                 <com.google.android.material.slider.Slider
@@ -143,13 +140,6 @@
                     android:value="50"
                     android:valueFrom="0.0"
                     android:valueTo="100.0" />
-
-                <TextView
-                    style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bet Amount: 22"
-                    android:textAlignment="center" />
 
                 <Button
                     android:id="@+id/btnStart"
