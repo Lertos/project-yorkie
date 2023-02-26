@@ -17,7 +17,8 @@
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MAX" />
+            android:text="MAX"
+            android:textColor="@color/yellow" />
 
         <Button
             android:id="@+id/btnUpgradeSingle"
@@ -25,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnUpgradeMax"
-            android:text="1" />
+            android:text="1"
+            android:textColor="@color/yellow" />
 
         <TextView
             android:id="@+id/tvHeartsToUpgrade"
@@ -34,8 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnUpgradeSingle"
             android:layout_centerHorizontal="true"
-            android:text="PH"
-            android:textColor="@color/yellow" />
+            android:text="PH" />
 
     </RelativeLayout>
 
@@ -52,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PH"
-            android:textColor="@color/yellow" />
+            android:textColor="@color/gold" />
 
         <LinearLayout
             android:id="@+id/linInfoGroup"
