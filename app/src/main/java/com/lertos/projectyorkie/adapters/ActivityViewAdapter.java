@@ -71,7 +71,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Set onClick listeners
-        holder.activityUpgradeMaxButton.setOnClickListener(view -> {
+        holder.btnUpgradeMax.setOnClickListener(view -> {
             if (!isValidUpgrade(view, position))
                 return;
 
@@ -80,7 +80,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             refreshChangingData(holder, position);
         });
 
-        holder.activityUpgradeSingleButton.setOnClickListener(view -> {
+        holder.btnUpgradeSingle.setOnClickListener(view -> {
             if (!isValidUpgrade(view, position))
                 return;
 
@@ -89,7 +89,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             refreshChangingData(holder, position);
         });
 
-        holder.activityUpgradeUnlockButton.setOnClickListener(view -> {
+        holder.btnUpgradeUnlock.setOnClickListener(view -> {
             if (!isValidUnlock(view, position))
                 return;
 
@@ -103,32 +103,32 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
         if (!activityList.get(position).isUnlocked()) {
             //Set the data to show the locked state
-            holder.activityName.setText("LOCKED");
-            holder.activityUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUnlockCost()));
+            holder.tvActivityName.setText("LOCKED");
+            holder.tvUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUnlockCost()));
 
             //Set the visibility to shrink the layout to needed items only
-            holder.activityLevel.setVisibility(View.GONE);
-            holder.activityCurrentOutput.setVisibility(View.GONE);
-            holder.activityUpgradeMaxButton.setVisibility(View.GONE);
-            holder.activityUpgradeSingleButton.setVisibility(View.GONE);
-            holder.activityUpgradeUnlockButton.setVisibility(View.VISIBLE);
+            holder.tvActivityLevel.setVisibility(View.GONE);
+            holder.tvCurrentOutput.setVisibility(View.GONE);
+            holder.btnUpgradeMax.setVisibility(View.GONE);
+            holder.btnUpgradeSingle.setVisibility(View.GONE);
+            holder.btnUpgradeUnlock.setVisibility(View.VISIBLE);
         }
 
     }
 
     private void refreshChangingData(ViewHolder holder, int position) {
         if (activityList.get(position).isUnlocked()) {
-            holder.activityUpgradeUnlockButton.setVisibility(View.GONE);
+            holder.btnUpgradeUnlock.setVisibility(View.GONE);
 
-            holder.activityLevel.setVisibility(View.VISIBLE);
-            holder.activityCurrentOutput.setVisibility(View.VISIBLE);
-            holder.activityUpgradeMaxButton.setVisibility(View.VISIBLE);
-            holder.activityUpgradeSingleButton.setVisibility(View.VISIBLE);
+            holder.tvActivityLevel.setVisibility(View.VISIBLE);
+            holder.tvCurrentOutput.setVisibility(View.VISIBLE);
+            holder.btnUpgradeMax.setVisibility(View.VISIBLE);
+            holder.btnUpgradeSingle.setVisibility(View.VISIBLE);
         }
 
-        holder.activityName.setText(activityList.get(position).getName());
+        holder.tvActivityName.setText(activityList.get(position).getName());
 
-        holder.activityLevel.setText(
+        holder.tvActivityLevel.setText(
                 Helper.createSpannable(
                         "Level:",
                         " " + activityList.get(position).getCurrentLevel(),
@@ -136,7 +136,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.activityCurrentOutput.setText(
+        holder.tvCurrentOutput.setText(
                 Helper.createSpannable(
                         "Income:",
                         " " + IdleNumber.getStrNumber(activityList.get(position).getCurrentIncome()),
@@ -144,7 +144,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.activityNextOutput.setText(
+        holder.tvNextOutput.setText(
                 Helper.createSpannable(
                         "Next Income:",
                         " " + IdleNumber.getStrNumber(activityList.get(position).getNextIncome()),
@@ -152,7 +152,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.activityUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUpgradeCost(-1)));
+        holder.tvUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUpgradeCost(-1)));
     }
 
     @Override
@@ -162,26 +162,26 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView activityName;
-        private TextView activityLevel;
-        private TextView activityCurrentOutput;
-        private TextView activityNextOutput;
-        private TextView activityUpgradeCost;
-        private Button activityUpgradeMaxButton;
-        private Button activityUpgradeSingleButton;
-        private Button activityUpgradeUnlockButton;
+        private TextView tvActivityName;
+        private TextView tvActivityLevel;
+        private TextView tvCurrentOutput;
+        private TextView tvNextOutput;
+        private TextView tvUpgradeCost;
+        private Button btnUpgradeMax;
+        private Button btnUpgradeSingle;
+        private Button btnUpgradeUnlock;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            activityName = itemView.findViewById(R.id.activityName);
-            activityLevel = itemView.findViewById(R.id.activityLevel);
-            activityCurrentOutput = itemView.findViewById(R.id.activityCurrentOutput);
-            activityNextOutput = itemView.findViewById(R.id.activityNextOutput);
-            activityUpgradeCost = itemView.findViewById(R.id.activityHeartsToUpgrade);
-            activityUpgradeMaxButton = itemView.findViewById(R.id.activityUpgradeMaxButton);
-            activityUpgradeSingleButton = itemView.findViewById(R.id.activityUpgradeSingleButton);
-            activityUpgradeUnlockButton = itemView.findViewById(R.id.activityUpgradeUnlockButton);
+            tvActivityName = itemView.findViewById(R.id.tvActivityName);
+            tvActivityLevel = itemView.findViewById(R.id.tvActivityLevel);
+            tvCurrentOutput = itemView.findViewById(R.id.tvCurrentOutput);
+            tvNextOutput = itemView.findViewById(R.id.tvNextOutput);
+            tvUpgradeCost = itemView.findViewById(R.id.tvHeartsToUpgrade);
+            btnUpgradeMax = itemView.findViewById(R.id.btnUpgradeMax);
+            btnUpgradeSingle = itemView.findViewById(R.id.btnUpgradeSingle);
+            btnUpgradeUnlock = itemView.findViewById(R.id.btnUpgradeUnlock);
 
         }
     }

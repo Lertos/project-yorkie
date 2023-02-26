@@ -5,7 +5,7 @@
     android:background="@drawable/border_with_dark_bg">
 
     <LinearLayout
-        android:id="@+id/linActivityUpgrade"
+        android:id="@+id/linUpgradeButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/activityUpgradeMaxButton"
+            android:id="@+id/btnUpgradeMax"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:text="MAX" />
 
         <Button
-            android:id="@+id/activityUpgradeSingleButton"
+            android:id="@+id/btnUpgradeSingle"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:text="1" />
 
         <Button
-            android:id="@+id/activityUpgradeUnlockButton"
+            android:id="@+id/btnUpgradeUnlock"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/activityHeartsToUpgrade"
+            android:id="@+id/tvHeartsToUpgrade"
             style="@style/fontSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,15 +48,15 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linActivityInfo"
+        android:id="@+id/linInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_toRightOf="@id/linActivityUpgrade"
+        android:layout_toRightOf="@id/linUpgradeButtons"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/activityName"
+            android:id="@+id/tvActivityName"
             style="@style/fontLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,25 +68,25 @@
             android:id="@+id/linInfoGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/activityName"
+            android:layout_below="@id/tvActivityName"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/activityLevel"
+                android:id="@+id/tvActivityLevel"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PH" />
 
             <TextView
-                android:id="@+id/activityCurrentOutput"
+                android:id="@+id/tvCurrentOutput"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PH" />
 
             <TextView
-                android:id="@+id/activityNextOutput"
+                android:id="@+id/tvNextOutput"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
