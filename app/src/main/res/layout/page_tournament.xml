@@ -69,7 +69,7 @@
                 style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="Game Info"
                 android:textAlignment="center"
@@ -87,6 +87,22 @@
                     style="@style/fontLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="Tournament Bracket"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/tvCurrentBracket"
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow" />
+
+                <TextView
+                    style="@style/fontLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="Tournament Difficulty"
                     android:textAlignment="center" />
 
@@ -95,8 +111,7 @@
                     style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Choose Difficulty"
                     android:textColor="@color/yellow" />
 
@@ -109,10 +124,11 @@
 
                 <TextView
                     android:id="@+id/tvBetAmount"
-                    style="@style/fontLarge"
+                    style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow" />
 
                 <com.google.android.material.slider.Slider
                     android:id="@+id/sliderBetAmount"
@@ -128,8 +144,7 @@
                     style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Join Tournament" />
+                    android:layout_marginTop="10dp" />
 
             </LinearLayout>
 

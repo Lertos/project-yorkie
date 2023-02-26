@@ -15,6 +15,8 @@ import com.lertos.projectyorkie.data.DataManager;
 public class TournamentPage extends AppCompatActivity {
 
     private TournamentMaster tournamentMaster;
+    private Slider sliderBetAmount;
+    private TextView tvBetAmount;
     private boolean isPlaying = false;
     static boolean isPageActive = false;
 
@@ -29,10 +31,15 @@ public class TournamentPage extends AppCompatActivity {
         }
 
         tournamentMaster = new TournamentMaster();
+        sliderBetAmount = findViewById(R.id.sliderBetAmount);
+        tvBetAmount = findViewById(R.id.tvBetAmount);
 
         Helper.setupBottomButtonBar(this);
         setPlayerScoreDataUI();
         setOnClickListeners();
+
+        //Set the initial value so that the onClick listener fires to load initial bet value
+        sliderBetAmount.setValue(50);
     }
 
     protected void onDestroy() {
@@ -70,18 +77,12 @@ public class TournamentPage extends AppCompatActivity {
             showMenu(v, R.menu.difficulty_popup);
         });
 
-        ((Slider) findViewById(R.id.sliderBetAmount)).addOnChangeListener((slider, value, fromUser) -> {
+        sliderBetAmount.addOnChangeListener((slider, value, fromUser) -> {
             double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
             double percentBet = value / 100;
 
             //TODO: Set the amount in the TournamentMaster object
-            ((TextView) findViewById(R.id.tvBetAmount)).setText(
-                    Helper.createSpannable(
-                            "Bet Amount: ",
-                            IdleNumber.getStrNumber(currentHearts * percentBet),
-                            DataManager.getInstance().getPlayerData().getHighlightColor()
-                    ),
-                    TextView.BufferType.SPANNABLE);
+            tvBetAmount.setText(IdleNumber.getStrNumber(currentHearts * percentBet));
         });
     }
 
@@ -115,39 +116,15 @@ public class TournamentPage extends AppCompatActivity {
     }
 
     private void setPlayerScoreDataUI() {
-        /*
-        ((TextView) findViewById(R.id.tvHighestThreshold)).setText(
-                Helper.createSpannable(
-                        "Highest Threshold:",
-                        " " + DataManager.getInstance().getPlayerData().getPettingHighestThreshold(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        ((TextView) findViewById(R.id.tvHighestSquare)).setText(
-                Helper.createSpannable(
-                        "Highest Square:",
-                        " " + DataManager.getInstance().getPlayerData().getPettingHighestSquare(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        ((TextView) findViewById(R.id.tvStartingThreshold)).setText(
-                Helper.createSpannable(
-                        "Starting Threshold:",
-                        " " + tournamentMaster.getStartThreshold(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
+        ((TextView) findViewById(R.id.tvCurrentBracket)).setText("Silver II");
 
         ((Button) findViewById(R.id.btnStart)).setText(
                 Helper.createSpannable(
-                        "Start\n",
-                        " " + IdleNumber.getStrNumber(tournamentMaster.getStartCost()) + " Tokens",
+                        "Join Tournament\n",
+                        IdleNumber.getStrNumber(tournamentMaster.getStartCost()) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
-         */
     }
 
     private void updateUIWithCurrentHeartTokens() {
