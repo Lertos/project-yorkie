@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkest_blue">
+
+    <!-- Parent Minus Button Bar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/relButtons">
+
+        <!-- Page Title -->
+        <LinearLayout
+            android:id="@+id/linHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/border_with_dark_bg"
+            android:gravity="center">
+
+            <TextView
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Pawesome Games"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <!-- Heart Tokens Counter Panel -->
+        <LinearLayout
+            android:id="@+id/linHeartTokens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linHeader"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_with_light_bg"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Heart Tokens"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvCurrentHeartTokens"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/yellow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linStartScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linHeartTokens"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Player Stats"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/border_with_dark_bg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvHighestBracket"
+                    style="@style/fontLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/tvHighestScore"
+                    style="@style/fontLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Game Info"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/border_with_dark_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCurrentBracket"
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/menuButton"
+                    style="@style/baseButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Difficulty"/>
+
+                <TextView
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your Bet"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderBarkVolume"
+                    style="@style/basicSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stepSize="10.0"
+                    android:value="50"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0" />
+
+                <TextView
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bet Amount: 22"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/btnStart"
+                    style="@style/baseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Start" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@id/relButtons"
+        layout="@layout/bottom_button_bar" />
+
+</RelativeLayout>
