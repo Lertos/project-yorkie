@@ -13,26 +13,26 @@
         android:layout_centerVertical="true">
 
         <Button
-            android:id="@+id/talentUpgradeMaxButton"
+            android:id="@+id/btnUpgradeMax"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MAX" />
 
         <Button
-            android:id="@+id/talentUpgradeSingleButton"
+            android:id="@+id/btnUpgradeSingle"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/talentUpgradeMaxButton"
+            android:layout_below="@id/btnUpgradeMax"
             android:text="1" />
 
         <TextView
-            android:id="@+id/talentHeartsToUpgrade"
+            android:id="@+id/tvHeartsToUpgrade"
             style="@style/fontSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/talentUpgradeSingleButton"
+            android:layout_below="@id/btnUpgradeSingle"
             android:layout_centerHorizontal="true"
             android:text="PH"
             android:textColor="@color/yellow" />
@@ -47,7 +47,7 @@
         android:layout_toRightOf="@id/linUpgrade">
 
         <TextView
-            android:id="@+id/talentName"
+            android:id="@+id/tvTalentName"
             style="@style/fontLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,11 +58,11 @@
             android:id="@+id/linInfoGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/talentName"
+            android:layout_below="@id/tvTalentName"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/talentDescription"
+                android:id="@+id/tvTalentDescription"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,21 +70,21 @@
                 android:text="PH" />
 
             <TextView
-                android:id="@+id/talentLevel"
+                android:id="@+id/tvTalentLevel"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PH" />
 
             <TextView
-                android:id="@+id/talentCurrentBonus"
+                android:id="@+id/tvCurrentBonus"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PH" />
 
             <TextView
-                android:id="@+id/talentNextBonus"
+                android:id="@+id/tvNextBonus"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

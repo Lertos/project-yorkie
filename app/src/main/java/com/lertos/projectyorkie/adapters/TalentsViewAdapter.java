@@ -1,6 +1,5 @@
 package com.lertos.projectyorkie.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +71,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Set onClick listeners
-        holder.talentUpgradeMaxButton.setOnClickListener(view -> {
+        holder.btnUpgradeMax.setOnClickListener(view -> {
             if (!isValidUpgrade(view, position))
                 return;
 
@@ -82,7 +81,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
             notifyDataSetChanged();
         });
 
-        holder.talentUpgradeSingleButton.setOnClickListener(view -> {
+        holder.btnUpgradeSingle.setOnClickListener(view -> {
             if (!isValidUpgrade(view, position))
                 return;
 
@@ -97,11 +96,11 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
     }
 
     private void refreshChangingData(ViewHolder holder, int position) {
-        holder.talentName.setText(talentList.get(position).getName());
+        holder.tvTalentName.setText(talentList.get(position).getName());
 
-        holder.talentDescription.setText(talentList.get(position).getDescription());
+        holder.tvTalentDescription.setText(talentList.get(position).getDescription());
 
-        holder.talentCurrentLevel.setText(
+        holder.tvTalentLevel.setText(
                 Helper.createSpannable(
                         "Level:",
                         " " + talentList.get(position).getCurrentLevel(),
@@ -114,7 +113,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         currentBonusStr.append(IdleNumber.getStrNumber(talentList.get(position).getCurrentDisplayBonus()));
         currentBonusStr.append(talentList.get(position).getBonusTypeSuffix());
 
-        holder.talentCurrentBonus.setText(
+        holder.tvCurrentBonus.setText(
                 Helper.createSpannable(
                         "Bonus:",
                         currentBonusStr.toString(),
@@ -127,7 +126,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
         nextBonusStr.append(IdleNumber.getStrNumber(talentList.get(position).getNextDisplayBonus()));
         nextBonusStr.append(talentList.get(position).getBonusTypeSuffix());
 
-        holder.talentNextBonus.setText(
+        holder.tvNextBonus.setText(
                 Helper.createSpannable(
                         "Next Bonus:",
                         nextBonusStr.toString(),
@@ -135,7 +134,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        holder.talentNextCost.setText(IdleNumber.getStrNumber(talentList.get(position).getUpgradeCost(-1)));
+        holder.tvNextCost.setText(IdleNumber.getStrNumber(talentList.get(position).getUpgradeCost(-1)));
     }
 
     @Override
@@ -145,26 +144,26 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView talentName;
-        private TextView talentDescription;
-        private TextView talentCurrentLevel;
-        private TextView talentCurrentBonus;
-        private TextView talentNextBonus;
-        private TextView talentNextCost;
-        private Button talentUpgradeMaxButton;
-        private Button talentUpgradeSingleButton;
+        private TextView tvTalentName;
+        private TextView tvTalentDescription;
+        private TextView tvTalentLevel;
+        private TextView tvCurrentBonus;
+        private TextView tvNextBonus;
+        private TextView tvNextCost;
+        private Button btnUpgradeMax;
+        private Button btnUpgradeSingle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            talentName = itemView.findViewById(R.id.talentName);
-            talentDescription = itemView.findViewById(R.id.talentDescription);
-            talentCurrentLevel = itemView.findViewById(R.id.talentLevel);
-            talentCurrentBonus = itemView.findViewById(R.id.talentCurrentBonus);
-            talentNextBonus = itemView.findViewById(R.id.talentNextBonus);
-            talentNextCost = itemView.findViewById(R.id.talentHeartsToUpgrade);
-            talentUpgradeMaxButton = itemView.findViewById(R.id.talentUpgradeMaxButton);
-            talentUpgradeSingleButton = itemView.findViewById(R.id.talentUpgradeSingleButton);
+            tvTalentName = itemView.findViewById(R.id.tvTalentName);
+            tvTalentDescription = itemView.findViewById(R.id.tvTalentDescription);
+            tvTalentLevel = itemView.findViewById(R.id.tvTalentLevel);
+            tvCurrentBonus = itemView.findViewById(R.id.tvCurrentBonus);
+            tvNextBonus = itemView.findViewById(R.id.tvNextBonus);
+            tvNextCost = itemView.findViewById(R.id.tvHeartsToUpgrade);
+            btnUpgradeMax = itemView.findViewById(R.id.btnUpgradeMax);
+            btnUpgradeSingle = itemView.findViewById(R.id.btnUpgradeSingle);
 
         }
     }
