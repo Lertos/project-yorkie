@@ -36,13 +36,13 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (packList.get(position).isUnlocked()) {
-            holder.dogAvatar.setImageResource(packList.get(position).getAvatar());
-            holder.dogName.setText(packList.get(position).getName());
-            holder.dogAddedBonus.setText("Added Bonus: +" + packList.get(position).getAddedBonus() + "%");
+            holder.tvDogAvatar.setImageResource(packList.get(position).getAvatar());
+            holder.tvDogName.setText(packList.get(position).getName());
+            holder.tvDogAddedBonus.setText("Added Bonus: +" + packList.get(position).getAddedBonus() + "%");
         } else {
-            holder.dogAvatar.setImageResource(R.mipmap.icon_locked);
-            holder.dogName.setText("LOCKED");
-            holder.dogAddedBonus.setText("Win tournaments to unlock new dogs");
+            holder.tvDogAvatar.setImageResource(R.mipmap.icon_locked);
+            holder.tvDogName.setText("LOCKED");
+            holder.tvDogAddedBonus.setText("Win tournaments to unlock new dogs");
         }
     }
 
@@ -53,16 +53,16 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView dogAvatar;
-        private TextView dogName;
-        private TextView dogAddedBonus;
+        private ImageView tvDogAvatar;
+        private TextView tvDogName;
+        private TextView tvDogAddedBonus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            dogAvatar = itemView.findViewById(R.id.ivDogAvatar);
-            dogName = itemView.findViewById(R.id.dogName);
-            dogAddedBonus = itemView.findViewById(R.id.dogBonus);
+            tvDogAvatar = itemView.findViewById(R.id.ivDogAvatar);
+            tvDogName = itemView.findViewById(R.id.tvDogName);
+            tvDogAddedBonus = itemView.findViewById(R.id.tvDogBonus);
         }
     }
 

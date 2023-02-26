@@ -5,14 +5,14 @@
     android:background="@drawable/border_with_dark_bg">
 
     <RelativeLayout
-        android:id="@+id/linDogInfo"
+        android:id="@+id/linInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@id/linDogPic">
 
         <TextView
-            android:id="@+id/dogName"
+            android:id="@+id/tvDogName"
             style="@style/fontLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,12 +23,12 @@
             android:id="@+id/linDogInfoGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dogName"
+            android:layout_below="@id/tvDogName"
             android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/dogBonus"
+                android:id="@+id/tvDogBonus"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
