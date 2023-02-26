@@ -17,16 +17,16 @@
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="MAX" />
+            android:text="MAX"
+            android:textColor="@color/yellow" />
 
         <Button
             android:id="@+id/btnUpgradeSingle"
             style="@style/baseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="1" />
+            android:text="1"
+            android:textColor="@color/yellow" />
 
         <Button
             android:id="@+id/btnUpgradeUnlock"
@@ -34,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buy"
+            android:textColor="@color/yellow"
             android:visibility="gone" />
 
         <TextView
@@ -42,8 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="PH"
-            android:textColor="@color/yellow" />
+            android:text="PH" />
 
     </LinearLayout>
 
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="PH"
-            android:textColor="@color/yellow" />
+            android:textColor="@color/gold" />
 
         <LinearLayout
             android:id="@+id/linInfoGroup"
