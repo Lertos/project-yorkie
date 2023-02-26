@@ -69,38 +69,6 @@
                 style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Player Stats"
-                android:textAlignment="center"
-                android:textColor="@color/gold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:background="@drawable/border_with_dark_bg"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvHighestBracket"
-                    style="@style/fontLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/tvHighestScore"
-                    style="@style/fontLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <TextView
-                style="@style/fontHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="Game Info"
@@ -115,18 +83,33 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <TextView
+                    style="@style/fontLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tournament Difficulty"
+                    android:textAlignment="center" />
+
                 <Button
                     android:id="@+id/btnDifficultyMenu"
                     style="@style/baseButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Difficulty"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Choose Difficulty"
                     android:textColor="@color/yellow" />
 
                 <TextView
+                    style="@style/fontLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your Bet"
+                    android:textAlignment="center" />
+
+                <TextView
                     android:id="@+id/tvBetAmount"
-                    style="@style/fontMedium"
+                    style="@style/fontLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center" />
@@ -137,7 +120,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:stepSize="10.0"
-                    android:value="50"
                     android:valueFrom="10.0"
                     android:valueTo="100.0" />
 
