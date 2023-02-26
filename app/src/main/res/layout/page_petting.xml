@@ -71,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Highscores"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/gold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,7 +123,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="Game Info"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/gold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
