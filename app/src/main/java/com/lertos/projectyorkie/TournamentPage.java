@@ -2,18 +2,19 @@ package com.lertos.projectyorkie;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.lertos.projectyorkie.data.DataManager;
 
 public class TournamentPage extends AppCompatActivity {
 
     private TournamentMaster tournamentMaster;
-    private final int timerMax = 1000;
     private boolean isPlaying = false;
     static boolean isPageActive = false;
 
@@ -64,6 +65,35 @@ public class TournamentPage extends AppCompatActivity {
             //Start the mini game
             tournamentMaster.start();
         });
+
+        ((Button) findViewById(R.id.btnDifficultyMenu)).setOnClickListener(v -> {
+            showMenu(v, R.menu.difficulty_popup);
+        });
+    }
+
+    private void showMenu(View view, int menuRes) {
+        PopupMenu popup = new PopupMenu(view.getContext(), view);
+        popup.getMenuInflater().inflate(menuRes, popup.getMenu());
+
+        popup.setOnMenuItemClickListener( menuItem -> {
+            switch (menuItem.getItemId()) {
+                //TODO: Need to set the difficulty inside the TournamentMaster object
+                case R.id.optionEasy: {
+                    ((Button) findViewById(R.id.btnDifficultyMenu)).setText("Easy");
+                    break;
+                }
+                case R.id.optionNormal: {
+                    ((Button) findViewById(R.id.btnDifficultyMenu)).setText("Normal");
+                    break;
+                }
+                case R.id.optionHard: {
+                    ((Button) findViewById(R.id.btnDifficultyMenu)).setText("Hard");
+                    break;
+                }
+            }
+            return true;
+        });
+        popup.show();
     }
 
     private void setupUI() {
