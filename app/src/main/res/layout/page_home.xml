@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkest_blue">
 
     <!-- Parent Minus Button Bar -->
     <RelativeLayout
-        android:id="@+id/relMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/relButtons">
@@ -38,7 +36,6 @@
                     android:padding="0dp"
                     android:src="@mipmap/portrait_loki" />
 
-
             </LinearLayout>
 
             <LinearLayout
@@ -59,7 +56,7 @@
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/tcCurrentHearts"
+                    android:id="@+id/tvCurrentHearts"
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,7 +64,7 @@
                     android:textAlignment="textStart" />
 
                 <TextView
-                    android:id="@+id/tcCurrentHeartTokens"
+                    android:id="@+id/tvCurrentHeartTokens"
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +72,7 @@
                     android:textAlignment="textStart" />
 
                 <TextView
-                    android:id="@+id/tcCurrentDogsCollected"
+                    android:id="@+id/tvCurrentDogsCollected"
                     style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -103,7 +100,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/button_talents"
+                    android:id="@+id/btnTalents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
@@ -115,7 +112,7 @@
                     android:src="@mipmap/icon_talents" />
 
                 <ImageButton
-                    android:id="@+id/button_pack"
+                    android:id="@+id/btnPackDogs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
@@ -134,7 +131,7 @@
 
         <!-- Tab Title -->
         <LinearLayout
-            android:id="@+id/linHomepageTabHeader"
+            android:id="@+id/linHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relCharacterButtons"
@@ -157,7 +154,7 @@
             android:id="@+id/recyclerViewTalents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linHomepageTabHeader">
+            android:layout_below="@id/linHeader">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -166,7 +163,7 @@
             android:id="@+id/recyclerViewPack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linHomepageTabHeader"
+            android:layout_below="@id/linHeader"
             android:visibility="gone">
 
         </androidx.recyclerview.widget.RecyclerView>

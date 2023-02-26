@@ -95,13 +95,13 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void setupPageButtonBar() {
-        findViewById(R.id.button_talents).setOnClickListener(v -> {
+        findViewById(R.id.btnTalents).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.VISIBLE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.tvHomepageTabHeader)).setText("Talents");
         });
 
-        findViewById(R.id.button_pack).setOnClickListener(v -> {
+        findViewById(R.id.btnPackDogs).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.GONE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.tvHomepageTabHeader)).setText("Your Pack");
@@ -113,9 +113,9 @@ public class HomePage extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                TextView currentHearts = findViewById(R.id.tcCurrentHearts);
-                TextView currentHeartTokens = findViewById(R.id.tcCurrentHeartTokens);
-                TextView currentDogsCollected = findViewById(R.id.tcCurrentDogsCollected);
+                TextView currentHearts = findViewById(R.id.tvCurrentHearts);
+                TextView currentHeartTokens = findViewById(R.id.tvCurrentHeartTokens);
+                TextView currentDogsCollected = findViewById(R.id.tvCurrentDogsCollected);
 
                 currentHearts.setText(
                         Helper.createSpannable(
