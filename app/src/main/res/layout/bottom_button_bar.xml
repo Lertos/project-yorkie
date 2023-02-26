@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/button_home"
+            android:id="@+id/btnHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -28,7 +28,7 @@
             android:src="@mipmap/icon_home" />
 
         <ImageButton
-            android:id="@+id/button_activities"
+            android:id="@+id/btnActivities"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -40,7 +40,7 @@
             android:src="@mipmap/icon_activities" />
 
         <ImageButton
-            android:id="@+id/button_petting"
+            android:id="@+id/btnPetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -52,7 +52,7 @@
             android:src="@mipmap/icon_petting" />
 
         <ImageButton
-            android:id="@+id/button_tournament"
+            android:id="@+id/btnournament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -64,7 +64,7 @@
             android:src="@mipmap/icon_tournament" />
 
         <ImageButton
-            android:id="@+id/button_settings"
+            android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -75,8 +75,6 @@
             android:scaleType="fitCenter"
             android:src="@mipmap/icon_settings" />
 
-
     </LinearLayout>
-
 
 </RelativeLayout>
