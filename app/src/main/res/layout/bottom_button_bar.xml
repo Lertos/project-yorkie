@@ -52,7 +52,7 @@
             android:src="@mipmap/icon_petting" />
 
         <ImageButton
-            android:id="@+id/btnournament"
+            android:id="@+id/btnTournament"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
