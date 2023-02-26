@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.Helper;
@@ -103,6 +104,8 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
         if (!activityList.get(position).isUnlocked()) {
             //Set the data to show the locked state
+            holder.tvActivityName.setTextColor(ContextCompat.getColor(holder.btnUpgradeMax.getContext(),R.color.light_gray));
+
             holder.tvActivityName.setText("LOCKED");
             holder.tvUpgradeCost.setText(IdleNumber.getStrNumber(activityList.get(position).getUnlockCost()));
 
@@ -125,6 +128,8 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             holder.btnUpgradeMax.setVisibility(View.VISIBLE);
             holder.btnUpgradeSingle.setVisibility(View.VISIBLE);
         }
+
+        holder.tvActivityName.setTextColor(ContextCompat.getColor(holder.btnUpgradeMax.getContext(),R.color.gold));
 
         holder.tvActivityName.setText(activityList.get(position).getName());
 
