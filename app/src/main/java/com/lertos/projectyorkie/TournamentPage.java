@@ -2,7 +2,6 @@ package com.lertos.projectyorkie;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.slider.Slider;
 import com.lertos.projectyorkie.data.DataManager;
 
 public class TournamentPage extends AppCompatActivity {
@@ -68,6 +68,20 @@ public class TournamentPage extends AppCompatActivity {
 
         ((Button) findViewById(R.id.btnDifficultyMenu)).setOnClickListener(v -> {
             showMenu(v, R.menu.difficulty_popup);
+        });
+
+        ((Slider) findViewById(R.id.sliderBetAmount)).addOnChangeListener((slider, value, fromUser) -> {
+            double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
+            double percentBet = value / 100;
+
+            //TODO: Set the amount in the TournamentMaster object
+            ((TextView) findViewById(R.id.tvBetAmount)).setText(
+                    Helper.createSpannable(
+                            "Bet Amount: ",
+                            IdleNumber.getStrNumber(currentHearts * percentBet),
+                            DataManager.getInstance().getPlayerData().getHighlightColor()
+                    ),
+                    TextView.BufferType.SPANNABLE);
         });
     }
 
