@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/relParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkest_blue">
 
     <!-- Parent Minus Button Bar -->
     <RelativeLayout
-        android:id="@+id/relMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/relButtons">
 
         <!-- Page Title -->
         <LinearLayout
-            android:id="@+id/linSettingsHeader"
+            android:id="@+id/linHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -36,7 +34,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/linSettingsHeader"
+            android:layout_below="@id/linHeader"
             android:layout_alignParentBottom="true"
             android:layout_margin="30dp"
             android:background="@drawable/border_with_light_bg"
@@ -47,12 +45,12 @@
                 style="@style/fontMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/settingsSliderMusicVolume"
+                android:labelFor="@id/sliderMusicVolume"
                 android:text="Music Volume"
                 android:textAlignment="center" />
 
             <com.google.android.material.slider.Slider
-                android:id="@+id/settingsSliderMusicVolume"
+                android:id="@+id/sliderMusicVolume"
                 style="@style/basicSlider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,12 +63,12 @@
                 style="@style/fontMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/settingsSliderEffectsVolume"
+                android:labelFor="@id/sliderEffectsVolume"
                 android:text="Effects Volume"
                 android:textAlignment="center" />
 
             <com.google.android.material.slider.Slider
-                android:id="@+id/settingsSliderEffectsVolume"
+                android:id="@+id/sliderEffectsVolume"
                 style="@style/basicSlider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,12 +81,12 @@
                 style="@style/fontMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/settingsSliderBarkVolume"
+                android:labelFor="@id/sliderBarkVolume"
                 android:text="Bark Volume"
                 android:textAlignment="center" />
 
             <com.google.android.material.slider.Slider
-                android:id="@+id/settingsSliderBarkVolume"
+                android:id="@+id/sliderBarkVolume"
                 style="@style/basicSlider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,20 +96,19 @@
                 android:valueTo="100.0" />
 
             <CheckBox
-                android:id="@+id/settingsCBShowPopupsForTokens"
+                android:id="@+id/cbShowPopupsForTokens"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Show Popups For Heart Tokens" />
 
             <CheckBox
-                android:id="@+id/settingsCBAnimationsAfterTournament"
+                android:id="@+id/cbAnimationsAfterTournament"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Show Animations After Tournament" />
-
-
+            
         </LinearLayout>
 
     </RelativeLayout>

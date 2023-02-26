@@ -20,11 +20,11 @@ public class SettingsPage extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
-        ((Slider) findViewById(R.id.settingsSliderMusicVolume)).addOnChangeListener((slider, value, fromUser) -> {
+        ((Slider) findViewById(R.id.sliderMusicVolume)).addOnChangeListener((slider, value, fromUser) -> {
             MediaManager.getInstance().changeSongTrackVolume(value / 100);
         });
 
-        ((Slider) findViewById(R.id.settingsSliderEffectsVolume)).addOnChangeListener((slider, value, fromUser) -> {
+        ((Slider) findViewById(R.id.sliderEffectsVolume)).addOnChangeListener((slider, value, fromUser) -> {
             MediaManager.getInstance().changeEffectTrackVolume(value / 100);
         });
     }
