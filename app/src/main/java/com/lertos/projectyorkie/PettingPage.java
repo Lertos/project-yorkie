@@ -47,12 +47,12 @@ public class PettingPage extends AppCompatActivity {
 
         focusButton = findViewById(R.id.btnPettingFocus);
         indicator = findViewById(R.id.indPettingTimer);
-        timerInSeconds = findViewById(R.id.tvPettingTimerInSecs);
+        timerInSeconds = findViewById(R.id.tvTimerInSecs);
 
         //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
         indicator.setMax(timerMax);
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.linPettingMainSection);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.linMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -68,7 +68,7 @@ public class PettingPage extends AppCompatActivity {
                 xEnd = pettingLayout.right - buttonHeight;
                 yEnd = pettingLayout.bottom - layoutMargin - buttonHeight;
 
-                findViewById(R.id.linPettingGameScreen).setVisibility(View.GONE);
+                findViewById(R.id.linGameScreen).setVisibility(View.GONE);
             }
         });
 
@@ -97,7 +97,7 @@ public class PettingPage extends AppCompatActivity {
 
     private void setOnClickListeners() {
         //Start the petting mini game
-        ((Button) findViewById(R.id.btnStartPetting)).setOnClickListener(v -> {
+        ((Button) findViewById(R.id.btnStart)).setOnClickListener(v -> {
             //Create a new instance of the petting mini game master
             pettingMaster = new PettingMaster();
             timerStartValue = pettingMaster.getTimerStartValue();
@@ -125,7 +125,7 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void setPlayerScoreDataUI() {
-        ((TextView) findViewById(R.id.tvPettingHighestThreshold)).setText(
+        ((TextView) findViewById(R.id.tvHighestThreshold)).setText(
                 Helper.createSpannable(
                         "Highest Threshold:",
                         " " + DataManager.getInstance().getPlayerData().getPettingHighestThreshold(),
@@ -133,7 +133,7 @@ public class PettingPage extends AppCompatActivity {
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        ((TextView) findViewById(R.id.tvPettingHighestSquare)).setText(
+        ((TextView) findViewById(R.id.tvHighestSquare)).setText(
                 Helper.createSpannable(
                         "Highest Square:",
                         " " + DataManager.getInstance().getPlayerData().getPettingHighestSquare(),
@@ -141,7 +141,7 @@ public class PettingPage extends AppCompatActivity {
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        ((TextView) findViewById(R.id.tvPettingStartingThreshold)).setText(
+        ((TextView) findViewById(R.id.tvStartingThreshold)).setText(
                 Helper.createSpannable(
                         "Starting Threshold:",
                         " " + pettingMaster.getStartThreshold(),
@@ -149,7 +149,7 @@ public class PettingPage extends AppCompatActivity {
                 ),
                 TextView.BufferType.SPANNABLE);
 
-        ((Button) findViewById(R.id.btnStartPetting)).setText(
+        ((Button) findViewById(R.id.btnStart)).setText(
                 Helper.createSpannable(
                         "Start\n",
                         " " + IdleNumber.getStrNumber(pettingMaster.getStartCost()) + " Tokens",
@@ -161,9 +161,9 @@ public class PettingPage extends AppCompatActivity {
     private void processGameStart() {
         setPlayerScoreDataUI();
 
-        findViewById(R.id.linPettingHeartTokens).setVisibility(View.GONE);
-        findViewById(R.id.linPettingStartScreen).setVisibility(View.GONE);
-        findViewById(R.id.linPettingGameScreen).setVisibility(View.VISIBLE);
+        findViewById(R.id.linHeartTokens).setVisibility(View.GONE);
+        findViewById(R.id.linStartScreen).setVisibility(View.GONE);
+        findViewById(R.id.linGameScreen).setVisibility(View.VISIBLE);
 
         //Show the generated square
         focusButton.setVisibility(View.VISIBLE);
@@ -172,13 +172,13 @@ public class PettingPage extends AppCompatActivity {
     private void processGameOver() {
         setPlayerScoreDataUI();
 
-        findViewById(R.id.linPettingHeartTokens).setVisibility(View.VISIBLE);
-        findViewById(R.id.linPettingStartScreen).setVisibility(View.VISIBLE);
-        findViewById(R.id.linPettingGameScreen).setVisibility(View.GONE);
+        findViewById(R.id.linHeartTokens).setVisibility(View.VISIBLE);
+        findViewById(R.id.linStartScreen).setVisibility(View.VISIBLE);
+        findViewById(R.id.linGameScreen).setVisibility(View.GONE);
 
         //Show the reward won
-        findViewById(R.id.tvPettingRewardHeader).setVisibility(View.VISIBLE);
-        findViewById(R.id.tvPettingRewardAmount).setVisibility(View.VISIBLE);
+        findViewById(R.id.tvRewardHeader).setVisibility(View.VISIBLE);
+        findViewById(R.id.tvRewardAmount).setVisibility(View.VISIBLE);
 
         //Hide the generated square
         focusButton.setVisibility(View.INVISIBLE);
@@ -198,7 +198,7 @@ public class PettingPage extends AppCompatActivity {
                 if (currentTimeLeft <= 0) {
                     isPlaying = false;
                     pettingMaster.stop();
-                    ((TextView) findViewById(R.id.tvPettingRewardAmount)).setText(IdleNumber.getStrNumber(pettingMaster.getEndReward()));
+                    ((TextView) findViewById(R.id.tvRewardAmount)).setText(IdleNumber.getStrNumber(pettingMaster.getEndReward()));
                     processGameOver();
                 }
 
@@ -249,7 +249,7 @@ public class PettingPage extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                ((TextView) findViewById(R.id.pettingCurrentHeartTokens)).setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+                ((TextView) findViewById(R.id.tvCurrentHeartTokens)).setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);
