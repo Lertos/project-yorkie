@@ -13,14 +13,14 @@ public class ActivityPage extends AppCompatActivity {
 
     static boolean isPageActive = false;
 
-    TextView activityCurrentHearts;
+    private TextView tvCurrentHearts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_activities);
 
-        activityCurrentHearts = findViewById(R.id.activityCurrentHearts);
+        tvCurrentHearts = findViewById(R.id.tvCurrentHearts);
 
         Helper.setupBottomButtonBar(this);
 
@@ -30,7 +30,7 @@ public class ActivityPage extends AppCompatActivity {
         }
 
         Helper.createNewRecyclerView(
-                findViewById(R.id.recyclerViewActivities),
+                findViewById(R.id.recyclerView),
                 DataManager.getInstance().getActivities(),
                 new ActivityViewAdapter(),
                 this
@@ -57,7 +57,7 @@ public class ActivityPage extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                activityCurrentHearts.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
+                tvCurrentHearts.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);

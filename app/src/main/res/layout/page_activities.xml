@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkest_blue">
 
     <RelativeLayout
-        android:id="@+id/relMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/relButtons"
@@ -14,10 +12,9 @@
 
         <!-- Page Title -->
         <LinearLayout
-            android:id="@+id/linActivityHeader"
+            android:id="@+id/linHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:background="@drawable/border_with_dark_bg"
             android:gravity="center"
             android:orientation="horizontal">
@@ -33,10 +30,10 @@
 
         <!-- Hearts Counter Panel -->
         <LinearLayout
-            android:id="@+id/linHeaderInfo"
+            android:id="@+id/linHeartsCounter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linActivityHeader"
+            android:layout_below="@id/linHeader"
             android:background="@drawable/border_with_light_bg"
             android:orientation="vertical">
 
@@ -48,7 +45,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/activityCurrentHearts"
+                android:id="@+id/tvCurrentHearts"
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,14 +59,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linHeaderInfo">
+            android:layout_below="@+id/linHeartsCounter">
 
             <!-- Main Activities Panel -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewActivities"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/linHeaderInfo">
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
