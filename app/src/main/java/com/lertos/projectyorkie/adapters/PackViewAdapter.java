@@ -7,9 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lertos.projectyorkie.Helper;
+import com.lertos.projectyorkie.IdleNumber;
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.PackDog;
 
 import java.util.ArrayList;
@@ -36,10 +40,22 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (packList.get(position).isUnlocked()) {
+            holder.tvDogName.setTextColor(ContextCompat.getColor(holder.tvDogName.getContext(), R.color.gold));
+
             holder.tvDogAvatar.setImageResource(packList.get(position).getAvatar());
             holder.tvDogName.setText(packList.get(position).getName());
-            holder.tvDogAddedBonus.setText("Added Bonus: +" + packList.get(position).getAddedBonus() + "%");
+
+            holder.tvDogAddedBonus.setText(
+                    Helper.createSpannable(
+                            "Added Bonus:",
+                            " " + packList.get(position).getAddedBonus() + "%",
+                            DataManager.getInstance().getPlayerData().getHighlightColor()
+                    ),
+                    TextView.BufferType.SPANNABLE);
+
         } else {
+            holder.tvDogName.setTextColor(ContextCompat.getColor(holder.tvDogName.getContext(), R.color.light_gray));
+
             holder.tvDogAvatar.setImageResource(R.mipmap.icon_locked);
             holder.tvDogName.setText("LOCKED");
             holder.tvDogAddedBonus.setText("Win tournaments to unlock new dogs");

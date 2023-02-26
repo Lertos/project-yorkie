@@ -16,8 +16,7 @@
             style="@style/fontLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tough Love"
-            android:textColor="@color/yellow" />
+            android:text="Tough Love" />
 
         <LinearLayout
             android:id="@+id/linDogInfoGroup"
