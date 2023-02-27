@@ -39,6 +39,8 @@ public class DataManager {
         rank.setDivision(getDivisionFromString("Silver"));
         rank.setTier(3);
 
+        playerData.setTournamentRank(rank);
+
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
 
@@ -125,7 +127,7 @@ public class DataManager {
 
     private TournamentDivision getDivisionFromString(String str) {
         for(TournamentDivision division : TournamentDivision.BRONZE.getDeclaringClass().getEnumConstants()) {
-            if (division.equals(str))
+            if (str.equalsIgnoreCase(division.getDisplayStr()))
                 return division;
         }
         return null;
