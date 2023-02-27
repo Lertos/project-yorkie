@@ -17,7 +17,6 @@ public class TournamentPage extends AppCompatActivity {
     private TournamentMaster tournamentMaster;
     private Slider sliderBetAmount;
     private TextView tvBetAmount;
-    private boolean isPlaying = false;
     static boolean isPageActive = false;
 
     @Override
@@ -35,7 +34,7 @@ public class TournamentPage extends AppCompatActivity {
         tvBetAmount = findViewById(R.id.tvBetAmount);
 
         Helper.setupBottomButtonBar(this);
-        setPlayerScoreDataUI();
+        setupUI();
         setOnClickListeners();
 
         //Set the initial value so that the onClick listener fires to load initial bet value
@@ -44,33 +43,22 @@ public class TournamentPage extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
-        isPlaying = false;
         isPageActive = false;
     }
 
     protected void onPause() {
         super.onPause();
-        isPlaying = false;
         isPageActive = false;
     }
 
     protected void onResume() {
         super.onResume();
-        isPlaying = true;
         isPageActive = true;
     }
 
     private void setOnClickListeners() {
-        //Start the petting mini game
-        ((Button) findViewById(R.id.btnStart)).setOnClickListener(v -> {
-            //Create a new instance of the petting mini game master
-            tournamentMaster = new TournamentMaster();
-            isPlaying = true;
-
-            setupUI();
-
-            //Start the mini game
-            tournamentMaster.start();
+        ((Button) findViewById(R.id.btnMoveToLobby)).setOnClickListener(v -> {
+            //TODO: Switch to the lobby and pass through the tournamentMaster object
         });
 
         ((Button) findViewById(R.id.btnDifficultyMenu)).setOnClickListener(v -> {
@@ -112,10 +100,7 @@ public class TournamentPage extends AppCompatActivity {
     }
 
     private void setupUI() {
-        setPlayerScoreDataUI();
-    }
-
-    private void setPlayerScoreDataUI() {
+        //TODO: Set actual bracket from tournamentMaster
         ((TextView) findViewById(R.id.tvCurrentBracket)).setText("Silver II");
 
         ((Button) findViewById(R.id.btnStart)).setText(
