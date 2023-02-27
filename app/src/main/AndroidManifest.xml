@@ -23,6 +23,7 @@
         <activity android:name=".ActivityPage" />
         <activity android:name=".PettingPage" />
         <activity android:name=".TournamentPage" />
+        <activity android:name=".TournamentLobbyPage" />
         <activity android:name=".SettingsPage" />
 
     </application>
