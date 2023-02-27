@@ -140,7 +140,7 @@
                     android:valueTo="100.0" />
 
                 <Button
-                    android:id="@+id/btnStart"
+                    android:id="@+id/btnMoveToLobby"
                     style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
