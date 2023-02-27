@@ -3,6 +3,8 @@ package com.lertos.projectyorkie.data;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
+import com.lertos.projectyorkie.model.TournamentDivision;
+import com.lertos.projectyorkie.model.TournamentRank;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,6 +34,10 @@ public class DataManager {
 
         playerData.setPettingHighestThreshold(1);
         playerData.setPettingHighestSquare(3);
+
+        TournamentRank rank = new TournamentRank();
+        rank.setDivision(getDivisionFromString("Silver"));
+        rank.setTier(3);
 
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
@@ -115,6 +121,14 @@ public class DataManager {
     public void calculateHeartTokensPerSecond() {
         DataManager.getInstance().setHeartTokensPerSecond();
         addHeartTokens(playerData.getCurrentHeartTokensPerSecond());
+    }
+
+    private TournamentDivision getDivisionFromString(String str) {
+        for(TournamentDivision division : TournamentDivision.BRONZE.getDeclaringClass().getEnumConstants()) {
+            if (division.equals(str))
+                return division;
+        }
+        return null;
     }
 
     public List<PackDog> getPackDogs() {

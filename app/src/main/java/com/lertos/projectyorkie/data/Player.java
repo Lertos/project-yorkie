@@ -2,6 +2,8 @@ package com.lertos.projectyorkie.data;
 
 import android.graphics.Color;
 
+import com.lertos.projectyorkie.model.TournamentRank;
+
 public class Player {
 
     //Formatting/colorization purposes
@@ -15,6 +17,7 @@ public class Player {
     private int dogsCollected;
     private int pettingHighestThreshold;
     private int pettingHighestSquare;
+    private TournamentRank tournamentRank;
 
     //Static data that won't change
     private final int maxDogsToCollect = 27;
@@ -63,6 +66,14 @@ public class Player {
 
     public void setDogsCollected(int dogsCollected) {
         this.dogsCollected = dogsCollected;
+    }
+
+    public TournamentRank getTournamentRank() {
+        return tournamentRank;
+    }
+
+    public void setTournamentRank(TournamentRank tournamentRank) {
+        this.tournamentRank = tournamentRank;
     }
 
     public int getHighlightColor() {
