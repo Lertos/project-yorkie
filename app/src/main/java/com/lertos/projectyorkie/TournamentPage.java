@@ -93,8 +93,8 @@ public class TournamentPage extends AppCompatActivity {
     }
 
     private void setupUI() {
-        //TODO: Get from PlayerData such as CurrentBracket
-        ((TextView) findViewById(R.id.tvCurrentBracket)).setText("Silver II");
+        String rank = DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay();
+        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(rank);
 
         //Set the initial value so that the onClick listener fires to load initial bet value
         sliderBetAmount.setValue(50);
