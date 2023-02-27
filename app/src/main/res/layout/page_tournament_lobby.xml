@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkest_blue">
+
+    <!-- Parent Minus Button Bar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Character Info Panel -->
+        <LinearLayout
+            android:id="@+id/linTournamentHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_with_dark_bg"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_with_light_bg"
+                    android:maxHeight="120dp"
+                    android:padding="0dp"
+                    android:src="@mipmap/portrait_marco" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/fontLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/border"
+                    android:padding="10dp"
+                    android:text="Marco the Announcer"
+                    android:textAlignment="center"
+                    android:textColor="@color/gold" />
+
+                <TextView
+                    android:id="@+id/tvCurrentBracket"
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bracket: Silver II" />
+
+                <TextView
+                    android:id="@+id/tvDifficulty"
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Difficulty: Hard" />
+
+                <TextView
+                    android:id="@+id/tvBetAmount"
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bet Amount: 23.1k" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linContestantList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linTournamentHeader"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/ivDog1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_with_light_bg"
+                    android:maxHeight="90dp"
+                    android:padding="0dp"
+                    android:src="@mipmap/portrait_loki" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDogName1"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Name: Fred" />
+
+                    <TextView
+                        android:id="@+id/tvDogType1"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Type: Yorkie" />
+
+                    <TextView
+                        android:id="@+id/tvDogRecentScore1"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Score: 12" />
+
+                    <TextView
+                        android:id="@+id/tvDogTotalScore1"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Score: 103" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/ivDog2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_with_light_bg"
+                    android:maxHeight="90dp"
+                    android:padding="0dp"
+                    android:src="@mipmap/portrait_loki" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDogName2"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Name: Fred" />
+
+                    <TextView
+                        android:id="@+id/tvDogType2"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Type: Yorkie" />
+
+                    <TextView
+                        android:id="@+id/tvDogRecentScore2"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Score: 12" />
+
+                    <TextView
+                        android:id="@+id/tvDogTotalScore2"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Score: 103" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/ivDog3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_with_light_bg"
+                    android:maxHeight="90dp"
+                    android:padding="0dp"
+                    android:src="@mipmap/portrait_loki" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDogName3"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Name: Fred" />
+
+                    <TextView
+                        android:id="@+id/tvDogType3"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Type: Yorkie" />
+
+                    <TextView
+                        android:id="@+id/tvDogRecentScore3"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Score: 12" />
+
+                    <TextView
+                        android:id="@+id/tvDogTotalScore3"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Score: 103" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/ivDog4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_with_light_bg"
+                    android:maxHeight="90dp"
+                    android:padding="0dp"
+                    android:src="@mipmap/portrait_loki" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDogName4"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Name: Fred" />
+
+                    <TextView
+                        android:id="@+id/tvDogType4"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Type: Yorkie" />
+
+                    <TextView
+                        android:id="@+id/tvDogRecentScore4"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Score: 12" />
+
+                    <TextView
+                        android:id="@+id/tvDogTotalScore4"
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Score: 103" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linNextGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linContestantList"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border_with_dark_bg"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/fontMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Next Stage" />
+
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Barking Dogs"
+                android:textColor="@color/yellow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linButtonGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linNextGame"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/baseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Next Game" />
+
+            <Button
+                style="@style/baseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dropout" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
