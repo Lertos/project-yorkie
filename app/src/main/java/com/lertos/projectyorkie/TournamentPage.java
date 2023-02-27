@@ -44,13 +44,7 @@ public class TournamentPage extends AppCompatActivity {
 
         Helper.setupBottomButtonBar(this);
         setOnClickListeners();
-
-        //Setup UI
-        //TODO: Get from PlayerData such as CurrentBracket
-        ((TextView) findViewById(R.id.tvCurrentBracket)).setText("Silver II");
-
-        //Set the initial value so that the onClick listener fires to load initial bet value
-        sliderBetAmount.setValue(50);
+        setupUI();
     }
 
     protected void onDestroy() {
@@ -96,6 +90,14 @@ public class TournamentPage extends AppCompatActivity {
             heartsBet = currentHearts * percentBet;
             tvBetAmount.setText(IdleNumber.getStrNumber(heartsBet));
         });
+    }
+
+    private void setupUI() {
+        //TODO: Get from PlayerData such as CurrentBracket
+        ((TextView) findViewById(R.id.tvCurrentBracket)).setText("Silver II");
+
+        //Set the initial value so that the onClick listener fires to load initial bet value
+        sliderBetAmount.setValue(50);
     }
 
     private void showMenu(View view, int menuRes) {
