@@ -24,11 +24,13 @@ public class TournamentRank {
     }
 
     public void setDivision(TournamentDivision division) {
-        this.division = division;
+        if (division != null)
+            this.division = division;
     }
 
     public void setTier(int tier) {
-        this.tier = tier;
+        if (tier > maxTier && tier < startTier)
+            this.tier = tier;
     }
 
     //Returns true if they move up a division, false otherwise
