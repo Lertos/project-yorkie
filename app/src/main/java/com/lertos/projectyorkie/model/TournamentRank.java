@@ -6,11 +6,13 @@ public class TournamentRank {
     private final int startTier = 5;
     private final int maxTier = 1;
     private TournamentDivision division;
+    private TournamentDivision defaultDivision = TournamentDivision.BRONZE;
     private int tier;
+    private int defaultTier = startTier;
 
-    public TournamentRank(TournamentDivision division, int tier) {
-        this.division = division;
-        this.tier = tier;
+    public TournamentRank() {
+        this.division = defaultDivision;
+        this.tier = defaultTier;
     }
 
     public TournamentDivision getDivision() {
@@ -19,6 +21,14 @@ public class TournamentRank {
 
     public int getTier() {
         return tier;
+    }
+
+    public void setDivision(TournamentDivision division) {
+        this.division = division;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 
     //Returns true if they move up a division, false otherwise
