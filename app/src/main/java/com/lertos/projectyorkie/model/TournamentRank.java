@@ -33,6 +33,25 @@ public class TournamentRank {
             this.tier = tier;
     }
 
+    public double getTokenCostForRank() {
+        double heartTokens;
+
+        switch (division) {
+            case WOOD: heartTokens = 10;
+            case IRON: heartTokens = 165;
+            case BRONZE: heartTokens = 660;
+            case SILVER: heartTokens = 1485;
+            case GOLD: heartTokens = 2640;
+            case PLATINUM: heartTokens = 4125;
+            case DIAMOND: heartTokens = 5940;
+            case EMERALD: heartTokens = 8085;
+            default: heartTokens = 0;
+        }
+        heartTokens += heartTokens / (double) tier;
+
+        return heartTokens;
+    }
+
     //Returns true if they move up a division, false otherwise
     public boolean increaseTier() {
         tier--;
