@@ -36,7 +36,7 @@ public class DataManager {
         playerData.setPettingHighestSquare(3);
 
         TournamentRank rank = new TournamentRank();
-        rank.setDivision(getDivisionFromString("Silver"));
+        rank.setDivision(getDivisionFromString("Wood"));
         rank.setTier(3);
 
         playerData.setTournamentRank(rank);
