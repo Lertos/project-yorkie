@@ -6,7 +6,7 @@ public class TournamentRank {
     private final int startTier = 5;
     private final int maxTier = 1;
     private TournamentDivision division;
-    private TournamentDivision defaultDivision = TournamentDivision.BRONZE;
+    private TournamentDivision defaultDivision = TournamentDivision.WOOD;
     private int tier;
     private int defaultTier = startTier;
 
