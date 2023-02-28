@@ -19,7 +19,9 @@ public class TournamentLobbyPage extends AppCompatActivity {
         if (!isPageActive)
             isPageActive = true;
 
-        tournamentMaster = new TournamentMaster();
+        String difficulty = getIntent().getStringExtra("STR_DIFFICULTY");
+
+        tournamentMaster = new TournamentMaster(difficulty);
 
         setupUI();
         setOnClickListeners();

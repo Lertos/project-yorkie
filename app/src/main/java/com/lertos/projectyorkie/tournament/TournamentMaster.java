@@ -12,6 +12,19 @@ public class TournamentMaster {
     }
     private TournamentState currentState;
     private ArrayList<TournamentContestant> contestants;
+    private TournamentDifficulty tournamentDifficulty;
+
+    public TournamentMaster(String difficulty) {
+        this.tournamentDifficulty = getDifficultyFromString(difficulty);
+    }
+
+    private TournamentDifficulty getDifficultyFromString(String str) {
+        for (TournamentDifficulty difficulty : TournamentDifficulty.values()) {
+            if (str.equalsIgnoreCase(difficulty.getDisplayStr()))
+                return difficulty;
+        }
+        return null;
+    }
 
     private void createContestants() {
         //Fill the contestant list
