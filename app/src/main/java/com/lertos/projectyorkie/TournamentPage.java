@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.slider.Slider;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.model.TournamentRank;
 
 public class TournamentPage extends AppCompatActivity {
 
@@ -93,8 +94,18 @@ public class TournamentPage extends AppCompatActivity {
     }
 
     private void setupUI() {
-        String rank = DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay();
-        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(rank);
+        TournamentRank rank = DataManager.getInstance().getPlayerData().getTournamentRank();
+        double costInTokens = rank.getTokenCostForRank();
+
+        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(rank.getRankDisplay());
+
+        ((Button) findViewById(R.id.btnMoveToLobby)).setText(
+                Helper.createSpannable(
+                        "Join Tournament\n",
+                        " " + IdleNumber.getStrNumber(costInTokens) + " Tokens",
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
 
         //Set the initial value so that the onClick listener fires to load initial bet value
         sliderBetAmount.setValue(50);
