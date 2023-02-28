@@ -2,7 +2,7 @@ package com.lertos.projectyorkie.data;
 
 import android.graphics.Color;
 
-import com.lertos.projectyorkie.model.TournamentRank;
+import com.lertos.projectyorkie.tournament.TournamentRank;
 
 public class Player {
 

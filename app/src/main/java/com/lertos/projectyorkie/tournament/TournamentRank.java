@@ -1,4 +1,4 @@
-package com.lertos.projectyorkie.model;
+package com.lertos.projectyorkie.tournament;
 
 public class TournamentRank {
 

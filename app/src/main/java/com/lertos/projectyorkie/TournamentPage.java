@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.slider.Slider;
 import com.lertos.projectyorkie.data.DataManager;
-import com.lertos.projectyorkie.model.TournamentRank;
+import com.lertos.projectyorkie.tournament.TournamentRank;
 
 public class TournamentPage extends AppCompatActivity {
 

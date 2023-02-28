@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lertos.projectyorkie.tournament.TournamentMaster;
+
 public class TournamentLobbyPage extends AppCompatActivity {
 
     static boolean isPageActive = false;

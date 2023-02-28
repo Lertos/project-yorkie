@@ -3,8 +3,8 @@ package com.lertos.projectyorkie.data;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
-import com.lertos.projectyorkie.model.TournamentDivision;
-import com.lertos.projectyorkie.model.TournamentRank;
+import com.lertos.projectyorkie.tournament.TournamentDivision;
+import com.lertos.projectyorkie.tournament.TournamentRank;
 
 import java.util.ArrayList;
 import java.util.Collections;
