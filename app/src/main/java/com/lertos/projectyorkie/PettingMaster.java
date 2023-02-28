@@ -13,7 +13,7 @@ public class PettingMaster {
     private final double secondsLostWhenMissed;
     private final double secondsGainedWhenCorrect;
     private final int startThreshold;
-    private final int costHeartTokensPerThreshold = 1;
+    private final int costHeartTokensPerThreshold = 15;
     private final int squaresPerThreshold = 10;
     private final double rewardMultiplier = 1.5;
     private final double baseDisappearTime = 4.5;
