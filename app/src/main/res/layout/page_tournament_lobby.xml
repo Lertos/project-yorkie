@@ -112,18 +112,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvDogName1"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name: Fred" />
-
-                    <TextView
                         android:id="@+id/tvDogType1"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Type: Yorkie" />
+                        android:text="Breed: Yorkie" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore1"
@@ -168,18 +161,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvDogName2"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name: Fred" />
-
-                    <TextView
                         android:id="@+id/tvDogType2"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Type: Yorkie" />
+                        android:text="Breed: Yorkie" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore2"
@@ -224,18 +210,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvDogName3"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name: Fred" />
-
-                    <TextView
                         android:id="@+id/tvDogType3"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Type: Yorkie" />
+                        android:text="Breed: Yorkie" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore3"
@@ -280,18 +259,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvDogName4"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Name: Fred" />
-
-                    <TextView
                         android:id="@+id/tvDogType4"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Type: Yorkie" />
+                        android:text="Breed: Yorkie" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore4"
