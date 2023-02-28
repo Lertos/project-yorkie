@@ -37,14 +37,14 @@ public class TournamentRank {
         double heartTokens;
 
         switch (division) {
-            case WOOD: heartTokens = 10;
-            case IRON: heartTokens = 165;
-            case BRONZE: heartTokens = 660;
-            case SILVER: heartTokens = 1485;
-            case GOLD: heartTokens = 2640;
-            case PLATINUM: heartTokens = 4125;
-            case DIAMOND: heartTokens = 5940;
-            case EMERALD: heartTokens = 8085;
+            case WOOD: heartTokens = 10; break;
+            case IRON: heartTokens = 165; break;
+            case BRONZE: heartTokens = 660; break;
+            case SILVER: heartTokens = 1485; break;
+            case GOLD: heartTokens = 2640; break;
+            case PLATINUM: heartTokens = 4125; break;
+            case DIAMOND: heartTokens = 5940; break;
+            case EMERALD: heartTokens = 8085; break;
             default: heartTokens = 0;
         }
         heartTokens += heartTokens / (double) tier;
