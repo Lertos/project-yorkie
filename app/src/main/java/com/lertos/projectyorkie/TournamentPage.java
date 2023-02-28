@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.slider.Slider;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentRank;
 
 public class TournamentPage extends AppCompatActivity {
@@ -22,10 +23,7 @@ public class TournamentPage extends AppCompatActivity {
     private Slider sliderBetAmount;
     private TextView tvBetAmount;
     private Button btnDifficultyMenu;
-    private String difficulty;
-    private String difficultyEasy = "Easy";
-    private String difficultyNormal = "Normal";
-    private String difficultyHard = "Hard";
+    private TournamentDifficulty difficulty;
     private double heartsBet;
 
 
@@ -75,7 +73,7 @@ public class TournamentPage extends AppCompatActivity {
             }
 
             Intent intent = new Intent(this, TournamentLobbyPage.class);
-            intent.putExtra("STR_DIFFICULTY", difficulty);
+            intent.putExtra("STR_DIFFICULTY", difficulty.getDisplayStr());
             intent.putExtra("DOUBLE_BET_AMOUNT", heartsBet);
             startActivity(intent);
         });
@@ -118,21 +116,19 @@ public class TournamentPage extends AppCompatActivity {
         popup.setOnMenuItemClickListener( menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.optionEasy: {
-                    btnDifficultyMenu.setText(difficultyEasy);
-                    difficulty = difficultyEasy;
+                    difficulty = TournamentDifficulty.EASY;
                     break;
                 }
                 case R.id.optionNormal: {
-                    btnDifficultyMenu.setText(difficultyNormal);
-                    difficulty = difficultyNormal;
+                    difficulty = TournamentDifficulty.NORMAL;
                     break;
                 }
                 case R.id.optionHard: {
-                    btnDifficultyMenu.setText(difficultyHard);
-                    difficulty = difficultyHard;
+                    difficulty = TournamentDifficulty.HARD;
                     break;
                 }
             }
+            btnDifficultyMenu.setText(difficulty.getDisplayStr());
             return true;
         });
         popup.show();
