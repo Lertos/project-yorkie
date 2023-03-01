@@ -5,6 +5,9 @@ import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.PackDog;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class TournamentMaster {
 
@@ -57,6 +60,31 @@ public class TournamentMaster {
             contestantList.add(new TournamentContestant(newPackDog, false));
         }
         return contestantList;
+    }
+
+    public List<TournamentContestant> getContestants() {
+        contestants.sort(new SortByScore());
+        return Collections.unmodifiableList(contestants);
+    }
+
+    public class SortByScore implements Comparator<TournamentContestant> {
+
+        @Override
+        public int compare(TournamentContestant c1, TournamentContestant c2) {
+            double totalScore1 = c1.getTotalScore();
+            double totalScore2 = c2.getTotalScore();
+
+            int totalScoreCompare = Double.compare(totalScore1, totalScore2);
+
+            if (totalScoreCompare != 0)
+                return totalScoreCompare;
+
+            double currentScore1 = c1.getCurrentScore();
+            double currentScore2 = c2.getCurrentScore();
+
+            return Double.compare(currentScore1, currentScore2);
+        }
+
     }
 
 }
