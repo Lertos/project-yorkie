@@ -1,12 +1,12 @@
 package com.lertos.projectyorkie;
 
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
@@ -55,7 +55,34 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void setupUI() {
+        setupHeaderInfo();
         refreshContestantUI();
+    }
+
+    private void setupHeaderInfo() {
+        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(
+                Helper.createSpannable(
+                        "Bracket: ",
+                        DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        ((TextView) findViewById(R.id.tvDifficulty)).setText(
+                Helper.createSpannable(
+                        "Difficulty: ",
+                        tournamentMaster.getTournamentDifficulty().getDisplayStr(),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
+
+        ((TextView) findViewById(R.id.tvBetAmount)).setText(
+                Helper.createSpannable(
+                        "Bet Amount: ",
+                        IdleNumber.getStrNumber(tournamentMaster.getInitialBet()),
+                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                ),
+                TextView.BufferType.SPANNABLE);
     }
 
     private void refreshContestantUI() {
@@ -102,7 +129,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
                 Helper.createSpannable(
                         "Type: ",
                         contestant.getPackDog().getName(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                        ContextCompat.getColor(this, R.color.gold)
                 ),
                 TextView.BufferType.SPANNABLE);
 
