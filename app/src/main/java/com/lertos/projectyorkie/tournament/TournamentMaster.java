@@ -69,6 +69,14 @@ public class TournamentMaster {
         return Collections.unmodifiableList(contestants);
     }
 
+    public TournamentDifficulty getTournamentDifficulty() {
+        return tournamentDifficulty;
+    }
+
+    public double getInitialBet() {
+        return initialBet;
+    }
+
     public class SortByScore implements Comparator<TournamentContestant> {
 
         @Override
