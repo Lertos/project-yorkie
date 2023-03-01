@@ -9,6 +9,7 @@ import com.lertos.projectyorkie.tournament.TournamentRank;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class DataManager {
 
@@ -72,6 +73,13 @@ public class DataManager {
             bonus *= multiplier;
 
         return bonus;
+    }
+
+    public PackDog getRandomPackDog() {
+        Random rng = new Random();
+        int randomIndex = rng.nextInt(packDogList.size());
+
+        return packDogList.get(randomIndex);
     }
 
     public void setHeartsPerSecond() {
