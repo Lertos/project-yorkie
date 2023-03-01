@@ -19,13 +19,15 @@ public class TournamentMaster {
     }
     private final int maxAIContestants = 3;
     private TournamentState currentState;
-    private ArrayList<TournamentContestant> contestants;
-    private TournamentDifficulty tournamentDifficulty;
+    private final ArrayList<TournamentContestant> contestants;
+    private final TournamentDifficulty tournamentDifficulty;
+    private final double initialBet;
 
-    public TournamentMaster(String difficulty) {
+    public TournamentMaster(String difficulty, double initialBet) {
         this.currentState = TournamentState.LOBBY;
         this.contestants = createContestants();
         this.tournamentDifficulty = getDifficultyFromString(difficulty);
+        this.initialBet = initialBet;
     }
 
     private TournamentDifficulty getDifficultyFromString(String str) {

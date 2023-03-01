@@ -20,8 +20,9 @@ public class TournamentLobbyPage extends AppCompatActivity {
             isPageActive = true;
 
         String difficulty = getIntent().getStringExtra("STR_DIFFICULTY");
+        double initialBet = getIntent().getDoubleExtra("DOUBLE_BET_AMOUNT", 0.0);
 
-        tournamentMaster = new TournamentMaster(difficulty);
+        tournamentMaster = new TournamentMaster(difficulty, initialBet);
 
         setupUI();
         setOnClickListeners();
