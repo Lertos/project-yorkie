@@ -19,4 +19,40 @@ public class TournamentContestant {
     public PackDog getPackDog() {
         return packDog;
     }
+
+    public double getCurrentScore() {
+        return currentScore;
+    }
+
+    public double getTotalScore() {
+        return totalScore;
+    }
+
+    public boolean isPlayer() {
+        return isPlayer;
+    }
+
+    public void resetCurrentScore() {
+        currentScore = 0;
+    }
+
+    public void resetTotalScore() {
+        totalScore = 0;
+    }
+
+    public double addToCurrentScore(double scoreToAdd) {
+        currentScore += scoreToAdd;
+
+        if (currentScore < 0)
+            currentScore = 0;
+
+        return currentScore;
+    }
+
+    public double calculateTotalScore() {
+        totalScore += currentScore;
+        resetCurrentScore();
+
+        return totalScore;
+    }
 }
