@@ -16,4 +16,7 @@ public class TournamentContestant {
         this.isPlayer = isPlayer;
     }
 
+    public PackDog getPackDog() {
+        return packDog;
+    }
 }
