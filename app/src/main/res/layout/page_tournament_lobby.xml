@@ -7,6 +7,7 @@
 
     <!-- Parent Minus Button Bar -->
     <RelativeLayout
+        android:id="@+id/relScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -351,5 +352,12 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <ViewStub
+        android:id="@+id/viewStubGame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/layoutGameScreen"
+        android:layout="@layout/page_game_test" />
 
 </RelativeLayout>
