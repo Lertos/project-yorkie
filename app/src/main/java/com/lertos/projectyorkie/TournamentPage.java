@@ -95,6 +95,9 @@ public class TournamentPage extends AppCompatActivity {
         TournamentRank rank = DataManager.getInstance().getPlayerData().getTournamentRank();
         double costInTokens = rank.getTokenCostForRank();
 
+        //Choose a default value for the difficulty
+        pickDifficultyOption(TournamentDifficulty.NORMAL);
+
         ((TextView) findViewById(R.id.tvCurrentBracket)).setText(rank.getRankDisplay());
 
         ((Button) findViewById(R.id.btnMoveToLobby)).setText(
@@ -116,22 +119,27 @@ public class TournamentPage extends AppCompatActivity {
         popup.setOnMenuItemClickListener( menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.optionEasy: {
-                    difficulty = TournamentDifficulty.EASY;
+                    pickDifficultyOption(TournamentDifficulty.EASY);
                     break;
                 }
                 case R.id.optionNormal: {
-                    difficulty = TournamentDifficulty.NORMAL;
+                    pickDifficultyOption(TournamentDifficulty.NORMAL);
                     break;
                 }
                 case R.id.optionHard: {
-                    difficulty = TournamentDifficulty.HARD;
+                    pickDifficultyOption(TournamentDifficulty.HARD);
                     break;
                 }
             }
-            btnDifficultyMenu.setText(difficulty.getDisplayStr());
             return true;
         });
         popup.show();
+    }
+
+    private void pickDifficultyOption(TournamentDifficulty chosenDifficulty) {
+        difficulty = chosenDifficulty;
+
+        btnDifficultyMenu.setText(difficulty.getDisplayStr());
     }
 
     private void updateUIWithCurrentHeartTokens() {
