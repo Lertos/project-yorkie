@@ -21,17 +21,15 @@ public class WhackTheCat extends TournamentGame {
     private ArrayList<View> squares;
     private final int sizeAvatarInDP = 70;
     private final int sizeSquareInDP = 80;
-    private final int numberOfRows = 3;
+    private final int numberOfRows = 2;
     private final int numberOfCols = 3;
-    private Rect gameLayout;
-    private int xStart, yStart, xEnd, yEnd;
+    private Rect gameLayout = new Rect();
+    private int xEnd, yEnd;
 
     public WhackTheCat(View view) {
         super(view);
 
         squares = new ArrayList<>();
-
-        gameLayout = new Rect();
 
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
@@ -41,29 +39,22 @@ public class WhackTheCat extends TournamentGame {
                 layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 layout.getGlobalVisibleRect(gameLayout);
 
-                Log.d("d", gameLayout.toString());
-                Log.d("d", String.valueOf(gameLayout.left));
-                Log.d("d", String.valueOf(gameLayout.right));
-                Log.d("d", String.valueOf(gameLayout.top));
-                Log.d("d", String.valueOf(gameLayout.bottom));
-
                 int buttonHeight = sizeSquareInDP;
-                int layoutMargin = 60;
+                int layoutMargin = 120;
 
-                xStart = gameLayout.left;
-                yStart = gameLayout.top - layoutMargin;
-                xEnd = gameLayout.right - buttonHeight;
-                yEnd = gameLayout.bottom - layoutMargin - buttonHeight;
+                xEnd = gameLayout.right - layoutMargin - buttonHeight;
+                yEnd = gameLayout.bottom - 201 - layoutMargin - buttonHeight;
 
+                addImagesToView();
+                setupOnClickListeners();
             }
         });
-
-        addImagesToView();
-        setupOnClickListeners();
     }
 
     public void addImagesToView() {
         RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
+        int xFraction = xEnd / (numberOfCols * 2);
+        int yFraction = yEnd / (numberOfRows * 2);
 
         for (int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfCols; j++) {
@@ -73,11 +64,8 @@ public class WhackTheCat extends TournamentGame {
 
                 setMaxDimensionsForSquares(view);
 
-                //TODO: Remove; for testing purposes only
-                if (i==0) {
-                    params.leftMargin = gameLayout.right - 200;
-                    params.topMargin = gameLayout.top;
-                }
+                params.leftMargin = xFraction * (j * 2 + 1);
+                params.topMargin = yFraction * (i * 2 + 1);
 
                 layout.addView(view, params);
 
@@ -88,7 +76,7 @@ public class WhackTheCat extends TournamentGame {
 
     private RelativeLayout.LayoutParams createLayoutParams() {
         int maxSizeX = pixelValue(sizeSquareInDP);
-        int maxSizeY = maxSizeX * 2;
+        int maxSizeY = maxSizeX * 3;
 
         return new RelativeLayout.LayoutParams(maxSizeX, maxSizeY);
     }
@@ -108,9 +96,12 @@ public class WhackTheCat extends TournamentGame {
     }
 
     public void setupOnClickListeners() {
-        for (View image : squares) {
-            image.setOnClickListener(v -> {
-                v.setVisibility(GONE);
+        for (View container : squares) {
+            ViewGroup viewGroup = ((ViewGroup) container);
+            View view = viewGroup.getChildAt(0);
+
+            view.setOnClickListener(v -> {
+                v.animate().translationY(-sizeSquareInDP * 2).setDuration(1000);
             });
         }
     }

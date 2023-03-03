@@ -6,16 +6,16 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
         android:adjustViewBounds="true"
         android:foregroundGravity="bottom"
         android:padding="0dp"
-        android:src="@mipmap/portrait_loki" />
+        android:src="@mipmap/portrait_cat" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
         android:adjustViewBounds="true"
         android:foregroundGravity="top"
         android:padding="0dp"
