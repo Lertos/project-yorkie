@@ -52,6 +52,9 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
+        findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
+            super.finish();
+        });
     }
 
     private void setupUI() {
