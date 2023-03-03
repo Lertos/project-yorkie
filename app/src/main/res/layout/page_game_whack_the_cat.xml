@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/absParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkest_blue">
 
-        <LinearLayout
-            android:id="@+id/linHeader"
+    <LinearLayout
+        android:id="@+id/linHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/border_with_dark_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvHeader"
+            style="@style/fontHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/border_with_dark_bg"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Whack Cats. Get Points."
+            android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/tvHeader"
-                style="@style/fontHeader"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Whack Cats. Get Points."
-                android:textAlignment="center" />
+    </LinearLayout>
 
-        </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relMainSection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linHeader"
+        android:orientation="vertical">
 
-</AbsoluteLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
