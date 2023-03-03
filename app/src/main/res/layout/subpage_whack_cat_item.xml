@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minHeight="270dp"
-    android:maxHeight="270dp">
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/ivSquare1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:foregroundGravity="bottom"
-        android:maxHeight="80dp"
-        android:minHeight="80dp"
         android:padding="0dp"
         android:src="@mipmap/portrait_loki" />
 
@@ -23,7 +18,6 @@
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:foregroundGravity="top"
-        android:maxHeight="90dp"
         android:padding="0dp"
         android:src="@mipmap/icon_blank" />
 
