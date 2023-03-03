@@ -332,6 +332,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btnStartNextGame"
                     style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -339,6 +340,7 @@
                     android:text="Continue" />
 
                 <Button
+                    android:id="@+id/btnLeaveTournament"
                     style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
