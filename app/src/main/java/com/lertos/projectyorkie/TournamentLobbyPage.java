@@ -2,6 +2,7 @@ package com.lertos.projectyorkie;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,6 +53,17 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
+        findViewById(R.id.btnStartNextGame).setOnClickListener(v -> {
+            //TODO: Load the next game in the TournamentMaster game list
+            findViewById(R.id.relScreen).setVisibility(View.GONE);
+
+            ViewStub stub = findViewById(R.id.viewStubGame);
+            stub.setLayoutResource(R.layout.page_game_test);
+            stub.inflate();
+
+            ((TextView) findViewById(R.id.tvHeader)).setText("Updated");
+        });
+
         findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
             super.finish();
         });
