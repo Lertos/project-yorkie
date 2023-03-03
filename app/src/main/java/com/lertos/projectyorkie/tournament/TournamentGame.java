@@ -1,15 +1,16 @@
 package com.lertos.projectyorkie.tournament;
 
+import android.util.TypedValue;
 import android.view.View;
 
 public abstract class TournamentGame {
 
-    protected View view;
+    protected View parentView;
     boolean isPlaying = false;
     double score = 0;
 
     public TournamentGame(View view) {
-        this.view = view;
+        this.parentView = view;
     }
 
     protected abstract void gameLoop();
@@ -31,5 +32,10 @@ public abstract class TournamentGame {
     private double getScore() {
         return score;
     }
+
+    protected int pixelValue(int dpValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, parentView.getResources().getDisplayMetrics());
+    }
+
 
 }
