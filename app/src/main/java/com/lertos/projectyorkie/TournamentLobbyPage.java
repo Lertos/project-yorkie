@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
+import com.lertos.projectyorkie.tournament.games.WhackTheRat;
 
 import java.util.List;
 
@@ -59,9 +60,12 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
             ViewStub stub = findViewById(R.id.viewStubGame);
             stub.setLayoutResource(R.layout.page_game_test);
-            stub.inflate();
+            View inflatedStub = stub.inflate();
 
             ((TextView) findViewById(R.id.tvHeader)).setText("Updated");
+
+            WhackTheRat game = new WhackTheRat(inflatedStub);
+            game.startGame();
         });
 
         findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
