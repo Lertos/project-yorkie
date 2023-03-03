@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
-import com.lertos.projectyorkie.tournament.games.WhackTheRat;
+import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.List;
 
@@ -59,12 +59,10 @@ public class TournamentLobbyPage extends AppCompatActivity {
             findViewById(R.id.relScreen).setVisibility(View.GONE);
 
             ViewStub stub = findViewById(R.id.viewStubGame);
-            stub.setLayoutResource(R.layout.page_game_test);
+            stub.setLayoutResource(R.layout.page_game_whack_the_cat);
             View inflatedStub = stub.inflate();
 
-            ((TextView) findViewById(R.id.tvHeader)).setText("Updated");
-
-            WhackTheRat game = new WhackTheRat(inflatedStub);
+            WhackTheCat game = new WhackTheCat(inflatedStub);
             game.startGame();
         });
 
