@@ -6,9 +6,9 @@ import android.widget.TextView;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 
-public class WhackTheRat extends TournamentGame {
+public class WhackTheCat extends TournamentGame {
 
-    public WhackTheRat(View view) {
+    public WhackTheCat(View view) {
         super(view);
 
         ((TextView) view.findViewById(R.id.tvHeader)).setText("Changed from class");
