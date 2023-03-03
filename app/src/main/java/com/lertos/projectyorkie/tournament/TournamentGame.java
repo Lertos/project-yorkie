@@ -1,15 +1,21 @@
 package com.lertos.projectyorkie.tournament;
 
+import android.view.View;
+
 public abstract class TournamentGame {
 
+    protected View view;
     boolean isPlaying = false;
     double score = 0;
 
+    public TournamentGame(View view) {
+        this.view = view;
+    }
+
+    protected abstract void gameLoop();
+
     //Runs the game and when it's over, returns the score
     public double startGame() {
-        //Setup UI, onClickListeners, start the timer, run the game loop
-        setupOnClickListeners();
-
         isPlaying = true;
 
         gameLoop();
@@ -22,16 +28,8 @@ public abstract class TournamentGame {
         return getScore();
     }
 
-    private void setupOnClickListeners() {
-
-    }
-
     private double getScore() {
         return score;
-    }
-
-    private void gameLoop() {
-        //Run handler and constantly run it until game is over, then return
     }
 
 }
