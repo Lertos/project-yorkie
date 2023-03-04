@@ -32,10 +32,13 @@ public class WhackTheCat extends TournamentGame {
     private final Handler disappearTimeHandler = new Handler();
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
-    private final double secondsLostWhenMissed = 2.5;
+    private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
+    private final int initialSquareDisappearTime;
     private int currentSquareDisappearTime;
+    //Starting at 2 so the math works better
+    private int currentSquare = 2;
 
     public WhackTheCat(View view) {
         super(view);
@@ -43,7 +46,8 @@ public class WhackTheCat extends TournamentGame {
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
 
-        currentSquareDisappearTime = calculateInitialDisappearTime();
+        initialSquareDisappearTime = calculateInitialDisappearTime();
+        currentSquareDisappearTime = initialSquareDisappearTime;
 
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
@@ -129,6 +133,9 @@ public class WhackTheCat extends TournamentGame {
                 //If the player clicks a valid, rising avatar - award them time
                 if (avatarsInUse.contains(view)) {
                     currentTime += secondsGainedWhenCorrect;
+                    currentSquare++;
+
+                    setNextDisappearTime();
 
                     v.animate().translationY(0).setDuration(100).withEndAction(() -> {
                         avatarsInUse.remove(view);
@@ -213,6 +220,10 @@ public class WhackTheCat extends TournamentGame {
         int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 
         return timeInMilliseconds;
+    }
+
+    private void setNextDisappearTime() {
+        currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / (currentSquare / 2.0));
     }
 
 }
