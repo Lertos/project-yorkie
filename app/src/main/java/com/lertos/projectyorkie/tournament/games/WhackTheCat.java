@@ -29,6 +29,8 @@ public class WhackTheCat extends TournamentGame {
     private final int numberOfRows = 3;
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
+    private final Handler disappearTimeHandler = new Handler();
+    private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
     private final double secondsLostWhenMissed = 2.5;
     private final double secondsGainedWhenCorrect = 1;
@@ -141,19 +143,16 @@ public class WhackTheCat extends TournamentGame {
     }
 
     protected void gameLoop() {
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (!isPlaying)
-                    return;
+        disappearTimeRunnable = () -> {
+            if (!isPlaying)
+                return;
 
-                raiseAvatar();
+            raiseAvatar();
 
-                handler.postDelayed(this, currentSquareDisappearTime);
-            }
+            disappearTimeHandler.removeCallbacks(disappearTimeRunnable);
+            disappearTimeHandler.postDelayed(disappearTimeRunnable, currentSquareDisappearTime);
         };
-        handler.post(runnable);
+        disappearTimeHandler.post(disappearTimeRunnable);
     }
 
     private void raiseAvatar() {
