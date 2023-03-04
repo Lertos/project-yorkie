@@ -28,7 +28,7 @@ public class WhackTheCat extends TournamentGame {
     private final int numberOfRows = 3;
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
-    private int xEnd, yEnd;
+    private int sectionWidth, sectionHeight;
 
     public WhackTheCat(View view) {
         super(view);
@@ -50,8 +50,8 @@ public class WhackTheCat extends TournamentGame {
 
                 int headerHeight = headerLayout.height();
 
-                xEnd = gameLayout.width();
-                yEnd = gameLayout.height() - headerHeight;
+                sectionWidth = gameLayout.width();
+                sectionHeight = gameLayout.height() - headerHeight;
 
                 //These methods require the variables assigned up above so they need to be in this block
                 addImagesToView();
@@ -63,8 +63,8 @@ public class WhackTheCat extends TournamentGame {
     public void addImagesToView() {
         RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         //These are to give even spacing, so: (SPACE) (OBJ) (SPACE) (OBJ) (SPACE) for example
-        int xFraction = xEnd / ((numberOfCols * 2) + 1);
-        int yFraction = yEnd / ((numberOfRows * 2) + 1);
+        int xFraction = sectionWidth / ((numberOfCols * 2) + 1);
+        int yFraction = sectionHeight / ((numberOfRows * 2) + 1);
 
         for (int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfCols; j++) {
