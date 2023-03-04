@@ -118,9 +118,19 @@ public class WhackTheCat extends TournamentGame {
     }
 
     public void setupOnClickListeners() {
-        for (View container : avatars) {
-            container.setOnClickListener(v -> {
-                v.animate().translationY(-sizeSquareInDP * 2).setDuration(1000);
+        for (View view : avatars) {
+            view.setOnClickListener(v -> {
+                //TODO: Use calculated numbers for adding/removing time from the timer
+                //TODO: Add score (based on a formula) for getting it right as well
+                if (avatarsInUse.contains(view)) {
+                    currentTime += 2;
+
+                    v.animate().translationY(0).setDuration(100).withEndAction(() -> {
+                        avatarsInUse.remove(view);
+                    });
+                } else {
+                    currentTime -= 3;
+                }
             });
         }
     }
