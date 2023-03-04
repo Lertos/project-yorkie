@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 
 import java.util.ArrayList;
@@ -30,9 +32,16 @@ public class WhackTheCat extends TournamentGame {
     private Rect gameLayout = new Rect();
     private int sectionWidth, sectionHeight;
     private final int millisecondsBeforeNextUpdate;
+    private final double canineFocus;
+    private final double secondsLostWhenMissed = 2.5;
+    private final double secondsGainedWhenCorrect = 1;
+    private final double baseDisappearTime = 3.5;
+    private double currentSquareDisappearTime;
 
     public WhackTheCat(View view) {
         super(view);
+
+        canineFocus = Talents.canineFocus.getCurrentBonus();
 
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
@@ -120,16 +129,18 @@ public class WhackTheCat extends TournamentGame {
     public void setupOnClickListeners() {
         for (View view : avatars) {
             view.setOnClickListener(v -> {
-                //TODO: Use calculated numbers for adding/removing time from the timer
                 //TODO: Add score (based on a formula) for getting it right as well
+                //If the player clicks a valid, rising avatar - award them time
                 if (avatarsInUse.contains(view)) {
-                    currentTime += 2;
+                    currentTime += secondsGainedWhenCorrect;
 
                     v.animate().translationY(0).setDuration(100).withEndAction(() -> {
                         avatarsInUse.remove(view);
                     });
-                } else {
-                    currentTime -= 3;
+                }
+                //If the player clicks an inactive spot (wrong click / timing / spamming) - take time away
+                else {
+                    currentTime -= secondsLostWhenMissed;
                 }
             });
         }
@@ -169,7 +180,11 @@ public class WhackTheCat extends TournamentGame {
         Handler handler = new Handler();
         Runnable runnable = () -> {
             view.animate().translationY(0).setDuration(timeToRise / 2).withEndAction(() -> {
-                avatarsInUse.remove(view);
+                if (avatarsInUse.contains(view)) {
+                    //They missed it; deduct time
+                    currentTime -= secondsLostWhenMissed;
+                    avatarsInUse.remove(view);
+                }
             });
         };
         handler.postDelayed(runnable, timeToDisappear);
@@ -198,5 +213,13 @@ public class WhackTheCat extends TournamentGame {
         }
         return iterator.next();
     }
+
+    private double calculateInitialDisappearTime() {
+        int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
+
+        return (canineFocus + baseDisappearTime) / tournamentRankValue;
+    }
+
+
 
 }
