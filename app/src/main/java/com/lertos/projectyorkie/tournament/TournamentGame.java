@@ -38,8 +38,8 @@ public abstract class TournamentGame {
     public double startGame() {
         isPlaying = true;
 
-        handleTimer();
         gameLoop();
+        handleTimer();
         return score;
     }
 
