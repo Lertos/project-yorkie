@@ -45,11 +45,13 @@ public class WhackTheCat extends TournamentGame {
                 layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 layout.getGlobalVisibleRect(gameLayout);
 
-                int buttonHeight = sizeSquareInDP;
-                int layoutMargin = 60;
+                Rect headerLayout = new Rect();
+                parentView.findViewById(R.id.linHeader).getGlobalVisibleRect(headerLayout);
 
-                xEnd = gameLayout.right - layoutMargin - buttonHeight;
-                yEnd = gameLayout.bottom - 201 - layoutMargin - buttonHeight;
+                int headerHeight = headerLayout.height();
+
+                xEnd = gameLayout.width();
+                yEnd = gameLayout.height() - headerHeight;
 
                 //These methods require the variables assigned up above so they need to be in this block
                 addImagesToView();
@@ -60,8 +62,9 @@ public class WhackTheCat extends TournamentGame {
 
     public void addImagesToView() {
         RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
-        int xFraction = xEnd / (numberOfCols * 2);
-        int yFraction = yEnd / (numberOfRows * 2);
+        //These are to give even spacing, so: (SPACE) (OBJ) (SPACE) (OBJ) (SPACE) for example
+        int xFraction = xEnd / ((numberOfCols * 2) + 1);
+        int yFraction = yEnd / ((numberOfRows * 2) + 1);
 
         for (int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfCols; j++) {
