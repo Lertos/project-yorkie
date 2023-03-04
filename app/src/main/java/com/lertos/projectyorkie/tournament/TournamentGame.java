@@ -6,8 +6,8 @@ import android.view.View;
 public abstract class TournamentGame {
 
     protected View parentView;
-    boolean isPlaying = false;
-    double score = 0;
+    protected boolean isPlaying = false;
+    protected double score = 0;
 
     public TournamentGame(View view) {
         this.parentView = view;
@@ -20,16 +20,6 @@ public abstract class TournamentGame {
         isPlaying = true;
 
         gameLoop();
-        return 0.0;
-    }
-
-    private double stopGame() {
-        //Stop the timer
-
-        return getScore();
-    }
-
-    private double getScore() {
         return score;
     }
 
