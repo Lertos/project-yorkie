@@ -32,7 +32,6 @@ public class WhackTheCat extends TournamentGame {
     private Rect gameLayout = new Rect();
     private int sectionWidth, sectionHeight;
     private final int millisecondsBeforeNextUpdate;
-    private final double canineFocus;
     private final double secondsLostWhenMissed = 2.5;
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
@@ -40,8 +39,6 @@ public class WhackTheCat extends TournamentGame {
 
     public WhackTheCat(View view) {
         super(view);
-
-        canineFocus = Talents.canineFocus.getCurrentBonus();
 
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();

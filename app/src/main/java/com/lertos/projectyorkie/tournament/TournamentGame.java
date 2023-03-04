@@ -6,12 +6,14 @@ import android.view.View;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.data.Talents;
 
 public abstract class TournamentGame {
 
     protected View parentView;
     protected boolean isPlaying = false;
     protected double score = 0;
+    protected final double canineFocus;
     protected LinearProgressIndicator indicator;
     protected final int millisecondsPerUpdate = 100;
     protected final int timerMax = 1000;
@@ -20,6 +22,8 @@ public abstract class TournamentGame {
 
     public TournamentGame(View view) {
         this.parentView = view;
+
+        canineFocus = Talents.canineFocus.getCurrentBonus();
 
         currentTime = startTime;
 
