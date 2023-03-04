@@ -46,7 +46,7 @@ public class WhackTheCat extends TournamentGame {
                 layout.getGlobalVisibleRect(gameLayout);
 
                 int buttonHeight = sizeSquareInDP;
-                int layoutMargin = 120;
+                int layoutMargin = 60;
 
                 xEnd = gameLayout.right - layoutMargin - buttonHeight;
                 yEnd = gameLayout.bottom - 201 - layoutMargin - buttonHeight;
