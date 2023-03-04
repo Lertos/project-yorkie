@@ -118,4 +118,31 @@ public class TournamentRank {
         return "NaN";
     }
 
+    //To get a numerical, sequential number of the rank. 1 would be WOOD 5, and 40 would be EMERALD 1 for example
+    //Each tier counts as 1
+    //Each division counts as the division # MULTIPLIED by the amount of tiers per division
+    public int getRankValue() {
+        int rankNumber = -1;
+
+        //Get the base number
+        switch (division) {
+            case WOOD: rankNumber = 0; break;
+            case IRON: rankNumber = 1; break;
+            case BRONZE: rankNumber = 2; break;
+            case SILVER: rankNumber = 3; break;
+            case GOLD: rankNumber = 4; break;
+            case PLATINUM: rankNumber = 5; break;
+            case DIAMOND: rankNumber = 6; break;
+            case EMERALD: rankNumber = 7; break;
+        }
+
+        //Get the division value based on how many tiers they would have gone through
+        rankNumber *= startTier;
+
+        //Get the tier remaining value
+        rankNumber += (startTier + 1) - tier;
+
+        return rankNumber;
+    }
+
 }
