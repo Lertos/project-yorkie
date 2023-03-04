@@ -15,7 +15,7 @@ public abstract class TournamentGame {
     protected LinearProgressIndicator indicator;
     protected final int millisecondsPerUpdate = 100;
     protected final int timerMax = 1000;
-    protected final double startTime = 4.0;
+    protected final double startTime = 30.0;
     protected double currentTime;
 
     public TournamentGame(View view) {
