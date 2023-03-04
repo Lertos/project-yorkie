@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:indeterminate="false"
-                    app:trackThickness="40dp" />
+                    app:trackThickness="30dp" />
 
                 <TextView
                     android:id="@+id/tvTimerInSecs"
