@@ -13,15 +13,19 @@ import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 public class WhackTheCat extends TournamentGame {
 
     Random rng = new Random();
     private ArrayList<View> avatars;
-    private final int sizeAvatarInDP = 60;
-    private final int sizeSquareInDP = 80;
-    private final int numberOfRows = 2;
+    private ArrayList<View> avatarsInUse;
+    private final int sizeAvatarInDP = 40;
+    private final int sizeSquareInDP = 55;
+    private final int numberOfRows = 3;
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
     private int xEnd, yEnd;
@@ -30,7 +34,9 @@ public class WhackTheCat extends TournamentGame {
         super(view);
 
         avatars = new ArrayList<>();
+        avatarsInUse = new ArrayList<>();
 
+        //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -45,6 +51,7 @@ public class WhackTheCat extends TournamentGame {
                 xEnd = gameLayout.right - layoutMargin - buttonHeight;
                 yEnd = gameLayout.bottom - 201 - layoutMargin - buttonHeight;
 
+                //These methods require the variables assigned up above so they need to be in this block
                 addImagesToView();
                 setupOnClickListeners();
             }
@@ -68,6 +75,8 @@ public class WhackTheCat extends TournamentGame {
 
                 params.leftMargin = xFraction * (j * 2 + 1);
                 params.topMargin = yFraction * (i * 2 + 1);
+
+                ivAvatar.setId(View.generateViewId());
 
                 layout.addView(view, params);
 
@@ -117,28 +126,58 @@ public class WhackTheCat extends TournamentGame {
             public void run() {
                 raiseAvatar();
 
-                handler.postDelayed(this, 2000);
+                handler.postDelayed(this, 500);
             }
         };
         handler.post(runnable);
     }
 
     private void raiseAvatar() {
-        View view = avatars.get(rng.nextInt(avatars.size()));
+        View view = getUnusedAvatar();
+
+        if (view == null)
+            return;
+
         int timeToRise = 1000;
         int timeToDisappear = 1500;
 
+        //Add the specific avatar to a list to check against later when we want to raise the next one
+        avatarsInUse.add(view);
+
+        //Animate the movement above the square to allow them time to click on it
         view.animate().translationY(pixelValue(-sizeAvatarInDP)).setDuration(1000);
 
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                view.animate().translationY(0).setDuration(timeToRise / 2);
-            }
+        Handler handler = new Handler();
+        Runnable runnable = () -> {
+            view.animate().translationY(0).setDuration(timeToRise / 2).withEndAction(() -> {
+                avatarsInUse.remove(view);
+            });
         };
         handler.postDelayed(runnable, timeToDisappear);
     }
 
+    private View getUnusedAvatar() {
+        //Check if all avatars in use
+        if (avatars.size() == avatarsInUse.size())
+            return null;
+
+        Set<View> setAvatars = new HashSet<>();
+        Set<View> setAvatarsInUse = new HashSet<>();
+
+        setAvatars.addAll(avatars);
+        setAvatarsInUse.addAll(avatarsInUse);
+
+        //Find the difference of the sets to find unused avatars
+        Set<View> difference = new HashSet<>(setAvatars);
+        difference.removeAll(setAvatarsInUse);
+
+        int randInd = rng.nextInt(difference.size());
+        Iterator<View> iterator = difference.iterator();
+
+        for (int i = 0; i < randInd; i++) {
+            iterator.next();
+        }
+        return iterator.next();
+    }
 
 }
