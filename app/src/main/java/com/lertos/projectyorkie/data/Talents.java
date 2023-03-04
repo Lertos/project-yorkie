@@ -123,24 +123,24 @@ public class Talents {
 
     public static final Talent canineFocus = new Talent(
             "Canine Focus",
-            "Tournaments - Focus to slow down time",
+            "Tournaments - Less reaction time needed for actions",
             TalentBonusType.FLAT,
             1,
-            5,
-            0,
-            0.06,
-            50
+            4.5,
+            1,
+            1,
+            100
     );
 
     public static final Talent cutenessFactor = new Talent(
             "Cuteness Factor",
             "Tournaments - Get more points for each action",
-            TalentBonusType.FLAT,
+            TalentBonusType.PERCENTAGE,
             1,
-            5,
+            4.5,
             0,
             0.06,
-            50
+            100
     );
 
     public Talents() {
