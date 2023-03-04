@@ -29,16 +29,16 @@ public class WhackTheCat extends TournamentGame {
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
     private int sectionWidth, sectionHeight;
-    private final double startTime = 2.0;
-    private double currentTime;
+    private final int millisecondsBeforeNextUpdate;
 
     public WhackTheCat(View view) {
         super(view);
 
-        currentTime = startTime;
-
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
+
+        //TODO: This should be calculated based on a formula; taking into consideration the players talent level
+        millisecondsBeforeNextUpdate = 500;
 
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
@@ -126,14 +126,16 @@ public class WhackTheCat extends TournamentGame {
     }
 
     protected void gameLoop() {
-        //Run handler and constantly run it until game is over, then return
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                if (!isPlaying)
+                    return;
+
                 raiseAvatar();
 
-                handler.postDelayed(this, 500);
+                handler.postDelayed(this, millisecondsBeforeNextUpdate);
             }
         };
         handler.post(runnable);
