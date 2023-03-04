@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class WhackTheCat extends TournamentGame {
 
-    Random rng = new Random();
+    private Random rng = new Random();
     private ArrayList<View> avatars;
     private ArrayList<View> avatarsInUse;
     private final int sizeAvatarInDP = 40;
@@ -29,9 +29,13 @@ public class WhackTheCat extends TournamentGame {
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
     private int sectionWidth, sectionHeight;
+    private final double startTime = 2.0;
+    private double currentTime;
 
     public WhackTheCat(View view) {
         super(view);
+
+        currentTime = startTime;
 
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
