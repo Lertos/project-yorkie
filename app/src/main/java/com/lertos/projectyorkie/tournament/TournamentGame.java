@@ -1,16 +1,31 @@
 package com.lertos.projectyorkie.tournament;
 
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.lertos.projectyorkie.R;
 
 public abstract class TournamentGame {
 
     protected View parentView;
     protected boolean isPlaying = false;
     protected double score = 0;
+    protected LinearProgressIndicator indicator;
+    protected final int millisecondsPerUpdate = 100;
+    protected final int timerMax = 1000;
+    protected final double startTime = 4.0;
+    protected double currentTime;
 
     public TournamentGame(View view) {
         this.parentView = view;
+
+        currentTime = startTime;
+
+        //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
+        indicator = parentView.findViewById(R.id.indTimer);
+        indicator.setMax(timerMax);
     }
 
     protected abstract void gameLoop();
@@ -19,8 +34,34 @@ public abstract class TournamentGame {
     public double startGame() {
         isPlaying = true;
 
+        handleTimer();
         gameLoop();
         return score;
+    }
+
+    protected void handleTimer() {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                //Handle the indicators shown time
+                int calculatedProgress = (int) Math.round((currentTime / startTime) * timerMax);
+
+                indicator.setProgressCompat(calculatedProgress, false);
+
+                if (currentTime <= 0)
+                    isPlaying = false;
+
+                if (!isPlaying)
+                    return;
+
+                //Calculate the new time
+                currentTime -= millisecondsPerUpdate / 1000.0;
+
+                handler.postDelayed(this, millisecondsPerUpdate);
+            }
+        };
+        handler.post(runnable);
     }
 
     protected int pixelValue(int dpValue) {
