@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
-import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 
 import java.util.ArrayList;
@@ -31,11 +30,10 @@ public class WhackTheCat extends TournamentGame {
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
     private int sectionWidth, sectionHeight;
-    private final int millisecondsBeforeNextUpdate;
     private final double secondsLostWhenMissed = 2.5;
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
-    private double currentSquareDisappearTime;
+    private int currentSquareDisappearTime;
 
     public WhackTheCat(View view) {
         super(view);
@@ -43,8 +41,7 @@ public class WhackTheCat extends TournamentGame {
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
 
-        //TODO: This should be calculated based on a formula; taking into consideration the players talent level
-        millisecondsBeforeNextUpdate = 500;
+        currentSquareDisappearTime = calculateInitialDisappearTime();
 
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
@@ -153,7 +150,7 @@ public class WhackTheCat extends TournamentGame {
 
                 raiseAvatar();
 
-                handler.postDelayed(this, millisecondsBeforeNextUpdate);
+                handler.postDelayed(this, currentSquareDisappearTime);
             }
         };
         handler.post(runnable);
@@ -211,12 +208,12 @@ public class WhackTheCat extends TournamentGame {
         return iterator.next();
     }
 
-    private double calculateInitialDisappearTime() {
+    private int calculateInitialDisappearTime() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
+        double timeInSeconds = (canineFocus + baseDisappearTime) / tournamentRankValue;
+        int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 
-        return (canineFocus + baseDisappearTime) / tournamentRankValue;
+        return timeInMilliseconds;
     }
-
-
 
 }
