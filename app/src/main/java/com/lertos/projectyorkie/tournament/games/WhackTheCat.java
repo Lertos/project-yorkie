@@ -1,9 +1,7 @@
 package com.lertos.projectyorkie.tournament.games;
 
-import static android.view.View.GONE;
-
 import android.graphics.Rect;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +13,13 @@ import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class WhackTheCat extends TournamentGame {
 
-    private ArrayList<View> squares;
-    private final int sizeAvatarInDP = 70;
+    Random rng = new Random();
+    private ArrayList<View> avatars;
+    private final int sizeAvatarInDP = 60;
     private final int sizeSquareInDP = 80;
     private final int numberOfRows = 2;
     private final int numberOfCols = 3;
@@ -29,7 +29,7 @@ public class WhackTheCat extends TournamentGame {
     public WhackTheCat(View view) {
         super(view);
 
-        squares = new ArrayList<>();
+        avatars = new ArrayList<>();
 
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
@@ -62,14 +62,16 @@ public class WhackTheCat extends TournamentGame {
 
                 RelativeLayout.LayoutParams params = createLayoutParams();
 
-                setMaxDimensionsForSquares(view);
+                ViewGroup imageGroup = ((ViewGroup) view);
+                ImageView ivAvatar = setMaxDimensionsForAvatar(imageGroup);
+                setMaxDimensionsForSquare(imageGroup);
 
                 params.leftMargin = xFraction * (j * 2 + 1);
                 params.topMargin = yFraction * (i * 2 + 1);
 
                 layout.addView(view, params);
 
-                squares.add(view);
+                avatars.add(ivAvatar);
             }
         }
     }
@@ -81,26 +83,27 @@ public class WhackTheCat extends TournamentGame {
         return new RelativeLayout.LayoutParams(maxSizeX, maxSizeY);
     }
 
-    private void setMaxDimensionsForSquares(View view) {
-        ViewGroup imageGroup = ((ViewGroup) view);
-
+    private ImageView setMaxDimensionsForAvatar(ViewGroup imageGroup) {
         ImageView avatar = ((ImageView) imageGroup.getChildAt(0));
 
         avatar.setMinimumHeight(pixelValue(sizeAvatarInDP));
         avatar.setMaxHeight(pixelValue(sizeAvatarInDP));
 
-        ImageView block = ((ImageView) imageGroup.getChildAt(1));
+        return avatar;
+    }
 
-        block.setMinimumHeight(pixelValue(sizeSquareInDP));
-        block.setMaxHeight(pixelValue(sizeSquareInDP));
+    private ImageView setMaxDimensionsForSquare(ViewGroup imageGroup) {
+        ImageView square = ((ImageView) imageGroup.getChildAt(1));
+
+        square.setMinimumHeight(pixelValue(sizeSquareInDP));
+        square.setMaxHeight(pixelValue(sizeSquareInDP));
+
+        return square;
     }
 
     public void setupOnClickListeners() {
-        for (View container : squares) {
-            ViewGroup viewGroup = ((ViewGroup) container);
-            View view = viewGroup.getChildAt(0);
-
-            view.setOnClickListener(v -> {
+        for (View container : avatars) {
+            container.setOnClickListener(v -> {
                 v.animate().translationY(-sizeSquareInDP * 2).setDuration(1000);
             });
         }
@@ -108,6 +111,33 @@ public class WhackTheCat extends TournamentGame {
 
     protected void gameLoop() {
         //Run handler and constantly run it until game is over, then return
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                raiseAvatar();
+
+                handler.postDelayed(this, 2000);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    private void raiseAvatar() {
+        View view = avatars.get(rng.nextInt(avatars.size()));
+        int timeToRise = 1000;
+        int timeToDisappear = 1500;
+
+        view.animate().translationY(pixelValue(-sizeAvatarInDP)).setDuration(1000);
+
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                view.animate().translationY(0).setDuration(timeToRise / 2);
+            }
+        };
+        handler.postDelayed(runnable, timeToDisappear);
     }
 
 
