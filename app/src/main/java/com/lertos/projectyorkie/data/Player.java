@@ -7,7 +7,7 @@ import com.lertos.projectyorkie.tournament.TournamentRank;
 public class Player {
 
     //Formatting/colorization purposes
-    private final int highlightColor = Color.YELLOW;
+    private final int highlightColor = Color.CYAN;
 
     //Player data that will change
     private double currentHeartsPerSecond;

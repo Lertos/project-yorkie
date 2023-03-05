@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border_with_dark_bg">
+    android:background="@drawable/border_with_darkest_bg">
 
     <LinearLayout
         android:id="@+id/linUpgradeButtons"
@@ -19,8 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="MAX"
-            android:textColor="@color/yellow" />
+            android:text="MAX" />
 
         <Button
             android:id="@+id/btnUpgradeSingle"
@@ -28,8 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="1"
-            android:textColor="@color/yellow" />
+            android:text="1" />
 
         <Button
             android:id="@+id/btnUpgradeUnlock"
@@ -38,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Buy"
-            android:textColor="@color/yellow"
             android:visibility="gone" />
 
         <TextView
@@ -47,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="PH" />
+            android:text="PH"
+            android:textColor="@color/yellow" />
 
     </LinearLayout>
 

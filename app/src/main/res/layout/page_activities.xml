@@ -15,7 +15,7 @@
             android:id="@+id/linHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_with_dark_bg"
+            android:background="@drawable/border_with_darkest_bg"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linHeader"
-            android:background="@drawable/border_with_light_bg"
+            android:background="@drawable/border_with_dark_bg"
             android:orientation="vertical">
 
             <TextView

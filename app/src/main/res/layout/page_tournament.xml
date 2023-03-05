@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@drawable/border_with_dark_bg"
+            android:background="@drawable/border_with_darkest_bg"
             android:gravity="center">
 
             <TextView
@@ -25,8 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="The Pawesome Games"
-                android:textAlignment="center"
-                android:textColor="@color/gold" />
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -36,14 +35,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linHeader"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/border_with_light_bg"
-            android:orientation="vertical">
+            android:background="@drawable/border_with_dark_bg"
+            android:orientation="horizontal">
 
             <TextView
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Heart Tokens"
                 android:textAlignment="center" />
 
@@ -52,6 +51,7 @@
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textAlignment="center"
                 android:textColor="@color/yellow" />
 
@@ -62,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linHeartTokens"
-            android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -70,86 +69,93 @@
                 style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Game Info"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_with_darkest_bg"
+                android:text="Tournament Setup"
                 android:textAlignment="center"
                 android:textColor="@color/gold" />
 
-            <LinearLayout
+            <TextView
+                style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:text="Difficulty"
+                android:textAlignment="center" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/border_with_dark_bg"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
+                <RadioButton
                     style="@style/fontLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tournament Bracket"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/tvCurrentBracket"
-                    style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow" />
-
-                <TextView
-                    style="@style/fontLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tournament Difficulty"
-                    android:textAlignment="center" />
-
-                <Button
-                    android:id="@+id/btnDifficultyMenu"
-                    style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Choose Difficulty"
-                    android:textColor="@color/yellow" />
+                    android:layout_marginHorizontal="4dp"
+                    android:text="Easy"
+                    android:theme="@style/baseRadioButton" />
 
-                <TextView
+                <RadioButton
                     style="@style/fontLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Your Bet"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/tvBetAmount"
-                    style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow" />
-
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/sliderBetAmount"
-                    style="@style/basicSlider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stepSize="10.0"
-                    android:valueFrom="10.0"
-                    android:valueTo="100.0" />
-
-                <Button
-                    android:id="@+id/btnMoveToLobby"
-                    style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp" />
+                    android:layout_marginHorizontal="4dp"
+                    android:text="Normal"
+                    android:theme="@style/baseRadioButton" />
 
-            </LinearLayout>
+                <RadioButton
+                    style="@style/fontLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:text="Hard"
+                    android:theme="@style/baseRadioButton" />
+
+            </RadioGroup>
+
+            <TextView
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Bet"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvBetAmount"
+                style="@style/fontMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/yellow" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderBetAmount"
+                style="@style/basicSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/border_with_dark_bg"
+                android:stepSize="10.0"
+                android:valueFrom="10.0"
+                android:valueTo="100.0"
+                app:labelBehavior="gone"
+                app:thumbColor="@color/darkest_blue" />
+
+            <Button
+                android:id="@+id/btnMoveToLobby"
+                style="@style/baseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

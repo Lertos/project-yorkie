@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border_with_dark_bg">
+    android:background="@drawable/border_with_darkest_bg">
 
     <RelativeLayout
         android:id="@+id/linInfo"

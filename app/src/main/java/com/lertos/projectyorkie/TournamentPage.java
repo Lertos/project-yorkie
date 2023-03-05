@@ -22,7 +22,6 @@ public class TournamentPage extends AppCompatActivity {
     private Toast toastMsg;
     private Slider sliderBetAmount;
     private TextView tvBetAmount;
-    private Button btnDifficultyMenu;
     private TournamentDifficulty difficulty;
     private double heartsBet;
 
@@ -39,7 +38,6 @@ public class TournamentPage extends AppCompatActivity {
 
         sliderBetAmount = findViewById(R.id.sliderBetAmount);
         tvBetAmount = findViewById(R.id.tvBetAmount);
-        btnDifficultyMenu = findViewById(R.id.btnDifficultyMenu);
 
         Helper.setupBottomButtonBar(this);
         setOnClickListeners();
@@ -78,10 +76,6 @@ public class TournamentPage extends AppCompatActivity {
             startActivity(intent);
         });
 
-        ((Button) findViewById(R.id.btnDifficultyMenu)).setOnClickListener(v -> {
-            showMenu(v, R.menu.difficulty_popup);
-        });
-
         sliderBetAmount.addOnChangeListener((slider, value, fromUser) -> {
             double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
             double percentBet = value / 100;
@@ -98,12 +92,10 @@ public class TournamentPage extends AppCompatActivity {
         //Choose a default value for the difficulty
         pickDifficultyOption(TournamentDifficulty.NORMAL);
 
-        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(rank.getRankDisplay());
-
         ((Button) findViewById(R.id.btnMoveToLobby)).setText(
                 Helper.createSpannable(
-                        "Join Tournament\n",
-                        " " + IdleNumber.getStrNumber(costInTokens) + " Tokens",
+                        "Join ",
+                        IdleNumber.getStrNumber(costInTokens) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
@@ -138,8 +130,6 @@ public class TournamentPage extends AppCompatActivity {
 
     private void pickDifficultyOption(TournamentDifficulty chosenDifficulty) {
         difficulty = chosenDifficulty;
-
-        btnDifficultyMenu.setText(difficulty.getDisplayStr());
     }
 
     private void updateUIWithCurrentHeartTokens() {

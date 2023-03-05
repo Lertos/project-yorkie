@@ -127,7 +127,7 @@ public class PettingPage extends AppCompatActivity {
     private void setPlayerScoreDataUI() {
         ((TextView) findViewById(R.id.tvHighestThreshold)).setText(
                 Helper.createSpannable(
-                        "Highest Threshold:",
+                        "Threshold:",
                         " " + DataManager.getInstance().getPlayerData().getPettingHighestThreshold(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -135,7 +135,7 @@ public class PettingPage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvHighestSquare)).setText(
                 Helper.createSpannable(
-                        "Highest Square:",
+                        "Square:",
                         " " + DataManager.getInstance().getPlayerData().getPettingHighestSquare(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -143,7 +143,7 @@ public class PettingPage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvStartingThreshold)).setText(
                 Helper.createSpannable(
-                        "Starting Threshold:",
+                        "Start Threshold:",
                         " " + pettingMaster.getStartThreshold(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -151,7 +151,7 @@ public class PettingPage extends AppCompatActivity {
 
         ((Button) findViewById(R.id.btnStart)).setText(
                 Helper.createSpannable(
-                        "Start\n",
+                        "Start ",
                         " " + IdleNumber.getStrNumber(pettingMaster.getStartCost()) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),

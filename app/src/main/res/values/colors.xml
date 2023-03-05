@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="darkest_blue">#04121A</color>
-    <color name="dark_blue">#091C27</color>
-    <color name="darker_light_blue">#39545B</color>
-    <color name="faded_light_blue">#5E868F</color>
+    <color name="darkest_blue">#141A23</color>
+    <color name="darker_blue">#08254E</color>
+    <color name="dark_blue">#294364</color>
+    <color name="darker_light_blue">#98c1d9</color>
+    <color name="faded_light_blue">#e0fbfc</color>
     <color name="light_blue">#1AD4FF</color>
     <color name="black">#FF000000</color>
-    <color name="yellow">#FFEB3B</color>
+    <color name="yellow">#1AD4FF</color>
     <color name="pink">#FFA1FD</color>
-    <color name="gold">#FFA012</color>
+    <color name="gold">#DE5635</color>
     <color name="light_gray">#7E7E7E</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

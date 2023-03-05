@@ -8,6 +8,6 @@
         android:top="10dp" />
     <stroke
         android:width="4dp"
-        android:color="@color/faded_light_blue" />
+        android:color="@color/black" />
     <solid android:color="@color/dark_blue" />
 </shape>

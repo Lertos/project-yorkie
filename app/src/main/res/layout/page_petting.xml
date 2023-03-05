@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@drawable/border_with_dark_bg"
+            android:background="@drawable/border_with_darkest_bg"
             android:gravity="center">
 
             <TextView
@@ -35,14 +35,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linHeader"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/border_with_light_bg"
-            android:orientation="vertical">
+            android:background="@drawable/border_with_dark_bg"
+            android:orientation="horizontal">
 
             <TextView
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Heart Tokens"
                 android:textAlignment="center" />
 
@@ -51,6 +51,7 @@
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textAlignment="center"
                 android:textColor="@color/yellow" />
 
@@ -69,7 +70,9 @@
                 style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/border_with_darkest_bg"
                 android:text="Highscores"
                 android:textAlignment="center"
                 android:textColor="@color/gold" />
@@ -78,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:paddingVertical="8dp"
                 android:background="@drawable/border_with_dark_bg"
                 android:orientation="vertical">
 
@@ -92,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/tvRewardAmount"
-                    style="@style/fontLarge"
+                    style="@style/fontHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -120,8 +124,9 @@
                 style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/border_with_darkest_bg"
                 android:text="Game Info"
                 android:textAlignment="center"
                 android:textColor="@color/gold" />
@@ -130,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:paddingVertical="8dp"
                 android:background="@drawable/border_with_dark_bg"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -141,16 +147,15 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center" />
 
-                <Button
-                    android:id="@+id/btnStart"
-                    style="@style/baseButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="Start" />
-
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnStart"
+                style="@style/baseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Start" />
 
         </LinearLayout>
 
@@ -197,7 +202,7 @@
                 android:id="@+id/linMainSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_with_light_bg"
+                android:background="@drawable/border_with_dark_bg"
                 android:gravity="center"
                 android:orientation="vertical">
 
