@@ -17,64 +17,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_with_dark_bg"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <!-- Page Title -->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="40dp"
-                android:orientation="vertical">
+                android:id="@+id/linHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <TextView
+                    style="@style/fontHeader"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/border_with_light_bg"
-                    android:maxHeight="100dp"
-                    android:padding="0dp"
-                    android:src="@mipmap/portrait_marco" />
+                    android:text="The Pawesome Games"
+                    android:textAlignment="center" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/fontLarge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
-                    android:padding="4dp"
-                    android:text="Host Marco"
-                    android:textAlignment="center"
-                    android:textColor="@color/gold" />
-
-                <TextView
                     android:id="@+id/tvCurrentBracket"
                     style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bracket: Silver II" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tvDifficulty"
                     style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Difficulty: Hard" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tvBetAmount"
                     style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bet Amount: 23.1k" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -117,21 +104,15 @@
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Breed: Yorkie" />
+                        android:text="Yorkie"
+                        android:textColor="@color/gold" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore1"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Score: 12" />
-
-                    <TextView
-                        android:id="@+id/tvDogTotalScore1"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Total Score: 103" />
+                        android:text="SCORE: 12 (0)" />
 
                 </LinearLayout>
 
@@ -166,21 +147,15 @@
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Breed: Yorkie" />
+                        android:text="Yorkie"
+                        android:textColor="@color/gold" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore2"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Score: 12" />
-
-                    <TextView
-                        android:id="@+id/tvDogTotalScore2"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Total Score: 103" />
+                        android:text="SCORE: 12 (0)" />
 
                 </LinearLayout>
 
@@ -215,21 +190,15 @@
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Breed: Yorkie" />
+                        android:text="Yorkie"
+                        android:textColor="@color/gold" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore3"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Score: 12" />
-
-                    <TextView
-                        android:id="@+id/tvDogTotalScore3"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Total Score: 103" />
+                        android:text="SCORE: 12 (0)" />
 
                 </LinearLayout>
 
@@ -264,21 +233,15 @@
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Breed: Yorkie" />
+                        android:text="Yorkie"
+                        android:textColor="@color/gold" />
 
                     <TextView
                         android:id="@+id/tvDogRecentScore4"
                         style="@style/fontMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Score: 12" />
-
-                    <TextView
-                        android:id="@+id/tvDogTotalScore4"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Total Score: 103" />
+                        android:text="SCORE: 12 (0)" />
 
                 </LinearLayout>
 

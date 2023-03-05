@@ -80,7 +80,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
     private void setupHeaderInfo() {
         ((TextView) findViewById(R.id.tvCurrentBracket)).setText(
                 Helper.createSpannable(
-                        "Bracket: ",
+                        "BRACKET: ",
                         DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -88,7 +88,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvDifficulty)).setText(
                 Helper.createSpannable(
-                        "Difficulty: ",
+                        "DIFFICULTY: ",
                         tournamentMaster.getTournamentDifficulty().getDisplayStr(),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -96,7 +96,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvBetAmount)).setText(
                 Helper.createSpannable(
-                        "Bet Amount: ",
+                        "BET: ",
                         IdleNumber.getStrNumber(tournamentMaster.getInitialBet()),
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
@@ -111,58 +111,40 @@ public class TournamentLobbyPage extends AppCompatActivity {
                 contestantList.get(0),
                 findViewById(R.id.ivDog1),
                 findViewById(R.id.tvDogType1),
-                findViewById(R.id.tvDogRecentScore1),
-                findViewById(R.id.tvDogTotalScore1)
+                findViewById(R.id.tvDogRecentScore1)
         );
 
         setupContestant(
                 contestantList.get(1),
                 findViewById(R.id.ivDog2),
                 findViewById(R.id.tvDogType2),
-                findViewById(R.id.tvDogRecentScore2),
-                findViewById(R.id.tvDogTotalScore2)
+                findViewById(R.id.tvDogRecentScore2)
         );
 
         setupContestant(
                 contestantList.get(2),
                 findViewById(R.id.ivDog3),
                 findViewById(R.id.tvDogType3),
-                findViewById(R.id.tvDogRecentScore3),
-                findViewById(R.id.tvDogTotalScore3)
+                findViewById(R.id.tvDogRecentScore3)
         );
 
         setupContestant(
                 contestantList.get(3),
                 findViewById(R.id.ivDog4),
                 findViewById(R.id.tvDogType4),
-                findViewById(R.id.tvDogRecentScore4),
-                findViewById(R.id.tvDogTotalScore4)
+                findViewById(R.id.tvDogRecentScore4)
         );
     }
 
-    private void setupContestant(TournamentContestant contestant, View ivAvatar, View tvDogType, View tvCurrentScore, View tvTotalScore) {
+    private void setupContestant(TournamentContestant contestant, View ivAvatar, View tvDogType, View tvCurrentScore) {
         ((ImageView) ivAvatar).setImageResource(contestant.getPackDog().getAvatar());
 
-        ((TextView) tvDogType).setText(
-                Helper.createSpannable(
-                        "Type: ",
-                        contestant.getPackDog().getName(),
-                        ContextCompat.getColor(this, R.color.gold)
-                ),
-                TextView.BufferType.SPANNABLE);
+        ((TextView) tvDogType).setText(contestant.getPackDog().getName());
 
         ((TextView) tvCurrentScore).setText(
                 Helper.createSpannable(
-                        "Round Score: ",
-                        String.valueOf(contestant.getCurrentScore()),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        ((TextView) tvTotalScore).setText(
-                Helper.createSpannable(
-                        "Total Score: ",
-                        String.valueOf(contestant.getTotalScore()),
+                        "SCORE: ",
+                        contestant.getCurrentScore() + " (" + contestant.getTotalScore() + ")",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
