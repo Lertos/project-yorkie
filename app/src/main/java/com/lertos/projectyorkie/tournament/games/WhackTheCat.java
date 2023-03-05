@@ -252,6 +252,17 @@ public class WhackTheCat extends TournamentGame {
         score += scorePerClick * Talents.cutenessFactor.getCurrentBonus();
     }
 
+    protected double getAverageScore() {
+        double score = 0;
+
+        switch (tournamentDifficulty) {
+            case EASY: score = scorePerClick * 7; break;
+            case NORMAL: score = scorePerClick * 11; break;
+            case HARD: score = scorePerClick * 15; break;
+        }
+        return score;
+    }
+
     private int calculateInitialDisappearTime() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
         double timeInSeconds = (canineFocus + baseDisappearTime) / tournamentRankValue;
