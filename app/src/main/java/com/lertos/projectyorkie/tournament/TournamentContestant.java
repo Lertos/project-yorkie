@@ -20,12 +20,12 @@ public class TournamentContestant {
         return packDog;
     }
 
-    public double getCurrentScore() {
-        return currentScore;
+    public int getCurrentScore() {
+        return (int) Math.round(currentScore);
     }
 
-    public double getTotalScore() {
-        return totalScore;
+    public int getTotalScore() {
+        return (int) Math.round(totalScore);
     }
 
     public boolean isPlayer() {
