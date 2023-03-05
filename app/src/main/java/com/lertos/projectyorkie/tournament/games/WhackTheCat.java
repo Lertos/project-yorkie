@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.Talents;
+import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
 
@@ -30,6 +33,7 @@ public class WhackTheCat extends TournamentGame {
     private final int numberOfRows = 3;
     private final int numberOfCols = 3;
     private Rect gameLayout = new Rect();
+    private TextView tvScore;
     private final Handler disappearTimeHandler = new Handler();
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
@@ -50,6 +54,8 @@ public class WhackTheCat extends TournamentGame {
 
         initialSquareDisappearTime = calculateInitialDisappearTime();
         currentSquareDisappearTime = initialSquareDisappearTime;
+
+        tvScore = view.findViewById(R.id.tvScore);
 
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
@@ -131,14 +137,11 @@ public class WhackTheCat extends TournamentGame {
     public void setupOnClickListeners() {
         for (View view : avatars) {
             view.setOnClickListener(v -> {
-                //TODO: Add score (based on a formula) for getting it right as well
                 //If the player clicks a valid, rising avatar - award them time
                 if (avatarsInUse.contains(view)) {
-                    currentTime += secondsGainedWhenCorrect;
-                    currentSquare++;
+                    handleSquareClicked();
 
-                    setNextDisappearTime();
-
+                    //Animate the transition back to the avatars original position
                     v.animate().translationY(0).setDuration(100).withEndAction(() -> {
                         avatarsInUse.remove(view);
                     });
@@ -149,6 +152,16 @@ public class WhackTheCat extends TournamentGame {
                 }
             });
         }
+    }
+
+    private void handleSquareClicked() {
+        currentTime += secondsGainedWhenCorrect;
+        currentSquare++;
+
+        setNextDisappearTime();
+        addScore();
+
+        tvScore.setText(String.valueOf(score));
     }
 
     protected void gameLoop() {

@@ -31,6 +31,14 @@
             android:indeterminate="false"
             app:trackThickness="30dp" />
 
+        <TextView
+            android:id="@+id/tvScore"
+            style="@style/fontLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center" />
+
     </LinearLayout>
 
     <RelativeLayout
