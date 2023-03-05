@@ -80,25 +80,25 @@ public class TournamentLobbyPage extends AppCompatActivity {
     private void setupHeaderInfo() {
         ((TextView) findViewById(R.id.tvCurrentBracket)).setText(
                 Helper.createSpannable(
-                        "BRACKET: ",
-                        DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                        "BRACKET  ",
+                        DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay().toUpperCase(),
+                        ContextCompat.getColor(this, R.color.light_blue)
                 ),
                 TextView.BufferType.SPANNABLE);
 
         ((TextView) findViewById(R.id.tvDifficulty)).setText(
                 Helper.createSpannable(
-                        "DIFFICULTY: ",
-                        tournamentMaster.getTournamentDifficulty().getDisplayStr(),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                        "DIFFICULTY  ",
+                        tournamentMaster.getTournamentDifficulty().getDisplayStr().toUpperCase(),
+                        ContextCompat.getColor(this, R.color.light_blue)
                 ),
                 TextView.BufferType.SPANNABLE);
 
         ((TextView) findViewById(R.id.tvBetAmount)).setText(
                 Helper.createSpannable(
-                        "BET: ",
+                        "BET  ",
                         IdleNumber.getStrNumber(tournamentMaster.getInitialBet()),
-                        DataManager.getInstance().getPlayerData().getHighlightColor()
+                        ContextCompat.getColor(this, R.color.light_blue)
                 ),
                 TextView.BufferType.SPANNABLE);
     }
