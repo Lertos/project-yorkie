@@ -36,6 +36,7 @@ public class WhackTheCat extends TournamentGame {
     private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
+    private final double scorePerClick = 50;
     private final int initialSquareDisappearTime;
     private int currentSquareDisappearTime;
     //Starting at 2 so the math works better
@@ -213,6 +214,10 @@ public class WhackTheCat extends TournamentGame {
             iterator.next();
         }
         return iterator.next();
+    }
+
+    private void addScore() {
+        score += scorePerClick * Talents.cutenessFactor.getCurrentBonus();
     }
 
     private int calculateInitialDisappearTime() {
