@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/darkest_blue">
 
-    <!-- Parent Minus Button Bar -->
+    <!-- Lobby Screen -->
     <RelativeLayout
         android:id="@+id/relScreen"
         android:layout_width="match_parent"
@@ -353,6 +353,61 @@
 
     </RelativeLayout>
 
+    <!-- Game Over Screen -->
+    <RelativeLayout
+        android:id="@+id/relGameOverScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvGameTitleHeader"
+                style="@style/fontGigantic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:text="Whack a Cat"
+                android:textColor="@color/gold" />
+
+            <TextView
+                android:id="@+id/tvScoreHeader"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvGameTitleHeader"
+                android:gravity="center"
+                android:text="Final Score" />
+
+            <TextView
+                android:id="@+id/tvFinalScore"
+                style="@style/fontGigantic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvScoreHeader"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:text="1232"
+                android:textColor="@color/yellow" />
+
+            <Button
+                android:id="@+id/btnLeaveScoreScreen"
+                style="@style/baseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Return to Lobby" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Game Screen to be Inflated -->
     <ViewStub
         android:id="@+id/viewStubGame"
         android:layout_width="match_parent"
