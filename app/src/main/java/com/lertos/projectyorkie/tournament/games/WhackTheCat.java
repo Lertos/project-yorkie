@@ -82,6 +82,7 @@ public class WhackTheCat extends TournamentGame {
                 setupOnClickListeners();
             }
         });
+        tvScore.setText(String.format(String.format("%.2f", score)));
     }
 
     private void setTimingOfMovements() {
@@ -182,7 +183,7 @@ public class WhackTheCat extends TournamentGame {
         setNextDisappearTime();
         addScore();
 
-        tvScore.setText(String.valueOf(score));
+        tvScore.setText(String.format(String.format("%.2f", score)));
     }
 
     protected void gameLoop() {
