@@ -209,19 +209,21 @@ public class WhackTheCat extends TournamentGame {
         avatarsInUse.add(view);
 
         //Animate the movement above the square to allow them time to click on it
-        view.animate().translationY(pixelValue(-sizeAvatarInDP)).setDuration(1000);
-
-        Handler handler = new Handler();
-        Runnable runnable = () -> {
-            view.animate().translationY(0).setDuration(timeToRise / 2).withEndAction(() -> {
+        view.animate().translationY(pixelValue(-sizeAvatarInDP)).setDuration(timeToRise).withEndAction(() -> {
+            Handler handler = new Handler();
+            Runnable runnable = () -> {
                 if (avatarsInUse.contains(view)) {
-                    //They missed it; deduct time
-                    currentTime -= secondsLostWhenMissed;
-                    avatarsInUse.remove(view);
+                    view.animate().translationY(0).setDuration(100).withEndAction(() -> {
+                        //They missed it; deduct time
+                        currentTime -= secondsLostWhenMissed;
+                        avatarsInUse.remove(view);
+                    });
                 }
-            });
-        };
-        handler.postDelayed(runnable, timeToDisappear);
+            };
+            if (avatarsInUse.contains(view)) {
+                handler.postDelayed(runnable, timeToDisappear);
+            }
+        });
     }
 
     private View getUnusedAvatar() {
