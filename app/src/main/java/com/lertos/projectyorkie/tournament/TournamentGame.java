@@ -10,6 +10,7 @@ import com.lertos.projectyorkie.data.Talents;
 
 public abstract class TournamentGame {
 
+    private final String gameTitle;
     private TournamentMaster tournamentMaster;
     protected TournamentDifficulty tournamentDifficulty;
     protected View parentView;
@@ -22,10 +23,11 @@ public abstract class TournamentGame {
     protected final double startTime = 30.0;
     protected double currentTime;
 
-    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty tournamentDifficulty, View view) {
+    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, View view, String gameTitle) {
         this.tournamentMaster = tournamentMaster;
-        this.tournamentDifficulty = tournamentDifficulty;
+        this.tournamentDifficulty = difficulty;
         this.parentView = view;
+        this.gameTitle = gameTitle;
 
         canineFocus = Talents.canineFocus.getCurrentBonus();
 
@@ -78,5 +80,7 @@ public abstract class TournamentGame {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, parentView.getResources().getDisplayMetrics());
     }
 
-
+    public String getGameTitle() {
+        return gameTitle;
+    }
 }

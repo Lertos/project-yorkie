@@ -48,8 +48,8 @@ public class WhackTheCat extends TournamentGame {
     //Starting at 2 so the math works better
     private int currentSquare = 2;
 
-    public WhackTheCat(TournamentMaster tournamentMaster, TournamentDifficulty tournamentDifficulty, View view) {
-        super(tournamentMaster, tournamentDifficulty, view);
+    public WhackTheCat(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, View view, String gameTitle) {
+        super(tournamentMaster, difficulty, view, gameTitle);
 
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
