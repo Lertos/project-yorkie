@@ -58,6 +58,10 @@ public class TournamentLobbyPage extends AppCompatActivity {
             tournamentMaster.startNextGame(this);
         });
 
+        findViewById(R.id.btnLeaveScoreScreen).setOnClickListener(v -> {
+            currentGameEnded();
+        });
+
         findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
             super.finish();
         });
@@ -65,6 +69,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
     public void currentGameEnded() {
         findViewById(R.id.relScreen).setVisibility(View.VISIBLE);
+        findViewById(R.id.relGameOverScreen).setVisibility(View.GONE);
     }
 
     private void setupUI() {

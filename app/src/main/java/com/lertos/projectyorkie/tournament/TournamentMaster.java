@@ -98,12 +98,13 @@ public class TournamentMaster {
         game.startGame();
     }
 
-    public void endCurrentGame() {
+    //TODO: Add method to switch between states and handle the visibility of screens there instead
+    public void showEndGameScreen() {
         //Remove the embedded game screen
         ((ViewGroup) inflatedStub.getParent()).removeView(inflatedStub);
 
-        //Signal to the parent page that the game has finished
-        lobbyPage.currentGameEnded();
+        //Show the end game screen with the score
+        lobbyPage.findViewById(R.id.relGameOverScreen).setVisibility(View.VISIBLE);
     }
 
     public class SortByScore implements Comparator<TournamentContestant> {

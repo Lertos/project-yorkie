@@ -61,7 +61,7 @@ public abstract class TournamentGame {
                     isPlaying = false;
 
                 if (!isPlaying) {
-                    tournamentMaster.endCurrentGame();
+                    tournamentMaster.showEndGameScreen();
                     return;
                 }
 
