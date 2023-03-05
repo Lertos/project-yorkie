@@ -115,31 +115,9 @@ public class HomePage extends AppCompatActivity {
             public void run() {
                 TextView currentHearts = findViewById(R.id.tvCurrentHearts);
                 TextView currentHeartTokens = findViewById(R.id.tvCurrentHeartTokens);
-                TextView currentDogsCollected = findViewById(R.id.tvCurrentDogsCollected);
 
-                currentHearts.setText(
-                        Helper.createSpannable(
-                                getResources().getString(R.string.character_heart_amount),
-                                " " + IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()),
-                                DataManager.getInstance().getPlayerData().getHighlightColor()
-                        ),
-                        TextView.BufferType.SPANNABLE);
-
-                currentHeartTokens.setText(
-                        Helper.createSpannable(
-                                getResources().getString(R.string.character_heart_token_amount),
-                                " " + IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()),
-                                DataManager.getInstance().getPlayerData().getHighlightColor()
-                        ),
-                        TextView.BufferType.SPANNABLE);
-
-                currentDogsCollected.setText(
-                        Helper.createSpannable(
-                                getResources().getString(R.string.character_dogs_collected),
-                                " " + DataManager.getInstance().getPlayerData().getDogsCollected(),
-                                DataManager.getInstance().getPlayerData().getHighlightColor()
-                        ),
-                        TextView.BufferType.SPANNABLE);
+                currentHearts.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
+                currentHeartTokens.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);

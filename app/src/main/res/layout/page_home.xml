@@ -21,17 +21,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
-                    android:background="@drawable/border_with_light_bg"
-                    android:maxHeight="120dp"
+                    android:background="@drawable/border_with_dark_bg"
+                    android:maxHeight="100dp"
                     android:padding="0dp"
                     android:src="@mipmap/portrait_loki" />
 
@@ -40,6 +39,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="6"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -54,29 +54,53 @@
                     android:text="Loki"
                     android:textAlignment="center" />
 
-                <TextView
-                    android:id="@+id/tvCurrentHearts"
-                    style="@style/fontMedium"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hearts: "
-                    android:textAlignment="textStart" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvCurrentHeartTokens"
-                    style="@style/fontMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Heart Tokens: "
-                    android:textAlignment="textStart" />
+                    <TextView
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hearts"
+                        android:textAlignment="center" />
 
-                <TextView
-                    android:id="@+id/tvCurrentDogsCollected"
-                    style="@style/fontMedium"
+                    <TextView
+                        android:id="@+id/tvCurrentHearts"
+                        style="@style/fontLarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/yellow" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dogs Collected: "
-                    android:textAlignment="textStart" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Heart Tokens"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/tvCurrentHeartTokens"
+                        style="@style/fontLarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/yellow" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
