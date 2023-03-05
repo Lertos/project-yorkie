@@ -1,8 +1,16 @@
 package com.lertos.projectyorkie.tournament;
 
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewStub;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lertos.projectyorkie.R;
+import com.lertos.projectyorkie.TournamentLobbyPage;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.PackDog;
+import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,13 +25,16 @@ public class TournamentMaster {
         POST_GAME,
         POST_TOURNAMENT
     }
+    private final TournamentLobbyPage lobbyPage;
+    private View inflatedStub;
     private final int maxAIContestants = 3;
     private TournamentState currentState;
     private final ArrayList<TournamentContestant> contestants;
     private final TournamentDifficulty tournamentDifficulty;
     private final double initialBet;
 
-    public TournamentMaster(String difficulty, double initialBet) {
+    public TournamentMaster(TournamentLobbyPage lobbyPage, String difficulty, double initialBet) {
+        this.lobbyPage = lobbyPage;
         this.currentState = TournamentState.LOBBY;
         this.contestants = createContestants();
         this.tournamentDifficulty = getDifficultyFromString(difficulty);
@@ -75,6 +86,24 @@ public class TournamentMaster {
 
     public double getInitialBet() {
         return initialBet;
+    }
+
+    public void startNextGame(AppCompatActivity view) {
+        //TODO: Load from a list, randomly
+        ViewStub stub = view.findViewById(R.id.viewStubGame);
+        stub.setLayoutResource(R.layout.page_game_whack_the_cat);
+        inflatedStub = stub.inflate();
+
+        WhackTheCat game = new WhackTheCat(this, inflatedStub);
+        game.startGame();
+    }
+
+    public void endCurrentGame() {
+        //Remove the embedded game screen
+        ((ViewGroup) inflatedStub.getParent()).removeView(inflatedStub);
+
+        //Signal to the parent page that the game has finished
+        lobbyPage.currentGameEnded();
     }
 
     public class SortByScore implements Comparator<TournamentContestant> {

@@ -10,6 +10,7 @@ import com.lertos.projectyorkie.data.Talents;
 
 public abstract class TournamentGame {
 
+    private TournamentMaster tournamentMaster;
     protected View parentView;
     protected boolean isPlaying = false;
     protected double score = 0;
@@ -20,7 +21,8 @@ public abstract class TournamentGame {
     protected final double startTime = 30.0;
     protected double currentTime;
 
-    public TournamentGame(View view) {
+    public TournamentGame(TournamentMaster tournamentMaster, View view) {
+        this.tournamentMaster = tournamentMaster;
         this.parentView = view;
 
         canineFocus = Talents.canineFocus.getCurrentBonus();
@@ -35,12 +37,11 @@ public abstract class TournamentGame {
     protected abstract void gameLoop();
 
     //Runs the game and when it's over, returns the score
-    public double startGame() {
+    public void startGame() {
         isPlaying = true;
 
         gameLoop();
         handleTimer();
-        return score;
     }
 
     protected void handleTimer() {
@@ -56,8 +57,10 @@ public abstract class TournamentGame {
                 if (currentTime <= 0)
                     isPlaying = false;
 
-                if (!isPlaying)
+                if (!isPlaying) {
+                    tournamentMaster.endCurrentGame();
                     return;
+                }
 
                 //Calculate the new time
                 currentTime -= millisecondsPerUpdate / 1000.0;

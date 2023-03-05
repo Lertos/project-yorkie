@@ -2,7 +2,6 @@ package com.lertos.projectyorkie;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +11,6 @@ import androidx.core.content.ContextCompat;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
-import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
         String difficulty = getIntent().getStringExtra("STR_DIFFICULTY");
         double initialBet = getIntent().getDoubleExtra("DOUBLE_BET_AMOUNT", 0.0);
 
-        tournamentMaster = new TournamentMaster(difficulty, initialBet);
+        tournamentMaster = new TournamentMaster(this, difficulty, initialBet);
 
         setupUI();
         setOnClickListeners();
@@ -55,20 +53,18 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
     private void setOnClickListeners() {
         findViewById(R.id.btnStartNextGame).setOnClickListener(v -> {
-            //TODO: Load the next game in the TournamentMaster game list
             findViewById(R.id.relScreen).setVisibility(View.GONE);
 
-            ViewStub stub = findViewById(R.id.viewStubGame);
-            stub.setLayoutResource(R.layout.page_game_whack_the_cat);
-            View inflatedStub = stub.inflate();
-
-            WhackTheCat game = new WhackTheCat(inflatedStub);
-            game.startGame();
+            tournamentMaster.startNextGame(this);
         });
 
         findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
             super.finish();
         });
+    }
+
+    public void currentGameEnded() {
+        findViewById(R.id.relScreen).setVisibility(View.VISIBLE);
     }
 
     private void setupUI() {

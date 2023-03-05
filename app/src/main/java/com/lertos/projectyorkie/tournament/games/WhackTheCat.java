@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.tournament.TournamentGame;
+import com.lertos.projectyorkie.tournament.TournamentMaster;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,8 +41,8 @@ public class WhackTheCat extends TournamentGame {
     //Starting at 2 so the math works better
     private int currentSquare = 2;
 
-    public WhackTheCat(View view) {
-        super(view);
+    public WhackTheCat(TournamentMaster tournamentMaster, View view) {
+        super(tournamentMaster, view);
 
         avatars = new ArrayList<>();
         avatarsInUse = new ArrayList<>();
