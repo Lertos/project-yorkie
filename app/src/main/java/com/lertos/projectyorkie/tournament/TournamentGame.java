@@ -11,6 +11,7 @@ import com.lertos.projectyorkie.data.Talents;
 public abstract class TournamentGame {
 
     private TournamentMaster tournamentMaster;
+    protected TournamentDifficulty tournamentDifficulty;
     protected View parentView;
     protected boolean isPlaying = false;
     protected double score = 0;
@@ -21,8 +22,9 @@ public abstract class TournamentGame {
     protected final double startTime = 30.0;
     protected double currentTime;
 
-    public TournamentGame(TournamentMaster tournamentMaster, View view) {
+    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty tournamentDifficulty, View view) {
         this.tournamentMaster = tournamentMaster;
+        this.tournamentDifficulty = tournamentDifficulty;
         this.parentView = view;
 
         canineFocus = Talents.canineFocus.getCurrentBonus();
