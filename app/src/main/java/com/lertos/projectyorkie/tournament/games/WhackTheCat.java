@@ -41,6 +41,8 @@ public class WhackTheCat extends TournamentGame {
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
     private final double scorePerClick = 50;
+    private int timeToRise;
+    private int timeToDisappear;
     private final int initialSquareDisappearTime;
     private int currentSquareDisappearTime;
     //Starting at 2 so the math works better
@@ -75,13 +77,32 @@ public class WhackTheCat extends TournamentGame {
                 sectionHeight = gameLayout.height() - headerHeight;
 
                 //These methods require the variables assigned up above so they need to be in this block
+                setTimingOfMovements();
                 addImagesToView();
                 setupOnClickListeners();
             }
         });
     }
 
-    public void addImagesToView() {
+    private void setTimingOfMovements() {
+        timeToRise = 0;
+
+        switch (tournamentDifficulty) {
+            case EASY: timeToRise = 1200; break;
+            case NORMAL: timeToRise = 1000; break;
+            case HARD: timeToRise = 800; break;
+        }
+
+        timeToDisappear = 0;
+
+        switch (tournamentDifficulty) {
+            case EASY: timeToDisappear = 1600; break;
+            case NORMAL: timeToDisappear = 1300; break;
+            case HARD: timeToDisappear = 1000; break;
+        }
+    }
+
+    private void addImagesToView() {
         RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         //These are to give even spacing, so: (SPACE) (OBJ) (SPACE) (OBJ) (SPACE) for example
         int xFraction = sectionWidth / ((numberOfCols * 2) + 1);
@@ -134,7 +155,7 @@ public class WhackTheCat extends TournamentGame {
         return square;
     }
 
-    public void setupOnClickListeners() {
+    private void setupOnClickListeners() {
         for (View view : avatars) {
             view.setOnClickListener(v -> {
                 //If the player clicks a valid, rising avatar - award them time
@@ -182,9 +203,6 @@ public class WhackTheCat extends TournamentGame {
 
         if (view == null)
             return;
-
-        int timeToRise = 1000;
-        int timeToDisappear = 1500;
 
         //Add the specific avatar to a list to check against later when we want to raise the next one
         avatarsInUse.add(view);
