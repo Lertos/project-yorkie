@@ -3,6 +3,7 @@ package com.lertos.projectyorkie.tournament;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +30,7 @@ public class TournamentMaster {
     private View inflatedStub;
     private final int maxAIContestants = 3;
     private TournamentState currentState;
+    private TournamentGame currentGame;
     private final ArrayList<TournamentContestant> contestants;
     private final TournamentDifficulty tournamentDifficulty;
     private final double initialBet;
@@ -94,7 +96,9 @@ public class TournamentMaster {
         stub.setLayoutResource(R.layout.page_game_whack_the_cat);
         inflatedStub = stub.inflate();
 
-        WhackTheCat game = new WhackTheCat(this, tournamentDifficulty, inflatedStub);
+        WhackTheCat game = new WhackTheCat(this, tournamentDifficulty, inflatedStub, "Whack the Cat");
+        currentGame = game;
+
         game.startGame();
     }
 
@@ -102,6 +106,12 @@ public class TournamentMaster {
     public void showEndGameScreen() {
         //Remove the embedded game screen
         ((ViewGroup) inflatedStub.getParent()).removeView(inflatedStub);
+
+        //Set the title of the end game screen of the game title
+        ((TextView) lobbyPage.findViewById(R.id.tvGameTitleHeader)).setText(currentGame.getGameTitle());
+
+        //Set the score textview to the final score
+        ((TextView) lobbyPage.findViewById(R.id.tvFinalScore)).setText(String.format("%.2f", currentGame.score));
 
         //Show the end game screen with the score
         lobbyPage.findViewById(R.id.relGameOverScreen).setVisibility(View.VISIBLE);
