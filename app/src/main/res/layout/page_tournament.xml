@@ -25,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="The Pawesome Games"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/gold" />
 
         </LinearLayout>
 
