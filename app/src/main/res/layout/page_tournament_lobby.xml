@@ -373,7 +373,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:gravity="center"
-                android:text="Whack a Cat"
                 android:textColor="@color/gold" />
 
             <TextView
@@ -393,7 +392,6 @@
                 android:layout_below="@+id/tvScoreHeader"
                 android:layout_marginBottom="40dp"
                 android:gravity="center"
-                android:text="1232"
                 android:textColor="@color/yellow" />
 
             <Button
