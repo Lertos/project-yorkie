@@ -76,6 +76,16 @@ public class TournamentPage extends AppCompatActivity {
             startActivity(intent);
         });
 
+        findViewById(R.id.rbDifficultyEasy).setOnClickListener(v -> {
+            pickDifficultyOption(TournamentDifficulty.EASY);
+        });
+        findViewById(R.id.rbDifficultyNormal).setOnClickListener(v -> {
+            pickDifficultyOption(TournamentDifficulty.NORMAL);
+        });
+        findViewById(R.id.rbDifficultyHard).setOnClickListener(v -> {
+            pickDifficultyOption(TournamentDifficulty.HARD);
+        });
+
         sliderBetAmount.addOnChangeListener((slider, value, fromUser) -> {
             double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();
             double percentBet = value / 100;
