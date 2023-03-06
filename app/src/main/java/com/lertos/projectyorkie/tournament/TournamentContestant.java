@@ -46,6 +46,8 @@ public class TournamentContestant {
         if (currentScore < 0)
             currentScore = 0;
 
+        totalScore += currentScore;
+
         return currentScore;
     }
 
