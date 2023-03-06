@@ -254,15 +254,21 @@ public class WhackTheCat extends TournamentGame {
         score += scorePerClick * Talents.cutenessFactor.getCurrentBonus();
     }
 
-    protected double getAverageScore() {
+    protected int getAverageScore() {
         double score = 0;
 
         switch (tournamentDifficulty) {
-            case EASY: score = scorePerClick * 7; break;
-            case NORMAL: score = scorePerClick * 11; break;
-            case HARD: score = scorePerClick * 15; break;
+            case EASY:
+                score = scorePerClick * 7;
+                break;
+            case NORMAL:
+                score = scorePerClick * 11;
+                break;
+            case HARD:
+                score = scorePerClick * 15;
+                break;
         }
-        return score;
+        return (int) Math.round(score);
     }
 
     private int calculateInitialDisappearTime() {

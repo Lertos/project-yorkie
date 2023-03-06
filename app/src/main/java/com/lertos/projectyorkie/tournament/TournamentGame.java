@@ -39,7 +39,8 @@ public abstract class TournamentGame {
     }
 
     protected abstract void gameLoop();
-    protected abstract double getAverageScore();
+
+    protected abstract int getAverageScore();
 
     //Runs the game and when it's over, returns the score
     public void startGame() {
