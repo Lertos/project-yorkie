@@ -38,7 +38,7 @@
             android:layout_below="@id/btnUpgradeSingle"
             android:layout_centerHorizontal="true"
             android:text="PH"
-            android:textColor="@color/yellow" />
+            android:textColor="@color/main_text_color" />
 
     </LinearLayout>
 
