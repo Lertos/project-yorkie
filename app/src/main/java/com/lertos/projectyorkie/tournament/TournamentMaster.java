@@ -147,12 +147,12 @@ public class TournamentMaster {
             int totalScoreCompare = Double.compare(totalScore1, totalScore2);
 
             if (totalScoreCompare != 0)
-                return totalScoreCompare;
+                return totalScoreCompare * -1;
 
             double currentScore1 = c1.getCurrentScore();
             double currentScore2 = c2.getCurrentScore();
 
-            return Double.compare(currentScore1, currentScore2);
+            return Double.compare(currentScore1, currentScore2) * -1;
         }
 
     }
