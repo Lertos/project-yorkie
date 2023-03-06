@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
@@ -78,29 +77,9 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void setupHeaderInfo() {
-        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(
-                Helper.createSpannable(
-                        "BRACKET  ",
-                        DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay().toUpperCase(),
-                        ContextCompat.getColor(this, R.color.light_blue)
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        ((TextView) findViewById(R.id.tvDifficulty)).setText(
-                Helper.createSpannable(
-                        "DIFFICULTY  ",
-                        tournamentMaster.getTournamentDifficulty().getDisplayStr().toUpperCase(),
-                        ContextCompat.getColor(this, R.color.light_blue)
-                ),
-                TextView.BufferType.SPANNABLE);
-
-        ((TextView) findViewById(R.id.tvBetAmount)).setText(
-                Helper.createSpannable(
-                        "BET  ",
-                        IdleNumber.getStrNumber(tournamentMaster.getInitialBet()),
-                        ContextCompat.getColor(this, R.color.light_blue)
-                ),
-                TextView.BufferType.SPANNABLE);
+        ((TextView) findViewById(R.id.tvCurrentBracket)).setText(DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay().toUpperCase());
+        ((TextView) findViewById(R.id.tvDifficulty)).setText(tournamentMaster.getTournamentDifficulty().getDisplayStr().toUpperCase());
+        ((TextView) findViewById(R.id.tvBetAmount)).setText(IdleNumber.getStrNumber(tournamentMaster.getInitialBet()));
     }
 
     private void refreshContestantUI() {

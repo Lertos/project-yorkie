@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkest_blue">
+    android:background="@color/dark_blue">
 
     <!-- Lobby Screen -->
     <RelativeLayout
@@ -15,7 +15,7 @@
             android:id="@+id/linTournamentHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_with_dark_bg"
+            android:background="@drawable/border_with_darkest_bg"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -39,7 +39,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:text="ddd"
+                        android:text="BRACKET"
                         android:textAlignment="textEnd" />
 
                     <TextView
@@ -65,8 +65,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="234234"
-                        android:textAlignment="textStart" />
+                        android:text="PH"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_blue" />
 
                 </LinearLayout>
 
@@ -81,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:text="ddd"
+                        android:text="DIFFICULTY"
                         android:textAlignment="textEnd" />
 
                     <TextView
@@ -90,8 +91,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="234234"
-                        android:textAlignment="textStart" />
+                        android:text="PH"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_blue" />
 
                 </LinearLayout>
 
@@ -106,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:text="ddd"
+                        android:text="BET VALUE"
                         android:textAlignment="textEnd" />
 
                     <TextView
@@ -115,8 +117,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="234234"
-                        android:textAlignment="textStart" />
+                        android:text="PH"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_blue" />
 
                 </LinearLayout>
 
@@ -129,176 +132,186 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linTournamentHeader"
-            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/border_with_darkest_bg"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/ivDog1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/border_with_dark_bg"
-                    android:maxHeight="90dp"
-                    android:padding="0dp"
-                    android:src="@mipmap/portrait_loki" />
+                android:layout_marginVertical="6dp"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginBottom="10dp">
 
-                    <TextView
-                        android:id="@+id/tvDogType1"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/ivDog1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yorkie"
-                        android:textColor="@color/gold" />
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="20dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/border_with_dark_bg"
+                        android:maxHeight="80dp"
+                        android:padding="0dp"
+                        android:src="@mipmap/portrait_loki" />
 
-                    <TextView
-                        android:id="@+id/tvDogRecentScore1"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SCORE: 12 (0)" />
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvDogType1"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yorkie"
+                            android:textColor="@color/gold" />
+
+                        <TextView
+                            android:id="@+id/tvDogRecentScore1"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SCORE: PH (PH)" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/ivDog2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/border_with_light_bg"
-                    android:maxHeight="90dp"
-                    android:padding="0dp"
-                    android:src="@mipmap/portrait_loki" />
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginBottom="10dp">
 
-                    <TextView
-                        android:id="@+id/tvDogType2"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/ivDog2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yorkie"
-                        android:textColor="@color/gold" />
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="20dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/border_with_dark_bg"
+                        android:maxHeight="80dp"
+                        android:padding="0dp"
+                        android:src="@mipmap/portrait_loki" />
 
-                    <TextView
-                        android:id="@+id/tvDogRecentScore2"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SCORE: 12 (0)" />
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvDogType2"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yorkie"
+                            android:textColor="@color/gold" />
+
+                        <TextView
+                            android:id="@+id/tvDogRecentScore2"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SCORE: PH (PH)" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/ivDog3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/border_with_light_bg"
-                    android:maxHeight="90dp"
-                    android:padding="0dp"
-                    android:src="@mipmap/portrait_loki" />
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginBottom="10dp">
 
-                    <TextView
-                        android:id="@+id/tvDogType3"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/ivDog3"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yorkie"
-                        android:textColor="@color/gold" />
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="20dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/border_with_dark_bg"
+                        android:maxHeight="80dp"
+                        android:padding="0dp"
+                        android:src="@mipmap/portrait_loki" />
 
-                    <TextView
-                        android:id="@+id/tvDogRecentScore3"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SCORE: 12 (0)" />
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvDogType3"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yorkie"
+                            android:textColor="@color/gold" />
+
+                        <TextView
+                            android:id="@+id/tvDogRecentScore3"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SCORE: PH (PH)" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/ivDog4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/border_with_light_bg"
-                    android:maxHeight="90dp"
-                    android:padding="0dp"
-                    android:src="@mipmap/portrait_loki" />
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginBottom="10dp">
 
-                    <TextView
-                        android:id="@+id/tvDogType4"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/ivDog4"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yorkie"
-                        android:textColor="@color/gold" />
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="20dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/border_with_dark_bg"
+                        android:maxHeight="80dp"
+                        android:padding="0dp"
+                        android:src="@mipmap/portrait_loki" />
 
-                    <TextView
-                        android:id="@+id/tvDogRecentScore4"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SCORE: 12 (0)" />
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvDogType4"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yorkie"
+                            android:textColor="@color/gold" />
+
+                        <TextView
+                            android:id="@+id/tvDogRecentScore4"
+                            style="@style/fontMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SCORE: PH (PH)" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -311,8 +324,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linContestantList"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_with_dark_bg"
+            android:background="@drawable/border_with_darkest_bg"
             android:gravity="center"
             android:orientation="vertical">
 
