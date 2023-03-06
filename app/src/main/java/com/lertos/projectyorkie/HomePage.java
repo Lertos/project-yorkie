@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.lertos.projectyorkie.adapters.PackViewAdapter;
 import com.lertos.projectyorkie.adapters.TalentsViewAdapter;
@@ -45,6 +46,7 @@ public class HomePage extends AppCompatActivity {
         //Setup the data and have it all created on startup
         MediaManager.getInstance().start(this);
         DataManager.getInstance().start();
+        DataManager.getInstance().getPlayerData().setHighlightColor(ContextCompat.getColor(this, R.color.main_text_color));
 
         //Run the game loop
         final Handler handler = new Handler();
