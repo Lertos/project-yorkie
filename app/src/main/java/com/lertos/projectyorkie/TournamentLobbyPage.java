@@ -67,6 +67,8 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     public void currentGameEnded() {
+        refreshContestantUI();
+
         findViewById(R.id.relScreen).setVisibility(View.VISIBLE);
         findViewById(R.id.relGameOverScreen).setVisibility(View.GONE);
     }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 public class TournamentMaster {
 
@@ -29,11 +30,13 @@ public class TournamentMaster {
     private final TournamentLobbyPage lobbyPage;
     private View inflatedStub;
     private final int maxAIContestants = 3;
+    private final double maxScoreModifier = 0.3;
     private TournamentState currentState;
     private TournamentGame currentGame;
     private final ArrayList<TournamentContestant> contestants;
     private final TournamentDifficulty tournamentDifficulty;
     private final double initialBet;
+    private Random rng;
 
     public TournamentMaster(TournamentLobbyPage lobbyPage, String difficulty, double initialBet) {
         this.lobbyPage = lobbyPage;
@@ -41,6 +44,8 @@ public class TournamentMaster {
         this.contestants = createContestants();
         this.tournamentDifficulty = getDifficultyFromString(difficulty);
         this.initialBet = initialBet;
+
+        this.rng = new Random();
     }
 
     private TournamentDifficulty getDifficultyFromString(String str) {
@@ -115,6 +120,21 @@ public class TournamentMaster {
 
         //Show the end game screen with the score
         lobbyPage.findViewById(R.id.relGameOverScreen).setVisibility(View.VISIBLE);
+
+        //Add scores to all contestants
+        updateContestantScores();
+    }
+
+    private void updateContestantScores() {
+        int averageScore = currentGame.getAverageScore();
+        int scoreBound = (int) Math.round(averageScore * maxScoreModifier);
+        int lowScoreBound = averageScore - scoreBound;
+        int highScoreBound = averageScore + scoreBound;
+
+        for (TournamentContestant contestant : contestants) {
+            int scoreToAdd = rng.nextInt(highScoreBound - lowScoreBound) + lowScoreBound;
+            contestant.addToCurrentScore(scoreToAdd);
+        }
     }
 
     public class SortByScore implements Comparator<TournamentContestant> {
