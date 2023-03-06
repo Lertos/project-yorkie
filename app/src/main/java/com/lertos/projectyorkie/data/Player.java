@@ -1,13 +1,11 @@
 package com.lertos.projectyorkie.data;
 
-import android.graphics.Color;
-
 import com.lertos.projectyorkie.tournament.TournamentRank;
 
 public class Player {
 
     //Formatting/colorization purposes
-    private final int highlightColor = Color.CYAN;
+    private int highlightColor;
 
     //Player data that will change
     private double currentHeartsPerSecond;
@@ -78,6 +76,10 @@ public class Player {
 
     public int getHighlightColor() {
         return highlightColor;
+    }
+
+    public void setHighlightColor(int highlightColor) {
+        this.highlightColor = highlightColor;
     }
 
     public int getMaxDogsToCollect() {
