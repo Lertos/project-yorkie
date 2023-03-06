@@ -6,8 +6,8 @@
     <color name="darker_light_blue">#98c1d9</color>
     <color name="faded_light_blue">#e0fbfc</color>
     <color name="light_blue">#1AD4FF</color>
+    <color name="main_text_color">#85F1FF</color>
     <color name="black">#FF000000</color>
-    <color name="yellow">#1AD4FF</color>
     <color name="pink">#FFA1FD</color>
     <color name="gold">#DE5635</color>
     <color name="light_gray">#7E7E7E</color>
