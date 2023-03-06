@@ -3,9 +3,7 @@ package com.lertos.projectyorkie;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +22,6 @@ public class TournamentPage extends AppCompatActivity {
     private TextView tvBetAmount;
     private TournamentDifficulty difficulty;
     private double heartsBet;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,30 +109,6 @@ public class TournamentPage extends AppCompatActivity {
 
         //Set the initial value so that the onClick listener fires to load initial bet value
         sliderBetAmount.setValue(50);
-    }
-
-    private void showMenu(View view, int menuRes) {
-        PopupMenu popup = new PopupMenu(view.getContext(), view);
-        popup.getMenuInflater().inflate(menuRes, popup.getMenu());
-
-        popup.setOnMenuItemClickListener( menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.optionEasy: {
-                    pickDifficultyOption(TournamentDifficulty.EASY);
-                    break;
-                }
-                case R.id.optionNormal: {
-                    pickDifficultyOption(TournamentDifficulty.NORMAL);
-                    break;
-                }
-                case R.id.optionHard: {
-                    pickDifficultyOption(TournamentDifficulty.HARD);
-                    break;
-                }
-            }
-            return true;
-        });
-        popup.show();
     }
 
     private void pickDifficultyOption(TournamentDifficulty chosenDifficulty) {
