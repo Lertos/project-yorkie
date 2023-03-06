@@ -96,6 +96,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/rbDifficultyEasy"
                     style="@style/fontLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,6 +105,7 @@
                     android:theme="@style/baseRadioButton" />
 
                 <RadioButton
+                    android:id="@+id/rbDifficultyNormal"
                     style="@style/fontLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,6 +114,7 @@
                     android:theme="@style/baseRadioButton" />
 
                 <RadioButton
+                    android:id="@+id/rbDifficultyHard"
                     style="@style/fontLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
