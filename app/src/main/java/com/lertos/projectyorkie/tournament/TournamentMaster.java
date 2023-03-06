@@ -132,8 +132,12 @@ public class TournamentMaster {
         int highScoreBound = averageScore + scoreBound;
 
         for (TournamentContestant contestant : contestants) {
-            int scoreToAdd = rng.nextInt(highScoreBound - lowScoreBound) + lowScoreBound;
-            contestant.addToCurrentScore(scoreToAdd);
+            if (contestant.isPlayer())
+                contestant.addToCurrentScore(currentGame.score);
+            else {
+                int scoreToAdd = rng.nextInt(highScoreBound - lowScoreBound) + lowScoreBound;
+                contestant.addToCurrentScore(scoreToAdd);
+            }
         }
     }
 
