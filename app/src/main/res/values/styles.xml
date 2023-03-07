@@ -37,7 +37,10 @@
         <item name="trackHeight">10dp</item>
         <item name="labelBehavior">floating</item>
         <item name="trackColor">@color/faded_light_blue</item>
-        <item name="thumbColor">@color/light_blue</item>
+        <item name="thumbColor">@color/darker_light_blue</item>
+        <item name="thumbStrokeColor">@color/black</item>
+        <item name="thumbStrokeWidth">2dp</item>
+        <item name="thumbRadius">12dp</item>
         <item name="tickColorActive">@color/dark_blue</item>
         <item name="tickColorInactive">@color/faded_light_blue</item>
     </style>
