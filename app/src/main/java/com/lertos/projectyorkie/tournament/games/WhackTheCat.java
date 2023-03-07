@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.Talents;
@@ -48,7 +50,7 @@ public class WhackTheCat extends TournamentGame {
     //Starting at 2 so the math works better
     private int currentSquare = 2;
 
-    public WhackTheCat(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, View view, String gameTitle) {
+    public WhackTheCat(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle) {
         super(tournamentMaster, difficulty, view, gameTitle);
 
         avatars = new ArrayList<>();
@@ -111,7 +113,7 @@ public class WhackTheCat extends TournamentGame {
 
         for (int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfCols; j++) {
-                View view = LayoutInflater.from(parentView.getContext()).inflate(R.layout.subpage_whack_cat_item, null);
+                View view = LayoutInflater.from(parentView).inflate(R.layout.subpage_whack_cat_item, null);
 
                 RelativeLayout.LayoutParams params = createLayoutParams();
 

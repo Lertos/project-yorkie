@@ -101,7 +101,7 @@ public class TournamentMaster {
         stub.setLayoutResource(R.layout.page_game_whack_the_cat);
         inflatedStub = stub.inflate();
 
-        WhackTheCat game = new WhackTheCat(this, tournamentDifficulty, inflatedStub, "Whack the Cat");
+        WhackTheCat game = new WhackTheCat(this, tournamentDifficulty, view, "Whack the Cat");
         currentGame = game;
 
         game.startGame();

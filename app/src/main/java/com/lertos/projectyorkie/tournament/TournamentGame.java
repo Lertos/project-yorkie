@@ -2,7 +2,8 @@ package com.lertos.projectyorkie.tournament;
 
 import android.os.Handler;
 import android.util.TypedValue;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.lertos.projectyorkie.R;
@@ -13,7 +14,7 @@ public abstract class TournamentGame {
     private final String gameTitle;
     private TournamentMaster tournamentMaster;
     protected TournamentDifficulty tournamentDifficulty;
-    protected View parentView;
+    protected AppCompatActivity parentView;
     protected boolean isPlaying = false;
     protected double score = 0;
     protected final double canineFocus;
@@ -23,7 +24,7 @@ public abstract class TournamentGame {
     protected final double startTime = 30.0;
     protected double currentTime;
 
-    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, View view, String gameTitle) {
+    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle) {
         this.tournamentMaster = tournamentMaster;
         this.tournamentDifficulty = difficulty;
         this.parentView = view;
