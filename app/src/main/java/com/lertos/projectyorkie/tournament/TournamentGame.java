@@ -33,18 +33,22 @@ public abstract class TournamentGame {
         canineFocus = Talents.canineFocus.getCurrentBonus();
 
         currentTime = startTime;
-
-        //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
-        indicator = parentView.findViewById(R.id.indTimer);
-        indicator.setMax(timerMax);
     }
 
     protected abstract void gameLoop();
+
+    protected abstract void setupUI();
 
     protected abstract int getAverageScore();
 
     //Runs the game and when it's over, returns the score
     public void startGame() {
+        setupUI();
+
+        //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
+        indicator = parentView.findViewById(R.id.indTimer);
+        indicator.setMax(timerMax);
+
         isPlaying = true;
 
         gameLoop();
