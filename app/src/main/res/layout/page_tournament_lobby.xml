@@ -391,6 +391,7 @@
         android:id="@+id/relGameOverScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/darkest_blue"
         android:visibility="gone">
 
         <LinearLayout
