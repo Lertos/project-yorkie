@@ -1,53 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/absParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkest_blue">
 
-    <LinearLayout
-        android:id="@+id/linHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/border_with_dark_bg"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvHeader"
-            style="@style/fontHeader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Whack Cats. Get Points."
-            android:textAlignment="center" />
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/indTimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:indeterminate="false"
-            app:trackThickness="30dp" />
-
-        <TextView
-            android:id="@+id/tvScore"
-            style="@style/fontLarge"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAlignment="center" />
-
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/relMainSection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linHeader"
         android:orientation="vertical">
-
 
     </RelativeLayout>
 
