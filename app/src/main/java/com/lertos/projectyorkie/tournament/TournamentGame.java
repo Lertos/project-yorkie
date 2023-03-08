@@ -2,6 +2,7 @@ package com.lertos.projectyorkie.tournament;
 
 import android.os.Handler;
 import android.util.TypedValue;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,6 +45,9 @@ public abstract class TournamentGame {
     //Runs the game and when it's over, returns the score
     public void startGame() {
         setupUI();
+
+        //Show the shared header that holds the timer and score
+        parentView.findViewById(R.id.linGameHeader).setVisibility(View.VISIBLE);
 
         //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
         indicator = parentView.findViewById(R.id.indTimer);
