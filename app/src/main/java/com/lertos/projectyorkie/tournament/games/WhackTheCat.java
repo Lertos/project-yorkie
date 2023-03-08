@@ -58,8 +58,10 @@ public class WhackTheCat extends TournamentGame {
 
         initialSquareDisappearTime = calculateInitialDisappearTime();
         currentSquareDisappearTime = initialSquareDisappearTime;
+    }
 
-        tvScore = view.findViewById(R.id.tvScore);
+    protected void setupUI() {
+        tvScore = parentView.findViewById(R.id.tvScore);
 
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
@@ -91,9 +93,15 @@ public class WhackTheCat extends TournamentGame {
         timeToRise = 0;
 
         switch (tournamentDifficulty) {
-            case EASY: timeToRise = 1200; break;
-            case NORMAL: timeToRise = 1000; break;
-            case HARD: timeToRise = 800; break;
+            case EASY:
+                timeToRise = 1200;
+                break;
+            case NORMAL:
+                timeToRise = 1000;
+                break;
+            case HARD:
+                timeToRise = 800;
+                break;
         }
 
         timeToDisappear = 0;
