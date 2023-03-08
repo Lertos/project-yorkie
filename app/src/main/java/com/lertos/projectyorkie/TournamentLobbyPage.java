@@ -54,7 +54,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.btnStartNextGame).setOnClickListener(v -> {
             findViewById(R.id.relScreen).setVisibility(View.GONE);
 
-            tournamentMaster.startNextGame(this);
+            tournamentMaster.startNextGame();
         });
 
         findViewById(R.id.btnLeaveScoreScreen).setOnClickListener(v -> {
