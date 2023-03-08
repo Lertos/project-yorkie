@@ -5,8 +5,6 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.TournamentLobbyPage;
 import com.lertos.projectyorkie.data.DataManager;
@@ -32,6 +30,7 @@ public class TournamentMaster {
     private final int maxAIContestants = 3;
     private final double maxScoreModifier = 0.3;
     private TournamentState currentState;
+    private ArrayList<TournamentGame> listOfGames;
     private TournamentGame currentGame;
     private final ArrayList<TournamentContestant> contestants;
     private final TournamentDifficulty tournamentDifficulty;
@@ -46,6 +45,43 @@ public class TournamentMaster {
         this.initialBet = initialBet;
 
         this.rng = new Random();
+
+        this.listOfGames = createListOfGames();
+
+        //Pick the first game randomly to show the title in the lobby
+        pickRandomGame();
+    }
+
+    private ArrayList<TournamentGame> createListOfGames() {
+        ArrayList<TournamentGame> list = new ArrayList<>();
+
+        //Create each game object
+        WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat");
+
+        //Add each game object to our games list
+        list.add(gameWhackTheCat);
+
+        return list;
+    }
+
+    private void pickRandomGame() {
+        int randIndex = rng.nextInt(listOfGames.size());
+        TournamentGame nextGame = listOfGames.get(randIndex);
+
+        currentGame = nextGame;
+
+        listOfGames.remove(randIndex);
+    }
+
+    private void inflateGameStub() {
+        ViewStub stub = null;
+
+        if (currentGame instanceof WhackTheCat) {
+            stub = lobbyPage.findViewById(R.id.viewStubGame);
+            stub.setLayoutResource(R.layout.page_game_whack_the_cat);
+        }
+
+        inflatedStub = stub.inflate();
     }
 
     private TournamentDifficulty getDifficultyFromString(String str) {
@@ -95,16 +131,10 @@ public class TournamentMaster {
         return initialBet;
     }
 
-    public void startNextGame(AppCompatActivity view) {
-        //TODO: Load from a list, randomly
-        ViewStub stub = view.findViewById(R.id.viewStubGame);
-        stub.setLayoutResource(R.layout.page_game_whack_the_cat);
-        inflatedStub = stub.inflate();
+    public void startNextGame() {
+        inflateGameStub();
 
-        WhackTheCat game = new WhackTheCat(this, tournamentDifficulty, view, "Whack the Cat");
-        currentGame = game;
-
-        game.startGame();
+        currentGame.startGame();
     }
 
     //TODO: Add method to switch between states and handle the visibility of screens there instead
