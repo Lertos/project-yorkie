@@ -151,6 +151,9 @@ public class TournamentMaster {
         //Show the end game screen with the score
         lobbyPage.findViewById(R.id.relGameOverScreen).setVisibility(View.VISIBLE);
 
+        //Hide the shared header that holds the timer and score
+        lobbyPage.findViewById(R.id.linGameHeader).setVisibility(View.GONE);
+
         //Add scores to all contestants
         updateContestantScores();
     }
