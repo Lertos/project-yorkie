@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
 
@@ -111,9 +112,17 @@ public class TournamentLobbyPage extends AppCompatActivity {
         dogLayout3.setAlpha(0);
         dogLayout4.setAlpha(0);
 
+        MediaManager.getInstance().playEffectTrack(R.raw.effect_popup_1);
+
         dogLayout4.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_popup_2);
+
             dogLayout3.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+                MediaManager.getInstance().playEffectTrack(R.raw.effect_popup_3);
+
                 dogLayout2.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+                    MediaManager.getInstance().playEffectTrack(R.raw.effect_popup_4);
+
                     dogLayout1.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
                         showBottomSectionInfo();
                     });
