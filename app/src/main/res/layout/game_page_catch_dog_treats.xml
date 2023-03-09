@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/absParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkest_blue">
+
+    <RelativeLayout
+        android:id="@+id/relMainSection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/activeSquare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:adjustViewBounds="true"
+            android:foregroundGravity="top"
+            android:padding="0dp"
+            android:src="@mipmap/icon_activities" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/stopSquare1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:foregroundGravity="top"
+                android:padding="0dp"
+                android:src="@mipmap/icon_blank" />
+
+            <ImageView
+                android:id="@+id/stopSquare2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:foregroundGravity="top"
+                android:padding="0dp"
+                android:src="@mipmap/icon_blank" />
+
+            <ImageView
+                android:id="@+id/stopSquare3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:foregroundGravity="top"
+                android:padding="0dp"
+                android:src="@mipmap/icon_blank" />
+
+            <ImageView
+                android:id="@+id/stopSquare4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:foregroundGravity="top"
+                android:padding="0dp"
+                android:src="@mipmap/icon_blank" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
