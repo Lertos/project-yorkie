@@ -20,8 +20,6 @@ import java.util.ArrayList;
 
 public class CatchDogTreats extends TournamentGame {
 
-    private final int sizeAvatarInDP = 40;
-    private final int sizeSquareInDP = 55;
     private final Handler disappearTimeHandler = new Handler();
     private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
