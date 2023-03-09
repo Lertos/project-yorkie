@@ -76,6 +76,15 @@ public class TournamentMaster {
         listOfGames.remove(randIndex);
     }
 
+    public String getCurrentGameName() {
+        String title = "";
+
+        if (currentGame != null)
+            title = currentGame.getGameTitle();
+
+        return title;
+    }
+
     private void inflateGameStub() {
         ViewStub stub = null;
 

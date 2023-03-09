@@ -67,6 +67,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     public void currentGameEnded() {
+        resetGameHeader();
         refreshContestantUI();
 
         findViewById(R.id.relScreen).setVisibility(View.VISIBLE);
@@ -75,7 +76,12 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
     private void setupUI() {
         setupHeaderInfo();
+        resetGameHeader();
         refreshContestantUI();
+    }
+
+    private void resetGameHeader() {
+        ((TextView) findViewById(R.id.tvNextGameTitle)).setText(tournamentMaster.getCurrentGameName());
     }
 
     private void setupHeaderInfo() {
