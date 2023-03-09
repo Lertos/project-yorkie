@@ -168,8 +168,7 @@ public class CatchDogTreats extends TournamentGame {
         fallingSquares.add(newImage);
 
         newImage.animate().scaleX(1).scaleY(1).setDuration(300).withEndAction(() -> {
-            //.setInterpolator(new LinearInterpolator()) makes the animation smooth instead of tween-ing the start and end
-            newImage.animate().translationY(sectionHeight + headerHeight).setInterpolator(new LinearInterpolator()).setDuration(1000);
+            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(1000);
         });
         /*
         View view = getUnusedAvatar();
