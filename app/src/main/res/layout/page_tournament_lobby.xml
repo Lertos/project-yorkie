@@ -105,6 +105,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/linDog1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -148,6 +149,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linDog2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -191,6 +193,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linDog3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -234,6 +237,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linDog4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
