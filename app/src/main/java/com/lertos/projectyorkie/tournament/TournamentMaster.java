@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.TournamentLobbyPage;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.tournament.games.CatchDogTreats;
 import com.lertos.projectyorkie.tournament.games.WhackTheCat;
@@ -152,6 +153,8 @@ public class TournamentMaster {
     }
 
     public void showEndGameScreen() {
+        MediaManager.getInstance().playEffectTrack(R.raw.effect_end_screen);
+
         //Remove the embedded game screen
         ((ViewGroup) inflatedStub.getParent()).removeView(inflatedStub);
 
