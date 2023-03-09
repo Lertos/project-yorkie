@@ -44,85 +44,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
+                    style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="Bracket"
+                    android:textAlignment="textEnd" />
 
-                    <TextView
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:text="Bracket"
-                        android:textAlignment="textEnd" />
-
-                    <TextView
-                        android:id="@+id/tvCurrentBracket"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="PH"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/main_text_color" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvCurrentBracket"
+                    style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:text="PH"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_text_color" />
 
-                    <TextView
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:text="Difficulty"
-                        android:textAlignment="textEnd" />
-
-                    <TextView
-                        android:id="@+id/tvDifficulty"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="PH"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/main_text_color" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    style="@style/fontMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="Difficulty"
+                    android:textAlignment="textEnd" />
 
-                    <TextView
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:text="Bet Value"
-                        android:textAlignment="textEnd" />
-
-                    <TextView
-                        android:id="@+id/tvBetAmount"
-                        style="@style/fontMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="PH"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/main_text_color" />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tvDifficulty"
+                    style="@style/fontMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PH"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_text_color" />
 
             </LinearLayout>
 

@@ -104,7 +104,6 @@ public class TournamentLobbyPage extends AppCompatActivity {
     private void setupHeaderInfo() {
         ((TextView) findViewById(R.id.tvCurrentBracket)).setText(DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay().toUpperCase());
         ((TextView) findViewById(R.id.tvDifficulty)).setText(tournamentMaster.getTournamentDifficulty().getDisplayStr().toUpperCase());
-        ((TextView) findViewById(R.id.tvBetAmount)).setText(IdleNumber.getStrNumber(tournamentMaster.getInitialBet()));
     }
 
     private void refreshContestantUI() {
