@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
@@ -148,6 +149,9 @@ public class CatchDogTreats extends TournamentGame {
         currentTime += secondsGainedWhenCorrect;
         currentSquare++;
 
+        if (isPlaying)
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
+
         setNextDisappearTime();
         addScore();
 
@@ -162,6 +166,9 @@ public class CatchDogTreats extends TournamentGame {
 
     private void handleWrongClick() {
         currentTime -= secondsLostWhenMissed;
+
+        if (isPlaying)
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
     }
 
     protected void gameLoop() {
