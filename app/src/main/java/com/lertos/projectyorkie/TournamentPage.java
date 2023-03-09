@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,6 +98,7 @@ public class TournamentPage extends AppCompatActivity {
         double costInTokens = rank.getTokenCostForRank();
 
         //Choose a default value for the difficulty
+        ((RadioButton) findViewById(R.id.rbDifficultyNormal)).setChecked(true);
         pickDifficultyOption(TournamentDifficulty.NORMAL);
 
         ((Button) findViewById(R.id.btnMoveToLobby)).setText(
