@@ -121,7 +121,7 @@ public class WhackTheCat extends TournamentGame {
 
         for (int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfCols; j++) {
-                View view = LayoutInflater.from(parentView).inflate(R.layout.subpage_whack_cat_item, null);
+                View view = LayoutInflater.from(parentView).inflate(R.layout.sub_page_whack_cat_item, null);
 
                 RelativeLayout.LayoutParams params = createLayoutParams();
 

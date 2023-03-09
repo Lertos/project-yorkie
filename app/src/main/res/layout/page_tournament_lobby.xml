@@ -482,6 +482,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/linGameHeader"
         android:inflatedId="@+id/layoutGameScreen"
-        android:layout="@layout/page_game_whack_the_cat" />
+        android:layout="@layout/game_page_whack_the_cat" />
 
 </RelativeLayout>

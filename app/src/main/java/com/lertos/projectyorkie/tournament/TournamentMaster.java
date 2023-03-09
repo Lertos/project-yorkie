@@ -78,7 +78,7 @@ public class TournamentMaster {
 
         if (currentGame instanceof WhackTheCat) {
             stub = lobbyPage.findViewById(R.id.viewStubGame);
-            stub.setLayoutResource(R.layout.page_game_whack_the_cat);
+            stub.setLayoutResource(R.layout.game_page_whack_the_cat);
         }
 
         inflatedStub = stub.inflate();
