@@ -54,7 +54,8 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.btnStartNextGame).setOnClickListener(v -> {
             findViewById(R.id.relScreen).setVisibility(View.GONE);
 
-            tournamentMaster.startNextGame();
+            if (!tournamentMaster.isGameListEmpty())
+                tournamentMaster.startNextGame();
         });
 
         findViewById(R.id.btnLeaveScoreScreen).setOnClickListener(v -> {
@@ -81,7 +82,12 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void resetGameHeader() {
-        ((TextView) findViewById(R.id.tvNextGameTitle)).setText(tournamentMaster.getCurrentGameName());
+        TextView tvGameTitle = findViewById(R.id.tvNextGameTitle);
+
+        if (tournamentMaster.isGameListEmpty())
+            tvGameTitle.setText("--");
+        else
+            tvGameTitle.setText(tournamentMaster.getCurrentGameName());
     }
 
     private void setupHeaderInfo() {

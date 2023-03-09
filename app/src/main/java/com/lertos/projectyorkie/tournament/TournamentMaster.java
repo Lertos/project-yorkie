@@ -60,12 +60,16 @@ public class TournamentMaster {
     }
 
     private void pickRandomGame() {
+        if (currentGame != null)
+            listOfGames.remove(currentGame);
+
+        if (listOfGames.isEmpty())
+            return;
+
         int randIndex = rng.nextInt(listOfGames.size());
         TournamentGame nextGame = listOfGames.get(randIndex);
 
         currentGame = nextGame;
-
-        listOfGames.remove(randIndex);
     }
 
     public String getCurrentGameName() {
@@ -138,13 +142,15 @@ public class TournamentMaster {
         return initialBet;
     }
 
+    public boolean isGameListEmpty() {
+        return listOfGames.isEmpty();
+    }
+
     public void startNextGame() {
         inflateGameStub();
-
         currentGame.startGame();
     }
 
-    //TODO: Add method to switch between states and handle the visibility of screens there instead
     public void showEndGameScreen() {
         //Remove the embedded game screen
         ((ViewGroup) inflatedStub.getParent()).removeView(inflatedStub);
