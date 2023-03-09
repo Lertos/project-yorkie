@@ -162,6 +162,9 @@ public class TournamentMaster {
 
         //Add scores to all contestants
         updateContestantScores();
+
+        //Pick the next game so we can display the title
+        pickRandomGame();
     }
 
     private void updateContestantScores() {
