@@ -55,6 +55,7 @@ public class TournamentPage extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         isPageActive = true;
+        setupUI();
     }
 
     private void setOnClickListeners() {
