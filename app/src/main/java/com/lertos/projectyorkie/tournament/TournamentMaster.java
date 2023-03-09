@@ -31,6 +31,8 @@ public class TournamentMaster {
     private final TournamentDifficulty tournamentDifficulty;
     private final double initialBet;
     private Random rng;
+    private int playerFinalPosition;
+    private double playerFinalReward;
 
     public TournamentMaster(TournamentLobbyPage lobbyPage, String difficulty, double initialBet) {
         this.lobbyPage = lobbyPage;
@@ -41,6 +43,9 @@ public class TournamentMaster {
         this.rng = new Random();
 
         this.listOfGames = createListOfGames();
+
+        //Pay the initial bet
+        DataManager.getInstance().addHearts(-initialBet);
 
         //Pick the first game randomly to show the title in the lobby
         pickRandomGame();
@@ -133,6 +138,63 @@ public class TournamentMaster {
     public List<TournamentContestant> getContestants() {
         contestants.sort(new SortByScore());
         return Collections.unmodifiableList(contestants);
+    }
+
+    public void processEndOfTournament() {
+        playerFinalPosition = getPlayerFinalIndex();
+
+        processPlayerPosition();
+    }
+
+    private void processPlayerPosition() {
+        double rewardMultiplier = 0.0;
+
+        if (playerFinalPosition == 0) {
+            rewardMultiplier = 1.75;
+        } else if (playerFinalPosition == 1) {
+            rewardMultiplier = 1.25;
+        } else if (playerFinalPosition == 2) {
+            rewardMultiplier = 1.0;
+        }
+
+        playerFinalReward = initialBet * rewardMultiplier;
+
+        DataManager.getInstance().addHearts(playerFinalReward);
+    }
+
+    public String getPlayerPosition() {
+        int playerPosition = getPlayerFinalIndex();
+        String position;
+
+        switch (playerPosition) {
+            case 0:
+                position = "1st";
+                break;
+            case 1:
+                position = "2nd";
+                break;
+            case 2:
+                position = "3rd";
+                break;
+            default:
+                position = (playerPosition + 1) + "th";
+                break;
+        }
+        return position;
+    }
+
+    public double getPlayerFinalReward() {
+        return playerFinalReward;
+    }
+
+    private int getPlayerFinalIndex() {
+        List<TournamentContestant> finalContestants = getContestants();
+
+        for (int i = 0; i < finalContestants.size(); i++) {
+            if (finalContestants.get(i).isPlayer())
+                return i;
+        }
+        return -1;
     }
 
     public TournamentDifficulty getTournamentDifficulty() {

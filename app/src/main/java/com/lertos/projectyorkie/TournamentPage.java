@@ -70,7 +70,7 @@ public class TournamentPage extends AppCompatActivity {
 
             Intent intent = new Intent(this, TournamentLobbyPage.class);
             intent.putExtra("STR_DIFFICULTY", difficulty.getDisplayStr());
-            intent.putExtra("DOUBLE_BET_AMOUNT", heartsBet);
+            intent.putExtra("DOUBLE_BET_AMOUNT", (Double) heartsBet);
             startActivity(intent);
         });
 

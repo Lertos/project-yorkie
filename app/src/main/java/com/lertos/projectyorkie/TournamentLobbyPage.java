@@ -87,6 +87,9 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     public void currentGameEnded() {
+        if (tournamentMaster.isGameListEmpty())
+            tournamentMaster.processEndOfTournament();
+
         refreshContestantUI();
         resetUIAfterGame();
 
@@ -101,7 +104,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void resetUIAfterGame() {
-        setupAppropriateButtons();
+        changeBottomSectionInfo();
         hideBottomSectionInfo();
         showContestantsSlowly();
     }
@@ -141,11 +144,15 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.linButtonGroup).animate().alpha(1).setDuration(400);
     }
 
-    private void setupAppropriateButtons() {
+    private void changeBottomSectionInfo() {
         TextView tvGameTitle = findViewById(R.id.tvNextGameTitle);
 
         if (tournamentMaster.isGameListEmpty()) {
-            findViewById(R.id.linNextGame).setVisibility(GONE);
+            String playerPosition = tournamentMaster.getPlayerPosition();
+            String endReward = IdleNumber.getStrNumber(tournamentMaster.getPlayerFinalReward());
+
+            ((TextView) findViewById(R.id.tvNextGameHeader)).setText("You were " + playerPosition + " place");
+            tvGameTitle.setText(endReward);
 
             findViewById(R.id.btnStartNextGame).setVisibility(GONE);
             findViewById(R.id.btnLeaveTournament).setVisibility(GONE);
