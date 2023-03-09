@@ -2,7 +2,7 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -117,6 +117,7 @@ public class CatchDogTreats extends TournamentGame {
 
             dropSquare.setOnClickListener(v -> {
                 boolean correctClick = false;
+                ImageView clickedSquare = null;
 
                 for (ImageView fallingSquare : fallingSquares) {
                     Rect fallingSquareRect = new Rect();
@@ -129,27 +130,38 @@ public class CatchDogTreats extends TournamentGame {
                     if (insideX) {
                         if (insideYAbove && insideYBelow) {
                             correctClick = true;
+                            clickedSquare = fallingSquare;
                             break;
                         }
                     }
                 }
 
                 if (correctClick)
-                    Log.d("d", "correct");
+                    handleSquareClicked(clickedSquare);
                 else
-                    Log.d("d", "missed");
+                    handleWrongClick();
             });
         }
     }
 
-    private void handleSquareClicked() {
+    private void handleSquareClicked(ImageView fallingSquare) {
         currentTime += secondsGainedWhenCorrect;
         currentSquare++;
 
         setNextDisappearTime();
         addScore();
 
+        fallingSquares.remove(fallingSquare);
+        fallingSquare.clearAnimation();
+        fallingSquare.animate().cancel();
+
+        fallingSquare.animate().scaleX(0).scaleY(0).setDuration(100).withEndAction(() -> fallingSquare.setVisibility(View.GONE));
+
         tvScore.setText(String.format(String.format("%.2f", score)));
+    }
+
+    private void handleWrongClick() {
+        currentTime -= secondsLostWhenMissed;
     }
 
     protected void gameLoop() {
@@ -186,32 +198,13 @@ public class CatchDogTreats extends TournamentGame {
         fallingSquares.add(newImage);
 
         newImage.animate().scaleX(1).scaleY(1).setDuration(timeToScaleUp).withEndAction(() -> {
-            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeToFall);
-        });
-        /*
-        View view = getUnusedAvatar();
-
-
-        //Add the specific avatar to a list to check against later when we want to raise the next one
-        avatarsInUse.add(view);
-
-        //Animate the movement above the square to allow them time to click on it
-        view.animate().translationY(pixelValue(-sizeAvatarInDP)).setDuration(timeToRise).withEndAction(() -> {
-            Handler handler = new Handler();
-            Runnable runnable = () -> {
-                if (avatarsInUse.contains(view)) {
-                    view.animate().translationY(0).setDuration(100).withEndAction(() -> {
-                        //They missed it; deduct time
-                        currentTime -= secondsLostWhenMissed;
-                        avatarsInUse.remove(view);
-                    });
+            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeToFall).withEndAction(() -> {
+                if (fallingSquares.contains(newImage)) {
+                    fallingSquares.remove(newImage);
+                    handleWrongClick();
                 }
-            };
-            if (avatarsInUse.contains(view)) {
-                handler.postDelayed(runnable, timeToDisappear);
-            }
+            });
         });
-         */
     }
 
     private float getCorrectedX(float dropSquareX, int mainSquareWidth, int dropSquareWidth) {
@@ -231,13 +224,13 @@ public class CatchDogTreats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerClick * 7;
+                score = scorePerClick * 12;
                 break;
             case NORMAL:
-                score = scorePerClick * 11;
+                score = scorePerClick * 16;
                 break;
             case HARD:
-                score = scorePerClick * 15;
+                score = scorePerClick * 20;
                 break;
         }
         return (int) Math.round(score);
