@@ -4,7 +4,6 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +13,6 @@ import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
-
-import java.util.Random;
 
 public class CatchDogTreats extends TournamentGame {
 
@@ -27,9 +24,6 @@ public class CatchDogTreats extends TournamentGame {
     private final double baseDisappearTime = 3.5;
     private final double scorePerClick = 50;
     private final int initialSquareDisappearTime;
-    private Random rng = new Random();
-    private Rect gameLayout = new Rect();
-    private TextView tvScore;
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
     private int timeToFall;
@@ -45,8 +39,6 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     protected void setupUI() {
-        tvScore = parentView.findViewById(R.id.tvScore);
-
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
@@ -69,7 +61,6 @@ public class CatchDogTreats extends TournamentGame {
                 setupOnClickListeners();
             }
         });
-        tvScore.setText(String.format(String.format("%.2f", score)));
     }
 
     private void setTimingOfMovements() {

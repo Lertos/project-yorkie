@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,20 +21,16 @@ import com.lertos.projectyorkie.tournament.TournamentMaster;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
 
 public class WhackTheCat extends TournamentGame {
 
-    private Random rng = new Random();
     private ArrayList<View> avatars;
     private ArrayList<View> avatarsInUse;
     private final int sizeAvatarInDP = 40;
     private final int sizeSquareInDP = 55;
     private final int numberOfRows = 3;
     private final int numberOfCols = 3;
-    private Rect gameLayout = new Rect();
-    private TextView tvScore;
     private final Handler disappearTimeHandler = new Handler();
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
@@ -61,8 +56,6 @@ public class WhackTheCat extends TournamentGame {
     }
 
     protected void setupUI() {
-        tvScore = parentView.findViewById(R.id.tvScore);
-
         //Need the layout to be inflated before doing math using the variables produced inside this block
         RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();

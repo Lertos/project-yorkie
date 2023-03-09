@@ -1,8 +1,10 @@
 package com.lertos.projectyorkie.tournament;
 
+import android.graphics.Rect;
 import android.os.Handler;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +12,11 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.Talents;
 
+import java.util.Random;
+
 public abstract class TournamentGame {
 
+    protected Random rng = new Random();
     private final String gameTitle;
     private TournamentMaster tournamentMaster;
     protected TournamentDifficulty tournamentDifficulty;
@@ -20,6 +25,8 @@ public abstract class TournamentGame {
     protected double score = 0;
     protected final double canineFocus;
     protected LinearProgressIndicator indicator;
+    protected TextView tvScore;
+    protected Rect gameLayout = new Rect();
     protected final int millisecondsPerUpdate = 100;
     protected final int timerMax = 1000;
     protected final double startTime = 30.0;
@@ -44,14 +51,17 @@ public abstract class TournamentGame {
 
     //Runs the game and when it's over, returns the score
     public void startGame() {
+        //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
+        indicator = parentView.findViewById(R.id.indTimer);
+        indicator.setMax(timerMax);
+
+        tvScore = parentView.findViewById(R.id.tvScore);
+        tvScore.setText(String.format(String.format("%.2f", score)));
+
         setupUI();
 
         //Show the shared header that holds the timer and score
         parentView.findViewById(R.id.linGameHeader).setVisibility(View.VISIBLE);
-
-        //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
-        indicator = parentView.findViewById(R.id.indTimer);
-        indicator.setMax(timerMax);
 
         isPlaying = true;
 
