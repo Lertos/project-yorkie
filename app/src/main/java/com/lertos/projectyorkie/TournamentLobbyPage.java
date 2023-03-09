@@ -100,17 +100,8 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void resetUIAfterGame() {
-        TextView tvGameTitle = findViewById(R.id.tvNextGameTitle);
-
-        if (tournamentMaster.isGameListEmpty()) {
-            findViewById(R.id.linNextGame).setVisibility(GONE);
-
-            findViewById(R.id.btnStartNextGame).setVisibility(GONE);
-            findViewById(R.id.btnLeaveTournament).setVisibility(GONE);
-            findViewById(R.id.btnFinishTournament).setVisibility(VISIBLE);
-        } else
-            tvGameTitle.setText(tournamentMaster.getCurrentGameName());
-
+        setupAppropriateButtons();
+        hideBottomSectionInfo();
         showContestantsSlowly();
     }
 
@@ -124,11 +115,34 @@ public class TournamentLobbyPage extends AppCompatActivity {
             dogLayout3.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
                 dogLayout2.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
                     dogLayout1.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
-
+                        showBottomSectionInfo();
                     });
                 });
             });
         });
+    }
+
+    private void hideBottomSectionInfo() {
+        findViewById(R.id.linNextGame).setAlpha(0);
+        findViewById(R.id.linButtonGroup).setAlpha(0);
+    }
+
+    private void showBottomSectionInfo() {
+        findViewById(R.id.linNextGame).animate().alpha(1).setDuration(400);
+        findViewById(R.id.linButtonGroup).animate().alpha(1).setDuration(400);
+    }
+
+    private void setupAppropriateButtons() {
+        TextView tvGameTitle = findViewById(R.id.tvNextGameTitle);
+
+        if (tournamentMaster.isGameListEmpty()) {
+            findViewById(R.id.linNextGame).setVisibility(GONE);
+
+            findViewById(R.id.btnStartNextGame).setVisibility(GONE);
+            findViewById(R.id.btnLeaveTournament).setVisibility(GONE);
+            findViewById(R.id.btnFinishTournament).setVisibility(VISIBLE);
+        } else
+            tvGameTitle.setText(tournamentMaster.getCurrentGameName());
     }
 
     private void setupHeaderInfo() {
