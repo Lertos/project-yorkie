@@ -2,7 +2,9 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
+
+import java.util.ArrayList;
 
 public class CatchDogTreats extends TournamentGame {
 
@@ -25,7 +29,10 @@ public class CatchDogTreats extends TournamentGame {
     private final double scorePerClick = 50;
     private final int initialSquareDisappearTime;
     private Runnable disappearTimeRunnable;
-    private int sectionWidth, sectionHeight;
+    private ImageView mainSquare;
+    private ArrayList<ImageView> dropSquares;
+    private int headerHeight;
+    private int sectionHeight;
     private int timeToFall;
     private int currentSquareDisappearTime;
     //Starting at 2 so the math works better
@@ -48,12 +55,20 @@ public class CatchDogTreats extends TournamentGame {
                 layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 layout.getGlobalVisibleRect(gameLayout);
 
+                mainSquare = parentView.findViewById(R.id.ivActiveSquare);
+
+                dropSquares = new ArrayList<>();
+
+                dropSquares.add(parentView.findViewById(R.id.ivStopSquare1));
+                dropSquares.add(parentView.findViewById(R.id.ivStopSquare2));
+                dropSquares.add(parentView.findViewById(R.id.ivStopSquare3));
+                dropSquares.add(parentView.findViewById(R.id.ivStopSquare4));
+
+                //Get the game screen bounds
                 Rect headerLayout = new Rect();
                 parentView.findViewById(R.id.linHeader).getGlobalVisibleRect(headerLayout);
 
-                int headerHeight = headerLayout.height();
-
-                sectionWidth = gameLayout.width();
+                headerHeight = headerLayout.height();
                 sectionHeight = gameLayout.height() - headerHeight;
 
                 //These methods require the variables assigned up above so they need to be in this block
@@ -80,25 +95,7 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void setupOnClickListeners() {
-        /*
-        for (View view : avatars) {
-            view.setOnClickListener(v -> {
-                //If the player clicks a valid, rising avatar - award them time
-                if (avatarsInUse.contains(view)) {
-                    handleSquareClicked();
-
-                    //Animate the transition back to the avatars original position
-                    v.animate().translationY(0).setDuration(100).withEndAction(() -> {
-                        avatarsInUse.remove(view);
-                    });
-                }
-                //If the player clicks an inactive spot (wrong click / timing / spamming) - take time away
-                else {
-                    currentTime -= secondsLostWhenMissed;
-                }
-            });
-        }
-        */
+        //TODO: Add the listeners for each drop square
     }
 
     private void handleSquareClicked() {
@@ -125,6 +122,25 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void sendTreat() {
+        ImageView newImage = new ImageView(parentView);
+
+        newImage.setImageDrawable(mainSquare.getDrawable());
+        newImage.setBackground(mainSquare.getBackground());
+
+        ImageView randomSquare = dropSquares.get(rng.nextInt(dropSquares.size()));
+
+        newImage.setX(randomSquare.getX());
+        newImage.setY(0);
+
+        //Scale is purely for an opening animation before the squares fall
+        newImage.setScaleX(0);
+        newImage.setScaleY(0);
+
+        ((ViewGroup) mainSquare.getParent()).addView(newImage);
+
+        newImage.animate().scaleX(1).scaleY(1).setDuration(300).withEndAction(() -> {
+            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(1000);
+        });
         /*
         View view = getUnusedAvatar();
 
