@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linTournamentHeader"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="15dp"
             android:background="@drawable/border_with_darkest_bg"
             android:orientation="vertical">
@@ -107,7 +107,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp">
 
                     <ImageView
@@ -150,7 +150,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp">
 
                     <ImageView
@@ -193,7 +193,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp">
 
                     <ImageView
@@ -236,7 +236,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp">
 
                     <ImageView
