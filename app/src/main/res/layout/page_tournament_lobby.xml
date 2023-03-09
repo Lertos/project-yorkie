@@ -477,11 +477,19 @@
     </LinearLayout>
 
     <ViewStub
-        android:id="@+id/viewStubGame"
+        android:id="@+id/vsWhackTheCat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/linGameHeader"
-        android:inflatedId="@+id/layoutGameScreen"
+        android:inflatedId="@+id/layoutWhackTheCat"
         android:layout="@layout/game_page_whack_the_cat" />
+
+    <ViewStub
+        android:id="@+id/vsCatchDogTreats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linGameHeader"
+        android:inflatedId="@+id/layoutCatchDogTreats"
+        android:layout="@layout/game_page_catch_dog_treats" />
 
 </RelativeLayout>

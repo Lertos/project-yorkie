@@ -9,6 +9,7 @@ import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.TournamentLobbyPage;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.PackDog;
+import com.lertos.projectyorkie.tournament.games.CatchDogTreats;
 import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.ArrayList;
@@ -57,9 +58,11 @@ public class TournamentMaster {
 
         //Create each game object
         WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat");
+        CatchDogTreats gameCatchDogTreats = new CatchDogTreats(this, tournamentDifficulty, lobbyPage, "Catch the Dog Treats");
 
         //Add each game object to our games list
         list.add(gameWhackTheCat);
+        list.add(gameCatchDogTreats);
 
         return list;
     }
@@ -77,8 +80,11 @@ public class TournamentMaster {
         ViewStub stub = null;
 
         if (currentGame instanceof WhackTheCat) {
-            stub = lobbyPage.findViewById(R.id.viewStubGame);
+            stub = lobbyPage.findViewById(R.id.vsWhackTheCat);
             stub.setLayoutResource(R.layout.game_page_whack_the_cat);
+        } else if (currentGame instanceof CatchDogTreats) {
+            stub = lobbyPage.findViewById(R.id.vsCatchDogTreats);
+            stub.setLayoutResource(R.layout.game_page_catch_dog_treats);
         }
 
         inflatedStub = stub.inflate();
