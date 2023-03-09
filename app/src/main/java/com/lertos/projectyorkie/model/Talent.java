@@ -38,16 +38,8 @@ public class Talent {
         return description;
     }
 
-    public TalentBonusType getBonusType() {
-        return bonusType;
-    }
-
     public String getBonusTypeSuffix() {
         return bonusType.getSuffix();
-    }
-
-    public int getBonusSign() {
-        return bonusSign;
     }
 
     public String getBonusSignPrefix() {
