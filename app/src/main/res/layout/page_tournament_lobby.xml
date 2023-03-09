@@ -347,6 +347,7 @@
                     android:text="Next Game" />
 
                 <TextView
+                    android:id="@+id/tvNextGameTitle"
                     style="@style/fontLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
