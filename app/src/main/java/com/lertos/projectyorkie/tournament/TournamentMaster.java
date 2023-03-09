@@ -161,20 +161,31 @@ public class TournamentMaster {
         //Set the title of the end game screen of the game title
         ((TextView) lobbyPage.findViewById(R.id.tvGameTitleHeader)).setText(currentGame.getGameTitle());
 
-        //Set the score textview to the final score
-        ((TextView) lobbyPage.findViewById(R.id.tvFinalScore)).setText(String.valueOf(Math.round(currentGame.score)));
-
         //Show the end game screen with the score
         lobbyPage.findViewById(R.id.relGameOverScreen).setVisibility(View.VISIBLE);
 
         //Hide the shared header that holds the timer and score
         lobbyPage.findViewById(R.id.linGameHeader).setVisibility(View.GONE);
 
+        showEndScore();
+
         //Add scores to all contestants
         updateContestantScores();
 
         //Pick the next game so we can display the title
         pickRandomGame();
+    }
+
+    private void showEndScore() {
+        TextView tvFinalScore = lobbyPage.findViewById(R.id.tvFinalScore);
+
+        tvFinalScore.setText(String.valueOf(Math.round(currentGame.score)));
+
+        tvFinalScore.setAlpha(0);
+
+        tvFinalScore.animate().alpha(1).scaleX(3).scaleY(3).setDuration(1200).withEndAction(() -> {
+            tvFinalScore.animate().scaleX(1).scaleY(1).setDuration(400);
+        });
     }
 
     private void updateContestantScores() {
