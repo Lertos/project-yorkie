@@ -107,7 +107,7 @@ public class TournamentMaster {
     private ArrayList<TournamentContestant> createContestants() {
         ArrayList<TournamentContestant> contestantList = new ArrayList<>();
 
-        PackDog player = new PackDog("Yorkie", R.mipmap.portrait_loki);
+        PackDog player = new PackDog("YOU", R.mipmap.portrait_loki);
         contestantList.add(new TournamentContestant(player, true));
 
         for (int i=0; i < maxAIContestants; i++) {
