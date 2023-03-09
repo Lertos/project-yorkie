@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -108,8 +107,12 @@ public class CatchDogTreats extends TournamentGame {
                     Rect fallingSquareRect = new Rect();
                     fallingSquare.getGlobalVisibleRect(fallingSquareRect);
 
-                    if (fallingSquareRect.left > dropSquareRect.left && fallingSquareRect.right < dropSquareRect.right) {
-                        if (fallingSquareRect.top > dropSquareRect.top && fallingSquareRect.bottom < dropSquareRect.bottom) {
+                    boolean insideX = fallingSquareRect.left > dropSquareRect.left && fallingSquareRect.right < dropSquareRect.right;
+                    boolean insideYAbove = fallingSquareRect.top > (dropSquareRect.top - fallingSquareRect.height());
+                    boolean insideYBelow = fallingSquareRect.bottom < (dropSquareRect.bottom + fallingSquareRect.height());
+
+                    if (insideX) {
+                        if (insideYAbove && insideYBelow) {
                             correctClick = true;
                             break;
                         }
