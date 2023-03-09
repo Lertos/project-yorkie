@@ -6,6 +6,7 @@ import static android.view.View.VISIBLE;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,11 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
     static boolean isPageActive = false;
     private TournamentMaster tournamentMaster;
+    private final int msToShowEachContestant = 750;
+    private LinearLayout dogLayout1;
+    private LinearLayout dogLayout2;
+    private LinearLayout dogLayout3;
+    private LinearLayout dogLayout4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,11 @@ public class TournamentLobbyPage extends AppCompatActivity {
         double initialBet = getIntent().getDoubleExtra("DOUBLE_BET_AMOUNT", 0.0);
 
         tournamentMaster = new TournamentMaster(this, difficulty, initialBet);
+
+        dogLayout1 = findViewById(R.id.linDog1);
+        dogLayout2 = findViewById(R.id.linDog2);
+        dogLayout3 = findViewById(R.id.linDog3);
+        dogLayout4 = findViewById(R.id.linDog4);
 
         setupUI();
         setOnClickListeners();
@@ -75,8 +86,8 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     public void currentGameEnded() {
-        resetUIAfterGame();
         refreshContestantUI();
+        resetUIAfterGame();
 
         findViewById(R.id.relScreen).setVisibility(VISIBLE);
         findViewById(R.id.relGameOverScreen).setVisibility(GONE);
@@ -84,8 +95,8 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
     private void setupUI() {
         setupHeaderInfo();
-        resetUIAfterGame();
         refreshContestantUI();
+        resetUIAfterGame();
     }
 
     private void resetUIAfterGame() {
@@ -99,6 +110,25 @@ public class TournamentLobbyPage extends AppCompatActivity {
             findViewById(R.id.btnFinishTournament).setVisibility(VISIBLE);
         } else
             tvGameTitle.setText(tournamentMaster.getCurrentGameName());
+
+        showContestantsSlowly();
+    }
+
+    private void showContestantsSlowly() {
+        dogLayout1.setAlpha(0);
+        dogLayout2.setAlpha(0);
+        dogLayout3.setAlpha(0);
+        dogLayout4.setAlpha(0);
+
+        dogLayout4.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+            dogLayout3.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+                dogLayout2.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+                    dogLayout1.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
+
+                    });
+                });
+            });
+        });
     }
 
     private void setupHeaderInfo() {
