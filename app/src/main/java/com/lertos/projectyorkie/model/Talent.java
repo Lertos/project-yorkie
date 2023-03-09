@@ -109,6 +109,7 @@ public class Talent {
             }
         }
         currentLevel = level;
+        MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
     }
 
     private double getBonus(int level) {
