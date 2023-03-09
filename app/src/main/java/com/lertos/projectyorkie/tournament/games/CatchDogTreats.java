@@ -126,8 +126,9 @@ public class CatchDogTreats extends TournamentGame {
         newImage.setBackground(mainSquare.getBackground());
 
         ImageView randomSquare = dropSquares.get(rng.nextInt(dropSquares.size()));
+        float correctedXValue = getCorrectedX(randomSquare.getX(), mainSquare.getWidth(), randomSquare.getWidth());
 
-        newImage.setX(randomSquare.getX());
+        newImage.setX(correctedXValue);
         newImage.setY(0);
 
         //Scale is purely for an opening animation before the squares fall
@@ -163,6 +164,14 @@ public class CatchDogTreats extends TournamentGame {
             }
         });
          */
+    }
+
+    private float getCorrectedX(float dropSquareX, int mainSquareWidth, int dropSquareWidth) {
+        float xPos = dropSquareX;
+        int widthDifference = dropSquareWidth - mainSquareWidth;
+        int halfWidthDifference = Math.round(widthDifference / 2);
+
+        return xPos + halfWidthDifference;
     }
 
     private void addScore() {
