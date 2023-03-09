@@ -34,6 +34,7 @@ public class CatchDogTreats extends TournamentGame {
     private int headerHeight;
     private int sectionHeight;
     private int timeToFall;
+    private int timeToScaleUp;
     private int currentSquareDisappearTime;
     //Starting at 2 so the math works better
     private int currentSquare = 2;
@@ -91,6 +92,20 @@ public class CatchDogTreats extends TournamentGame {
                 break;
             case HARD:
                 timeToFall = 800;
+                break;
+        }
+
+        timeToScaleUp = 0;
+
+        switch (tournamentDifficulty) {
+            case EASY:
+                timeToScaleUp = 300;
+                break;
+            case NORMAL:
+                timeToScaleUp = 200;
+                break;
+            case HARD:
+                timeToScaleUp = 100;
                 break;
         }
     }
@@ -170,8 +185,8 @@ public class CatchDogTreats extends TournamentGame {
 
         fallingSquares.add(newImage);
 
-        newImage.animate().scaleX(1).scaleY(1).setDuration(300).withEndAction(() -> {
-            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(1000);
+        newImage.animate().scaleX(1).scaleY(1).setDuration(timeToScaleUp).withEndAction(() -> {
+            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeToFall);
         });
         /*
         View view = getUnusedAvatar();
