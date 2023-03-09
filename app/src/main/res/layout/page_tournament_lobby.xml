@@ -296,7 +296,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/fontMedium"
