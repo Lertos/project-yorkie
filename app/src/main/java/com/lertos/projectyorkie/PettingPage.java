@@ -172,13 +172,23 @@ public class PettingPage extends AppCompatActivity {
     private void processGameOver() {
         setPlayerScoreDataUI();
 
+        MediaManager.getInstance().playEffectTrack(R.raw.effect_end_screen);
+
         findViewById(R.id.linHeartTokens).setVisibility(View.VISIBLE);
         findViewById(R.id.linStartScreen).setVisibility(View.VISIBLE);
         findViewById(R.id.linGameScreen).setVisibility(View.GONE);
 
         //Show the reward won
+        TextView tvRewardAmount = findViewById(R.id.tvRewardAmount);
+
         findViewById(R.id.tvRewardHeader).setVisibility(View.VISIBLE);
-        findViewById(R.id.tvRewardAmount).setVisibility(View.VISIBLE);
+
+        tvRewardAmount.setVisibility(View.VISIBLE);
+        tvRewardAmount.setAlpha(0);
+
+        tvRewardAmount.animate().alpha(1).scaleX(3).scaleY(3).setDuration(1200).withEndAction(() -> {
+            tvRewardAmount.animate().scaleX(1).scaleY(1).setDuration(400);
+        });
 
         //Hide the generated square
         focusButton.setVisibility(View.INVISIBLE);
