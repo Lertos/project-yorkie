@@ -2,8 +2,10 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -28,6 +30,7 @@ public class CatchDogTreats extends TournamentGame {
     private final int initialSquareDisappearTime;
     private Runnable disappearTimeRunnable;
     private ImageView mainSquare;
+    private ArrayList<ImageView> fallingSquares;
     private ArrayList<ImageView> dropSquares;
     private int headerHeight;
     private int sectionHeight;
@@ -55,6 +58,7 @@ public class CatchDogTreats extends TournamentGame {
 
                 mainSquare = parentView.findViewById(R.id.ivActiveSquare);
 
+                fallingSquares = new ArrayList<>();
                 dropSquares = new ArrayList<>();
 
                 dropSquares.add(parentView.findViewById(R.id.ivStopSquare1));
@@ -93,7 +97,31 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void setupOnClickListeners() {
-        //TODO: Add the listeners for each drop square
+        for (ImageView dropSquare : dropSquares) {
+            Rect dropSquareRect = new Rect();
+            dropSquare.getGlobalVisibleRect(dropSquareRect);
+
+            dropSquare.setOnClickListener(v -> {
+                boolean correctClick = false;
+
+                for (ImageView fallingSquare : fallingSquares) {
+                    Rect fallingSquareRect = new Rect();
+                    fallingSquare.getGlobalVisibleRect(fallingSquareRect);
+
+                    if (fallingSquareRect.left > dropSquareRect.left && fallingSquareRect.right < dropSquareRect.right) {
+                        if (fallingSquareRect.top > dropSquareRect.top && fallingSquareRect.bottom < dropSquareRect.bottom) {
+                            correctClick = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (correctClick)
+                    Log.d("d", "correct");
+                else
+                    Log.d("d", "missed");
+            });
+        }
     }
 
     private void handleSquareClicked() {
@@ -137,8 +165,11 @@ public class CatchDogTreats extends TournamentGame {
 
         ((ViewGroup) mainSquare.getParent()).addView(newImage);
 
+        fallingSquares.add(newImage);
+
         newImage.animate().scaleX(1).scaleY(1).setDuration(300).withEndAction(() -> {
-            newImage.animate().translationY(sectionHeight + headerHeight).setDuration(1000);
+            //.setInterpolator(new LinearInterpolator()) makes the animation smooth instead of tween-ing the start and end
+            newImage.animate().translationY(sectionHeight + headerHeight).setInterpolator(new LinearInterpolator()).setDuration(1000);
         });
         /*
         View view = getUnusedAvatar();
