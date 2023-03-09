@@ -18,6 +18,7 @@ public abstract class TournamentGame {
 
     protected Random rng = new Random();
     private final String gameTitle;
+    private final String gameHint;
     private TournamentMaster tournamentMaster;
     protected TournamentDifficulty tournamentDifficulty;
     protected AppCompatActivity parentView;
@@ -32,11 +33,12 @@ public abstract class TournamentGame {
     protected final double startTime = 30.0;
     protected double currentTime;
 
-    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle) {
+    public TournamentGame(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         this.tournamentMaster = tournamentMaster;
         this.tournamentDifficulty = difficulty;
         this.parentView = view;
         this.gameTitle = gameTitle;
+        this.gameHint = gameHint;
 
         canineFocus = Talents.canineFocus.getCurrentBonus();
 
@@ -54,6 +56,9 @@ public abstract class TournamentGame {
         //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
         indicator = parentView.findViewById(R.id.indTimer);
         indicator.setMax(timerMax);
+
+        //Set the description of the game in the header
+        ((TextView) parentView.findViewById(R.id.tvGameDescription)).setText(gameHint);
 
         tvScore = parentView.findViewById(R.id.tvScore);
         tvScore.setText(String.valueOf(Math.round(score)));

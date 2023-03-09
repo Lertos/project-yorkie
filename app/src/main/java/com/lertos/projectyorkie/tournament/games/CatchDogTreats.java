@@ -39,8 +39,8 @@ public class CatchDogTreats extends TournamentGame {
     //Starting at 2 so the math works better
     private int currentSquare = 2;
 
-    public CatchDogTreats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle) {
-        super(tournamentMaster, difficulty, view, gameTitle);
+    public CatchDogTreats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
+        super(tournamentMaster, difficulty, view, gameTitle, gameHint);
 
         initialSquareDisappearTime = calculateInitialDisappearTime();
         currentSquareDisappearTime = initialSquareDisappearTime;

@@ -459,12 +459,11 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/tvHeader"
-            style="@style/fontHeader"
+            android:id="@+id/tvGameDescription"
+            style="@style/fontLarge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Whack Cats. Get Points."
             android:textAlignment="center" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -477,7 +476,7 @@
 
         <TextView
             android:id="@+id/tvScore"
-            style="@style/fontLarge"
+            style="@style/fontHeader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
