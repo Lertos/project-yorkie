@@ -1,5 +1,8 @@
 package com.lertos.projectyorkie;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -52,7 +55,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
     private void setOnClickListeners() {
         findViewById(R.id.btnStartNextGame).setOnClickListener(v -> {
-            findViewById(R.id.relScreen).setVisibility(View.GONE);
+            findViewById(R.id.relScreen).setVisibility(GONE);
 
             if (!tournamentMaster.isGameListEmpty())
                 tournamentMaster.startNextGame();
@@ -65,28 +68,36 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
             super.finish();
         });
+
+        findViewById(R.id.btnFinishTournament).setOnClickListener(v -> {
+            super.finish();
+        });
     }
 
     public void currentGameEnded() {
-        resetGameHeader();
+        resetUIAfterGame();
         refreshContestantUI();
 
-        findViewById(R.id.relScreen).setVisibility(View.VISIBLE);
-        findViewById(R.id.relGameOverScreen).setVisibility(View.GONE);
+        findViewById(R.id.relScreen).setVisibility(VISIBLE);
+        findViewById(R.id.relGameOverScreen).setVisibility(GONE);
     }
 
     private void setupUI() {
         setupHeaderInfo();
-        resetGameHeader();
+        resetUIAfterGame();
         refreshContestantUI();
     }
 
-    private void resetGameHeader() {
+    private void resetUIAfterGame() {
         TextView tvGameTitle = findViewById(R.id.tvNextGameTitle);
 
-        if (tournamentMaster.isGameListEmpty())
-            tvGameTitle.setText("--");
-        else
+        if (tournamentMaster.isGameListEmpty()) {
+            findViewById(R.id.linNextGame).setVisibility(GONE);
+
+            findViewById(R.id.btnStartNextGame).setVisibility(GONE);
+            findViewById(R.id.btnLeaveTournament).setVisibility(GONE);
+            findViewById(R.id.btnFinishTournament).setVisibility(VISIBLE);
+        } else
             tvGameTitle.setText(tournamentMaster.getCurrentGameName());
     }
 

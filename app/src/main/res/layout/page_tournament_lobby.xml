@@ -381,6 +381,14 @@
                     android:layout_height="wrap_content"
                     android:text="Dropout" />
 
+                <Button
+                    android:id="@+id/btnFinishTournament"
+                    style="@style/baseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finish"
+                    android:visibility="gone" />
+
             </LinearLayout>
 
         </LinearLayout>
