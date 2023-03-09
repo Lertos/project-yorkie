@@ -20,17 +20,10 @@ import java.util.Random;
 
 public class TournamentMaster {
 
-    private enum TournamentState {
-        LOBBY,
-        IN_GAME,
-        POST_GAME,
-        POST_TOURNAMENT
-    }
     private final TournamentLobbyPage lobbyPage;
     private View inflatedStub;
     private final int maxAIContestants = 3;
     private final double maxScoreModifier = 0.3;
-    private TournamentState currentState;
     private ArrayList<TournamentGame> listOfGames;
     private TournamentGame currentGame;
     private final ArrayList<TournamentContestant> contestants;
@@ -40,7 +33,6 @@ public class TournamentMaster {
 
     public TournamentMaster(TournamentLobbyPage lobbyPage, String difficulty, double initialBet) {
         this.lobbyPage = lobbyPage;
-        this.currentState = TournamentState.LOBBY;
         this.contestants = createContestants();
         this.tournamentDifficulty = getDifficultyFromString(difficulty);
         this.initialBet = initialBet;
