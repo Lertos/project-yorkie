@@ -56,7 +56,7 @@ public abstract class TournamentGame {
         indicator.setMax(timerMax);
 
         tvScore = parentView.findViewById(R.id.tvScore);
-        tvScore.setText(String.format(String.format("%.2f", score)));
+        tvScore.setText(String.valueOf(Math.round(score)));
 
         setupUI();
 

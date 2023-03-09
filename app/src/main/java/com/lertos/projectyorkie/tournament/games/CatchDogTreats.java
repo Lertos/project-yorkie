@@ -157,7 +157,7 @@ public class CatchDogTreats extends TournamentGame {
 
         fallingSquare.animate().scaleX(0).scaleY(0).setDuration(100).withEndAction(() -> fallingSquare.setVisibility(View.GONE));
 
-        tvScore.setText(String.format(String.format("%.2f", score)));
+        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     private void handleWrongClick() {

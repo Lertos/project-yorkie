@@ -159,7 +159,7 @@ public class TournamentMaster {
         ((TextView) lobbyPage.findViewById(R.id.tvGameTitleHeader)).setText(currentGame.getGameTitle());
 
         //Set the score textview to the final score
-        ((TextView) lobbyPage.findViewById(R.id.tvFinalScore)).setText(String.format("%.2f", currentGame.score));
+        ((TextView) lobbyPage.findViewById(R.id.tvFinalScore)).setText(String.valueOf(Math.round(currentGame.score)));
 
         //Show the end game screen with the score
         lobbyPage.findViewById(R.id.relGameOverScreen).setVisibility(View.VISIBLE);
