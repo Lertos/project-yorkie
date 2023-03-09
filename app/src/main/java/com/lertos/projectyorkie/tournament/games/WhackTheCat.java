@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
@@ -182,6 +183,9 @@ public class WhackTheCat extends TournamentGame {
     private void handleSquareClicked() {
         currentTime += secondsGainedWhenCorrect;
         currentSquare++;
+
+        if (isPlaying)
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
 
         setNextDisappearTime();
         addScore();
