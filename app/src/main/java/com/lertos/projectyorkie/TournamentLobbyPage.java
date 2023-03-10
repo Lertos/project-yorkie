@@ -127,14 +127,22 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
         PackDog randomDog = tournamentMaster.getRandomDog();
 
-        ((ImageView) findViewById(R.id.ivDogUnlocked)).setImageResource(randomDog.getAvatar());
+        //If the player placed below first, they did not unlock a dog
+        if (randomDog == null) {
+            findViewById(R.id.ivDogUnlocked).setVisibility(GONE);
+            ((TextView) findViewById(R.id.tvUnlockedDog)).setText("Place 1st to unlock new dogs");
+        }
+        //If the player won first place and unlocked a dog
+        else {
+            ((ImageView) findViewById(R.id.ivDogUnlocked)).setImageResource(randomDog.getAvatar());
 
-        //If they already unlocked it
-        if (randomDog.isUnlocked()) {
-            ((TextView) findViewById(R.id.tvUnlockedDog)).setText("Already Unlocked...");
-        } else {
-            ((TextView) findViewById(R.id.tvUnlockedDog)).setText("NEW UNLOCK: " + randomDog.getName());
-            randomDog.setUnlocked(true);
+            //If they already unlocked it
+            if (randomDog.isUnlocked()) {
+                ((TextView) findViewById(R.id.tvUnlockedDog)).setText("Already Unlocked...");
+            } else {
+                ((TextView) findViewById(R.id.tvUnlockedDog)).setText("NEW UNLOCK: " + randomDog.getName());
+                randomDog.setUnlocked(true);
+            }
         }
     }
 
