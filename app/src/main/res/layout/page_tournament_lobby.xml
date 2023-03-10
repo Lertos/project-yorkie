@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/relScreen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <!-- Character Info Panel -->
         <LinearLayout
@@ -408,6 +409,149 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Return to Lobby" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Tournament End Screen -->
+    <RelativeLayout
+        android:id="@+id/relTournamentEndScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkest_blue">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/fontGigantic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="Final Results"
+                android:textColor="@color/gold" />
+
+            <TextView
+                android:id="@+id/tvFinalPositionHeader"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Final Position" />
+
+            <TextView
+                android:id="@+id/tvFinalPosition"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="PH"
+                android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:id="@+id/tvInitialBetHeader"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Initial Bet" />
+
+            <TextView
+                android:id="@+id/tvInitialBet"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="PH"
+                android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:id="@+id/tvHeartsGainedHeader"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Hearts Gained" />
+
+            <TextView
+                android:id="@+id/tvHeartsGained"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="PH"
+                android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:id="@+id/tvRankChangeHeader"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Rank Change" />
+
+            <TextView
+                android:id="@+id/tvPreviousRank"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="EMERALD IV"
+                android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:id="@+id/tvRankChangeSpacer"
+                style="@style/fontMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="to" />
+
+            <TextView
+                android:id="@+id/tvNewRank"
+                style="@style/fontHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="WOOD IV"
+                android:textColor="@color/main_text_color" />
+
+            <ImageView
+                android:id="@+id/ivDogUnlocked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:background="@drawable/border_with_dark_bg"
+                android:maxHeight="60dp"
+                android:padding="0dp"
+                android:src="@mipmap/portrait_loki" />
+
+            <TextView
+                android:id="@+id/tvUnlockedDog"
+                style="@style/fontLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="Shepard Unlocked!"
+                android:textColor="@color/gold" />
+
+            <Button
+                android:id="@+id/btnEndTournament"
+                style="@style/baseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Tournament" />
 
         </LinearLayout>
 
