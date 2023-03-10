@@ -81,9 +81,51 @@ public class TournamentLobbyPage extends AppCompatActivity {
             super.finish();
         });
 
-        findViewById(R.id.btnFinishTournament).setOnClickListener(v -> {
+        findViewById(R.id.btnSeeEndResults).setOnClickListener(v -> {
+            showTournamentEndScreen();
+        });
+
+        findViewById(R.id.btnEndTournament).setOnClickListener(v -> {
             super.finish();
         });
+    }
+
+    private void showTournamentEndScreen() {
+        findViewById(R.id.relScreen).setVisibility(GONE);
+        findViewById(R.id.relTournamentEndScreen).setVisibility(VISIBLE);
+
+        updateTournamentEndScreenInfo();
+        animateTournamentEndScreenInfo();
+    }
+
+    private void updateTournamentEndScreenInfo() {
+        String playerPosition = tournamentMaster.getPlayerPosition();
+        String initialBet = IdleNumber.getStrNumber(tournamentMaster.getInitialBet());
+        String endReward = IdleNumber.getStrNumber(tournamentMaster.getPlayerFinalReward());
+
+        ((TextView) findViewById(R.id.tvFinalPosition)).setText(playerPosition + " place");
+        ((TextView) findViewById(R.id.tvInitialBet)).setText(initialBet);
+        ((TextView) findViewById(R.id.tvHeartsGained)).setText(endReward);
+
+        int rankDirection = tournamentMaster.getRankDirection();
+
+        //If there is no rank movement
+        if (rankDirection == 0) {
+            ((TextView) findViewById(R.id.tvPreviousRank)).setText("NONE");
+            findViewById(R.id.tvRankChangeSpacer).setVisibility(GONE);
+            findViewById(R.id.tvNewRank).setVisibility(GONE);
+        }
+        //If there is rank movement
+        else {
+            ((TextView) findViewById(R.id.tvPreviousRank)).setText(tournamentMaster.getPreviousRank());
+            ((TextView) findViewById(R.id.tvNewRank)).setText(tournamentMaster.getNewRank());
+        }
+
+        //TODO: Pick a dog and update avatar and text view
+    }
+
+    private void animateTournamentEndScreenInfo() {
+
     }
 
     public void currentGameEnded() {
@@ -148,15 +190,11 @@ public class TournamentLobbyPage extends AppCompatActivity {
         TextView tvGameTitle = findViewById(R.id.tvNextGameTitle);
 
         if (tournamentMaster.isGameListEmpty()) {
-            String playerPosition = tournamentMaster.getPlayerPosition();
-            String endReward = IdleNumber.getStrNumber(tournamentMaster.getPlayerFinalReward());
-
-            ((TextView) findViewById(R.id.tvNextGameHeader)).setText("You were " + playerPosition + " place");
-            tvGameTitle.setText(endReward);
+            findViewById(R.id.linNextGame).setVisibility(View.INVISIBLE);
 
             findViewById(R.id.btnStartNextGame).setVisibility(GONE);
             findViewById(R.id.btnLeaveTournament).setVisibility(GONE);
-            findViewById(R.id.btnFinishTournament).setVisibility(VISIBLE);
+            findViewById(R.id.btnSeeEndResults).setVisibility(VISIBLE);
         } else
             tvGameTitle.setText(tournamentMaster.getCurrentGameName());
     }

@@ -33,6 +33,10 @@ public class TournamentMaster {
     private Random rng;
     private int playerFinalPosition;
     private double playerFinalReward;
+    private String previousRank;
+    private String newRank;
+    //-1 means a decrease in rank, 0 means no change, 1 means increase in rank
+    private int rankDirection;
 
     public TournamentMaster(TournamentLobbyPage lobbyPage, String difficulty, double initialBet) {
         this.lobbyPage = lobbyPage;
@@ -143,10 +147,11 @@ public class TournamentMaster {
     public void processEndOfTournament() {
         playerFinalPosition = getPlayerFinalIndex();
 
-        processPlayerPosition();
+        processFinalReward();
+        processNewRank();
     }
 
-    private void processPlayerPosition() {
+    private void processFinalReward() {
         double rewardMultiplier = 0.0;
 
         if (playerFinalPosition == 0) {
@@ -160,6 +165,36 @@ public class TournamentMaster {
         playerFinalReward = initialBet * rewardMultiplier;
 
         DataManager.getInstance().addHearts(playerFinalReward);
+    }
+
+    private void processNewRank() {
+        previousRank = DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay();
+
+        if (playerFinalPosition == 0) {
+            rankDirection = 1;
+            DataManager.getInstance().getPlayerData().getTournamentRank().increaseTier();
+        } else if (playerFinalPosition == 1) {
+            rankDirection = 0;
+        } else if (playerFinalPosition == 2) {
+            rankDirection = 0;
+        } else {
+            rankDirection = -1;
+            DataManager.getInstance().getPlayerData().getTournamentRank().decreaseTier();
+        }
+
+        newRank = DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay();
+    }
+
+    public String getPreviousRank() {
+        return previousRank;
+    }
+
+    public String getNewRank() {
+        return newRank;
+    }
+
+    public int getRankDirection() {
+        return rankDirection;
     }
 
     public String getPlayerPosition() {
@@ -187,6 +222,10 @@ public class TournamentMaster {
         return playerFinalReward;
     }
 
+    public double getInitialBet() {
+        return initialBet;
+    }
+
     private int getPlayerFinalIndex() {
         List<TournamentContestant> finalContestants = getContestants();
 
@@ -199,10 +238,6 @@ public class TournamentMaster {
 
     public TournamentDifficulty getTournamentDifficulty() {
         return tournamentDifficulty;
-    }
-
-    public double getInitialBet() {
-        return initialBet;
     }
 
     public boolean isGameListEmpty() {

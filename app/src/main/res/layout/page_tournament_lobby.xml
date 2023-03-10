@@ -9,8 +9,7 @@
     <RelativeLayout
         android:id="@+id/relScreen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
         <!-- Character Info Panel -->
         <LinearLayout
@@ -348,11 +347,11 @@
                     android:text="Dropout" />
 
                 <Button
-                    android:id="@+id/btnFinishTournament"
+                    android:id="@+id/btnSeeEndResults"
                     style="@style/baseButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Finish"
+                    android:text="See Results"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -419,7 +418,8 @@
         android:id="@+id/relTournamentEndScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkest_blue">
+        android:background="@color/darkest_blue"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -460,7 +460,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Initial Bet" />
+                android:text="Hearts Bet" />
 
             <TextView
                 android:id="@+id/tvInitialBet"
