@@ -28,6 +28,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
     public void setDataList(List<?> list) {
         this.talentList = (List<Talent>) list;
+        DataManager.getInstance().resortPackDogs();
         notifyDataSetChanged();
     }
 

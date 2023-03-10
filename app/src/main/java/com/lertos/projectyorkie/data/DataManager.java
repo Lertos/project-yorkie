@@ -134,11 +134,15 @@ public class DataManager {
     }
 
     private TournamentDivision getDivisionFromString(String str) {
-        for(TournamentDivision division : TournamentDivision.BRONZE.getDeclaringClass().getEnumConstants()) {
+        for (TournamentDivision division : TournamentDivision.BRONZE.getDeclaringClass().getEnumConstants()) {
             if (str.equalsIgnoreCase(division.getDisplayStr()))
                 return division;
         }
         return null;
+    }
+
+    public void resortPackDogs() {
+        packDogList.sort(new PackDogs.SortByName());
     }
 
     public List<PackDog> getPackDogs() {
