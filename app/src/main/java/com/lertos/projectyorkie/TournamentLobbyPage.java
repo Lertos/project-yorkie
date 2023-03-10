@@ -161,7 +161,9 @@ public class TournamentLobbyPage extends AppCompatActivity {
                 View currentView = views.get(0);
 
                 views.remove(0);
-                currentView.animate().alpha(1).setDuration(timePerAction);
+                currentView.animate().alpha(1).setDuration(timePerAction).withEndAction(() -> {
+                    MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
+                });
 
                 handler.postDelayed(this, timePerAction);
             }
