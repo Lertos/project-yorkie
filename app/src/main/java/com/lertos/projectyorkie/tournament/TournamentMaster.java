@@ -197,6 +197,18 @@ public class TournamentMaster {
         return rankDirection;
     }
 
+    public PackDog getRandomDog() {
+        int playerPosition = getPlayerFinalIndex();
+
+        if (playerPosition != 0)
+            return null;
+
+        List<TournamentContestant> finalContestants = getContestants();
+        int randIndex = rng.nextInt(finalContestants.size()) + 1;
+
+        return finalContestants.get(randIndex).getPackDog();
+    }
+
     public String getPlayerPosition() {
         int playerPosition = getPlayerFinalIndex();
         String position;
