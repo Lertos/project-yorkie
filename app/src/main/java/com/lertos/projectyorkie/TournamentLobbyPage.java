@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
+import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
 
@@ -124,7 +125,17 @@ public class TournamentLobbyPage extends AppCompatActivity {
             ((TextView) findViewById(R.id.tvNewRank)).setText(tournamentMaster.getNewRank());
         }
 
-        //TODO: Pick a dog and update avatar and text view
+        PackDog randomDog = tournamentMaster.getRandomDog();
+
+        ((ImageView) findViewById(R.id.ivDogUnlocked)).setImageResource(randomDog.getAvatar());
+
+        //If they already unlocked it
+        if (randomDog.isUnlocked()) {
+            ((TextView) findViewById(R.id.tvUnlockedDog)).setText("Already Unlocked...");
+        } else {
+            ((TextView) findViewById(R.id.tvUnlockedDog)).setText("NEW UNLOCK: " + randomDog.getName());
+            randomDog.setUnlocked(true);
+        }
     }
 
     private void animateTournamentEndScreenInfo() {
