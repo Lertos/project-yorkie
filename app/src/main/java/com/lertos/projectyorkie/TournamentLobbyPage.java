@@ -4,7 +4,9 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.tournament.TournamentContestant;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TournamentLobbyPage extends AppCompatActivity {
@@ -125,7 +128,34 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void animateTournamentEndScreenInfo() {
+        int timePerAction = 800;
 
+        ViewGroup linTournamentEndScreen = findViewById(R.id.linTournamentEndScreen);
+        ArrayList<View> views = new ArrayList<>();
+
+        for (int i = 0; i < linTournamentEndScreen.getChildCount(); i++) {
+            View childView = linTournamentEndScreen.getChildAt(i);
+
+            childView.setAlpha(0);
+            views.add(childView);
+        }
+
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (views.isEmpty())
+                    return;
+
+                View currentView = views.get(0);
+
+                views.remove(0);
+                currentView.animate().alpha(1).setDuration(timePerAction);
+
+                handler.postDelayed(this, timePerAction);
+            }
+        };
+        handler.post(runnable);
     }
 
     public void currentGameEnded() {
