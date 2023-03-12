@@ -2,6 +2,7 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -32,6 +33,7 @@ public class DodgeTheCats extends TournamentGame {
     private int laneX1;
     private int laneX2;
     private int laneX3;
+    private int laneY;
     private int laneWidth;
     private int headerHeight;
     private int sectionHeight;
@@ -59,13 +61,18 @@ public class DodgeTheCats extends TournamentGame {
                 layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 layout.getGlobalVisibleRect(gameLayout);
 
+                //Assign the two avatars to reuse
                 ivCatAvatar = parentView.findViewById(R.id.ivCatToClone);
+                ivYorkieAvatar = parentView.findViewById(R.id.ivYorkieAvatar);
 
                 fallingCats = new ArrayList<>();
 
+                //Assign the lane info so the cloned avatars can copy their sizes and positions
                 laneX1 = (int) parentView.findViewById(R.id.ivLaneSpace1).getX();
                 laneX2 = (int) parentView.findViewById(R.id.ivLaneSpace2).getX();
                 laneX3 = (int) parentView.findViewById(R.id.ivLaneSpace3).getX();
+
+                laneY = (int) parentView.findViewById(R.id.ivLaneSpace3).getY();
 
                 laneWidth = parentView.findViewById(R.id.ivLaneSpace1).getWidth();
 
@@ -77,10 +84,31 @@ public class DodgeTheCats extends TournamentGame {
                 sectionHeight = gameLayout.height() - headerHeight;
 
                 //These methods require the variables assigned up above so they need to be in this block
+                setupAvatarDimensions();
                 setTimingOfMovements();
                 setupOnClickListeners();
             }
         });
+    }
+
+    private void setupAvatarDimensions() {
+        //Set width and height to match the lane sizes
+        ivCatAvatar.setMinimumWidth(laneWidth);
+        ivCatAvatar.setMinimumHeight(laneWidth);
+        ivCatAvatar.setMaxWidth(laneWidth);
+        ivCatAvatar.setMaxHeight(laneWidth);
+
+        ivYorkieAvatar.setMinimumWidth(laneWidth);
+        ivYorkieAvatar.setMinimumHeight(laneWidth);
+        ivYorkieAvatar.setMaxWidth(laneWidth);
+        ivYorkieAvatar.setMaxHeight(laneWidth);
+
+        //Position the yorkie at the center start location
+        ivYorkieAvatar.setX(laneX2);
+        ivYorkieAvatar.setY(laneY);
+
+        //Make the yorkie avatar visible
+        ivYorkieAvatar.setVisibility(View.VISIBLE);
     }
 
     private void setTimingOfMovements() {
