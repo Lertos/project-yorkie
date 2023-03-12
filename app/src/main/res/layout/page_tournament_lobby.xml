@@ -610,4 +610,12 @@
         android:inflatedId="@+id/layoutCatchDogTreats"
         android:layout="@layout/game_page_catch_dog_treats" />
 
+    <ViewStub
+        android:id="@+id/vsDodgeTheCats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linGameHeader"
+        android:inflatedId="@+id/layoutDodgeTheCats"
+        android:layout="@layout/game_page_dodge_the_cats" />
+
 </RelativeLayout>
