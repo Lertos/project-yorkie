@@ -29,6 +29,10 @@ public class DodgeTheCats extends TournamentGame {
     private ImageView ivCatAvatar;
     private ImageView ivYorkieAvatar;
     private ArrayList<ImageView> fallingCats;
+    private int laneX1;
+    private int laneX2;
+    private int laneX3;
+    private int laneWidth;
     private int headerHeight;
     private int sectionHeight;
     private int timeToFall;
@@ -55,9 +59,15 @@ public class DodgeTheCats extends TournamentGame {
                 layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 layout.getGlobalVisibleRect(gameLayout);
 
-                ivCatAvatar = parentView.findViewById(R.id.ivActiveSquare);
+                ivCatAvatar = parentView.findViewById(R.id.ivCatToClone);
 
                 fallingCats = new ArrayList<>();
+
+                laneX1 = (int) parentView.findViewById(R.id.ivLaneSpace1).getX();
+                laneX2 = (int) parentView.findViewById(R.id.ivLaneSpace2).getX();
+                laneX3 = (int) parentView.findViewById(R.id.ivLaneSpace3).getX();
+
+                laneWidth = parentView.findViewById(R.id.ivLaneSpace1).getWidth();
 
                 //Get the game screen bounds
                 Rect headerLayout = new Rect();
