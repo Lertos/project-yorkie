@@ -2,6 +2,9 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -29,7 +32,7 @@ public class DodgeTheCats extends TournamentGame {
     private Runnable disappearTimeRunnable;
     private ImageView ivCatAvatar;
     private ImageView ivYorkieAvatar;
-    private ArrayList<ImageView> fallingCats;
+    private ArrayList<ImageView> fallingCats = new ArrayList<>();
     private int laneX1;
     private int laneX2;
     private int laneX3;
@@ -64,8 +67,6 @@ public class DodgeTheCats extends TournamentGame {
                 //Assign the two avatars to reuse
                 ivCatAvatar = parentView.findViewById(R.id.ivCatToClone);
                 ivYorkieAvatar = parentView.findViewById(R.id.ivYorkieAvatar);
-
-                fallingCats = new ArrayList<>();
 
                 //Assign the lane info so the cloned avatars can copy their sizes and positions
                 //NOTE: the lane X's will be off by the amount of the parent's margin, so we add that
@@ -149,6 +150,14 @@ public class DodgeTheCats extends TournamentGame {
 
     private void setupOnClickListeners() {
         //TODO: Setup a motion listener to see which direction the user swipes; move the character that direction
+        View view = parentView.findViewById(R.id.relMainSection);
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return new GestureDetector(parentView, new GestureListener()).onTouchEvent(motionEvent);
+            }
+        });
+
     }
 
     protected void gameLoop() {
@@ -200,4 +209,38 @@ public class DodgeTheCats extends TournamentGame {
         currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / (currentSquare / 2.0));
     }
 
+    class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        //Don't return false here or none of the other gestures work
+        @Override
+        public boolean onDown(MotionEvent event) {
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+        }
+
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            Log.i("Debug", "onScroll");
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velX, float velY) {
+            Log.d("Debug", "onFling");
+            return true;
+        }
+    }
 }
