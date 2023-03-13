@@ -25,9 +25,8 @@ public class MediaManager {
         this.context = context;
         this.trackSong = new MediaPlayer();
 
-        //TODO: Have these saved somewhere in the user prefs
-        this.trackEffectVolume = 0.5f;
-        this.trackSongVolume = 0.0f;
+        this.trackEffectVolume = DataManager.getInstance().getSettings().getTrackEffectVolume();
+        this.trackSongVolume = DataManager.getInstance().getSettings().getTrackSongVolume();
     }
 
     private void resetSongTrack() {
@@ -65,9 +64,11 @@ public class MediaManager {
 
     public void changeEffectTrackVolume(float volume) {
         trackEffectVolume = volume;
+        DataManager.getInstance().getSettings().setTrackEffectVolume(volume);
     }
 
     public void changeSongTrackVolume(float volume) {
+        DataManager.getInstance().getSettings().setTrackSongVolume(volume);
         trackSongVolume = volume;
         trackSong.setVolume(volume, volume);
     }
