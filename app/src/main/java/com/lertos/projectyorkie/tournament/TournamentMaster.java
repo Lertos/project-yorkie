@@ -60,13 +60,13 @@ public class TournamentMaster {
         ArrayList<TournamentGame> list = new ArrayList<>();
 
         //Create each game object
-        WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat", "Whack Cats. Get Points.");
-        CatchDogTreats gameCatchDogTreats = new CatchDogTreats(this, tournamentDifficulty, lobbyPage, "Catch the Dog Treats", "Click Squares When Overlapping");
+        //WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat", "Whack Cats. Get Points.");
+        //CatchDogTreats gameCatchDogTreats = new CatchDogTreats(this, tournamentDifficulty, lobbyPage, "Catch the Dog Treats", "Click Squares When Overlapping");
         DodgeTheCats gameDodgeTheCats = new DodgeTheCats(this, tournamentDifficulty, lobbyPage, "Dodge the Cats", "Swipe to Move. Dodge the Cats");
 
         //Add each game object to our games list
-        list.add(gameWhackTheCat);
-        list.add(gameCatchDogTreats);
+        //list.add(gameWhackTheCat);
+        //list.add(gameCatchDogTreats);
         list.add(gameDodgeTheCats);
 
         return list;
