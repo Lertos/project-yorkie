@@ -68,12 +68,15 @@ public class DodgeTheCats extends TournamentGame {
                 fallingCats = new ArrayList<>();
 
                 //Assign the lane info so the cloned avatars can copy their sizes and positions
-                laneX1 = (int) parentView.findViewById(R.id.ivLaneSpace1).getX();
-                laneX2 = (int) parentView.findViewById(R.id.ivLaneSpace2).getX();
-                laneX3 = (int) parentView.findViewById(R.id.ivLaneSpace3).getX();
+                //NOTE: the lane X's will be off by the amount of the parent's margin, so we add that
+                View laneParentContainer = (View) parentView.findViewById(R.id.ivLaneSpace1).getParent();
+                int parentMargin = (int) laneParentContainer.getX();
 
-                laneY = (int) parentView.findViewById(R.id.ivLaneSpace3).getY();
+                laneX1 = (int) parentView.findViewById(R.id.ivLaneSpace1).getX() + parentMargin;
+                laneX2 = (int) parentView.findViewById(R.id.ivLaneSpace2).getX() + parentMargin;
+                laneX3 = (int) parentView.findViewById(R.id.ivLaneSpace3).getX() + parentMargin;
 
+                //Assign the simple width of the square to copy later
                 laneWidth = parentView.findViewById(R.id.ivLaneSpace1).getWidth();
 
                 //Get the game screen bounds
@@ -82,6 +85,9 @@ public class DodgeTheCats extends TournamentGame {
 
                 headerHeight = headerLayout.height();
                 sectionHeight = gameLayout.height() - headerHeight;
+
+                //Now that we know all the measurements, let's get the laneY
+                laneY = sectionHeight - headerHeight - (laneWidth / 2);
 
                 //These methods require the variables assigned up above so they need to be in this block
                 setupAvatarDimensions();
