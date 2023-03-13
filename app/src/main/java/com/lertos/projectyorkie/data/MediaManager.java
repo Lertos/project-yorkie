@@ -25,6 +25,12 @@ public class MediaManager {
         this.context = context;
         this.trackSong = new MediaPlayer();
 
+        //Setting defaults as we'll; be setting them later from the user prefs
+        this.trackEffectVolume = 0.0f;
+        this.trackSongVolume = 0.0f;
+    }
+
+    public void setVolumesFromUserPrefs() {
         this.trackEffectVolume = DataManager.getInstance().getSettings().getTrackEffectVolume();
         this.trackSongVolume = DataManager.getInstance().getSettings().getTrackSongVolume();
     }
