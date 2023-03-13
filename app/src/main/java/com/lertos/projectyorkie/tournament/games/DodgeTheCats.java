@@ -2,7 +2,6 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -149,15 +148,11 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void setupOnClickListeners() {
-        //TODO: Setup a motion listener to see which direction the user swipes; move the character that direction
         View view = parentView.findViewById(R.id.relMainSection);
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return new GestureDetector(parentView, new GestureListener()).onTouchEvent(motionEvent);
-            }
-        });
 
+        view.setOnTouchListener((motionView, motionEvent) -> {
+            return new GestureDetector(parentView, new GestureListener()).onTouchEvent(motionEvent);
+        });
     }
 
     protected void gameLoop() {
@@ -233,19 +228,21 @@ public class DodgeTheCats extends TournamentGame {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            Log.i("Debug", "onScroll");
             if (ivYorkieAvatar.getX() == laneX1)
                 ivYorkieAvatar.animate().translationX(laneX2).setDuration(100);
             else if (ivYorkieAvatar.getX() == laneX2)
                 ivYorkieAvatar.animate().translationX(laneX3).setDuration(100);
             else if (ivYorkieAvatar.getX() == laneX3)
                 ivYorkieAvatar.animate().translationX(laneX1).setDuration(100);
+
+            //TODO: Need to check distanceX to see direction, then move it accordingly
+
             return true;
         }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velX, float velY) {
-            Log.d("Debug", "onFling");
+            //TODO: Add same logic to this that onScroll has
             return true;
         }
     }
