@@ -99,7 +99,10 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.relTournamentEndScreen).setVisibility(VISIBLE);
 
         updateTournamentEndScreenInfo();
-        animateTournamentEndScreenInfo();
+
+        if (DataManager.getInstance().getSettings().isShowAppearAnimationsInTournament()) {
+            animateTournamentEndScreenInfo();
+        }
     }
 
     private void updateTournamentEndScreenInfo() {
@@ -169,6 +172,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
                 View currentView = views.get(0);
 
                 views.remove(0);
+
                 currentView.animate().alpha(1).setDuration(timePerAction).withEndAction(() -> {
                     MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
                 });
@@ -199,7 +203,12 @@ public class TournamentLobbyPage extends AppCompatActivity {
     private void resetUIAfterGame() {
         changeBottomSectionInfo();
         hideBottomSectionInfo();
-        showContestantsSlowly();
+
+        if (DataManager.getInstance().getSettings().isShowAppearAnimationsInTournament()) {
+            showContestantsSlowly();
+        } else {
+            showBottomSectionInfo();
+        }
     }
 
     private void showContestantsSlowly() {
@@ -233,8 +242,13 @@ public class TournamentLobbyPage extends AppCompatActivity {
     }
 
     private void showBottomSectionInfo() {
-        findViewById(R.id.linNextGame).animate().alpha(1).setDuration(400);
-        findViewById(R.id.linButtonGroup).animate().alpha(1).setDuration(400);
+        if (DataManager.getInstance().getSettings().isShowAppearAnimationsInTournament()) {
+            findViewById(R.id.linNextGame).animate().alpha(1).setDuration(400);
+            findViewById(R.id.linButtonGroup).animate().alpha(1).setDuration(400);
+        } else {
+            findViewById(R.id.linNextGame).setAlpha(1);
+            findViewById(R.id.linButtonGroup).setAlpha(1);
+        }
     }
 
     private void changeBottomSectionInfo() {
