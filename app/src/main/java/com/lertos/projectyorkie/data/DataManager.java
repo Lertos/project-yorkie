@@ -14,6 +14,7 @@ import java.util.Random;
 public class DataManager {
 
     private static DataManager instance;
+    private SettingsManager settingsManager;
     private Player playerData;
     private List<Talent> talentList = new ArrayList<>();
     private List<PackDog> packDogList = new ArrayList<>();
@@ -30,7 +31,10 @@ public class DataManager {
     }
 
     public void start() {
-        //TODO: Later on, load (and save) the player data in a file and populate the Player object with the data
+        //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
+        settingsManager = new SettingsManager(0.5f, 0.5f, false);
+
+        //TODO: Load (and save) the player data in a file and populate the Player object on startup
         playerData = new Player(100000, 100, 0);
 
         playerData.setPettingHighestThreshold(1);
@@ -53,6 +57,10 @@ public class DataManager {
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();
+    }
+
+    public SettingsManager getSettings() {
+        return settingsManager;
     }
 
     public Player getPlayerData() {
