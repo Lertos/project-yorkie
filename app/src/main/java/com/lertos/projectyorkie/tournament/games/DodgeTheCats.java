@@ -234,6 +234,12 @@ public class DodgeTheCats extends TournamentGame {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             Log.i("Debug", "onScroll");
+            if (ivYorkieAvatar.getX() == laneX1)
+                ivYorkieAvatar.animate().translationX(laneX2).setDuration(100);
+            else if (ivYorkieAvatar.getX() == laneX2)
+                ivYorkieAvatar.animate().translationX(laneX3).setDuration(100);
+            else if (ivYorkieAvatar.getX() == laneX3)
+                ivYorkieAvatar.animate().translationX(laneX1).setDuration(100);
             return true;
         }
 
