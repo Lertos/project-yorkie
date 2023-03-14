@@ -28,9 +28,9 @@ public class DodgeTheCats extends TournamentGame {
     private GestureDetector gestureDetector;
     private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
-    private final double baseDisappearTime = 3.5;
+    private final double baseTimeOfCatFalling = 3.5;
     private final double scorePerDodge = 50;
-    private final int initialSquareDisappearTime;
+    private final int initialTimeOfCatFalling;
     private ImageView ivCatAvatar;
     private ImageView ivYorkieAvatar;
     private ArrayList<ImageView> fallingCats = new ArrayList<>();
@@ -42,9 +42,9 @@ public class DodgeTheCats extends TournamentGame {
     private int headerHeight;
     private int sectionHeight;
     private int timeToSwitchLanes = 75;
-    private int timeToFall;
+    private int timeBetweenWaves;
     private int timeBetweenCats;
-    private int currentSquareDisappearTime;
+    private int timeOfCatFalling;
     private int currentWave = 1;
     private int currentCatInWave = 1;
     private int catsPerWave = 6;
@@ -54,8 +54,8 @@ public class DodgeTheCats extends TournamentGame {
 
         gestureDetector = new GestureDetector(parentView.getApplicationContext(), new GestureListener());
 
-        initialSquareDisappearTime = calculateInitialDisappearTime();
-        currentSquareDisappearTime = initialSquareDisappearTime;
+        initialTimeOfCatFalling = calculateInitialTimeOfCatFalling();
+        timeOfCatFalling = initialTimeOfCatFalling;
     }
 
     protected void setupUI() {
@@ -121,17 +121,31 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void setTimingOfMovements() {
-        timeToFall = 0;
+        timeBetweenWaves = 0;
 
         switch (tournamentDifficulty) {
             case EASY:
-                timeToFall = 1200;
+                timeBetweenWaves = 1200;
                 break;
             case NORMAL:
-                timeToFall = 1000;
+                timeBetweenWaves = 1000;
                 break;
             case HARD:
-                timeToFall = 800;
+                timeBetweenWaves = 800;
+                break;
+        }
+
+        timeBetweenCats = 0;
+
+        switch (tournamentDifficulty) {
+            case EASY:
+                timeBetweenCats = 300;
+                break;
+            case NORMAL:
+                timeBetweenCats = 200;
+                break;
+            case HARD:
+                timeBetweenCats = 100;
                 break;
         }
     }
@@ -163,7 +177,7 @@ public class DodgeTheCats extends TournamentGame {
             //If it IS NOT: make the postDelayed the timeBetweenWaves
 
             gameLoopTimeHandler.removeCallbacks(gameLoopTimeRunnable);
-            gameLoopTimeHandler.postDelayed(gameLoopTimeRunnable, currentSquareDisappearTime);
+            gameLoopTimeHandler.postDelayed(gameLoopTimeRunnable, timeOfCatFalling);
         };
         gameLoopTimeHandler.post(gameLoopTimeRunnable);
     }
@@ -199,7 +213,7 @@ public class DodgeTheCats extends TournamentGame {
 
         fallingCats.add(newImage);
 
-        newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeToFall).withEndAction(() -> {
+        newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeBetweenWaves).withEndAction(() -> {
             if (fallingCats.contains(newImage)) {
                 fallingCats.remove(newImage);
                 //handleWrongClick();
@@ -228,16 +242,16 @@ public class DodgeTheCats extends TournamentGame {
         return (int) Math.round(score);
     }
 
-    private int calculateInitialDisappearTime() {
+    private int calculateInitialTimeOfCatFalling() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
-        double timeInSeconds = (canineFocus + baseDisappearTime) / tournamentRankValue;
+        double timeInSeconds = (canineFocus + baseTimeOfCatFalling) / tournamentRankValue;
         int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 
         return timeInMilliseconds;
     }
 
-    private void setNextDisappearTime() {
-        currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / ((currentWave + 1) / 2.0)); //+1 is so math works better
+    private void setNextTimeOfCatFalling() {
+        timeOfCatFalling = (int) Math.floor(initialTimeOfCatFalling / ((currentWave + 1) / 2.0)); //+1 is so math works better
     }
 
     class GestureListener extends GestureDetector.SimpleOnGestureListener {
