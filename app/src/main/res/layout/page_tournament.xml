@@ -97,7 +97,7 @@
 
                 <RadioButton
                     android:id="@+id/rbDifficultyEasy"
-                    style="@style/fontLarge"
+                    style="@style/fontMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
@@ -106,7 +106,7 @@
 
                 <RadioButton
                     android:id="@+id/rbDifficultyNormal"
-                    style="@style/fontLarge"
+                    style="@style/fontMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
@@ -115,7 +115,7 @@
 
                 <RadioButton
                     android:id="@+id/rbDifficultyHard"
-                    style="@style/fontLarge"
+                    style="@style/fontMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
