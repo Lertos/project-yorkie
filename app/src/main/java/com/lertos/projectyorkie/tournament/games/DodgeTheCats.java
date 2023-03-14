@@ -23,14 +23,14 @@ import java.util.ArrayList;
 
 public class DodgeTheCats extends TournamentGame {
 
-    private final Handler disappearTimeHandler = new Handler();
+    private final Handler gameLoopTimeHandler = new Handler();
+    private Runnable gameLoopTimeRunnable;
     private GestureDetector gestureDetector;
     private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
     private final double scorePerDodge = 50;
     private final int initialSquareDisappearTime;
-    private Runnable disappearTimeRunnable;
     private ImageView ivCatAvatar;
     private ImageView ivYorkieAvatar;
     private ArrayList<ImageView> fallingCats = new ArrayList<>();
@@ -43,11 +43,11 @@ public class DodgeTheCats extends TournamentGame {
     private int sectionHeight;
     private int timeToSwitchLanes = 75;
     private int timeToFall;
-    private int timeToScaleUp;
     private int timeBetweenCats;
     private int currentSquareDisappearTime;
-    //Starting at 2 so the math works better
-    private int currentSquare = 2;
+    private int currentWave = 1;
+    private int currentCatInWave = 1;
+    private int catsPerWave = 6;
 
     public DodgeTheCats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);
@@ -134,20 +134,6 @@ public class DodgeTheCats extends TournamentGame {
                 timeToFall = 800;
                 break;
         }
-
-        timeToScaleUp = 0;
-
-        switch (tournamentDifficulty) {
-            case EASY:
-                timeToScaleUp = 300;
-                break;
-            case NORMAL:
-                timeToScaleUp = 200;
-                break;
-            case HARD:
-                timeToScaleUp = 100;
-                break;
-        }
     }
 
     private void setupOnClickListeners() {
@@ -161,7 +147,7 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     protected void gameLoop() {
-        disappearTimeRunnable = () -> {
+        gameLoopTimeRunnable = () -> {
             if (!isPlaying)
                 return;
 
@@ -172,10 +158,14 @@ public class DodgeTheCats extends TournamentGame {
             //When they are all off the screen, the next wave comes in and has a faster speed.
             //The speed at which they fall gets smaller, as well as the space between them spawning.
 
-            disappearTimeHandler.removeCallbacks(disappearTimeRunnable);
-            disappearTimeHandler.postDelayed(disappearTimeRunnable, currentSquareDisappearTime);
+            //TODO: Need an if condition on whether the wave is still going or not
+            //If it IS: make the postDelayed time the nextCatTime
+            //If it IS NOT: make the postDelayed the timeBetweenWaves
+
+            gameLoopTimeHandler.removeCallbacks(gameLoopTimeRunnable);
+            gameLoopTimeHandler.postDelayed(gameLoopTimeRunnable, currentSquareDisappearTime);
         };
-        disappearTimeHandler.post(disappearTimeRunnable);
+        gameLoopTimeHandler.post(gameLoopTimeRunnable);
     }
 
     private void createAndSendCat() {
@@ -247,7 +237,7 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void setNextDisappearTime() {
-        currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / (currentSquare / 2.0));
+        currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / ((currentWave + 1) / 2.0)); //+1 is so math works better
     }
 
     class GestureListener extends GestureDetector.SimpleOnGestureListener {
