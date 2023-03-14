@@ -2,6 +2,7 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class DodgeTheCats extends TournamentGame {
 
     private final Handler disappearTimeHandler = new Handler();
+    private GestureDetector gestureDetector;
     private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
     private final double baseDisappearTime = 3.5;
@@ -39,6 +41,7 @@ public class DodgeTheCats extends TournamentGame {
     private int laneWidth;
     private int headerHeight;
     private int sectionHeight;
+    private int timeToSwitchLanes = 100;
     private int timeToFall;
     private int timeToScaleUp;
     private int timeBetweenCats;
@@ -48,6 +51,8 @@ public class DodgeTheCats extends TournamentGame {
 
     public DodgeTheCats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);
+
+        gestureDetector = new GestureDetector(parentView.getApplicationContext(), new GestureListener());
 
         initialSquareDisappearTime = calculateInitialDisappearTime();
         currentSquareDisappearTime = initialSquareDisappearTime;
@@ -148,10 +153,12 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void setupOnClickListeners() {
-        View view = parentView.findViewById(R.id.relMainSection);
+        View view = parentView.findViewById(R.id.relParent);
 
-        view.setOnTouchListener((motionView, motionEvent) -> {
-            return new GestureDetector(parentView, new GestureListener()).onTouchEvent(motionEvent);
+        view.setOnTouchListener((view1, motionEvent) -> gestureDetector.onTouchEvent(motionEvent));
+
+        //For whatever reason, this needs to be set or the above detector doesn't work...
+        view.setOnClickListener(v -> {
         });
     }
 
@@ -209,40 +216,46 @@ public class DodgeTheCats extends TournamentGame {
         //Don't return false here or none of the other gestures work
         @Override
         public boolean onDown(MotionEvent event) {
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            return true;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-        }
-
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            return true;
+            Log.d("ondown", "ondown");
+            return super.onDown(event);
+            //return true;
         }
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (ivYorkieAvatar.getX() == laneX1)
-                ivYorkieAvatar.animate().translationX(laneX2).setDuration(100);
-            else if (ivYorkieAvatar.getX() == laneX2)
-                ivYorkieAvatar.animate().translationX(laneX3).setDuration(100);
-            else if (ivYorkieAvatar.getX() == laneX3)
-                ivYorkieAvatar.animate().translationX(laneX1).setDuration(100);
+            int currentX = (int) ivYorkieAvatar.getX();
+            float xMovement = e1.getX() - e2.getX();
 
-            //TODO: Need to check distanceX to see direction, then move it accordingly
-
+            Log.d("TAG2", "curx : " + currentX);
+            Log.d("TAG2", "laneX1 : " + laneX1);
+            Log.d("TAG2", "laneX2 : " + laneX2);
+            Log.d("TAG2", "laneX3 : " + laneX3);
+            Log.d("TAG2", "distanceX : " + distanceX);
+            //If the swipe was somehow only vertical, return
+            if (xMovement == 0)
+                return true;
+                //If the player swiped any bit to the LEFT
+            else if (xMovement > 0) {
+                if (currentX == laneX2)
+                    ivYorkieAvatar.animate().translationX(laneX1).setDuration(timeToSwitchLanes);
+                else if (currentX == laneX3)
+                    ivYorkieAvatar.animate().translationX(laneX2).setDuration(timeToSwitchLanes);
+            }
+            //If the player swiped any bit to the RIGHT
+            else if (xMovement < 0) {
+                if (currentX == laneX1)
+                    ivYorkieAvatar.animate().translationX(laneX2).setDuration(timeToSwitchLanes);
+                else if (currentX == laneX2)
+                    ivYorkieAvatar.animate().translationX(laneX3).setDuration(timeToSwitchLanes);
+            }
             return true;
         }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velX, float velY) {
             //TODO: Add same logic to this that onScroll has
+            Log.d("XXXX", "curx : " + velX);
+            Log.d("XXXX", "laneX1 : " + velY);
             return true;
         }
     }
