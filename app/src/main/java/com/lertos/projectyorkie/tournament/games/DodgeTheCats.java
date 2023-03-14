@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -40,7 +41,7 @@ public class DodgeTheCats extends TournamentGame {
     private int laneWidth;
     private int headerHeight;
     private int sectionHeight;
-    private int timeToSwitchLanes = 100;
+    private int timeToSwitchLanes = 75;
     private int timeToFall;
     private int timeToScaleUp;
     private int timeBetweenCats;
@@ -105,8 +106,6 @@ public class DodgeTheCats extends TournamentGame {
         //Set width and height to match the lane sizes
         ivCatAvatar.setMinimumWidth(laneWidth);
         ivCatAvatar.setMinimumHeight(laneWidth);
-        ivCatAvatar.setMaxWidth(laneWidth);
-        ivCatAvatar.setMaxHeight(laneWidth);
 
         ivYorkieAvatar.setMinimumWidth(laneWidth);
         ivYorkieAvatar.setMinimumHeight(laneWidth);
@@ -166,6 +165,8 @@ public class DodgeTheCats extends TournamentGame {
             if (!isPlaying)
                 return;
 
+            createAndSendCat();
+
             //TODO
             //Need to send "waves" at them. Have a limit of how many cats per wave. Each wave uses the same speed.
             //When they are all off the screen, the next wave comes in and has a faster speed.
@@ -175,6 +176,45 @@ public class DodgeTheCats extends TournamentGame {
             disappearTimeHandler.postDelayed(disappearTimeRunnable, currentSquareDisappearTime);
         };
         disappearTimeHandler.post(disappearTimeRunnable);
+    }
+
+    private void createAndSendCat() {
+        ImageView newImage = new ImageView(parentView);
+
+        newImage.setImageDrawable(ivCatAvatar.getDrawable());
+        newImage.setBackground(ivCatAvatar.getBackground());
+
+        //Figure out which random lane this cat will spawn in
+        int randomLane = rng.nextInt(3);
+        int newX;
+
+        if (randomLane == 0) {
+            newX = laneX1;
+        } else if (randomLane == 1) {
+            newX = laneX2;
+        } else {
+            newX = laneX3;
+        }
+
+        newImage.setX(newX);
+        newImage.setY(0 - ivCatAvatar.getMinimumHeight());
+
+        ((ViewGroup) ivCatAvatar.getParent()).addView(newImage);
+
+        //After adding the image, set the width and height of the avatar to copy
+        newImage.getLayoutParams().height = ivCatAvatar.getMinimumHeight();
+        newImage.getLayoutParams().width = ivCatAvatar.getMinimumWidth();
+
+        newImage.requestLayout();
+
+        fallingCats.add(newImage);
+
+        newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeToFall).withEndAction(() -> {
+            if (fallingCats.contains(newImage)) {
+                fallingCats.remove(newImage);
+                //handleWrongClick();
+            }
+        });
     }
 
     private void addScore() {
