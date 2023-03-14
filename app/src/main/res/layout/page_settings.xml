@@ -91,7 +91,7 @@
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Show Appear Animations in Tournament" />
+                android:text="Show Animations in Tournament" />
 
         </LinearLayout>
 
