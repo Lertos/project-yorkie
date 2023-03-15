@@ -45,6 +45,7 @@ public class DodgeTheCats extends TournamentGame {
     private int timeBetweenWaves;
     private int timeBetweenCats;
     private int timeOfCatFalling;
+    private int previousLaneIndex = 1;
     private int currentWave = 1;
     private int currentCatInWave = 1;
     private int catsPerWave = 6;
@@ -197,6 +198,11 @@ public class DodgeTheCats extends TournamentGame {
         int randomLane = rng.nextInt(3);
         int newX;
 
+        //Make sure cats don't fall in the same lane back to back
+        if (randomLane == previousLaneIndex) {
+            randomLane = (randomLane + 1) % 2;
+        }
+
         if (randomLane == 0) {
             newX = laneX1;
         } else if (randomLane == 1) {
@@ -204,6 +210,8 @@ public class DodgeTheCats extends TournamentGame {
         } else {
             newX = laneX3;
         }
+
+        previousLaneIndex = randomLane;
 
         newImage.setX(newX);
         newImage.setY(0 - ivCatAvatar.getMinimumHeight());
