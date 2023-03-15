@@ -26,6 +26,7 @@ public class DodgeTheCats extends TournamentGame {
 
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
+    private Runnable collisionRunnable;
     private GestureDetector gestureDetector;
     private final double secondsLostWhenHit = 4;
     private final double secondsGainedWhenDodged = 1;
@@ -34,6 +35,8 @@ public class DodgeTheCats extends TournamentGame {
     private final int initialTimeOfCatFalling;
     private ImageView ivCatAvatar;
     private ImageView ivYorkieAvatar;
+    private int playerY;
+    private int playerHalfHeight;
     private ArrayList<ImageView> fallingCats = new ArrayList<>();
     private int laneX1;
     private int laneX2;
@@ -100,6 +103,7 @@ public class DodgeTheCats extends TournamentGame {
                 setupAvatarDimensions();
                 setTimingOfMovements();
                 setupOnClickListeners();
+                checkForCollisions();
             }
         });
     }
@@ -117,6 +121,10 @@ public class DodgeTheCats extends TournamentGame {
         //Position the yorkie at the center start location
         ivYorkieAvatar.setX(laneX2);
         ivYorkieAvatar.setY(laneY);
+
+        //Set these so we don't have to calculate these everytime we want to use them
+        playerY = (int) ivYorkieAvatar.getY();
+        playerHalfHeight = (int) ivYorkieAvatar.getY() / 2;
 
         //Make the yorkie avatar visible
         ivYorkieAvatar.setVisibility(View.VISIBLE);
@@ -160,6 +168,33 @@ public class DodgeTheCats extends TournamentGame {
         //For whatever reason, this needs to be set or the above detector doesn't work...
         view.setOnClickListener(v -> {
         });
+    }
+
+    private void checkForCollisions() {
+        final Handler handler = new Handler();
+
+        collisionRunnable = () -> {
+            ImageView catToRemove = null;
+
+            for (ImageView cat : fallingCats) {
+                if (cat.getX() == ivYorkieAvatar.getX()) {
+                    if (cat.getY() > (playerY) && cat.getY() < (playerY + playerHalfHeight)) {
+                        catToRemove = cat;
+                        //Was running into concurrency issues; only should collide with one cat anyways
+                        break;
+                    }
+                }
+            }
+            //If there was a collision, handle it here where we are not iterating over the list
+            if (catToRemove != null) {
+                //handlePlayerHit();
+                catToRemove.setVisibility(View.GONE);
+                fallingCats.remove(catToRemove);
+            }
+
+            handler.postDelayed(collisionRunnable, 200);
+        };
+        handler.post(collisionRunnable);
     }
 
     protected void gameLoop() {
@@ -230,7 +265,7 @@ public class DodgeTheCats extends TournamentGame {
         newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeOfCatFalling).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
             if (fallingCats.contains(newImage)) {
                 fallingCats.remove(newImage);
-                //handleWrongClick();
+                //handlePlayerHit();
             }
         });
     }
