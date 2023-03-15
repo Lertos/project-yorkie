@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
@@ -211,9 +212,13 @@ public class DodgeTheCats extends TournamentGame {
 
             //If there are no more cats to send this wave, wait for the next wave and reset counter
             if (currentCatInWave >= catsPerWave) {
+                currentCatInWave = 1;
+                currentWave++;
+
                 postDelay = timeBetweenWaves;
 
-                currentCatInWave = 1;
+                //Make the cats fall faster the next wave
+                setNextTimeOfCatFalling();
             }
             //If there are still cats to send, send them and continue to the next iteration
             else {
@@ -270,13 +275,25 @@ public class DodgeTheCats extends TournamentGame {
         newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeOfCatFalling).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
             if (fallingCats.contains(newImage)) {
                 fallingCats.remove(newImage);
-                handlePlayerHit();
+                handlePlayerDodge();
             }
         });
     }
 
     private void handlePlayerHit() {
+        currentTime -= secondsLostWhenHit;
 
+        if (isPlaying)
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
+    }
+
+    private void handlePlayerDodge() {
+        currentTime += secondsGainedWhenDodged;
+
+        if (isPlaying)
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
+
+        addScore();
     }
 
     private void addScore() {
