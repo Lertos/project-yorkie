@@ -305,13 +305,13 @@ public class DodgeTheCats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerDodge * 14;
+                score = scorePerDodge * 13;
                 break;
             case NORMAL:
-                score = scorePerDodge * 22;
+                score = scorePerDodge * 18;
                 break;
             case HARD:
-                score = scorePerDodge * 30;
+                score = scorePerDodge * 23;
                 break;
         }
         return (int) Math.round(score);
