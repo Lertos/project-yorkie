@@ -126,13 +126,13 @@ public class DodgeTheCats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                timeBetweenWaves = 1200;
+                timeBetweenWaves = 2000;
                 break;
             case NORMAL:
-                timeBetweenWaves = 1000;
+                timeBetweenWaves = 1600;
                 break;
             case HARD:
-                timeBetweenWaves = 800;
+                timeBetweenWaves = 1200;
                 break;
         }
 
@@ -140,13 +140,13 @@ public class DodgeTheCats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                timeBetweenCats = 300;
+                timeBetweenCats = 900;
                 break;
             case NORMAL:
-                timeBetweenCats = 200;
+                timeBetweenCats = 700;
                 break;
             case HARD:
-                timeBetweenCats = 100;
+                timeBetweenCats = 500;
                 break;
         }
     }
