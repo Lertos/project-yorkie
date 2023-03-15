@@ -284,15 +284,11 @@ public class DodgeTheCats extends TournamentGame {
         currentTime -= secondsLostWhenHit;
 
         if (isPlaying)
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
     }
 
     private void handlePlayerDodge() {
         currentTime += secondsGainedWhenDodged;
-
-        if (isPlaying)
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
-
         addScore();
     }
 
