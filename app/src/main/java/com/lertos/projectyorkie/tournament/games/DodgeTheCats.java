@@ -30,7 +30,7 @@ public class DodgeTheCats extends TournamentGame {
     private Runnable collisionRunnable;
     private GestureDetector gestureDetector;
     private final double secondsLostWhenHit = 4;
-    private final double secondsGainedWhenDodged = 1;
+    private final double secondsGainedWhenDodged = 0.5;
     private final double baseTimeOfCatFalling = 3.5;
     private final double scorePerDodge = 50;
     private final int initialTimeOfCatFalling;
@@ -284,14 +284,14 @@ public class DodgeTheCats extends TournamentGame {
         currentTime -= secondsLostWhenHit;
 
         if (isPlaying)
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
     }
 
     private void handlePlayerDodge() {
         currentTime += secondsGainedWhenDodged;
 
         if (isPlaying)
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
 
         addScore();
     }
