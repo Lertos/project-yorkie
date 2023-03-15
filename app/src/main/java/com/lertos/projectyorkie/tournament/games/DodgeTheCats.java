@@ -165,19 +165,24 @@ public class DodgeTheCats extends TournamentGame {
             if (!isPlaying)
                 return;
 
-            createAndSendCat();
+            int postDelay = 0;
 
-            //TODO
-            //Need to send "waves" at them. Have a limit of how many cats per wave. Each wave uses the same speed.
-            //When they are all off the screen, the next wave comes in and has a faster speed.
-            //The speed at which they fall gets smaller, as well as the space between them spawning.
+            //If there are no more cats to send this wave, wait for the next wave and reset counter
+            if (currentCatInWave >= catsPerWave) {
+                postDelay = timeBetweenWaves;
 
-            //TODO: Need an if condition on whether the wave is still going or not
-            //If it IS: make the postDelayed time the nextCatTime
-            //If it IS NOT: make the postDelayed the timeBetweenWaves
+                currentCatInWave = 1;
+            }
+            //If there are still cats to send, send them and continue to the next iteration
+            else {
+                postDelay = timeBetweenCats;
+
+                createAndSendCat();
+                currentCatInWave++;
+            }
 
             gameLoopTimeHandler.removeCallbacks(gameLoopTimeRunnable);
-            gameLoopTimeHandler.postDelayed(gameLoopTimeRunnable, timeOfCatFalling);
+            gameLoopTimeHandler.postDelayed(gameLoopTimeRunnable, postDelay);
         };
         gameLoopTimeHandler.post(gameLoopTimeRunnable);
     }
