@@ -27,8 +27,8 @@ public class DodgeTheCats extends TournamentGame {
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
     private GestureDetector gestureDetector;
-    private final double secondsLostWhenMissed = 4;
-    private final double secondsGainedWhenCorrect = 1;
+    private final double secondsLostWhenHit = 4;
+    private final double secondsGainedWhenDodged = 1;
     private final double baseTimeOfCatFalling = 3.5;
     private final double scorePerDodge = 50;
     private final int initialTimeOfCatFalling;
