@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -226,7 +227,7 @@ public class DodgeTheCats extends TournamentGame {
 
         fallingCats.add(newImage);
 
-        newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeBetweenWaves).withEndAction(() -> {
+        newImage.animate().translationY(sectionHeight + headerHeight).setDuration(timeOfCatFalling).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
             if (fallingCats.contains(newImage)) {
                 fallingCats.remove(newImage);
                 //handleWrongClick();
