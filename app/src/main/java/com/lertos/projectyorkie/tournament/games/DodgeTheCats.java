@@ -198,7 +198,7 @@ public class DodgeTheCats extends TournamentGame {
                 fallingCats.remove(catToRemove);
                 handlePlayerHit();
             }
-            handler.postDelayed(collisionRunnable, 200);
+            handler.postDelayed(collisionRunnable, 100);
         };
         handler.post(collisionRunnable);
     }
