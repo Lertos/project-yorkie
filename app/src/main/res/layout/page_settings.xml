@@ -80,13 +80,6 @@
                 android:valueTo="100.0" />
 
             <CheckBox
-                android:id="@+id/cbShowPopupsForTokens"
-                style="@style/fontSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Popups For Heart Tokens" />
-
-            <CheckBox
                 android:id="@+id/cbAppearAnimationsInTournament"
                 style="@style/fontSmall"
                 android:layout_width="wrap_content"
