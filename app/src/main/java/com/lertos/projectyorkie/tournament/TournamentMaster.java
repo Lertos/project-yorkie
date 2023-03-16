@@ -12,6 +12,7 @@ import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.tournament.games.CatchDogTreats;
 import com.lertos.projectyorkie.tournament.games.DodgeTheCats;
+import com.lertos.projectyorkie.tournament.games.TreatToss;
 import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.ArrayList;
@@ -62,12 +63,14 @@ public class TournamentMaster {
         //Create each game object
         //WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat", "Whack Cats. Get Points.");
         //CatchDogTreats gameCatchDogTreats = new CatchDogTreats(this, tournamentDifficulty, lobbyPage, "Catch the Dog Treats", "Click Squares When Overlapping");
-        DodgeTheCats gameDodgeTheCats = new DodgeTheCats(this, tournamentDifficulty, lobbyPage, "Dodge the Cats", "Swipe to Move. Dodge the Cats");
+        //DodgeTheCats gameDodgeTheCats = new DodgeTheCats(this, tournamentDifficulty, lobbyPage, "Dodge the Cats", "Swipe to Move. Dodge the Cats");
+        TreatToss gameTreatToss = new TreatToss(this, tournamentDifficulty, lobbyPage, "Treat Toss", "Tap to Throw Treat at Dog");
 
         //Add each game object to our games list
         //list.add(gameWhackTheCat);
         //list.add(gameCatchDogTreats);
-        list.add(gameDodgeTheCats);
+        //list.add(gameDodgeTheCats);
+        list.add(gameTreatToss);
 
         return list;
     }
@@ -106,6 +109,9 @@ public class TournamentMaster {
         } else if (currentGame instanceof DodgeTheCats) {
             stub = lobbyPage.findViewById(R.id.vsDodgeTheCats);
             stub.setLayoutResource(R.layout.game_page_dodge_the_cats);
+        } else if (currentGame instanceof TreatToss) {
+            stub = lobbyPage.findViewById(R.id.vsTreatToss);
+            stub.setLayoutResource(R.layout.game_page_treat_toss);
         }
 
         inflatedStub = stub.inflate();
