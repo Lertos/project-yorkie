@@ -11,6 +11,7 @@ import com.lertos.projectyorkie.data.MediaManager;
 
 public class SettingsPage extends AppCompatActivity {
 
+    private final float sliderMultiplier = 100f;
     private Slider sliderMusicVolume;
     private Slider sliderEffectsVolume;
     private CheckBox cbAppearAnimationsInTournament;
@@ -31,23 +32,15 @@ public class SettingsPage extends AppCompatActivity {
     }
 
     private void setInitialValues() {
-        sliderMusicVolume.setValue(DataManager.getInstance().getSettings().getTrackSongVolume());
-        sliderEffectsVolume.setValue(DataManager.getInstance().getSettings().getTrackEffectVolume());
+        sliderMusicVolume.setValue(DataManager.getInstance().getSettings().getTrackSongVolume() * sliderMultiplier);
+        sliderEffectsVolume.setValue(DataManager.getInstance().getSettings().getTrackEffectVolume() * sliderMultiplier);
         cbAppearAnimationsInTournament.setChecked(DataManager.getInstance().getSettings().isShowAppearAnimationsInTournament());
     }
 
     private void setOnClickListeners() {
-        sliderMusicVolume.addOnChangeListener((slider, value, fromUser) -> {
-            MediaManager.getInstance().changeSongTrackVolume(value / 100);
-        });
-
-        sliderEffectsVolume.addOnChangeListener((slider, value, fromUser) -> {
-            MediaManager.getInstance().changeEffectTrackVolume(value / 100);
-        });
-
-        cbAppearAnimationsInTournament.setOnClickListener((checkBox) -> {
-
-        });
+        sliderMusicVolume.addOnChangeListener((slider, value, fromUser) -> MediaManager.getInstance().changeSongTrackVolume(value / sliderMultiplier));
+        sliderEffectsVolume.addOnChangeListener((slider, value, fromUser) -> MediaManager.getInstance().changeEffectTrackVolume(value / sliderMultiplier));
+        cbAppearAnimationsInTournament.setOnCheckedChangeListener((checkBox, isChecked) -> DataManager.getInstance().getSettings().setShowAppearAnimationsInTournament(isChecked));
     }
 
 }
