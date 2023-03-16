@@ -6,6 +6,7 @@ import android.widget.CheckBox;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.slider.Slider;
+import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
 
 public class SettingsPage extends AppCompatActivity {
@@ -25,7 +26,14 @@ public class SettingsPage extends AppCompatActivity {
         sliderEffectsVolume = findViewById(R.id.sliderEffectsVolume);
         cbAppearAnimationsInTournament = findViewById(R.id.cbAppearAnimationsInTournament);
 
+        setInitialValues();
         setOnClickListeners();
+    }
+
+    private void setInitialValues() {
+        sliderMusicVolume.setValue(DataManager.getInstance().getSettings().getTrackSongVolume());
+        sliderEffectsVolume.setValue(DataManager.getInstance().getSettings().getTrackEffectVolume());
+        cbAppearAnimationsInTournament.setChecked(DataManager.getInstance().getSettings().isShowAppearAnimationsInTournament());
     }
 
     private void setOnClickListeners() {
