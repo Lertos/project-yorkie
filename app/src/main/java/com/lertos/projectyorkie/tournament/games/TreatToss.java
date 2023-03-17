@@ -175,7 +175,9 @@ public class TreatToss extends TournamentGame {
                 isAnimating = false;
 
                 //Place the yorkie randomly
-                ivYorkieAvatar.setX(rng.nextInt(sectionWidth - ivSizeToCopy.getWidth()));
+                int nextPosition = rng.nextInt(sectionWidth - ivSizeToCopy.getWidth());
+
+                ivYorkieAvatar.animate().translationX(nextPosition).setDuration(100);
 
                 //Set it back to it's normal coordinates
                 ivTreatAvatar.setY(treatY);
