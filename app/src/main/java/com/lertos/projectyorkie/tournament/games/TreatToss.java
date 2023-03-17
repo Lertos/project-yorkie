@@ -101,11 +101,9 @@ public class TreatToss extends TournamentGame {
         ivTreatAvatar.setMaxHeight(avatarWidth);
 
         //Position the avatars at the correct start locations
-        //TODO: Calculate X values differently
-        ivYorkieAvatar.setX(300);
+        ivYorkieAvatar.setX(sectionWidth / 2);
         ivYorkieAvatar.setY(yorkieY);
 
-        ivTreatAvatar.setX(300);
         ivTreatAvatar.setY(treatY);
 
         //Make the avatars visible
