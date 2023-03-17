@@ -2,7 +2,6 @@ package com.lertos.projectyorkie.tournament.games;
 
 import android.graphics.Rect;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
@@ -39,6 +38,7 @@ public class TreatToss extends TournamentGame {
     private int sectionHeight;
     private int sectionWidth;
     private boolean isMovingToLeft = true;
+    private boolean isAnimating = false;
     private boolean isBeingTossed = false;
     private boolean isReadyForNewTreat = true;
     private int timeOfTreatToss = 400;
@@ -134,6 +134,8 @@ public class TreatToss extends TournamentGame {
                     isReadyForNewTreat = true;
                 }
             });
+
+            isAnimating = true;
         });
     }
 
@@ -144,14 +146,16 @@ public class TreatToss extends TournamentGame {
             //Only check for collision detection if the treat is being tossed
             if (isBeingTossed) {
                 //Check for X lineup first; if they don't have the X right, Y won't matter
-                if (ivTreatAvatar.getX() + avatarCollisionHeight < ivYorkieAvatar.getX() && ivTreatAvatar.getX() - avatarCollisionHeight > ivYorkieAvatar.getX()) {
-                    if (ivTreatAvatar.getY() + avatarCollisionHeight < ivYorkieAvatar.getY() && ivTreatAvatar.getY() - avatarCollisionHeight > ivYorkieAvatar.getY()) {
-                        Log.d("hit", "ddd");
+                if (ivTreatAvatar.getX() > ivYorkieAvatar.getX() - avatarCollisionHeight && ivTreatAvatar.getX() < ivYorkieAvatar.getX() + avatarCollisionHeight) {
+                    if (ivTreatAvatar.getY() > ivYorkieAvatar.getY() - avatarCollisionHeight && ivTreatAvatar.getY() < ivYorkieAvatar.getY()) {
+                        handlePlayerHitWithTreat();
+
+                        isBeingTossed = false;
+                        isReadyForNewTreat = true;
                     }
                 }
             }
-
-            handler.postDelayed(collisionRunnable, 100);
+            handler.postDelayed(collisionRunnable, 50);
         };
         handler.post(collisionRunnable);
     }
@@ -167,6 +171,7 @@ public class TreatToss extends TournamentGame {
             if (isReadyForNewTreat) {
                 isReadyForNewTreat = false;
                 isBeingTossed = false;
+                isAnimating = false;
 
                 //Place the yorkie randomly
                 ivYorkieAvatar.setX(rng.nextInt(sectionWidth - ivSizeToCopy.getWidth()));
@@ -178,10 +183,8 @@ public class TreatToss extends TournamentGame {
                 setNextTimeOfTreatMovement();
             }
 
-            if (!isBeingTossed) {
-                postDelay = timeOfTreatMovement;
+            if (!isBeingTossed)
                 sendTreatToSide();
-            }
 
             gameLoopTimeHandler.removeCallbacks(gameLoopTimeRunnable);
             gameLoopTimeHandler.postDelayed(gameLoopTimeRunnable, postDelay);
@@ -190,6 +193,9 @@ public class TreatToss extends TournamentGame {
     }
 
     private void sendTreatToSide() {
+        if (isAnimating)
+            return;
+
         int xToStartAt;
         int xToSendTo;
 
@@ -206,7 +212,11 @@ public class TreatToss extends TournamentGame {
         ivTreatAvatar.setX(xToStartAt);
 
         ivTreatAvatar.animate().cancel();
-        ivTreatAvatar.animate().translationX(xToSendTo).setDuration(timeOfTreatMovement);
+        ivTreatAvatar.animate().translationX(xToSendTo).setDuration(timeOfTreatMovement).withEndAction(() -> {
+            isAnimating = false;
+        });
+
+        isAnimating = true;
     }
 
     private void handleTreatMiss() {
