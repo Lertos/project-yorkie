@@ -189,8 +189,6 @@ public class WhackTheCat extends TournamentGame {
 
         setNextDisappearTime();
         addScore();
-
-        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     protected void gameLoop() {
@@ -259,6 +257,7 @@ public class WhackTheCat extends TournamentGame {
 
     private void addScore() {
         score += scorePerClick * Talents.cutenessFactor.getCurrentBonus();
+        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     protected int getAverageScore() {

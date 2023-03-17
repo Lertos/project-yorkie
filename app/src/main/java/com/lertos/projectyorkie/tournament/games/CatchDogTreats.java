@@ -160,8 +160,6 @@ public class CatchDogTreats extends TournamentGame {
         fallingSquare.animate().cancel();
 
         fallingSquare.animate().scaleX(0).scaleY(0).setDuration(100).withEndAction(() -> fallingSquare.setVisibility(View.GONE));
-
-        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     private void handleWrongClick() {
@@ -224,6 +222,7 @@ public class CatchDogTreats extends TournamentGame {
 
     private void addScore() {
         score += scorePerClick * Talents.cutenessFactor.getCurrentBonus();
+        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     protected int getAverageScore() {

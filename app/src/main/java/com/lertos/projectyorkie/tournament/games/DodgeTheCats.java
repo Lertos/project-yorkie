@@ -294,6 +294,7 @@ public class DodgeTheCats extends TournamentGame {
 
     private void addScore() {
         score += scorePerDodge * Talents.cutenessFactor.getCurrentBonus();
+        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     protected int getAverageScore() {
