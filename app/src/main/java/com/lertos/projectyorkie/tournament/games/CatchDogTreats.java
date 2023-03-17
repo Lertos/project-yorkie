@@ -145,7 +145,7 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void handleSquareClicked(ImageView fallingSquare) {
-        currentTime += secondsGainedWhenCorrect;
+        addTimeToTimer(secondsGainedWhenCorrect);
         currentSquare++;
 
         if (isPlaying)
@@ -162,7 +162,7 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void handleWrongClick() {
-        currentTime -= secondsLostWhenMissed;
+        addTimeToTimer(-secondsLostWhenMissed);
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);

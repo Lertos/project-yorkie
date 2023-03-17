@@ -280,14 +280,14 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void handlePlayerHit() {
-        currentTime -= secondsLostWhenHit;
+        addTimeToTimer(-secondsLostWhenHit);
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
     }
 
     private void handlePlayerDodge() {
-        currentTime += secondsGainedWhenDodged;
+        addTimeToTimer(secondsGainedWhenDodged);
         addScore(scorePerDodge);
     }
 

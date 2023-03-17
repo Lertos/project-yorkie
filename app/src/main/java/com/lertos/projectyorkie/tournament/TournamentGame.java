@@ -79,6 +79,13 @@ public abstract class TournamentGame {
         tvScore.setText(String.valueOf(Math.round(score)));
     }
 
+    protected void addTimeToTimer(double timeToAdd) {
+        if (timeToAdd > 0)
+            currentTime = Math.min(currentTime + timeToAdd, startTime);
+        else
+            currentTime += timeToAdd;
+    }
+
     protected void handleTimer() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {

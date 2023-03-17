@@ -173,14 +173,14 @@ public class WhackTheCat extends TournamentGame {
                 }
                 //If the player clicks an inactive spot (wrong click / timing / spamming) - take time away
                 else {
-                    currentTime -= secondsLostWhenMissed;
+                    addTimeToTimer(-secondsLostWhenMissed);
                 }
             });
         }
     }
 
     private void handleSquareClicked() {
-        currentTime += secondsGainedWhenCorrect;
+        addTimeToTimer(secondsGainedWhenCorrect);
         currentSquare++;
 
         if (isPlaying)
@@ -219,7 +219,7 @@ public class WhackTheCat extends TournamentGame {
                 if (avatarsInUse.contains(view)) {
                     view.animate().translationY(0).setDuration(100).withEndAction(() -> {
                         //They missed it; deduct time
-                        currentTime -= secondsLostWhenMissed;
+                        addTimeToTimer(-secondsLostWhenMissed);
                         avatarsInUse.remove(view);
                     });
                 }

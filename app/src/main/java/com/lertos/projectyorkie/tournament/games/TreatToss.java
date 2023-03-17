@@ -219,14 +219,14 @@ public class TreatToss extends TournamentGame {
     }
 
     private void handleTreatMiss() {
-        currentTime -= secondsLostForMiss;
+        addTimeToTimer(-secondsLostForMiss);
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_miss_with_treat);
     }
 
     private void handlePlayerHitWithTreat() {
-        currentTime = Math.min(currentTime + secondsGainedForHit, startTime);
+        addTimeToTimer(secondsGainedForHit);
         currentTreat++;
 
         if (isPlaying)
