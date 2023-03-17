@@ -74,6 +74,11 @@ public abstract class TournamentGame {
         handleTimer();
     }
 
+    protected void addScore(double scorePerAction) {
+        score += scorePerAction * Talents.cutenessFactor.getCurrentBonus();
+        tvScore.setText(String.valueOf(Math.round(score)));
+    }
+
     protected void handleTimer() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {

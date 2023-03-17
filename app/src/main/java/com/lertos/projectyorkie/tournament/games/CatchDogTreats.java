@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
-import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
@@ -153,7 +152,7 @@ public class CatchDogTreats extends TournamentGame {
             MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
 
         setNextDisappearTime();
-        addScore();
+        addScore(scorePerClick);
 
         fallingSquares.remove(fallingSquare);
         fallingSquare.clearAnimation();
@@ -218,11 +217,6 @@ public class CatchDogTreats extends TournamentGame {
         int halfWidthDifference = Math.round(widthDifference / 2);
 
         return xPos + halfWidthDifference;
-    }
-
-    private void addScore() {
-        score += scorePerClick * Talents.cutenessFactor.getCurrentBonus();
-        tvScore.setText(String.valueOf(Math.round(score)));
     }
 
     protected int getAverageScore() {

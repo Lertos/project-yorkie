@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
-import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentGame;
 import com.lertos.projectyorkie.tournament.TournamentMaster;
@@ -233,12 +232,7 @@ public class TreatToss extends TournamentGame {
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
 
-        addScore();
-    }
-
-    private void addScore() {
-        score += scorePerHit * Talents.cutenessFactor.getCurrentBonus();
-        tvScore.setText(String.valueOf(Math.round(score)));
+        addScore(scorePerHit);
     }
 
     protected int getAverageScore() {
