@@ -23,10 +23,10 @@ public class TreatToss extends TournamentGame {
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
     private Runnable collisionRunnable;
-    private final double secondsLostForMiss = 4;
-    private final double secondsGainedForHit = 2;
+    private final double secondsLostForMiss = 3;
+    private final double secondsGainedForHit = 1;
     private final double baseTimeOfTreatMovement = 2.5;
-    private final double scorePerHit = 100;
+    private final double scorePerHit = 75;
     private final int initialTimeOfTreatMovement;
     private ImageView ivYorkieAvatar;
     private ImageView ivTreatAvatar;
@@ -127,7 +127,7 @@ public class TreatToss extends TournamentGame {
 
             ivTreatAvatar.animate().cancel();
 
-            ivTreatAvatar.animate().translationY(0).setDuration(timeOfTreatToss).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
+            ivTreatAvatar.animate().translationY(0 - avatarCollisionHeight).setDuration(timeOfTreatToss).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
                 //If there was no collision with the player, they missed so punish them
                 if (!isReadyForNewTreat) {
                     handleTreatMiss();
@@ -148,10 +148,10 @@ public class TreatToss extends TournamentGame {
                 //Check for X lineup first; if they don't have the X right, Y won't matter
                 if (ivTreatAvatar.getX() > ivYorkieAvatar.getX() - avatarCollisionHeight && ivTreatAvatar.getX() < ivYorkieAvatar.getX() + avatarCollisionHeight) {
                     if (ivTreatAvatar.getY() > ivYorkieAvatar.getY() - avatarCollisionHeight && ivTreatAvatar.getY() < ivYorkieAvatar.getY()) {
-                        handlePlayerHitWithTreat();
-
                         isBeingTossed = false;
                         isReadyForNewTreat = true;
+
+                        handlePlayerHitWithTreat();
                     }
                 }
             }
@@ -227,7 +227,7 @@ public class TreatToss extends TournamentGame {
     }
 
     private void handlePlayerHitWithTreat() {
-        currentTime += secondsGainedForHit;
+        currentTime = Math.min(currentTime + secondsGainedForHit, startTime);
         currentTreat++;
 
         if (isPlaying)
@@ -246,13 +246,13 @@ public class TreatToss extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerHit * 12;
+                score = scorePerHit * 14;
                 break;
             case NORMAL:
-                score = scorePerHit * 16;
+                score = scorePerHit * 18;
                 break;
             case HARD:
-                score = scorePerHit * 20;
+                score = scorePerHit * 22;
                 break;
         }
         return (int) Math.round(score);
