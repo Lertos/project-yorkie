@@ -126,7 +126,7 @@ public class TreatToss extends TournamentGame {
 
             ivTreatAvatar.animate().translationY(0 - avatarCollisionHeight).setDuration(timeOfTreatToss).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
                 //If there was no collision with the player, they missed so punish them
-                if (!isReadyForNewTreat) {
+                if (!isReadyForNewTreat && isBeingTossed) {
                     handleTreatMiss();
                     isReadyForNewTreat = true;
                 }
@@ -145,10 +145,14 @@ public class TreatToss extends TournamentGame {
                 //Check for X lineup first; if they don't have the X right, Y won't matter
                 if (ivTreatAvatar.getX() > ivYorkieAvatar.getX() - avatarCollisionHeight && ivTreatAvatar.getX() < ivYorkieAvatar.getX() + avatarCollisionHeight) {
                     if (ivTreatAvatar.getY() > ivYorkieAvatar.getY() - avatarCollisionHeight && ivTreatAvatar.getY() < ivYorkieAvatar.getY()) {
-                        isBeingTossed = false;
-                        isReadyForNewTreat = true;
-
                         handlePlayerHitWithTreat();
+                        isBeingTossed = false;
+
+                        ivTreatAvatar.animate().cancel();
+
+                        ivTreatAvatar.animate().scaleX(0).scaleY(0).rotation(180).setDuration(100).withEndAction(() -> {
+                            isReadyForNewTreat = true;
+                        });
                     }
                 }
             }
@@ -207,6 +211,9 @@ public class TreatToss extends TournamentGame {
         }
 
         ivTreatAvatar.setX(xToStartAt);
+        ivTreatAvatar.setScaleX(1);
+        ivTreatAvatar.setScaleY(1);
+        ivTreatAvatar.setRotation(0);
 
         ivTreatAvatar.animate().cancel();
         ivTreatAvatar.animate().translationX(xToSendTo).setDuration(timeOfTreatMovement).withEndAction(() -> {
