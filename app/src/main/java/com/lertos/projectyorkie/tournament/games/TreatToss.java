@@ -213,11 +213,16 @@ public class TreatToss extends TournamentGame {
         currentTime -= secondsLostForMiss;
 
         if (isPlaying)
-            MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_miss_with_treat);
     }
 
     private void handlePlayerHitWithTreat() {
         currentTime += secondsGainedForHit;
+        currentTreat++;
+
+        if (isPlaying)
+            MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
+
         addScore();
     }
 
