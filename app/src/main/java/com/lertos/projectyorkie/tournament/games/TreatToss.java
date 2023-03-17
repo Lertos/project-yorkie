@@ -41,7 +41,7 @@ public class TreatToss extends TournamentGame {
     private boolean isMovingToLeft = true;
     private boolean isBeingTossed = false;
     private boolean isReadyForNewTreat = true;
-    private int timeOfTreatToss;
+    private int timeOfTreatToss = 400;
     private int timeOfTreatMovement;
     private int currentTreat = 1;
 
@@ -81,7 +81,6 @@ public class TreatToss extends TournamentGame {
 
                 //These methods require the variables assigned up above so they need to be in this block
                 setupAvatarDimensions();
-                setTimingOfMovements();
                 setupOnClickListeners();
                 checkForCollisions();
             }
@@ -116,22 +115,6 @@ public class TreatToss extends TournamentGame {
 
         //Set these so we don't have to calculate these everytime we want to use them
         avatarCollisionHeight = avatarWidth / 4;
-    }
-
-    private void setTimingOfMovements() {
-        timeOfTreatToss = 0;
-
-        switch (tournamentDifficulty) {
-            case EASY:
-                timeOfTreatToss = 1200;
-                break;
-            case NORMAL:
-                timeOfTreatToss = 900;
-                break;
-            case HARD:
-                timeOfTreatToss = 700;
-                break;
-        }
     }
 
     private void setupOnClickListeners() {
