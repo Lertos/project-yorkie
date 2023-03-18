@@ -230,13 +230,17 @@ public class PettingPage extends AppCompatActivity {
                 MediaManager.getInstance().playEffectTrack(R.raw.effect_miss);
         }
 
+        focusButton.setAlpha(1f);
         disappearTimeHandler.removeCallbacks(timerRunnable);
 
         if (isPlaying) {
-            timerRunnable = () -> handleSquareDisappearing();
-            disappearTimeHandler.postDelayed(timerRunnable, (long) Math.round(pettingMaster.getCurrentSquareDisappearTime() * 1000));
-
             moveClickSquare();
+
+            long timeToDisappear = Math.round(pettingMaster.getCurrentSquareDisappearTime() * 1000);
+            focusButton.animate().alpha(0f).setDuration(timeToDisappear);
+
+            timerRunnable = () -> handleSquareDisappearing();
+            disappearTimeHandler.postDelayed(timerRunnable, (long) timeToDisappear);
         }
     }
 
