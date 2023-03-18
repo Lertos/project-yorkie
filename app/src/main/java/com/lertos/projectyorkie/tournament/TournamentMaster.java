@@ -61,15 +61,15 @@ public class TournamentMaster {
         ArrayList<TournamentGame> list = new ArrayList<>();
 
         //Create each game object
-        //WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat", "Whack Cats. Get Points.");
-        //CatchDogTreats gameCatchDogTreats = new CatchDogTreats(this, tournamentDifficulty, lobbyPage, "Catch the Dog Treats", "Click Squares When Overlapping");
-        //DodgeTheCats gameDodgeTheCats = new DodgeTheCats(this, tournamentDifficulty, lobbyPage, "Dodge the Cats", "Swipe to Move. Dodge the Cats");
+        WhackTheCat gameWhackTheCat = new WhackTheCat(this, tournamentDifficulty, lobbyPage, "Whack the Cat", "Whack Cats. Get Points.");
+        CatchDogTreats gameCatchDogTreats = new CatchDogTreats(this, tournamentDifficulty, lobbyPage, "Catch the Dog Treats", "Click Squares When Overlapping");
+        DodgeTheCats gameDodgeTheCats = new DodgeTheCats(this, tournamentDifficulty, lobbyPage, "Dodge the Cats", "Swipe to Move. Dodge the Cats");
         TreatToss gameTreatToss = new TreatToss(this, tournamentDifficulty, lobbyPage, "Treat Toss", "Tap to Throw Treat at Dog");
 
         //Add each game object to our games list
-        //list.add(gameWhackTheCat);
-        //list.add(gameCatchDogTreats);
-        //list.add(gameDodgeTheCats);
+        list.add(gameWhackTheCat);
+        list.add(gameCatchDogTreats);
+        list.add(gameDodgeTheCats);
         list.add(gameTreatToss);
 
         return list;
@@ -269,6 +269,10 @@ public class TournamentMaster {
     }
 
     public void startNextGame() {
+        //Make sure to reset the current scores of each contestant
+        for (TournamentContestant contestant : contestants)
+            contestant.resetCurrentScore();
+
         inflateGameStub();
         currentGame.startGame();
     }
