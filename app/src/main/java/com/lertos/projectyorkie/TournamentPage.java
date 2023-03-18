@@ -104,7 +104,7 @@ public class TournamentPage extends AppCompatActivity {
 
         ((Button) findViewById(R.id.btnMoveToLobby)).setText(
                 Helper.createSpannable(
-                        "Join ",
+                        "Join\n",
                         IdleNumber.getStrNumber(costInTokens) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),

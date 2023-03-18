@@ -151,8 +151,8 @@ public class PettingPage extends AppCompatActivity {
 
         ((Button) findViewById(R.id.btnStart)).setText(
                 Helper.createSpannable(
-                        "Start ",
-                        " " + IdleNumber.getStrNumber(pettingMaster.getStartCost()) + " Tokens",
+                        "Start\n",
+                        IdleNumber.getStrNumber(pettingMaster.getStartCost()) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
