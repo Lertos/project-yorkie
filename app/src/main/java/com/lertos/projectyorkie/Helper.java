@@ -34,24 +34,46 @@ public class Helper {
 
     public static void setupBottomButtonBar(AppCompatActivity activity) {
         activity.findViewById(R.id.btnHome).setOnClickListener(v -> {
-            switchActivities(activity, HomePage.class);
+            chooseActivityToSwitchTo(activity, HomePage.class);
         });
         activity.findViewById(R.id.btnActivities).setOnClickListener(v -> {
-            switchActivities(activity, ActivityPage.class);
+            chooseActivityToSwitchTo(activity, ActivityPage.class);
         });
         activity.findViewById(R.id.btnPetting).setOnClickListener(v -> {
-            switchActivities(activity, PettingPage.class);
+            chooseActivityToSwitchTo(activity, PettingPage.class);
         });
         activity.findViewById(R.id.btnTournament).setOnClickListener(v -> {
-            switchActivities(activity, TournamentPage.class);
+            chooseActivityToSwitchTo(activity, TournamentPage.class);
         });
         activity.findViewById(R.id.btnSettings).setOnClickListener(v -> {
-            switchActivities(activity, SettingsPage.class);
+            chooseActivityToSwitchTo(activity, SettingsPage.class);
         });
     }
 
-    private static void switchActivities(AppCompatActivity activity, Class cls) {
-        Intent intent = new Intent(activity, cls);
+    public static void chooseActivityToSwitchTo(AppCompatActivity activity, Class desiredClass) {
+        boolean tutorialPageExist = DataManager.getInstance().tutorialClassExists(desiredClass.getName());
+
+        if (tutorialPageExist) {
+            boolean hasSeenTutorialPage = DataManager.getInstance().hasSeenTutorial(desiredClass.getName());
+
+            //If they haven't seen the tutorial show them that first, passing what class to switch to next time
+            if (!hasSeenTutorialPage) {
+                switchActivities(activity, TutorialPage.class, desiredClass.getName());
+                return;
+            }
+        }
+
+        //If no tutorial was needed, load the class as normal
+        switchActivities(activity, desiredClass, null);
+    }
+
+    private static void switchActivities(AppCompatActivity activity, Class desiredClass, String extraClassName) {
+        Intent intent = new Intent(activity, desiredClass);
+
+        //If there needs to be an extra, add it
+        if (extraClassName != null)
+            intent.putExtra("CLASS_NAME", extraClassName);
+
         activity.startActivity(intent);
         //Stop the animation of switching between activities
         activity.overridePendingTransition(0, 0);
