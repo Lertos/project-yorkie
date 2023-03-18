@@ -1,8 +1,5 @@
 package com.lertos.projectyorkie.data;
 
-import com.lertos.projectyorkie.HomePage;
-import com.lertos.projectyorkie.PettingPage;
-import com.lertos.projectyorkie.TournamentPage;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
@@ -18,6 +15,7 @@ import java.util.Random;
 public class DataManager {
 
     private static DataManager instance;
+    private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
     private HashMap<String, Boolean> tutorialsSeen;
     private Player playerData;
@@ -37,12 +35,7 @@ public class DataManager {
 
     public void start() {
         //TODO: Load (and save) if the player has seen the tutorial for each page
-        tutorialsSeen = new HashMap<>();
-
-        tutorialsSeen.put(HomePage.class.getName(), false);
-        tutorialsSeen.put(Activity.class.getName(), false);
-        tutorialsSeen.put(PettingPage.class.getName(), false);
-        tutorialsSeen.put(TournamentPage.class.getName(), false);
+        tutorialManager = new TutorialManager();
 
         //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
         settingsManager = new SettingsManager(0.5f, 0.0f, true);
@@ -75,12 +68,8 @@ public class DataManager {
         setHeartTokensPerSecond();
     }
 
-    public boolean tutorialClassExists(String className) {
-        return tutorialsSeen.containsKey(className);
-    }
-
-    public boolean hasSeenTutorial(String className) {
-        return tutorialsSeen.get(className);
+    public TutorialManager getTutorials() {
+        return tutorialManager;
     }
 
     public SettingsManager getSettings() {
