@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
@@ -305,7 +306,20 @@ public class TournamentLobbyPage extends AppCompatActivity {
     private void setupContestant(TournamentContestant contestant, View ivAvatar, View tvDogType, View tvCurrentScore) {
         ((ImageView) ivAvatar).setImageResource(contestant.getPackDog().getAvatar());
 
-        ((TextView) tvDogType).setText(contestant.getPackDog().getName());
+        int nameColor;
+
+        if (contestant.isPlayer())
+            nameColor = ContextCompat.getColor(ivAvatar.getContext(), R.color.yellow);
+        else
+            nameColor = ContextCompat.getColor(ivAvatar.getContext(), R.color.gold);
+
+        ((TextView) tvDogType).setText(
+                Helper.createSpannable(
+                        "",
+                        contestant.getPackDog().getName(),
+                        nameColor
+                ),
+                TextView.BufferType.SPANNABLE);
 
         ((TextView) tvCurrentScore).setText(
                 Helper.createSpannable(
