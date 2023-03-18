@@ -72,10 +72,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginVertical="10dp"
-                android:shadowColor="#000000"
-                android:shadowDx="3"
-                android:shadowDy="3"
-                android:shadowRadius="0.5"
                 android:text="Highscores"
                 android:textAlignment="center"
                 android:textColor="@color/gold" />
@@ -129,10 +125,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginVertical="10dp"
-                android:shadowColor="#000000"
-                android:shadowDx="3"
-                android:shadowDy="3"
-                android:shadowRadius="0.5"
                 android:text="Game Info"
                 android:textAlignment="center"
                 android:textColor="@color/gold" />

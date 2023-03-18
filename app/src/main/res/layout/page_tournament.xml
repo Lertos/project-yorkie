@@ -72,10 +72,6 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:shadowColor="#000000"
-                android:shadowDx="3"
-                android:shadowDy="3"
-                android:shadowRadius="0.5"
                 android:text="Tournament Setup"
                 android:textAlignment="center"
                 android:textColor="@color/gold" />
