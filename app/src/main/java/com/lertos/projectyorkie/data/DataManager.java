@@ -32,7 +32,7 @@ public class DataManager {
 
     public void start() {
         //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
-        settingsManager = new SettingsManager(0.5f, 0.0f, false);
+        settingsManager = new SettingsManager(0.5f, 0.0f, true);
 
         //Now that we have the settings loaded, set settings where need be
         MediaManager.getInstance().setVolumesFromUserPrefs();
