@@ -36,10 +36,6 @@ public class TournamentContestant {
         currentScore = 0;
     }
 
-    public void resetTotalScore() {
-        totalScore = 0;
-    }
-
     public double addToCurrentScore(double scoreToAdd) {
         currentScore += scoreToAdd;
 
@@ -49,12 +45,5 @@ public class TournamentContestant {
         totalScore += currentScore;
 
         return currentScore;
-    }
-
-    public double calculateTotalScore() {
-        totalScore += currentScore;
-        resetCurrentScore();
-
-        return totalScore;
     }
 }
