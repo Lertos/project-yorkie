@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.Tutorial;
 
 import java.util.List;
 
@@ -51,28 +52,36 @@ public class Helper {
     }
 
     public static void chooseActivityToSwitchTo(AppCompatActivity activity, Class desiredClass) {
-        boolean tutorialPageExist = DataManager.getInstance().tutorialClassExists(desiredClass.getName());
+        String className = desiredClass.getName();
+        boolean tutorialPageExist = DataManager.getInstance().getTutorials().tutorialClassExists(className);
 
         if (tutorialPageExist) {
-            boolean hasSeenTutorialPage = DataManager.getInstance().hasSeenTutorial(desiredClass.getName());
+            Tutorial tutorial = DataManager.getInstance().getTutorials().getTutorial(className);
 
-            //If they haven't seen the tutorial show them that first, passing what class to switch to next time
-            if (!hasSeenTutorialPage) {
-                switchActivities(activity, TutorialPage.class, desiredClass.getName());
-                return;
+            if (tutorial != null) {
+                //If they haven't seen the tutorial show them that first, passing what class to switch to next time
+                if (!tutorial.hasPlayerSeen()) {
+                    switchActivities(activity, desiredClass, tutorial);
+                    return;
+                }
             }
         }
-
         //If no tutorial was needed, load the class as normal
         switchActivities(activity, desiredClass, null);
     }
 
-    private static void switchActivities(AppCompatActivity activity, Class desiredClass, String extraClassName) {
-        Intent intent = new Intent(activity, desiredClass);
+    private static void switchActivities(AppCompatActivity activity, Class desiredClass, Tutorial tutorial) {
+        Intent intent;
 
         //If there needs to be an extra, add it
-        if (extraClassName != null)
-            intent.putExtra("CLASS_NAME", extraClassName);
+        if (tutorial != null) {
+            intent = new Intent(activity, TutorialPage.class);
+
+            intent.putExtra("CLASS_NAME", desiredClass.getName());
+            intent.putExtra("LAYOUT_ID", tutorial.getLayoutId());
+        } else {
+            intent = new Intent(activity, desiredClass);
+        }
 
         activity.startActivity(intent);
         //Stop the animation of switching between activities
