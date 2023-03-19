@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class DataManager {
 
+    private boolean hasPlayedBefore;
     private static DataManager instance;
     private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
@@ -32,6 +33,9 @@ public class DataManager {
     }
 
     public void start() {
+        //TODO: Load (and save) if the player has played yet (maybe check if they have a "lastOnDate" for hearts)
+        hasPlayedBefore = false;
+
         //TODO: Load (and save) if the player has seen the tutorial for each page
         tutorialManager = new TutorialManager();
 
@@ -64,6 +68,14 @@ public class DataManager {
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();
+    }
+
+    public boolean hasPlayedBefore() {
+        return hasPlayedBefore;
+    }
+
+    public void setHasPlayedBefore(boolean hasPlayedBefore) {
+        this.hasPlayedBefore = hasPlayedBefore;
     }
 
     public TutorialManager getTutorials() {
