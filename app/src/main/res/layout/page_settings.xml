@@ -30,63 +30,93 @@
         </LinearLayout>
 
         <!-- Settings Panel -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/linHeader"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/border_with_darkest_bg"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:gravity="center_vertical">
 
-            <TextView
-                style="@style/fontMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/sliderMusicVolume"
-                android:text="Music Volume"
-                android:textAlignment="center" />
-
-            <com.google.android.material.slider.Slider
-                android:id="@+id/sliderMusicVolume"
-                style="@style/basicSlider"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stepSize="1.0"
-                android:value="50"
-                android:valueFrom="0.0"
-                android:valueTo="100.0" />
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/fontMedium"
+                <TextView
+                    android:id="@+id/lblMusicVolume"
+                    style="@style/fontMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:labelFor="@id/sliderMusicVolume"
+                    android:text="Music Volume"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderMusicVolume"
+                    style="@style/basicSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:stepSize="1.0"
+                    android:value="50"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0" />
+
+                <TextView
+                    android:id="@+id/lblEffectVolume"
+                    style="@style/fontMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:labelFor="@id/sliderEffectsVolume"
+                    android:text="Effects Volume"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderEffectsVolume"
+                    style="@style/basicSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:stepSize="1.0"
+                    android:value="50"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0" />
+
+                <CheckBox
+                    android:id="@+id/cbAppearAnimationsInTournament"
+                    style="@style/fontSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Show Animations in Tournament" />
+
+                <CheckBox
+                    android:id="@+id/cbShowTournamentTutorials"
+                    style="@style/fontSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Show Tournament Tutorials" />
+
+            </LinearLayout>
+
+            <Button
+                style="@style/baseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/sliderEffectsVolume"
-                android:text="Effects Volume"
-                android:textAlignment="center" />
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:text="Reset Tutorials" />
 
-            <com.google.android.material.slider.Slider
-                android:id="@+id/sliderEffectsVolume"
-                style="@style/basicSlider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stepSize="1.0"
-                android:value="50"
-                android:valueFrom="0.0"
-                android:valueTo="100.0" />
-
-            <CheckBox
-                android:id="@+id/cbAppearAnimationsInTournament"
-                style="@style/fontSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Animations in Tournament" />
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
