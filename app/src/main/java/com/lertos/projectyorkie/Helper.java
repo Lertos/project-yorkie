@@ -77,8 +77,10 @@ public class Helper {
         if (tutorial != null) {
             intent = new Intent(activity, TutorialPage.class);
 
+            intent.putExtra("SIMPLE_CLASS_NAME", desiredClass.getSimpleName());
             intent.putExtra("CLASS_NAME", desiredClass.getName());
             intent.putExtra("LAYOUT_ID", tutorial.getLayoutId());
+            intent.putExtra("VIEW_STUB_ID", tutorial.getViewStubId());
         } else {
             intent = new Intent(activity, desiredClass);
         }
