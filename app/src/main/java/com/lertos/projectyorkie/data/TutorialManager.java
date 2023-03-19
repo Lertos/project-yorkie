@@ -11,15 +11,15 @@ import java.util.List;
 
 public class TutorialManager {
 
-    private List<Tutorial> tutorials;
+    private final List<Tutorial> tutorials;
 
     public TutorialManager() {
         tutorials = new ArrayList<>();
 
-        Tutorial homeTutorial = new Tutorial(HomePage.class.getName(), R.layout.page_home, false);
-        Tutorial activityTutorial = new Tutorial(ActivityPage.class.getName(), R.layout.page_activities, false);
-        Tutorial pettingTutorial = new Tutorial(PettingPage.class.getName(), R.layout.page_petting, false);
-        Tutorial tournamentTutorial = new Tutorial(TournamentPage.class.getName(), R.layout.page_tournament, false);
+        Tutorial homeTutorial = new Tutorial(HomePage.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        Tutorial activityTutorial = new Tutorial(ActivityPage.class.getName(), R.layout.tutorial_activity_page, R.id.vsActivityPage, false);
+        Tutorial pettingTutorial = new Tutorial(PettingPage.class.getName(), R.layout.tutorial_petting_page, R.id.vsPettingPage, false);
+        Tutorial tournamentTutorial = new Tutorial(TournamentPage.class.getName(), R.layout.tutorial_tournament_page, R.id.vsTournamentPage, false);
 
         tutorials.add(homeTutorial);
         tutorials.add(activityTutorial);

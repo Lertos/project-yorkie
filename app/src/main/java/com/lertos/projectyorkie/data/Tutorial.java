@@ -4,11 +4,13 @@ public class Tutorial {
 
     private final String className;
     private final int layoutId;
+    private final int viewStubId;
     boolean hasPlayerSeen;
 
-    public Tutorial(String className, int layoutId, boolean hasPlayerSeen) {
+    public Tutorial(String className, int layoutId, int viewStubId, boolean hasPlayerSeen) {
         this.className = className;
         this.layoutId = layoutId;
+        this.viewStubId = viewStubId;
         this.hasPlayerSeen = hasPlayerSeen;
     }
 
@@ -26,5 +28,9 @@ public class Tutorial {
 
     public int getLayoutId() {
         return layoutId;
+    }
+
+    public int getViewStubId() {
+        return viewStubId;
     }
 }
