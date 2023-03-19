@@ -8,7 +8,6 @@ import com.lertos.projectyorkie.tournament.TournamentRank;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -17,7 +16,6 @@ public class DataManager {
     private static DataManager instance;
     private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
-    private HashMap<String, Boolean> tutorialsSeen;
     private Player playerData;
     private List<Talent> talentList = new ArrayList<>();
     private List<PackDog> packDogList = new ArrayList<>();
@@ -38,13 +36,13 @@ public class DataManager {
         tutorialManager = new TutorialManager();
 
         //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
-        settingsManager = new SettingsManager(0.5f, 0.0f, true);
+        settingsManager = new SettingsManager(0.5f, 0.25f, true);
 
         //Now that we have the settings loaded, set settings where need be
         MediaManager.getInstance().setVolumesFromUserPrefs();
 
         //TODO: Load (and save) the player data in a file and populate the Player object on startup
-        playerData = new Player(100000, 100, 0);
+        playerData = new Player(100000, 100, 1);
 
         playerData.setPettingHighestThreshold(1);
         playerData.setPettingHighestSquare(3);
