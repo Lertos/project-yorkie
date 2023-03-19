@@ -6,11 +6,10 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/fontHeader"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Petting Page Sample"
-        android:textAlignment="center" />
+        android:adjustViewBounds="true"
+        android:src="@mipmap/tutorial_dog_petting" />
 
 </LinearLayout>
