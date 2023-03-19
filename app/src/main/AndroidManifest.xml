@@ -26,6 +26,7 @@
         <activity android:name=".TournamentLobbyPage" />
         <activity android:name=".SettingsPage" />
         <activity android:name=".TutorialPage" />
+        <activity android:name=".IntroPage" />
 
     </application>
 
