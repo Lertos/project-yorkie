@@ -49,4 +49,9 @@ public class TutorialManager {
                 tutorial.setHasPlayerSeen(true);
         }
     }
+
+    public void resetAllTutorials() {
+        for (Tutorial tutorial : tutorials)
+            tutorial.setHasPlayerSeen(false);
+    }
 }
