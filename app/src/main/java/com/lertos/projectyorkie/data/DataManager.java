@@ -34,7 +34,7 @@ public class DataManager {
 
     public void start() {
         //TODO: Load (and save) if the player has played yet (maybe check if they have a "lastOnDate" for hearts)
-        hasPlayedBefore = false;
+        hasPlayedBefore = true;
 
         //TODO: Load (and save) if the player has seen the tutorial for each page
         tutorialManager = new TutorialManager();
