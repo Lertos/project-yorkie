@@ -9,7 +9,7 @@
         android:id="@+id/linHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -34,7 +34,9 @@
         android:id="@+id/linViewStubs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/btnConfirm"
         android:layout_below="@+id/linHeader"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <ViewStub
@@ -70,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Understood" />
 
 </RelativeLayout>
