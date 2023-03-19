@@ -31,32 +31,47 @@
 
     </LinearLayout>
 
-    <ViewStub
-        android:id="@+id/vsHomePage"
+    <LinearLayout
+        android:id="@+id/linViewStubs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/linHeader"
-        android:layout="@layout/tutorial_home_page" />
+        android:orientation="vertical">
 
-    <ViewStub
-        android:id="@+id/vsActivityPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linHeader"
-        android:layout="@layout/game_page_catch_dog_treats" />
+        <ViewStub
+            android:id="@+id/vsHomePage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/tutorial_home_page" />
 
-    <ViewStub
-        android:id="@+id/vsPettingPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linHeader"
-        android:layout="@layout/game_page_dodge_the_cats" />
+        <ViewStub
+            android:id="@+id/vsActivityPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/game_page_catch_dog_treats" />
 
-    <ViewStub
-        android:id="@+id/vsTournamentPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linHeader"
-        android:layout="@layout/game_page_treat_toss" />
+        <ViewStub
+            android:id="@+id/vsPettingPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/game_page_dodge_the_cats" />
+
+        <ViewStub
+            android:id="@+id/vsTournamentPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/game_page_treat_toss" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        style="@style/baseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Understood" />
 
 </RelativeLayout>
