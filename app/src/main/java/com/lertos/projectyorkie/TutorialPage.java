@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lertos.projectyorkie.data.DataManager;
+
 public class TutorialPage extends AppCompatActivity {
 
     private String simpleClassName;
@@ -25,16 +27,30 @@ public class TutorialPage extends AppCompatActivity {
         if (layoutId == -1 || viewStubId == -1)
             super.finish();
 
-        //TODO: Also need to set that the page has been viewed in the tutorial (that method would also need to save that
-        //to the player data file) once that confirm button is clicked
-
         setContentView(R.layout.page_tutorial);
 
         //Set the header
         ((TextView) findViewById(R.id.tvPageName)).setText(simpleClassName);
 
+        setOnClickListener();
+
         //Inflate the specific layout for the chosen page
         inflateStub();
+    }
+
+    private void setOnClickListener() {
+        //Set the confirm button to bring the player to the normal screen they requested
+        findViewById(R.id.btnConfirm).setOnClickListener(v -> {
+            try {
+                Class<?> activity = Class.forName(className);
+
+                DataManager.getInstance().getTutorials().setTutorialAsSeen(className);
+
+                Helper.chooseActivityToSwitchTo(this, activity);
+            } catch (ClassNotFoundException e) {
+                Helper.chooseActivityToSwitchTo(this, HomePage.class);
+            }
+        });
     }
 
     private void inflateStub() {
