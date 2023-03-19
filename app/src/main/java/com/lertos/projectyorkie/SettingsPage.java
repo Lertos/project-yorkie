@@ -3,6 +3,7 @@ package com.lertos.projectyorkie;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,7 +45,12 @@ public class SettingsPage extends AppCompatActivity {
         sliderMusicVolume.addOnChangeListener((slider, value, fromUser) -> MediaManager.getInstance().changeSongTrackVolume(value / sliderMultiplier));
         sliderEffectsVolume.addOnChangeListener((slider, value, fromUser) -> MediaManager.getInstance().changeEffectTrackVolume(value / sliderMultiplier));
         cbAppearAnimationsInTournament.setOnCheckedChangeListener((checkBox, isChecked) -> DataManager.getInstance().getSettings().setShowAppearAnimationsInTournament(isChecked));
-        btnResetTutorials.setOnClickListener(v -> DataManager.getInstance().getTutorials().resetAllTutorials());
+
+        btnResetTutorials.setOnClickListener(v -> {
+            DataManager.getInstance().getTutorials().resetAllTutorials();
+
+            Toast.makeText(this, "Tutorials Reset!", Toast.LENGTH_SHORT).show();
+        });
     }
 
 }
