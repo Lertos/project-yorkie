@@ -21,7 +21,6 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_home);
 
         //Since this is the main/launcher activity, load the data here
         if (!hasStarted) {
@@ -31,6 +30,12 @@ public class HomePage extends AppCompatActivity {
 
             hasStarted = true;
         }
+
+        //Now that the data has loaded, check if this is their first time
+        if (!DataManager.getInstance().hasPlayedBefore())
+            Helper.chooseActivityToSwitchTo(this, IntroPage.class);
+
+        setContentView(R.layout.page_home);
 
         if (!isPageActive) {
             updateUIWithCurrentData();
