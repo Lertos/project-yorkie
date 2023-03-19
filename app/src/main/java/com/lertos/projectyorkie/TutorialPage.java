@@ -29,13 +29,28 @@ public class TutorialPage extends AppCompatActivity {
 
         setContentView(R.layout.page_tutorial);
 
-        //Set the header
-        ((TextView) findViewById(R.id.tvPageName)).setText(simpleClassName);
-
+        setTutorialHeader();
         setOnClickListener();
 
         //Inflate the specific layout for the chosen page
         inflateStub();
+    }
+
+
+    private void setTutorialHeader() {
+        StringBuilder sb = new StringBuilder();
+        String upperStr = simpleClassName.toUpperCase();
+
+        for (int i = 0; i < simpleClassName.length(); i++) {
+            char ch = simpleClassName.charAt(i);
+
+            if (ch == upperStr.charAt(i))
+                sb.append(" ");
+            sb.append(ch);
+        }
+
+        //Set the header
+        ((TextView) findViewById(R.id.tvPageName)).setText(sb.toString());
     }
 
     private void setOnClickListener() {
