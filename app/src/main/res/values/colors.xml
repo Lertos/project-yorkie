@@ -2,6 +2,7 @@
 <resources>
     <color name="darkest_blue">#141A23</color>
     <color name="darker_blue">#08254E</color>
+    <color name="button_color">#0E3265</color>
     <color name="dark_blue">#294364</color>
     <color name="darker_light_blue">#98c1d9</color>
     <color name="faded_light_blue">#e0fbfc</color>
