@@ -109,6 +109,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnResetTutorials"
                 style="@style/baseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
