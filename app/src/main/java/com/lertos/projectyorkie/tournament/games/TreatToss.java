@@ -39,6 +39,7 @@ public class TreatToss extends TournamentGame {
     private boolean isMovingToLeft = true;
     private boolean isAnimating = false;
     private boolean isBeingTossed = false;
+    private boolean isInDeathAnimation = false;
     private boolean isReadyForNewTreat = true;
     private int timeOfTreatToss = 400;
     private int timeOfTreatMovement;
@@ -117,7 +118,7 @@ public class TreatToss extends TournamentGame {
     private void setupOnClickListeners() {
         parentView.findViewById(R.id.relParent).setOnClickListener(v -> {
             //If the treat is in mid air or there's no treat there is nothing to do here
-            if (isBeingTossed || isReadyForNewTreat)
+            if (isBeingTossed || isReadyForNewTreat || isInDeathAnimation)
                 return;
 
             isBeingTossed = true;
@@ -147,11 +148,13 @@ public class TreatToss extends TournamentGame {
                     if (ivTreatAvatar.getY() > ivYorkieAvatar.getY() - avatarCollisionHeight && ivTreatAvatar.getY() < ivYorkieAvatar.getY()) {
                         handlePlayerHitWithTreat();
                         isBeingTossed = false;
+                        isInDeathAnimation = true;
 
                         ivTreatAvatar.animate().cancel();
 
                         ivTreatAvatar.animate().scaleX(0).scaleY(0).rotation(180).setDuration(100).withEndAction(() -> {
                             isReadyForNewTreat = true;
+                            isInDeathAnimation = false;
                         });
                     }
                 }
