@@ -42,4 +42,11 @@ public class TutorialManager {
         }
         return null;
     }
+
+    public void setTutorialAsSeen(String className) {
+        for (Tutorial tutorial : tutorials) {
+            if (tutorial.getClassName().equalsIgnoreCase(className))
+                tutorial.setHasPlayerSeen(true);
+        }
+    }
 }
