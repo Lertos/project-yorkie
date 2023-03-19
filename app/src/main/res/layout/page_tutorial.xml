@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_with_darkest_bg">
+
+    <!-- Page Title -->
+    <LinearLayout
+        android:id="@+id/linHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/fontMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tutorial"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/tvPageName"
+            style="@style/fontHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home Page"
+            android:textAlignment="center"
+            android:textColor="@color/gold" />
+
+    </LinearLayout>
+
+    <ViewStub
+        android:id="@+id/vsHomePage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linHeader"
+        android:layout="@layout/tutorial_home_page" />
+
+    <ViewStub
+        android:id="@+id/vsActivityPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linHeader"
+        android:layout="@layout/game_page_catch_dog_treats" />
+
+    <ViewStub
+        android:id="@+id/vsPettingPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linHeader"
+        android:layout="@layout/game_page_dodge_the_cats" />
+
+    <ViewStub
+        android:id="@+id/vsTournamentPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linHeader"
+        android:layout="@layout/game_page_treat_toss" />
+
+</RelativeLayout>
