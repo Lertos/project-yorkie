@@ -102,16 +102,27 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void setupPageButtonBar() {
+        TextView tvTotalPackBonus = findViewById(R.id.tvTotalPackBonus);
+
         findViewById(R.id.btnTalents).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.VISIBLE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.tvHomepageTabHeader)).setText("Talents");
+
+            tvTotalPackBonus.setVisibility(View.GONE);
         });
 
         findViewById(R.id.btnPackDogs).setOnClickListener(v -> {
             findViewById(R.id.recyclerViewTalents).setVisibility(View.GONE);
             findViewById(R.id.recyclerViewPack).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.tvHomepageTabHeader)).setText("Your Pack");
+
+            tvTotalPackBonus.setText(Helper.createSpannable(
+                    "Total Pack Bonus: ",
+                    String.format("%.1f", DataManager.getInstance().getTotalPackMultiplier()) + "%",
+                    DataManager.getInstance().getPlayerData().getHighlightColor()
+            ));
+            tvTotalPackBonus.setVisibility(View.VISIBLE);
         });
     }
 

@@ -160,7 +160,7 @@
             android:layout_below="@id/relCharacterButtons"
             android:background="@drawable/border_with_dark_bg"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvHomepageTabHeader"
@@ -169,6 +169,14 @@
                 android:layout_height="wrap_content"
                 android:text="Talents"
                 android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvTotalPackBonus"
+                style="@style/fontMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:visibility="gone" />
 
         </LinearLayout>
 
