@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ public class SettingsPage extends AppCompatActivity {
     private Slider sliderMusicVolume;
     private Slider sliderEffectsVolume;
     private CheckBox cbAppearAnimationsInTournament;
+    private Button btnResetTutorials;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class SettingsPage extends AppCompatActivity {
         sliderMusicVolume = findViewById(R.id.sliderMusicVolume);
         sliderEffectsVolume = findViewById(R.id.sliderEffectsVolume);
         cbAppearAnimationsInTournament = findViewById(R.id.cbAppearAnimationsInTournament);
+        btnResetTutorials = findViewById(R.id.btnResetTutorials);
 
         setInitialValues();
         setOnClickListeners();
@@ -41,6 +44,7 @@ public class SettingsPage extends AppCompatActivity {
         sliderMusicVolume.addOnChangeListener((slider, value, fromUser) -> MediaManager.getInstance().changeSongTrackVolume(value / sliderMultiplier));
         sliderEffectsVolume.addOnChangeListener((slider, value, fromUser) -> MediaManager.getInstance().changeEffectTrackVolume(value / sliderMultiplier));
         cbAppearAnimationsInTournament.setOnCheckedChangeListener((checkBox, isChecked) -> DataManager.getInstance().getSettings().setShowAppearAnimationsInTournament(isChecked));
+        btnResetTutorials.setOnClickListener(v -> DataManager.getInstance().getTutorials().resetAllTutorials());
     }
 
 }
