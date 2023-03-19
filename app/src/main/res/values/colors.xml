@@ -12,6 +12,7 @@
     <color name="pink">#FFA1FD</color>
     <color name="yellow">#FFEB3B</color>
     <color name="gold">#DE5635</color>
+    <color name="red">#D62F2F</color>
     <color name="light_gray">#7E7E7E</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
