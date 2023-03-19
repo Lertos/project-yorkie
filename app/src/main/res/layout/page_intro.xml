@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLine1"
         android:layout_marginBottom="20dp"
-        android:text="There are also some fun minigames to play. There is a Tournament where you can compete and climb the ranks."
+        android:text="There are also some fun minigames to play. There is a Tournament where you can compete against AI and climb the ranks."
         android:textAlignment="center" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLine2"
         android:layout_marginBottom="20dp"
-        android:text="You are also the alpha of a pack that give you bonuses. Beat the Tournament to unlock them."
+        android:text="You are also the alpha of a pack of dogs, each giving a bonus to your overall hearts per second. Win Tournaments to unlock them."
         android:textAlignment="center" />
 
     <TextView
@@ -64,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvLine4"
+        android:textColor="@color/red"
         android:text="But above ALL ELSE..."
         android:textAlignment="center" />
 
