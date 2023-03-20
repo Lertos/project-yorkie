@@ -67,10 +67,10 @@ public class TournamentMaster {
         TreatToss gameTreatToss = new TreatToss(this, tournamentDifficulty, lobbyPage, "Treat Toss", "Tap to Throw Treat at Dog");
 
         //Add each game object to our games list
-        list.add(gameWhackTheCat);
-        list.add(gameCatchDogTreats);
+        //list.add(gameWhackTheCat);
+        //list.add(gameCatchDogTreats);
         list.add(gameDodgeTheCats);
-        list.add(gameTreatToss);
+        //list.add(gameTreatToss);
 
         return list;
     }

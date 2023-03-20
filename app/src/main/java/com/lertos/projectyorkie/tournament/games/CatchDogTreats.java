@@ -224,13 +224,13 @@ public class CatchDogTreats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerClick * 12;
+                score = scorePerClick * 18;
                 break;
             case NORMAL:
-                score = scorePerClick * 16;
+                score = scorePerClick * 24;
                 break;
             case HARD:
-                score = scorePerClick * 20;
+                score = scorePerClick * 30;
                 break;
         }
         return (int) Math.round(score);
