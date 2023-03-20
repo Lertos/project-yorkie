@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -105,6 +106,16 @@ public class PettingPage extends AppCompatActivity {
         ((Button) findViewById(R.id.btnStart)).setOnClickListener(v -> {
             //Create a new instance of the petting mini game master
             pettingMaster = new PettingMaster();
+
+            //Check if the player can afford to play
+            double cost = pettingMaster.getHeartTokensToEnter();
+            boolean canAfford = Helper.canAffordHeartTokens(cost);
+
+            if (!canAfford) {
+                Toast.makeText(this, "You do not have enough heart tokens", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             timerStartValue = pettingMaster.getTimerStartValue();
             isPlaying = true;
 
