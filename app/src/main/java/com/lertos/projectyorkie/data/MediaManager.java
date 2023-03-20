@@ -48,6 +48,18 @@ public class MediaManager {
         resetSongTrack();
     }
 
+    public void pauseSong() {
+        if (trackSong != null)
+            trackSong.pause();
+    }
+
+    public void startSong() {
+        if (trackSong != null) {
+            if (!trackSong.isPlaying())
+                trackSong.start();
+        }
+    }
+
     public void playEffectTrack(int resId) {
         MediaPlayer trackEffect = MediaPlayer.create(this.context, resId);
 
