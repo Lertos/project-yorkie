@@ -103,4 +103,14 @@ public class Helper {
         return true;
     }
 
+    public static boolean canAffordHeartTokens(double tokens) {
+        double currentHeartTokens = DataManager.getInstance().getPlayerData().getCurrentHeartTokens();
+
+        if (currentHeartTokens < tokens)
+            return false;
+
+        DataManager.getInstance().addHeartTokens(-tokens);
+        return true;
+    }
+
 }
