@@ -47,7 +47,8 @@ public class DodgeTheCats extends TournamentGame {
     private int sectionHeight;
     private int timeToSwitchLanes = 75;
     private int timeBetweenWaves;
-    private int timeBetweenCats;
+    private final int maxFallTime = 1700;
+    private int timeBetweenCats = maxFallTime;
     private int timeOfCatFalling;
     private int previousLaneIndex = 1;
     private int currentWave = 1;
@@ -144,20 +145,6 @@ public class DodgeTheCats extends TournamentGame {
                 timeBetweenWaves = 1200;
                 break;
         }
-
-        timeBetweenCats = 0;
-
-        switch (tournamentDifficulty) {
-            case EASY:
-                timeBetweenCats = 900;
-                break;
-            case NORMAL:
-                timeBetweenCats = 700;
-                break;
-            case HARD:
-                timeBetweenCats = 500;
-                break;
-        }
     }
 
     private void setupOnClickListeners() {
@@ -214,10 +201,11 @@ public class DodgeTheCats extends TournamentGame {
                 currentCatInWave = 1;
                 currentWave++;
 
-                postDelay = timeBetweenWaves;
-
                 //Make the cats fall faster the next wave
                 setNextTimeOfCatFalling();
+                setTimeBetweenCats();
+
+                postDelay = timeBetweenWaves;
             }
             //If there are still cats to send, send them and continue to the next iteration
             else {
@@ -318,6 +306,26 @@ public class DodgeTheCats extends TournamentGame {
 
     private void setNextTimeOfCatFalling() {
         timeOfCatFalling = (int) Math.floor(initialTimeOfCatFalling / ((currentWave + 1) / 2.0)); //+1 is so math works better
+    }
+
+    private void setTimeBetweenCats() {
+        if (timeOfCatFalling > maxFallTime)
+            timeBetweenCats = maxFallTime;
+        else {
+            switch (tournamentDifficulty) {
+                case EASY:
+                    timeBetweenCats = 900;
+                    break;
+                case NORMAL:
+                    timeBetweenCats = 700;
+                    break;
+                case HARD:
+                    timeBetweenCats = 500;
+                    break;
+                default:
+                    timeBetweenCats = maxFallTime;
+            }
+        }
     }
 
     class GestureListener extends GestureDetector.SimpleOnGestureListener {
