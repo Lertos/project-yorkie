@@ -14,7 +14,6 @@ import com.google.android.material.slider.Slider;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
-import com.lertos.projectyorkie.tournament.TournamentRank;
 
 public class TournamentPage extends AppCompatActivity {
 
@@ -104,9 +103,6 @@ public class TournamentPage extends AppCompatActivity {
     }
 
     private void setupUI() {
-        TournamentRank rank = DataManager.getInstance().getPlayerData().getTournamentRank();
-        double costInTokens = rank.getTokenCostForRank();
-
         //Choose a default value for the difficulty
         ((RadioButton) findViewById(R.id.rbDifficultyNormal)).setChecked(true);
         pickDifficultyOption(TournamentDifficulty.NORMAL);
@@ -114,13 +110,17 @@ public class TournamentPage extends AppCompatActivity {
         ((Button) findViewById(R.id.btnMoveToLobby)).setText(
                 Helper.createSpannable(
                         "Join\n",
-                        IdleNumber.getStrNumber(costInTokens) + " Tokens",
+                        IdleNumber.getStrNumber(getTokenCostForRank()) + " Tokens",
                         DataManager.getInstance().getPlayerData().getHighlightColor()
                 ),
                 TextView.BufferType.SPANNABLE);
 
         //Set the initial value so that the onClick listener fires to load initial bet value
         sliderBetAmount.setValue(50);
+    }
+
+    private double getTokenCostForRank() {
+        return DataManager.getInstance().getPlayerData().getTournamentRank().getTokenCostForRank();
     }
 
     private void pickDifficultyOption(TournamentDifficulty chosenDifficulty) {
