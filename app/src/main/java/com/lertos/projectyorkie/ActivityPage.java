@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.adapters.ActivityViewAdapter;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 
 public class ActivityPage extends AppCompatActivity {
 
@@ -40,16 +41,21 @@ public class ActivityPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         isPageActive = false;
+        MediaManager.getInstance().stopSong();
     }
 
     protected void onPause() {
         super.onPause();
         isPageActive = false;
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
     }
 
     protected void onResume() {
         super.onResume();
         isPageActive = true;
+        MediaManager.getInstance().startSong();
     }
 
     private void updateUIWithCurrentHearts() {

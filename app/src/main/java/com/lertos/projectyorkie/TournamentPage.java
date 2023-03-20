@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.slider.Slider;
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.tournament.TournamentDifficulty;
 import com.lertos.projectyorkie.tournament.TournamentRank;
 
@@ -45,16 +46,21 @@ public class TournamentPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         isPageActive = false;
+        MediaManager.getInstance().stopSong();
     }
 
     protected void onPause() {
         super.onPause();
         isPageActive = false;
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
     }
 
     protected void onResume() {
         super.onResume();
         isPageActive = true;
+        MediaManager.getInstance().startSong();
         setupUI();
     }
 
@@ -72,6 +78,9 @@ public class TournamentPage extends AppCompatActivity {
             Intent intent = new Intent(this, TournamentLobbyPage.class);
             intent.putExtra("STR_DIFFICULTY", difficulty.getDisplayStr());
             intent.putExtra("DOUBLE_BET_AMOUNT", (Double) heartsBet);
+
+            MediaManager.getInstance().switchedScreens = true;
+
             startActivity(intent);
         });
 

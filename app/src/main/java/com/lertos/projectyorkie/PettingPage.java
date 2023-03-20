@@ -81,18 +81,23 @@ public class PettingPage extends AppCompatActivity {
         super.onDestroy();
         isPlaying = false;
         isPageActive = false;
+        MediaManager.getInstance().stopSong();
     }
 
     protected void onPause() {
         super.onPause();
         isPlaying = false;
         isPageActive = false;
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
     }
 
     protected void onResume() {
         super.onResume();
         isPlaying = true;
         isPageActive = true;
+        MediaManager.getInstance().startSong();
     }
 
     private void setOnClickListeners() {

@@ -58,16 +58,22 @@ public class TournamentLobbyPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         isPageActive = false;
+        if (!isFinishing())
+            MediaManager.getInstance().stopSong();
     }
 
     protected void onPause() {
         super.onPause();
         isPageActive = false;
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
     }
 
     protected void onResume() {
         super.onResume();
         isPageActive = true;
+        MediaManager.getInstance().startSong();
     }
 
     private void setOnClickListeners() {

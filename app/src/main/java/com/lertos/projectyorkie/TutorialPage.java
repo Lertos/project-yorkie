@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.MediaManager;
 
 public class TutorialPage extends AppCompatActivity {
 
@@ -36,6 +37,22 @@ public class TutorialPage extends AppCompatActivity {
         inflateStub();
     }
 
+    protected void onDestroy() {
+        super.onDestroy();
+        MediaManager.getInstance().stopSong();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
+    }
+
+    protected void onResume() {
+        super.onResume();
+        MediaManager.getInstance().startSong();
+    }
 
     private void setTutorialHeader() {
         StringBuilder sb = new StringBuilder();

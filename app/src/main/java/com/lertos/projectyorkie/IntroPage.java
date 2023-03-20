@@ -21,6 +21,23 @@ public class IntroPage extends AppCompatActivity {
         showSlowly();
     }
 
+    protected void onDestroy() {
+        super.onDestroy();
+        MediaManager.getInstance().stopSong();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
+    }
+
+    protected void onResume() {
+        super.onResume();
+        MediaManager.getInstance().startSong();
+    }
+
     private void setOnClickListener() {
         //Set the confirm button to bring the player to the normal screen they requested
         findViewById(R.id.btnConfirm).setOnClickListener(v -> {

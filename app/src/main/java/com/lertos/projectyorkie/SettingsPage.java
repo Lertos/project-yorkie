@@ -35,6 +35,23 @@ public class SettingsPage extends AppCompatActivity {
         setOnClickListeners();
     }
 
+    protected void onDestroy() {
+        super.onDestroy();
+        MediaManager.getInstance().stopSong();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (MediaManager.getInstance().switchedScreens == false)
+            MediaManager.getInstance().pauseSong();
+        MediaManager.getInstance().switchedScreens = false;
+    }
+
+    protected void onResume() {
+        super.onResume();
+        MediaManager.getInstance().startSong();
+    }
+
     private void setInitialValues() {
         sliderMusicVolume.setValue(DataManager.getInstance().getSettings().getTrackSongVolume() * sliderMultiplier);
         sliderEffectsVolume.setValue(DataManager.getInstance().getSettings().getTrackEffectVolume() * sliderMultiplier);
