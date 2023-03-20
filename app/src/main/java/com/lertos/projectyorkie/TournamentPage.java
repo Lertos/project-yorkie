@@ -74,6 +74,15 @@ public class TournamentPage extends AppCompatActivity {
                 return;
             }
 
+            //Check if the player can afford to play
+            double cost = getTokenCostForRank();
+            boolean canAfford = Helper.canAffordHeartTokens(cost);
+
+            if (!canAfford) {
+                Toast.makeText(this, "You do not have enough heart tokens", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Intent intent = new Intent(this, TournamentLobbyPage.class);
             intent.putExtra("STR_DIFFICULTY", difficulty.getDisplayStr());
             intent.putExtra("DOUBLE_BET_AMOUNT", (Double) heartsBet);
