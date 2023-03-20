@@ -38,8 +38,6 @@ public class PettingMaster {
     }
 
     public void start() {
-        DataManager.getInstance().addHeartTokens(costHeartTokensPerThreshold * startThreshold * -1);
-
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
@@ -68,6 +66,10 @@ public class PettingMaster {
 
         endReward = getHeartsReward();
         DataManager.getInstance().addHearts(endReward);
+    }
+
+    public double getHeartTokensToEnter() {
+        return costHeartTokensPerThreshold * startThreshold;
     }
 
     public int getStartThreshold() {
