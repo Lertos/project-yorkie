@@ -331,25 +331,31 @@ public class DodgeTheCats extends TournamentGame {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velX, float velY) {
             int currentX = (int) ivYorkieAvatar.getX();
+            float xChanged = e2.getX() - e1.getX();
 
             //If the swipe was somehow only vertical, return
-            if (velX == 0)
+            if (xChanged == 0.0f)
                 return true;
                 //If the player swiped any bit to the LEFT
-            else if (velX < 0) {
+            else if (xChanged < 0.0f) {
                 if (currentX == laneX2)
-                    ivYorkieAvatar.animate().translationX(laneX1).setDuration(timeToSwitchLanes);
+                    animateMoveToLane(laneX1);
                 else if (currentX == laneX3)
-                    ivYorkieAvatar.animate().translationX(laneX2).setDuration(timeToSwitchLanes);
+                    animateMoveToLane(laneX2);
             }
             //If the player swiped any bit to the RIGHT
-            else if (velX > 0) {
+            else if (xChanged > 0.0f) {
                 if (currentX == laneX1)
-                    ivYorkieAvatar.animate().translationX(laneX2).setDuration(timeToSwitchLanes);
+                    animateMoveToLane(laneX2);
                 else if (currentX == laneX2)
-                    ivYorkieAvatar.animate().translationX(laneX3).setDuration(timeToSwitchLanes);
+                    animateMoveToLane(laneX3);
             }
             return true;
+        }
+
+        private void animateMoveToLane(int xToMoveTo) {
+            ivYorkieAvatar.animate().cancel();
+            ivYorkieAvatar.animate().translationX(xToMoveTo).setDuration(timeToSwitchLanes);
         }
     }
 }
