@@ -40,7 +40,7 @@ public class DataManager {
         tutorialManager = new TutorialManager();
 
         //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
-        settingsManager = new SettingsManager(0.5f, 0.25f, true);
+        settingsManager = new SettingsManager(0.5f, 0.25f, false);
 
         //Now that we have the settings loaded, set settings where need be
         MediaManager.getInstance().setVolumesFromUserPrefs();
@@ -48,12 +48,12 @@ public class DataManager {
         //TODO: Load (and save) the player data in a file and populate the Player object on startup
         playerData = new Player(100000, 100, 1);
 
-        playerData.setPettingHighestThreshold(1);
-        playerData.setPettingHighestSquare(3);
+        playerData.setPettingHighestThreshold(0);
+        playerData.setPettingHighestSquare(0);
 
         TournamentRank rank = new TournamentRank();
         rank.setDivision(getDivisionFromString("Wood"));
-        rank.setTier(3);
+        rank.setTier(5);
 
         playerData.setTournamentRank(rank);
 
