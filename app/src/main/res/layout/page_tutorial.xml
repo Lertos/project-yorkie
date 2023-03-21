@@ -29,6 +29,16 @@
             android:textAlignment="center"
             android:textColor="@color/gold" />
 
+        <TextView
+            android:id="@+id/tvPageExplanation"
+            style="@style/fontLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="60dp"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
     <LinearLayout
