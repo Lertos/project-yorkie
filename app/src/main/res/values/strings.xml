@@ -10,4 +10,10 @@
     <string name="character_heart_amount">Hearts:</string>
     <string name="character_heart_token_amount">Heart Tokens:</string>
     <string name="character_dogs_collected">Dogs Collected:</string>
+    <string name="tutorial_home_page">
+        The Home Page is used to upgrade your Talents, check your pack of dogs, and see your current amount of each currency.\n\n\n
+        Talents give an overall bonus to multiple aspects of the game. Upgrade these with your heart currency.\n\n\n
+        Your pack of dogs gives a multiplier bonus to your hearts per second. Unlock more by winning Tournaments.\n\n\n
+        There are two currencies: hearts and heart tokens. Both can be gained passively (see the Activities page).
+    </string>
 </resources>
