@@ -9,17 +9,17 @@ import com.lertos.projectyorkie.TournamentPage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TutorialManager {
+public class ScreenTutorialManager {
 
     private final List<Tutorial> tutorials;
 
-    public TutorialManager() {
+    public ScreenTutorialManager() {
         tutorials = new ArrayList<>();
 
-        Tutorial homeTutorial = new Tutorial(HomePage.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, true);
-        Tutorial activityTutorial = new Tutorial(ActivityPage.class.getName(), R.layout.tutorial_activity_page, R.id.vsActivityPage, true);
-        Tutorial pettingTutorial = new Tutorial(PettingPage.class.getName(), R.layout.tutorial_petting_page, R.id.vsPettingPage, true);
-        Tutorial tournamentTutorial = new Tutorial(TournamentPage.class.getName(), R.layout.tutorial_tournament_page, R.id.vsTournamentPage, true);
+        Tutorial homeTutorial = new Tutorial(HomePage.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        Tutorial activityTutorial = new Tutorial(ActivityPage.class.getName(), R.layout.tutorial_activity_page, R.id.vsActivityPage, false);
+        Tutorial pettingTutorial = new Tutorial(PettingPage.class.getName(), R.layout.tutorial_petting_page, R.id.vsPettingPage, false);
+        Tutorial tournamentTutorial = new Tutorial(TournamentPage.class.getName(), R.layout.tutorial_tournament_page, R.id.vsTournamentPage, false);
 
         tutorials.add(homeTutorial);
         tutorials.add(activityTutorial);
