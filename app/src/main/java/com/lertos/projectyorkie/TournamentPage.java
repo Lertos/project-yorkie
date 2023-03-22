@@ -21,6 +21,8 @@ public class TournamentPage extends AppCompatActivity {
     private Toast toastMsg;
     private Slider sliderBetAmount;
     private TextView tvBetAmount;
+    private TextView tvCurrentHeartTokens;
+    private TextView tvCurrentHeartTokensPerSec;
     private TournamentDifficulty difficulty;
     private double heartsBet;
 
@@ -36,6 +38,9 @@ public class TournamentPage extends AppCompatActivity {
 
         sliderBetAmount = findViewById(R.id.sliderBetAmount);
         tvBetAmount = findViewById(R.id.tvBetAmount);
+
+        tvCurrentHeartTokens = findViewById(R.id.tvCurrentHeartTokens);
+        tvCurrentHeartTokensPerSec = findViewById(R.id.tvCurrentHeartTokensPerSec);
 
         Helper.setupBottomButtonBar(this);
         setOnClickListeners();
@@ -141,7 +146,8 @@ public class TournamentPage extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                ((TextView) findViewById(R.id.tvCurrentHeartTokens)).setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+                tvCurrentHeartTokens.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+                tvCurrentHeartTokensPerSec.setText(String.format("%.2f", DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);
