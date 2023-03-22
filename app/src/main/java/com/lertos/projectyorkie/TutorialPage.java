@@ -19,6 +19,7 @@ public class TutorialPage extends AppCompatActivity {
     private int viewStubId;
     private Button btnContinue;
     private Button btnConfirm;
+    private TextView tvPageExplanation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,11 @@ public class TutorialPage extends AppCompatActivity {
 
         btnContinue = findViewById(R.id.btnContinue);
         btnConfirm = findViewById(R.id.btnConfirm);
+        tvPageExplanation = findViewById(R.id.tvPageExplanation);
 
         setTutorialHeader();
         setOnClickListener();
+        setExplanation();
     }
 
     protected void onDestroy() {
@@ -77,7 +80,7 @@ public class TutorialPage extends AppCompatActivity {
     private void setOnClickListener() {
         //Set the continue button to hide the explanation and show the actual tutorial
         btnContinue.setOnClickListener(v -> {
-            findViewById(R.id.tvPageExplanation).setVisibility(View.GONE);
+            tvPageExplanation.setVisibility(View.GONE);
 
             //Inflate the specific layout for the chosen page
             inflateStub();
@@ -98,6 +101,11 @@ public class TutorialPage extends AppCompatActivity {
                 Helper.chooseActivityToSwitchTo(this, HomePage.class);
             }
         });
+    }
+
+    private void setExplanation() {
+        if (simpleClassName.equalsIgnoreCase(HomePage.class.getSimpleName()))
+            tvPageExplanation.setText(R.string.tutorial_home_page);
     }
 
     private void inflateStub() {
