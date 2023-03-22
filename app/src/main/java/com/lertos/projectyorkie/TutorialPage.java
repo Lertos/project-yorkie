@@ -1,7 +1,9 @@
 package com.lertos.projectyorkie;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,8 @@ public class TutorialPage extends AppCompatActivity {
     private String className;
     private int layoutId;
     private int viewStubId;
+    private Button btnContinue;
+    private Button btnConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +34,11 @@ public class TutorialPage extends AppCompatActivity {
 
         setContentView(R.layout.page_tutorial);
 
+        btnContinue = findViewById(R.id.btnContinue);
+        btnConfirm = findViewById(R.id.btnConfirm);
+
         setTutorialHeader();
         setOnClickListener();
-
-        //Inflate the specific layout for the chosen page
-        inflateStub();
     }
 
     protected void onDestroy() {
@@ -71,8 +75,19 @@ public class TutorialPage extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
+        //Set the continue button to hide the explanation and show the actual tutorial
+        btnContinue.setOnClickListener(v -> {
+            findViewById(R.id.tvPageExplanation).setVisibility(View.GONE);
+
+            //Inflate the specific layout for the chosen page
+            inflateStub();
+
+            btnContinue.setVisibility(View.GONE);
+            btnConfirm.setVisibility(View.VISIBLE);
+        });
+
         //Set the confirm button to bring the player to the normal screen they requested
-        findViewById(R.id.btnConfirm).setOnClickListener(v -> {
+        btnConfirm.setOnClickListener(v -> {
             try {
                 Class<?> activity = Class.forName(className);
 
