@@ -15,7 +15,7 @@ public class DataManager {
 
     private boolean hasPlayedBefore;
     private static DataManager instance;
-    private TutorialManager tutorialManager;
+    private ScreenTutorialManager screenTutorialManager;
     private SettingsManager settingsManager;
     private Player playerData;
     private List<Talent> talentList = new ArrayList<>();
@@ -37,7 +37,7 @@ public class DataManager {
         hasPlayedBefore = true;
 
         //TODO: Load (and save) if the player has seen the tutorial for each page
-        tutorialManager = new TutorialManager();
+        screenTutorialManager = new ScreenTutorialManager();
 
         //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
         settingsManager = new SettingsManager(0.5f, 0.0f, false);
@@ -78,8 +78,8 @@ public class DataManager {
         this.hasPlayedBefore = hasPlayedBefore;
     }
 
-    public TutorialManager getTutorials() {
-        return tutorialManager;
+    public ScreenTutorialManager getTutorials() {
+        return screenTutorialManager;
     }
 
     public SettingsManager getSettings() {
