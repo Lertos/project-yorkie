@@ -15,6 +15,9 @@ public class ActivityPage extends AppCompatActivity {
     static boolean isPageActive = false;
 
     private TextView tvCurrentHearts;
+    private TextView tvCurrentHeartsPerSec;
+    private TextView tvCurrentHeartTokens;
+    private TextView tvCurrentHeartTokensPerSec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,9 @@ public class ActivityPage extends AppCompatActivity {
         setContentView(R.layout.page_activities);
 
         tvCurrentHearts = findViewById(R.id.tvCurrentHearts);
+        tvCurrentHeartsPerSec = findViewById(R.id.tvCurrentHeartsPerSec);
+        tvCurrentHeartTokens = findViewById(R.id.tvCurrentHeartTokens);
+        tvCurrentHeartTokensPerSec = findViewById(R.id.tvCurrentHeartTokensPerSec);
 
         Helper.setupBottomButtonBar(this);
 
@@ -64,6 +70,9 @@ public class ActivityPage extends AppCompatActivity {
             @Override
             public void run() {
                 tvCurrentHearts.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHearts()));
+                tvCurrentHeartsPerSec.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond()));
+                tvCurrentHeartTokens.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+                tvCurrentHeartTokensPerSec.setText(String.format("%.2f", DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);
