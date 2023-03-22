@@ -106,6 +106,12 @@ public class TutorialPage extends AppCompatActivity {
     private void setExplanation() {
         if (simpleClassName.equalsIgnoreCase(HomePage.class.getSimpleName()))
             tvPageExplanation.setText(R.string.tutorial_home_page);
+        else if (simpleClassName.equalsIgnoreCase(ActivityPage.class.getSimpleName()))
+            tvPageExplanation.setText(R.string.tutorial_activity_page);
+        else if (simpleClassName.equalsIgnoreCase(PettingPage.class.getSimpleName()))
+            tvPageExplanation.setText(R.string.tutorial_petting_page);
+        else if (simpleClassName.equalsIgnoreCase(TournamentPage.class.getSimpleName()))
+            tvPageExplanation.setText(R.string.tutorial_tournament_page);
     }
 
     private void inflateStub() {

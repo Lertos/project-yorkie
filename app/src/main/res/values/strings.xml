@@ -11,9 +11,28 @@
     <string name="character_heart_token_amount">Heart Tokens:</string>
     <string name="character_dogs_collected">Dogs Collected:</string>
     <string name="tutorial_home_page">
-        The Home Page is used to upgrade your Talents, check your pack of dogs, and see your current amount of each currency.\n\n\n
-        Talents give an overall bonus to multiple aspects of the game. Upgrade these with your heart currency.\n\n\n
-        Your pack of dogs gives a multiplier bonus to your hearts per second. Unlock more by winning Tournaments.\n\n\n
-        There are two currencies: hearts and heart tokens. Both can be gained passively (see the Activities page).
+        The Home Page is used to upgrade your Talents, check your pack of dogs, and see your currency\n\n\n
+        There are two currencies: Hearts and Heart Tokens. Both can be gained passively (see the Activities page)\n\n\n
+        Talents give an overall bonus to multiple aspects of the game. Upgrade these with your Heart currency\n\n\n
+        Each dog from your pack gives a multiplier bonus to your Hearts per second
+    </string>
+    <string name="tutorial_activity_page">
+        Activities are the main way to gain more Hearts and Heart Tokens passively (even while offline)\n\n\n
+        Upgrading them will yield higher returns\n\n\n
+        Each activity has a different curve; don\'t put all your eggs in one basket!
+    </string>
+    <string name="tutorial_petting_page">
+        The Petting minigame is useful for turning Heart Tokens into Hearts\n\n\n
+        The goal is to tap on the square that appears as quick as possible\n\n\n
+        Every square clicked will increase the speed. If it\'s too fast, upgrade the "Petting"-specific Talents!\n\n\n
+        Every 10 squares will bump you into a new "threshold" so future runs can be set to the right difficulty\n\n\n
+        You will always start at the threshold below your highest
+    </string>
+    <string name="tutorial_tournament_page">
+        The Tournament is a fun and rewarding way to turn your Heart Tokens into Hearts\n\n\n
+        You will compete against 3 AI in 4 minigames, trying to get the highest score\n\n\n
+        There is also a ranking system to give better rewards and beat stronger opponents!\n\n\n
+        FIRST place increases your rank, and you can unlock a new Pack Dog!\n\n\n
+        LAST place means you lose a rank and your entire bet...
     </string>
 </resources>
