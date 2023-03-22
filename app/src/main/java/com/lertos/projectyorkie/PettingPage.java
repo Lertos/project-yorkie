@@ -27,6 +27,8 @@ public class PettingPage extends AppCompatActivity {
     private LinearProgressIndicator indicator;
     private final int timerMax = 1000;
     private TextView timerInSeconds;
+    private TextView tvCurrentHeartTokens;
+    private TextView tvCurrentHeartTokensPerSec;
     private double timerStartValue;
     private int xStart, yStart, xEnd, yEnd;
     private boolean isPlaying = false;
@@ -49,6 +51,9 @@ public class PettingPage extends AppCompatActivity {
         focusButton = findViewById(R.id.btnPettingFocus);
         indicator = findViewById(R.id.indPettingTimer);
         timerInSeconds = findViewById(R.id.tvTimerInSecs);
+
+        tvCurrentHeartTokens = findViewById(R.id.tvCurrentHeartTokens);
+        tvCurrentHeartTokensPerSec = findViewById(R.id.tvCurrentHeartTokensPerSec);
 
         //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
         indicator.setMax(timerMax);
@@ -279,7 +284,8 @@ public class PettingPage extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                ((TextView) findViewById(R.id.tvCurrentHeartTokens)).setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+                tvCurrentHeartTokens.setText(IdleNumber.getStrNumber(DataManager.getInstance().getPlayerData().getCurrentHeartTokens()));
+                tvCurrentHeartTokensPerSec.setText(String.format("%.2f", DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond()));
 
                 if (!isPageActive)
                     handler.removeCallbacks(this);
