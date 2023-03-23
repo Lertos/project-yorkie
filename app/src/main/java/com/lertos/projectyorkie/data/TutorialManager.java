@@ -1,4 +1,4 @@
-package com.lertos.projectyorkie.data.tutorials;
+package com.lertos.projectyorkie.data;
 
 import com.lertos.projectyorkie.ActivityPage;
 import com.lertos.projectyorkie.HomePage;
@@ -16,16 +16,18 @@ public class TutorialManager {
     public TutorialManager() {
         tutorials = new ArrayList<>();
 
-        ScreenTutorial homeScreenTutorial = new ScreenTutorial(HomePage.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
-        ScreenTutorial activityScreenTutorial = new ScreenTutorial(ActivityPage.class.getName(), R.layout.tutorial_activity_page, R.id.vsActivityPage, false);
-        ScreenTutorial pettingScreenTutorial = new ScreenTutorial(PettingPage.class.getName(), R.layout.tutorial_petting_page, R.id.vsPettingPage, false);
-        ScreenTutorial tournamentScreenTutorial = new ScreenTutorial(TournamentPage.class.getName(), R.layout.tutorial_tournament_page, R.id.vsTournamentPage, false);
+        Tutorial homeScreenTutorial = new Tutorial(HomePage.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        Tutorial activityScreenTutorial = new Tutorial(ActivityPage.class.getName(), R.layout.tutorial_activity_page, R.id.vsActivityPage, false);
+        Tutorial pettingScreenTutorial = new Tutorial(PettingPage.class.getName(), R.layout.tutorial_petting_page, R.id.vsPettingPage, false);
+        Tutorial tournamentScreenTutorial = new Tutorial(TournamentPage.class.getName(), R.layout.tutorial_tournament_page, R.id.vsTournamentPage, false);
 
         tutorials.add(homeScreenTutorial);
         tutorials.add(activityScreenTutorial);
         tutorials.add(pettingScreenTutorial);
         tutorials.add(tournamentScreenTutorial);
 
+        //TODO: Once you have the layout's created, change these to those
+        //Tutorial catchDogTreatsTutorial = new Tutorial(CatchDogTreats.class.getName(), R.layout.tutorial_home_page)
     }
 
     public boolean tutorialClassExists(String className) {
