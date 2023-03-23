@@ -117,6 +117,26 @@ public class TournamentMaster {
         inflatedStub = stub.inflate();
     }
 
+    private void inflateTutorialStub() {
+        ViewStub stub = null;
+
+        if (currentGame instanceof WhackTheCat) {
+            stub = lobbyPage.findViewById(R.id.vsWhackTheCatTutorial);
+            stub.setLayoutResource(R.layout.game_tutorial_whack_the_cat);
+        } else if (currentGame instanceof CatchDogTreats) {
+            stub = lobbyPage.findViewById(R.id.vsCatchDogTreatsTutorial);
+            stub.setLayoutResource(R.layout.game_tutorial_catch_dog_treats);
+        } else if (currentGame instanceof DodgeTheCats) {
+            stub = lobbyPage.findViewById(R.id.vsDodgeTheCatsTutorial);
+            stub.setLayoutResource(R.layout.game_tutorial_dodge_the_cats);
+        } else if (currentGame instanceof TreatToss) {
+            stub = lobbyPage.findViewById(R.id.vsTreatTossTutorial);
+            stub.setLayoutResource(R.layout.game_tutorial_treat_toss);
+        }
+
+        inflatedStub = stub.inflate();
+    }
+
     private TournamentDifficulty getDifficultyFromString(String str) {
         for (TournamentDifficulty difficulty : TournamentDifficulty.values()) {
             if (str.equalsIgnoreCase(difficulty.getDisplayStr()))
