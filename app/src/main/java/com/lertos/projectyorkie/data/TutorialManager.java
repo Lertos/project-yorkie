@@ -5,6 +5,10 @@ import com.lertos.projectyorkie.HomePage;
 import com.lertos.projectyorkie.PettingPage;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.TournamentPage;
+import com.lertos.projectyorkie.tournament.games.CatchDogTreats;
+import com.lertos.projectyorkie.tournament.games.DodgeTheCats;
+import com.lertos.projectyorkie.tournament.games.TreatToss;
+import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +30,16 @@ public class TutorialManager {
         tutorials.add(pettingScreenTutorial);
         tutorials.add(tournamentScreenTutorial);
 
-        //TODO: Once you have the layout's created, change these to those
-        //Tutorial catchDogTreatsTutorial = new Tutorial(CatchDogTreats.class.getName(), R.layout.tutorial_home_page)
+        //TODO: Once you have the layout's and view stubs created, change these to those
+        Tutorial catchDogTreatsTutorial = new Tutorial(CatchDogTreats.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        Tutorial dodgeTheCatsTutorial = new Tutorial(DodgeTheCats.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        Tutorial treatTossTutorial = new Tutorial(TreatToss.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        Tutorial whackTheCatTutorial = new Tutorial(WhackTheCat.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+
+        tutorials.add(catchDogTreatsTutorial);
+        tutorials.add(dodgeTheCatsTutorial);
+        tutorials.add(treatTossTutorial);
+        tutorials.add(whackTheCatTutorial);
     }
 
     public boolean tutorialClassExists(String className) {
