@@ -1,21 +1,19 @@
-package com.lertos.projectyorkie.data;
+package com.lertos.projectyorkie.data.tutorials;
 
 public class Tutorial {
 
-    private final String className;
+    private final String matchingClassName;
     private final int layoutId;
-    private final int viewStubId;
     boolean hasPlayerSeen;
 
-    public Tutorial(String className, int layoutId, int viewStubId, boolean hasPlayerSeen) {
-        this.className = className;
+    public Tutorial(String gameClassName, int layoutId, boolean hasPlayerSeen) {
+        this.matchingClassName = gameClassName;
         this.layoutId = layoutId;
-        this.viewStubId = viewStubId;
         this.hasPlayerSeen = hasPlayerSeen;
     }
 
-    public String getClassName() {
-        return className;
+    public String getMatchingClassName() {
+        return matchingClassName;
     }
 
     public boolean hasPlayerSeen() {
@@ -30,7 +28,4 @@ public class Tutorial {
         return layoutId;
     }
 
-    public int getViewStubId() {
-        return viewStubId;
-    }
 }
