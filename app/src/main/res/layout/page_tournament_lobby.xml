@@ -595,6 +595,40 @@
 
     </LinearLayout>
 
+    <!-- TUTORIAL : VIEW STUBS -->
+    <ViewStub
+        android:id="@+id/vsWhackTheCatTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linGameHeader"
+        android:inflatedId="@+id/layoutWhackTheCatTutorial"
+        android:layout="@layout/game_tutorial_whack_the_cat" />
+
+    <ViewStub
+        android:id="@+id/vsCatchDogTreatsTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linGameHeader"
+        android:inflatedId="@+id/layoutCatchDogTreatsTutorial"
+        android:layout="@layout/game_tutorial_catch_dog_treats" />
+
+    <ViewStub
+        android:id="@+id/vsDodgeTheCatsTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linGameHeader"
+        android:inflatedId="@+id/layoutDodgeTheCatsTutorial"
+        android:layout="@layout/game_tutorial_dodge_the_cats" />
+
+    <ViewStub
+        android:id="@+id/vsTreatTossTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linGameHeader"
+        android:inflatedId="@+id/layoutTreatTossTutorial"
+        android:layout="@layout/game_tutorial_treat_toss" />
+
+    <!-- GAME : VIEW STUBS -->
     <ViewStub
         android:id="@+id/vsWhackTheCat"
         android:layout_width="match_parent"
