@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.data.MediaManager;
-import com.lertos.projectyorkie.data.Tutorial;
+import com.lertos.projectyorkie.data.tutorials.ScreenTutorial;
+import com.lertos.projectyorkie.data.tutorials.Tutorial;
 
 import java.util.List;
 
@@ -57,12 +58,12 @@ public class Helper {
         boolean tutorialPageExist = DataManager.getInstance().getTutorials().tutorialClassExists(className);
 
         if (tutorialPageExist) {
-            Tutorial tutorial = DataManager.getInstance().getTutorials().getTutorial(className);
+            Tutorial screenTutorial = DataManager.getInstance().getTutorials().getTutorial(className);
 
-            if (tutorial != null) {
+            if (screenTutorial != null) {
                 //If they haven't seen the tutorial show them that first, passing what class to switch to next time
-                if (!tutorial.hasPlayerSeen()) {
-                    switchActivities(activity, desiredClass, tutorial);
+                if (!screenTutorial.hasPlayerSeen()) {
+                    switchActivities(activity, desiredClass, (ScreenTutorial) screenTutorial);
                     return;
                 }
             }
@@ -71,17 +72,17 @@ public class Helper {
         switchActivities(activity, desiredClass, null);
     }
 
-    private static void switchActivities(AppCompatActivity activity, Class desiredClass, Tutorial tutorial) {
+    private static void switchActivities(AppCompatActivity activity, Class desiredClass, ScreenTutorial screenTutorial) {
         Intent intent;
 
         //If there needs to be an extra, add it
-        if (tutorial != null) {
+        if (screenTutorial != null) {
             intent = new Intent(activity, TutorialPage.class);
 
             intent.putExtra("SIMPLE_CLASS_NAME", desiredClass.getSimpleName());
             intent.putExtra("CLASS_NAME", desiredClass.getName());
-            intent.putExtra("LAYOUT_ID", tutorial.getLayoutId());
-            intent.putExtra("VIEW_STUB_ID", tutorial.getViewStubId());
+            intent.putExtra("LAYOUT_ID", screenTutorial.getLayoutId());
+            intent.putExtra("VIEW_STUB_ID", screenTutorial.getViewStubId());
         } else {
             intent = new Intent(activity, desiredClass);
         }

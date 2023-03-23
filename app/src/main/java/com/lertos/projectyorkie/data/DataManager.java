@@ -1,5 +1,6 @@
 package com.lertos.projectyorkie.data;
 
+import com.lertos.projectyorkie.data.tutorials.TutorialManager;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
@@ -15,7 +16,7 @@ public class DataManager {
 
     private boolean hasPlayedBefore;
     private static DataManager instance;
-    private ScreenTutorialManager screenTutorialManager;
+    private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
     private Player playerData;
     private List<Talent> talentList = new ArrayList<>();
@@ -37,7 +38,7 @@ public class DataManager {
         hasPlayedBefore = true;
 
         //TODO: Load (and save) if the player has seen the tutorial for each page
-        screenTutorialManager = new ScreenTutorialManager();
+        tutorialManager = new TutorialManager();
 
         //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
         settingsManager = new SettingsManager(0.5f, 0.0f, false);
@@ -78,8 +79,8 @@ public class DataManager {
         this.hasPlayedBefore = hasPlayedBefore;
     }
 
-    public ScreenTutorialManager getTutorials() {
-        return screenTutorialManager;
+    public TutorialManager getTutorials() {
+        return tutorialManager;
     }
 
     public SettingsManager getSettings() {
