@@ -30,11 +30,11 @@ public class TutorialManager {
         tutorials.add(pettingScreenTutorial);
         tutorials.add(tournamentScreenTutorial);
 
-        //TODO: Once you have the layout's and view stubs created, change these to those
-        Tutorial catchDogTreatsTutorial = new Tutorial(CatchDogTreats.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
-        Tutorial dodgeTheCatsTutorial = new Tutorial(DodgeTheCats.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
-        Tutorial treatTossTutorial = new Tutorial(TreatToss.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
-        Tutorial whackTheCatTutorial = new Tutorial(WhackTheCat.class.getName(), R.layout.tutorial_home_page, R.id.vsHomePage, false);
+        //TODO: Once you have the view stubs created, change these
+        Tutorial catchDogTreatsTutorial = new Tutorial(CatchDogTreats.class.getName(), R.layout.game_tutorial_catch_dog_treats, R.id.vsHomePage, false);
+        Tutorial dodgeTheCatsTutorial = new Tutorial(DodgeTheCats.class.getName(), R.layout.game_tutorial_dodge_the_cats, R.id.vsHomePage, false);
+        Tutorial treatTossTutorial = new Tutorial(TreatToss.class.getName(), R.layout.game_tutorial_treat_toss, R.id.vsHomePage, false);
+        Tutorial whackTheCatTutorial = new Tutorial(WhackTheCat.class.getName(), R.layout.game_tutorial_whack_the_cat, R.id.vsHomePage, false);
 
         tutorials.add(catchDogTreatsTutorial);
         tutorials.add(dodgeTheCatsTutorial);
