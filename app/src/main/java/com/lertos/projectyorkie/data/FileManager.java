@@ -13,42 +13,33 @@ import java.nio.charset.StandardCharsets;
 
 public class FileManager {
 
-/* PLAYER DATA
-    hasPlayedBefore;0/1
-    lastTimeOn;unixTimeStamp
-    --screens
-    showTutHome;0/1
-    showTutActivity;0/1
-    showTutPetting;0/1
-    showTutTournament;0/1
-    --games
-    showTutCatchDogTreats;0/1
-    showTutDodgeTheCats;0/1
-    showTutTreatToss;0/1
-    showTutWhackTheCat;0/1
-    --highscores
-    highestThreshold;int
-    highestSquare;int
-    currentRankName;String
-    currentRankTier;int
-    --data
-    currentHearts;double.2f
-    currentHeartTokens;double.2f
-    --levels
-    packDogsUnlocked;1|1|0|0|0...
-    talentLevels;12|6|1|1|1...
-    activityLevels;12|6|0|0|0... //zero means not unlocked
-*/
-
-/* SETTINGS
-   effectVolume;0.5
-   musicVolume;0.5
-   showAppearAnimationsInTournament;0/1
-*/
-
     private Context context;
     private final String FILE_NAME_SETTINGS = "settings";
     private final String FILE_NAME_PLAYER_DATA = "playerData";
+
+    private final String DATA_HAS_PLAYED_BEFORE = "";
+    private final String DATA_LAST_TIME_ON = "";
+    private final String DATA_SHOW_TUT_HOME = "";
+    private final String DATA_SHOW_TUT_ACTIVITY = "";
+    private final String DATA_SHOW_TUT_PETTING = "";
+    private final String DATA_SHOW_TUT_TOURNAMENT = "";
+    private final String DATA_SHOW_TUT_CATCH_DOG_TREATS = "";
+    private final String DATA_SHOW_TUT_DODGE_THE_CATS = "";
+    private final String DATA_SHOW_TUT_TREAT_TOSS = "";
+    private final String DATA_SHOW_TUT_WHACK_THE_CAT = "";
+    private final String DATA_HIGH_SCORE_THRESHOLD = "";
+    private final String DATA_HIGH_SCORE_SQUARE = "";
+    private final String DATA_CURRENT_RANK_NAME = "";
+    private final String DATA_CURRENT_RANK_TIER = "";
+    private final String DATA_CURRENT_HEARTS = "";
+    private final String DATA_CURRENT_HEART_TOKENS = "";
+    private final String DATA_PACK_DOGS_UNLOCKED = "";
+    private final String DATA_TALENT_LEVELS = "";
+    private final String DATA_ACTIVITY_LEVELS = "";
+
+    private final String SETTING_EFFECT_VOLUME = "";
+    private final String SETTING_MUSIC_VOLUME = "";
+    private final String SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT = "";
 
     public FileManager(Context context) {
         this.context = context;
