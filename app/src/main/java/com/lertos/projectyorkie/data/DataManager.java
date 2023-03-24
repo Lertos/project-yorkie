@@ -52,7 +52,7 @@ public class DataManager {
         MediaManager.getInstance().setVolumesFromUserPrefs();
 
         //TODO: Load (and save) the player data in a file and populate the Player object on startup
-        playerData = new Player(100000, 100, 1);
+        playerData = new Player(100000, 100);
 
         playerData.setPettingHighestThreshold(0);
         playerData.setPettingHighestSquare(0);

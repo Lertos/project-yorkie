@@ -12,18 +12,13 @@ public class Player {
     private double currentHeartTokensPerSecond;
     private double currentHearts;
     private double currentHeartTokens;
-    private int dogsCollected;
     private int pettingHighestThreshold;
     private int pettingHighestSquare;
     private TournamentRank tournamentRank;
 
-    //Static data that won't change
-    private final int maxDogsToCollect = 27;
-
-    public Player(double currentHearts, double currentHeartTokens, int dogsCollected) {
+    public Player(double currentHearts, double currentHeartTokens) {
         this.currentHearts = currentHearts;
         this.currentHeartTokens = currentHeartTokens;
-        this.dogsCollected = dogsCollected;
     }
 
     public double getCurrentHeartsPerSecond() {
@@ -58,14 +53,6 @@ public class Player {
         this.currentHeartTokens = currentHeartTokens;
     }
 
-    public int getDogsCollected() {
-        return dogsCollected;
-    }
-
-    public void setDogsCollected(int dogsCollected) {
-        this.dogsCollected = dogsCollected;
-    }
-
     public TournamentRank getTournamentRank() {
         return tournamentRank;
     }
@@ -80,10 +67,6 @@ public class Player {
 
     public void setHighlightColor(int highlightColor) {
         this.highlightColor = highlightColor;
-    }
-
-    public int getMaxDogsToCollect() {
-        return maxDogsToCollect;
     }
 
     public int getPettingHighestThreshold() {
