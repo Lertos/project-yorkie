@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -82,7 +83,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
             //If there are still games to play
             if (!tournamentMaster.isGameListEmpty()) {
-                //If the player wants to see the tutorial
+                //Check if the player wants to see the tutorial
                 String currentGameName = tournamentMaster.getCurrentGame().getClass().getName();
 
                 if (DataManager.getInstance().getTutorials().tutorialClassExists(currentGameName)) {
@@ -100,6 +101,17 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
             if (!tournamentMaster.isGameListEmpty())
                 tournamentMaster.startNextGame();
+        });
+
+        findViewById(R.id.btnMarkTutorialAsSeen).setOnClickListener(v -> {
+            //Turn off the tutorial going forward
+            String currentGameName = tournamentMaster.getCurrentGame().getClass().getName();
+
+            if (DataManager.getInstance().getTutorials().tutorialClassExists(currentGameName)) {
+                DataManager.getInstance().getTutorials().getTutorial(currentGameName).setHasPlayerSeen(true);
+
+                Toast.makeText(this, "Tutorial will not show up in the future", Toast.LENGTH_SHORT).show();
+            }
         });
 
         findViewById(R.id.btnLeaveScoreScreen).setOnClickListener(v -> {
