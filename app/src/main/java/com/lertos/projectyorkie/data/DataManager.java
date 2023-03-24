@@ -58,6 +58,7 @@ public class DataManager {
         playerData.setPettingHighestSquare(0);
 
         TournamentRank rank = new TournamentRank();
+        //TODO: Get from FileManager
         rank.setDivision(getDivisionFromString("Wood"));
         rank.setTier(5);
 
@@ -65,12 +66,15 @@ public class DataManager {
 
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
+        //TODO: Set unlocked dogs - feed in String with pipes
 
         Talents talents = new Talents();
         talentList = talents.getListTalents();
+        //TODO: Set talent levels - feed in String with pipes
 
         Activities activities = new Activities();
         activityList = activities.getListActivities();
+        //TODO: Set activity levels - feed in String with pipes
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();

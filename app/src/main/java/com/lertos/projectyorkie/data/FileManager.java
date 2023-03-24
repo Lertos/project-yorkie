@@ -13,6 +13,39 @@ import java.nio.charset.StandardCharsets;
 
 public class FileManager {
 
+/* PLAYER DATA
+    hasPlayedBefore;0/1
+    lastTimeOn;unixTimeStamp
+    --screens
+    showTutHome;0/1
+    showTutActivity;0/1
+    showTutPetting;0/1
+    showTutTournament;0/1
+    --games
+    showTutCatchDogTreats;0/1
+    showTutDodgeTheCats;0/1
+    showTutTreatToss;0/1
+    showTutWhackTheCat;0/1
+    --highscores
+    highestThreshold;int
+    highestSquare;int
+    currentRankName;String
+    currentRankTier;int
+    --data
+    currentHearts;double.2f
+    currentHeartTokens;double.2f
+    --levels
+    packDogsUnlocked;1|1|0|0|0...
+    talentLevels;12|6|1|1|1...
+    activityLevels;12|6|0|0|0... //zero means not unlocked
+*/
+
+/* SETTINGS
+   effectVolume;0.5
+   musicVolume;0.5
+   showAppearAnimationsInTournament;0/1
+*/
+
     private Context context;
     private final String FILE_NAME_SETTINGS = "settings";
     private final String FILE_NAME_PLAYER_DATA = "playerData";
