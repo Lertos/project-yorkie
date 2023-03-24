@@ -1,5 +1,7 @@
 package com.lertos.projectyorkie.data;
 
+import android.content.Context;
+
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
@@ -15,6 +17,7 @@ public class DataManager {
 
     private boolean hasPlayedBefore;
     private static DataManager instance;
+    private FileManager fileManager;
     private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
     private Player playerData;
@@ -32,7 +35,10 @@ public class DataManager {
         return instance;
     }
 
-    public void start() {
+    public void start(Context context) {
+        //Setup the FileManager so we can load all settings and initial starting data
+        fileManager = new FileManager(context);
+
         //TODO: Load (and save) if the player has played yet (maybe check if they have a "lastOnDate" for hearts)
         hasPlayedBefore = true;
 
