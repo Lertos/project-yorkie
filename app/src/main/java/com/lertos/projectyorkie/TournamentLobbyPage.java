@@ -80,6 +80,24 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.btnStartNextGame).setOnClickListener(v -> {
             findViewById(R.id.relScreen).setVisibility(GONE);
 
+            //If there are still games to play
+            if (!tournamentMaster.isGameListEmpty()) {
+                //If the player wants to see the tutorial
+                String currentGameName = tournamentMaster.getCurrentGame().getClass().getName();
+
+                if (DataManager.getInstance().getTutorials().tutorialClassExists(currentGameName)) {
+                    if (!DataManager.getInstance().getTutorials().getTutorial(currentGameName).hasPlayerSeen()) {
+                        tournamentMaster.loadGameTutorial();
+                        return;
+                    }
+                }
+            }
+            tournamentMaster.startNextGame();
+        });
+
+        findViewById(R.id.btnEndTutorial).setOnClickListener(v -> {
+            findViewById(R.id.linGameTutorialHeader).setVisibility(View.GONE);
+
             if (!tournamentMaster.isGameListEmpty())
                 tournamentMaster.startNextGame();
         });
