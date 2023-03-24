@@ -50,7 +50,7 @@ public class HomePage extends AppCompatActivity {
     private void loadMainData() {
         //Setup the data and have it all created on startup
         MediaManager.getInstance().start(this);
-        DataManager.getInstance().start();
+        DataManager.getInstance().start(this);
         DataManager.getInstance().getPlayerData().setHighlightColor(ContextCompat.getColor(this, R.color.main_text_color));
 
         //Run the game loop
