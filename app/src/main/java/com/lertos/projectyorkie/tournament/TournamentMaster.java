@@ -297,6 +297,16 @@ public class TournamentMaster {
         currentGame.startGame();
     }
 
+    public void loadGameTutorial() {
+        lobbyPage.findViewById(R.id.linGameTutorialHeader).setVisibility(View.VISIBLE);
+
+        inflateTutorialStub();
+    }
+
+    public TournamentGame getCurrentGame() {
+        return currentGame;
+    }
+
     public void showEndGameScreen() {
         MediaManager.getInstance().playEffectTrack(R.raw.effect_end_screen);
 
