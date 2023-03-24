@@ -63,7 +63,12 @@ public class TournamentPage extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        isPageActive = true;
+
+        if (!isPageActive) {
+            updateUIWithCurrentHeartTokens();
+            isPageActive = true;
+        }
+
         MediaManager.getInstance().startSong();
         setupUI();
     }
