@@ -596,37 +596,71 @@
     </LinearLayout>
 
     <!-- TUTORIAL : VIEW STUBS -->
-    <ViewStub
-        android:id="@+id/vsWhackTheCatTutorial"
+    <RelativeLayout
+        android:id="@+id/linGameTutorialHeader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linGameHeader"
-        android:inflatedId="@+id/layoutWhackTheCatTutorial"
-        android:layout="@layout/game_tutorial_whack_the_cat" />
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <ViewStub
-        android:id="@+id/vsCatchDogTreatsTutorial"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linGameHeader"
-        android:inflatedId="@+id/layoutCatchDogTreatsTutorial"
-        android:layout="@layout/game_tutorial_catch_dog_treats" />
+        <TextView
+            android:id="@+id/tvGameTutorialHeader"
+            style="@style/fontLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="Game Tutorial"
+            android:textAlignment="center"
+            android:textColor="@color/main_text_color" />
 
-    <ViewStub
-        android:id="@+id/vsDodgeTheCatsTutorial"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linGameHeader"
-        android:inflatedId="@+id/layoutDodgeTheCatsTutorial"
-        android:layout="@layout/game_tutorial_dodge_the_cats" />
+        <ViewStub
+            android:id="@+id/vsWhackTheCatTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnEndTutorial"
+            android:layout_below="@+id/tvGameTutorialHeader"
+            android:inflatedId="@+id/layoutWhackTheCatTutorial"
+            android:layout="@layout/game_tutorial_whack_the_cat" />
 
-    <ViewStub
-        android:id="@+id/vsTreatTossTutorial"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/linGameHeader"
-        android:inflatedId="@+id/layoutTreatTossTutorial"
-        android:layout="@layout/game_tutorial_treat_toss" />
+        <ViewStub
+            android:id="@+id/vsCatchDogTreatsTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnEndTutorial"
+            android:layout_below="@+id/tvGameTutorialHeader"
+            android:inflatedId="@+id/layoutCatchDogTreatsTutorial"
+            android:layout="@layout/game_tutorial_catch_dog_treats" />
+
+        <ViewStub
+            android:id="@+id/vsDodgeTheCatsTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnEndTutorial"
+            android:layout_below="@+id/tvGameTutorialHeader"
+            android:inflatedId="@+id/layoutDodgeTheCatsTutorial"
+            android:layout="@layout/game_tutorial_dodge_the_cats" />
+
+        <ViewStub
+            android:id="@+id/vsTreatTossTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnEndTutorial"
+            android:layout_below="@+id/tvGameTutorialHeader"
+            android:inflatedId="@+id/layoutTreatTossTutorial"
+            android:layout="@layout/game_tutorial_treat_toss" />
+
+        <Button
+            android:id="@+id/btnEndTutorial"
+            style="@style/baseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="10dp"
+            android:text="Play" />
+
+    </RelativeLayout>
 
     <!-- GAME : VIEW STUBS -->
     <ViewStub
