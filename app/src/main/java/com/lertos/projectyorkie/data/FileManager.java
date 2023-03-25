@@ -49,11 +49,7 @@ public class FileManager {
 
         createFilesIfNotExist();
 
-        try {
-            readFileContents(FILE_NAME_SETTINGS);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Log.d("===EffectVolume", getValueOfKey(FILE_NAME_SETTINGS, SETTING_EFFECT_VOLUME));
     }
 
     private void createFilesIfNotExist() {
@@ -76,28 +72,64 @@ public class FileManager {
     }
 
     private String getDefaultSettingsContent() {
-        return "Test Settings";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(SETTING_EFFECT_VOLUME).append(PAIR_SEPARATOR).append("0.5").append("\n");
+        sb.append(SETTING_MUSIC_VOLUME).append(PAIR_SEPARATOR).append("0.25").append("\n");
+        sb.append(SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT).append(PAIR_SEPARATOR).append("0");
+
+        return sb.toString();
     }
 
-    private void readFileContents(String fileName) throws FileNotFoundException {
-        FileInputStream fis = context.openFileInput(fileName);
+    private String getValueOfKey(String fileName, String key) {
+        FileInputStream fis;
+
+        try {
+            fis = context.openFileInput(fileName);
+        } catch (FileNotFoundException e) {
+            return "";
+        }
+
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
-        StringBuilder stringBuilder = new StringBuilder();
+        String line = "";
+        String lineKey;
 
         try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-            String line = reader.readLine();
+            line = reader.readLine();
+            lineKey = getKeyFromLine(line);
 
             while (line != null) {
-                stringBuilder.append(line).append('\n');
-                line = reader.readLine();
+                Log.d("d", line);
+                if (!lineKey.equalsIgnoreCase(key)) {
+                    line = reader.readLine();
+                    lineKey = getKeyFromLine(line);
+                    continue;
+                } else {
+                    return getValueFromLine(line);
+                }
             }
+            return "";
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            String contents = stringBuilder.toString();
-
-            Log.d("==============FileContents ", contents);
         }
+        return "";
     }
 
+    private String getKeyFromLine(String line) {
+        int index = line.indexOf(PAIR_SEPARATOR);
+
+        if (index == -1)
+            return "";
+
+        return line.substring(0, index);
+    }
+
+    private String getValueFromLine(String line) {
+        int index = line.indexOf(PAIR_SEPARATOR);
+
+        if (index == -1)
+            return "";
+
+        return line.substring(index);
+    }
 }
