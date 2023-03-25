@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie.data.file;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -24,16 +25,17 @@ public class DataFile {
     protected final String VALUE_SEPARATOR = "|";
     protected List<String> existingKeys;
 
-    public DataFile(List<Triple> listOfDataKeys, String fileName, Context context) {
-        this.listOfDataKeys = listOfDataKeys;
+    public DataFile(String fileName, Context context) {
+        this.listOfDataKeys = new ArrayList<>();
         this.existingKeys = new ArrayList<>();
         this.fileName = fileName;
         this.context = context;
-
-        setupFile();
     }
 
-    private void setupFile() {
+    protected void setListOfDataKeys() {
+    }
+
+    protected void setupFile() {
         if (!fileExists(fileName))
             createFile();
 
@@ -92,8 +94,10 @@ public class DataFile {
             String key = triple.getFirst().toString();
 
             //If the key does not exist, add it and
-            if (!existingKeys.contains(key))
+            if (!existingKeys.contains(key)) {
                 keysToAdd.add(triple);
+                listOfDataKeys.add(triple);
+            }
         }
 
         writeMissingKeysToFile(keysToAdd);
@@ -114,4 +118,59 @@ public class DataFile {
         }
     }
 
+    private String getValueOfKey(String fileName, String key) {
+        FileInputStream fis;
+
+        try {
+            fis = context.openFileInput(fileName);
+        } catch (FileNotFoundException e) {
+            return "";
+        }
+
+        InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+        String line = "";
+        String lineKey;
+
+        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+            line = reader.readLine();
+            lineKey = getKeyFromLine(line);
+
+            while (line != null) {
+                Log.d("d", line);
+                if (!lineKey.equalsIgnoreCase(key)) {
+                    line = reader.readLine();
+                    lineKey = getKeyFromLine(line);
+                    continue;
+                } else {
+                    return getValueFromLine(line);
+                }
+            }
+            return "";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private String getKeyFromLine(String line) {
+        int index = line.indexOf(PAIR_SEPARATOR);
+
+        if (index == -1)
+            return "";
+
+        return line.substring(0, index);
+    }
+
+    private String getValueFromLine(String line) {
+        int index = line.indexOf(PAIR_SEPARATOR);
+
+        if (index == -1)
+            return "";
+
+        return line.substring(index);
+    }
+
+    public List<Triple> getListOfDataKeys() {
+        return listOfDataKeys;
+    }
 }
