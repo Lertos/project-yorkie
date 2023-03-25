@@ -2,6 +2,7 @@ package com.lertos.projectyorkie.data;
 
 import android.content.Context;
 
+import com.lertos.projectyorkie.data.file.FileManager;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
