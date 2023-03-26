@@ -16,9 +16,9 @@ public class FileManager {
         Log.d("===VALUE of SETTING_EFFECT_VOLUME", fileSettings.getValueOfKey(FileSettingsKeys.SETTING_EFFECT_VOLUME));
 
         Log.d("===DATA KEYS", filePlayer.getListOfDataKeys().toString());
-        boolean hasPlayedBefore = filePlayer.getBoolean(FileDataKeys.DATA_HAS_PLAYED_BEFORE);
+        boolean hasPlayedBefore = filePlayer.getBoolean(FilePlayerKeys.DATA_HAS_PLAYED_BEFORE);
         Log.d("===VALUE of DATA_HAS_PLAYED_BEFORE", String.valueOf(hasPlayedBefore));
-        boolean showTutActivity = filePlayer.getBoolean(FileDataKeys.DATA_SHOW_TUT_ACTIVITY);
+        boolean showTutActivity = filePlayer.getBoolean(FilePlayerKeys.DATA_SHOW_TUT_ACTIVITY);
         Log.d("===VALUE of DATA_SHOW_TUT_ACTIVITY", String.valueOf(showTutActivity));
     }
 

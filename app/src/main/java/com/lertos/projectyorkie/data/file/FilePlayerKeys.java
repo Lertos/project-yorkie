@@ -1,6 +1,6 @@
 package com.lertos.projectyorkie.data.file;
 
-public enum FileDataKeys {
+public enum FilePlayerKeys {
 
     DATA_HAS_PLAYED_BEFORE,
     DATA_LAST_TIME_ON,
