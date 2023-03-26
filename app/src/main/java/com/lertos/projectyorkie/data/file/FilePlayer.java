@@ -8,7 +8,7 @@ import java.util.Arrays;
 import kotlin.Triple;
 
 
-public class FileData extends DataFile {
+public class FilePlayer extends DataFile {
 
     private ArrayList<Triple> defaultKeys = new ArrayList<>(Arrays.asList(
             new Triple(FileDataKeys.DATA_HAS_PLAYED_BEFORE, boolean.class, "false"),
@@ -32,7 +32,7 @@ public class FileData extends DataFile {
             new Triple(FileDataKeys.DATA_ACTIVITY_LEVELS, String.class, "")
     ));
 
-    public FileData(Context context) {
+    public FilePlayer(Context context) {
         super("playerData", context);
 
         setListOfDataKeys();
