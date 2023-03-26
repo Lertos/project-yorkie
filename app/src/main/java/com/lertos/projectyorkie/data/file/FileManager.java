@@ -5,11 +5,6 @@ import android.util.Log;
 
 public class FileManager {
 
-    private Context context;
-    private final String FILE_NAME_SETTINGS = "settings";
-    private final String FILE_NAME_PLAYER_DATA = "playerData";
-
-
     private final String DATA_HAS_PLAYED_BEFORE = "DATA_HAS_PLAYED_BEFORE";
     private final String DATA_LAST_TIME_ON = "DATA_LAST_TIME_ON";
     private final String DATA_SHOW_TUT_HOME = "DATA_SHOW_TUT_HOME";
@@ -30,17 +25,13 @@ public class FileManager {
     private final String DATA_TALENT_LEVELS = "DATA_TALENT_LEVELS";
     private final String DATA_ACTIVITY_LEVELS = "DATA_ACTIVITY_LEVELS";
 
-    private final String SETTING_EFFECT_VOLUME = "SETTING_EFFECT_VOLUME";
-    private final String SETTING_MUSIC_VOLUME = "SETTING_MUSIC_VOLUME";
-    private final String SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT = "SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT";
-
     private FileSettings fileSettings;
 
     public FileManager(Context context) {
-        this.context = context;
-
         fileSettings = new FileSettings(context);
 
         Log.d("===KEYS", fileSettings.getListOfDataKeys().toString());
+        Log.d("===VALUE of SETTING_EFFECT_VOLUME", fileSettings.getValueOfKey(FileSettingsKeys.SETTING_EFFECT_VOLUME));
+
     }
 }
