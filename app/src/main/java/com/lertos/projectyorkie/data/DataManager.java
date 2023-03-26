@@ -67,6 +67,16 @@ public class DataManager {
 
         setPlayerValues();
 
+        //TODO: Add hearts for the time gone
+        String strLastTimeSaved = fileManager.getDataFile().getString(FilePlayerKeys.DATA_LAST_TIME_ON);
+
+        if (!strLastTimeSaved.isEmpty()) {
+            long currentTime = System.currentTimeMillis();
+            long lastOnTime = Long.parseLong(strLastTimeSaved);
+
+            Log.d("><><><><", "Time Difference (in seconds): " + (currentTime - lastOnTime) / 1000);
+        }
+
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
         //TODO: Set unlocked dogs - feed in String with pipes
