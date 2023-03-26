@@ -6,10 +6,7 @@ public class SettingsManager {
     private float trackSongVolume;
     private boolean showAppearAnimationsInTournament;
 
-    public SettingsManager(float trackEffectVolume, float trackSongVolume, boolean showAppearAnimationsInTournament) {
-        this.trackEffectVolume = trackEffectVolume;
-        this.trackSongVolume = trackSongVolume;
-        this.showAppearAnimationsInTournament = showAppearAnimationsInTournament;
+    public SettingsManager() {
     }
 
     public float getTrackEffectVolume() {
