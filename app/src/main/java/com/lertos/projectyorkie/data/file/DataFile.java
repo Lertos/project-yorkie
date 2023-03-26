@@ -40,15 +40,13 @@ public class DataFile {
     }
 
     private void getExistingKeys() {
-        FileInputStream fis = null;
+        FileInputStream fis;
 
         try {
             fis = context.openFileInput(fileName);
         } catch (Exception e) {
+            throw new RuntimeException();
         }
-
-        if (fis == null)
-            return;
 
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
 
@@ -100,7 +98,7 @@ public class DataFile {
         try {
             fis = context.openFileInput(fileName);
         } catch (Exception e) {
-            return "";
+            throw new RuntimeException();
         }
 
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
@@ -123,14 +121,14 @@ public class DataFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        throw new RuntimeException();
     }
 
     private String getKeyFromLine(String line) {
         int index = line.indexOf(PAIR_SEPARATOR);
 
         if (index == -1)
-            return "";
+            throw new RuntimeException();
 
         return line.substring(0, index);
     }
@@ -139,7 +137,7 @@ public class DataFile {
         int index = line.indexOf(PAIR_SEPARATOR);
 
         if (index == -1)
-            return "";
+            throw new RuntimeException();
 
         return line.substring(index + 1);
     }
