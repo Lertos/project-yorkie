@@ -18,4 +18,12 @@ public class FileManager {
         Log.d("===DATA KEYS", fileData.getListOfDataKeys().toString());
         Log.d("===VALUE of DATA_CURRENT_HEARTS", fileData.getValueOfKey(FileDataKeys.DATA_CURRENT_HEARTS));
     }
+
+    public FileSettings getSettingsFile() {
+        return fileSettings;
+    }
+
+    public FileData getDataFile() {
+        return fileData;
+    }
 }
