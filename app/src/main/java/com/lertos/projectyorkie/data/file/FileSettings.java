@@ -11,8 +11,9 @@ import kotlin.Triple;
 public class FileSettings extends DataFile {
 
     private ArrayList<Triple> defaultKeys = new ArrayList<>(Arrays.asList(
-            new Triple("test", boolean.class, "0"),
-            new Triple("test2", boolean.class, "1")
+            new Triple(FileSettingsKeys.SETTING_EFFECT_VOLUME, float.class, "0.5"),
+            new Triple(FileSettingsKeys.SETTING_MUSIC_VOLUME, float.class, "0.25"),
+            new Triple(FileSettingsKeys.SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT, boolean.class, "1")
     ));
 
     public FileSettings(Context context) {
