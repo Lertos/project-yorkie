@@ -6,19 +6,19 @@ import android.util.Log;
 public class FileManager {
 
     private FileSettings fileSettings;
-    private FileData fileData;
+    private FilePlayer filePlayer;
 
     public FileManager(Context context) {
         fileSettings = new FileSettings(context);
-        fileData = new FileData(context);
+        filePlayer = new FilePlayer(context);
 
         Log.d("===SETTINGS KEYS", fileSettings.getListOfDataKeys().toString());
         Log.d("===VALUE of SETTING_EFFECT_VOLUME", fileSettings.getValueOfKey(FileSettingsKeys.SETTING_EFFECT_VOLUME));
 
-        Log.d("===DATA KEYS", fileData.getListOfDataKeys().toString());
-        boolean hasPlayedBefore = fileData.getBoolean(FileDataKeys.DATA_HAS_PLAYED_BEFORE);
+        Log.d("===DATA KEYS", filePlayer.getListOfDataKeys().toString());
+        boolean hasPlayedBefore = filePlayer.getBoolean(FileDataKeys.DATA_HAS_PLAYED_BEFORE);
         Log.d("===VALUE of DATA_HAS_PLAYED_BEFORE", String.valueOf(hasPlayedBefore));
-        boolean showTutActivity = fileData.getBoolean(FileDataKeys.DATA_SHOW_TUT_ACTIVITY);
+        boolean showTutActivity = filePlayer.getBoolean(FileDataKeys.DATA_SHOW_TUT_ACTIVITY);
         Log.d("===VALUE of DATA_SHOW_TUT_ACTIVITY", String.valueOf(showTutActivity));
     }
 
@@ -26,7 +26,7 @@ public class FileManager {
         return fileSettings;
     }
 
-    public FileData getDataFile() {
-        return fileData;
+    public FilePlayer getDataFile() {
+        return filePlayer;
     }
 }
