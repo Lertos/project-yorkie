@@ -45,7 +45,7 @@ public class DataFile {
         try {
             fis = context.openFileInput(fileName);
         } catch (Exception e) {
-            throw new RuntimeException();
+            return;
         }
 
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
