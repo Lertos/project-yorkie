@@ -92,21 +92,56 @@ public class DataFile {
         }
     }
 
-    public boolean getBoolean(Enum enumKey) {
+    private Triple getTripleFromKey(Enum enumKey) {
         String enumName = enumKey.name();
 
         for (Triple triple : listOfDataKeys) {
             String key = ((Enum) triple.getFirst()).name();
 
-            //If the key does not exist, add it and
-            if (key.equalsIgnoreCase(enumName)) {
-                if (!triple.getSecond().equals(boolean.class))
-                    throw new RuntimeException("The key provided has a different class than the calling method");
-                return Boolean.parseBoolean(triple.getThird().toString());
-            }
-
+            if (key.equalsIgnoreCase(enumName))
+                return triple;
         }
         throw new RuntimeException("No key found with that enumName");
+    }
+
+    public boolean getBoolean(Enum enumKey) {
+        Triple triple = getTripleFromKey(enumKey);
+
+        if (!triple.getSecond().equals(boolean.class))
+            throw new RuntimeException("The key provided has a different class than the calling method");
+        return Boolean.parseBoolean(triple.getThird().toString());
+    }
+
+    public float getFloat(Enum enumKey) {
+        Triple triple = getTripleFromKey(enumKey);
+
+        if (!triple.getSecond().equals(float.class))
+            throw new RuntimeException("The key provided has a different class than the calling method");
+        return Float.parseFloat(triple.getThird().toString());
+    }
+
+    public int getInt(Enum enumKey) {
+        Triple triple = getTripleFromKey(enumKey);
+
+        if (!triple.getSecond().equals(int.class))
+            throw new RuntimeException("The key provided has a different class than the calling method");
+        return Integer.parseInt(triple.getThird().toString());
+    }
+
+    public double getDouble(Enum enumKey) {
+        Triple triple = getTripleFromKey(enumKey);
+
+        if (!triple.getSecond().equals(double.class))
+            throw new RuntimeException("The key provided has a different class than the calling method");
+        return Double.parseDouble(triple.getThird().toString());
+    }
+
+    public String getString(Enum enumKey) {
+        Triple triple = getTripleFromKey(enumKey);
+
+        if (!triple.getSecond().equals(String.class))
+            throw new RuntimeException("The key provided has a different class than the calling method");
+        return triple.getThird().toString();
     }
 
     public String getValueOfKey(Enum enumKey) {
