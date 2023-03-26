@@ -61,18 +61,7 @@ public class DataManager {
         //Now that we have the settings loaded, set settings where need be
         MediaManager.getInstance().setVolumesFromUserPrefs();
 
-        //TODO: Load (and save) the player data in a file and populate the Player object on startup
-        playerData = new Player(100000, 100);
-
-        playerData.setPettingHighestThreshold(0);
-        playerData.setPettingHighestSquare(0);
-
-        TournamentRank rank = new TournamentRank();
-        //TODO: Get from FileManager
-        rank.setDivision(getDivisionFromString("Wood"));
-        rank.setTier(5);
-
-        playerData.setTournamentRank(rank);
+        setPlayerValues();
 
         PackDogs packDogs = new PackDogs();
         packDogList = packDogs.getListPackDogs();
@@ -130,7 +119,26 @@ public class DataManager {
     }
 
     private void setPlayerValues() {
+        double currentHearts = fileManager.getDataFile().getDouble(FilePlayerKeys.DATA_CURRENT_HEARTS);
+        double currentHeartTokens = fileManager.getDataFile().getDouble(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS);
 
+        playerData = new Player(currentHearts, currentHeartTokens);
+
+        int highestThreshold = fileManager.getDataFile().getInt(FilePlayerKeys.DATA_HIGH_SCORE_THRESHOLD);
+        int highestSquare = fileManager.getDataFile().getInt(FilePlayerKeys.DATA_HIGH_SCORE_SQUARE);
+
+        playerData.setPettingHighestThreshold(highestThreshold);
+        playerData.setPettingHighestSquare(highestSquare);
+
+        String currentDivision = fileManager.getDataFile().getString(FilePlayerKeys.DATA_CURRENT_RANK_NAME);
+        int currentTier = fileManager.getDataFile().getInt(FilePlayerKeys.DATA_CURRENT_RANK_TIER);
+
+        TournamentRank rank = new TournamentRank();
+
+        rank.setDivision(getDivisionFromString(currentDivision));
+        rank.setTier(currentTier);
+
+        playerData.setTournamentRank(rank);
     }
 
     public boolean hasPlayedBefore() {
