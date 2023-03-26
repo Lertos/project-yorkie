@@ -36,41 +36,20 @@ public class DataFile {
     }
 
     protected void setupFile() {
-        if (!fileExists(fileName))
-            createFile();
-
         getExistingKeys();
         addMissingDefaults();
     }
 
-    private void createFile() {
-        try (FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE)) {
-            fos.write(new byte[0]);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private boolean fileExists(String fileName) {
-        String[] files = context.fileList();
-
-        for (int i = 0; i < files.length; i++) {
-            if (files[i].equalsIgnoreCase(fileName))
-                return true;
-        }
-        return false;
-    }
-
     private void getExistingKeys() {
-        FileInputStream fis;
+        FileInputStream fis = null;
 
         try {
             fis = context.openFileInput(fileName);
-        } catch (FileNotFoundException e) {
-            return;
+        } catch (Exception e) {
         }
+
+        if (fis == null)
+            return;
 
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
 
@@ -78,10 +57,11 @@ public class DataFile {
             String line = reader.readLine();
 
             while (line != null) {
-                existingKeys.add(line);
+                existingKeys.add(getKeyFromLine(line));
                 line = reader.readLine();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return;
         }
     }
@@ -94,12 +74,9 @@ public class DataFile {
             String key = triple.getFirst().toString();
 
             //If the key does not exist, add it and
-            if (!existingKeys.contains(key)) {
+            if (!existingKeys.contains(key))
                 keysToAdd.add(triple);
-                listOfDataKeys.add(triple);
-            }
         }
-
         writeMissingKeysToFile(keysToAdd);
     }
 
@@ -108,7 +85,7 @@ public class DataFile {
             StringBuilder sb = new StringBuilder();
 
             for (Triple triple : keysToAdd)
-                sb.append(triple.getFirst()).append(PAIR_SEPARATOR).append(triple.getThird());
+                sb.append(triple.getFirst()).append(PAIR_SEPARATOR).append(triple.getThird()).append("\n");
 
             fos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
         } catch (FileNotFoundException e) {
@@ -118,6 +95,7 @@ public class DataFile {
         }
     }
 
+    //TODO: Fix this
     private String getValueOfKey(String fileName, String key) {
         FileInputStream fis;
 
