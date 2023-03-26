@@ -1,6 +1,8 @@
 package com.lertos.projectyorkie.data;
 
 import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
 
 import com.lertos.projectyorkie.ActivityPage;
 import com.lertos.projectyorkie.HomePage;
@@ -28,6 +30,8 @@ public class DataManager {
 
     private boolean hasPlayedBefore;
     private static DataManager instance;
+    //TODO: Change to something more reasonable (30s / 60s)
+    private final long millisecondsPerSave = 10000;
     private FileManager fileManager;
     private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
@@ -139,6 +143,23 @@ public class DataManager {
         rank.setTier(currentTier);
 
         playerData.setTournamentRank(rank);
+
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, 100000);
+        //Start the auto-saving runnable
+        autoSaveRunnable();
+    }
+
+    private void autoSaveRunnable() {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Log.d("+-+-+", "FILES SAVED");
+                fileManager.saveFiles();
+                handler.postDelayed(this, millisecondsPerSave);
+            }
+        };
+        handler.post(runnable);
     }
 
     public boolean hasPlayedBefore() {
@@ -258,4 +279,5 @@ public class DataManager {
     public List<Activity> getActivities() {
         return Collections.unmodifiableList(activityList);
     }
+
 }
