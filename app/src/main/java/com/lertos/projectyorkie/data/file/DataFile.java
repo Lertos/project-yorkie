@@ -1,7 +1,6 @@
 package com.lertos.projectyorkie.data.file;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -71,7 +70,7 @@ public class DataFile {
 
         //Find all missing keys
         for (Triple triple : listOfDataKeys) {
-            String key = triple.getFirst().toString();
+            String key = ((Enum) triple.getFirst()).name();
 
             //If the key does not exist, add it and
             if (!existingKeys.contains(key))
@@ -85,7 +84,7 @@ public class DataFile {
             StringBuilder sb = new StringBuilder();
 
             for (Triple triple : keysToAdd)
-                sb.append(triple.getFirst()).append(PAIR_SEPARATOR).append(triple.getThird()).append("\n");
+                sb.append(((Enum) triple.getFirst()).name()).append(PAIR_SEPARATOR).append(triple.getThird()).append("\n");
 
             fos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
         } catch (FileNotFoundException e) {
@@ -95,13 +94,12 @@ public class DataFile {
         }
     }
 
-    //TODO: Fix this
-    private String getValueOfKey(String fileName, String key) {
+    public String getValueOfKey(Enum enumKey) {
         FileInputStream fis;
 
         try {
             fis = context.openFileInput(fileName);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             return "";
         }
 
@@ -114,8 +112,7 @@ public class DataFile {
             lineKey = getKeyFromLine(line);
 
             while (line != null) {
-                Log.d("d", line);
-                if (!lineKey.equalsIgnoreCase(key)) {
+                if (!lineKey.equalsIgnoreCase(enumKey.name())) {
                     line = reader.readLine();
                     lineKey = getKeyFromLine(line);
                     continue;
@@ -123,7 +120,6 @@ public class DataFile {
                     return getValueFromLine(line);
                 }
             }
-            return "";
         } catch (IOException e) {
             e.printStackTrace();
         }
