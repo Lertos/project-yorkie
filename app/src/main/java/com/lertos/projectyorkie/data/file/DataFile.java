@@ -144,6 +144,30 @@ public class DataFile {
         return triple.getThird().toString();
     }
 
+    public <T> void setValue(Enum enumKey, T value) {
+        String stringValue = String.valueOf(value);
+        String enumName = enumKey.name();
+        int index = -1;
+
+        for (int i = 0; i < listOfDataKeys.size(); i++) {
+            String key = ((Enum) listOfDataKeys.get(i).getFirst()).name();
+
+            if (key.equalsIgnoreCase(enumName)) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1)
+            throw new RuntimeException("No key found with that enumName");
+
+        Triple triple = listOfDataKeys.get(index);
+        Triple newTriple = new Triple<>(triple.getFirst(), triple.getSecond(), stringValue);
+
+        listOfDataKeys.remove(index);
+        listOfDataKeys.add(index, newTriple);
+    }
+
+    //TODO: Remove after getting a working set method for all value types
     public String getValueOfKey(Enum enumKey) {
         FileInputStream fis;
 
