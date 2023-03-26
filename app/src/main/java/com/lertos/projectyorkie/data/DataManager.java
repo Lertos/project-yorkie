@@ -144,7 +144,6 @@ public class DataManager {
 
         playerData.setTournamentRank(rank);
 
-        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, 100000);
         //Start the auto-saving runnable
         autoSaveRunnable();
     }
@@ -154,8 +153,18 @@ public class DataManager {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Log.d("+-+-+", "FILES SAVED");
+                double currentHearts = playerData.getCurrentHearts();
+                double currentHeartTokens = playerData.getCurrentHeartTokens();
+                String timeSinceSave = String.valueOf(System.currentTimeMillis());
+
+                //Saving these here as they are updated every second; not writing to a file every second...
+                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, currentHearts);
+                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
+                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
+
                 fileManager.saveFiles();
+
+                Log.d("+-+-+", "FILES SAVED");
                 handler.postDelayed(this, millisecondsPerSave);
             }
         };
