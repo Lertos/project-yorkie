@@ -2,12 +2,22 @@ package com.lertos.projectyorkie.data;
 
 import android.content.Context;
 
+import com.lertos.projectyorkie.ActivityPage;
+import com.lertos.projectyorkie.HomePage;
+import com.lertos.projectyorkie.PettingPage;
+import com.lertos.projectyorkie.TournamentPage;
 import com.lertos.projectyorkie.data.file.FileManager;
+import com.lertos.projectyorkie.data.file.FilePlayerKeys;
+import com.lertos.projectyorkie.data.file.FileSettingsKeys;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
 import com.lertos.projectyorkie.tournament.TournamentDivision;
 import com.lertos.projectyorkie.tournament.TournamentRank;
+import com.lertos.projectyorkie.tournament.games.CatchDogTreats;
+import com.lertos.projectyorkie.tournament.games.DodgeTheCats;
+import com.lertos.projectyorkie.tournament.games.TreatToss;
+import com.lertos.projectyorkie.tournament.games.WhackTheCat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,14 +50,13 @@ public class DataManager {
         //Setup the FileManager so we can load all settings and initial starting data
         fileManager = new FileManager(context);
 
-        //TODO: Load (and save) if the player has played yet (maybe check if they have a "lastOnDate" for hearts)
-        hasPlayedBefore = true;
+        hasPlayedBefore = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_HAS_PLAYED_BEFORE);
 
-        //TODO: Load (and save) if the player has seen the tutorial for each page
         tutorialManager = new TutorialManager();
+        setTutorialValues();
 
-        //TODO: Load (and save) the player settings prefs in a file and populate the Settings object on startup
-        settingsManager = new SettingsManager(0.5f, 0.0f, false);
+        settingsManager = new SettingsManager();
+        setSettingValues();
 
         //Now that we have the settings loaded, set settings where need be
         MediaManager.getInstance().setVolumesFromUserPrefs();
@@ -79,6 +88,49 @@ public class DataManager {
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();
+    }
+
+    private void setTutorialValues() {
+        boolean showHomePageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_HOME);
+        boolean showActivityPageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_ACTIVITY);
+        boolean showPettingPageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_PETTING);
+        boolean showTournamentPageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_TOURNAMENT);
+
+        boolean showCatchDogTreatsGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_CATCH_DOG_TREATS);
+        boolean showDodgeTheCatsGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_DODGE_THE_CATS);
+        boolean showTreatTossGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_TREAT_TOSS);
+        boolean showWhackTheCatGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_WHACK_THE_CAT);
+
+        if (!showHomePageTut)
+            tutorialManager.setTutorialAsSeen(HomePage.class.getName());
+        if (!showActivityPageTut)
+            tutorialManager.setTutorialAsSeen(ActivityPage.class.getName());
+        if (!showPettingPageTut)
+            tutorialManager.setTutorialAsSeen(PettingPage.class.getName());
+        if (!showTournamentPageTut)
+            tutorialManager.setTutorialAsSeen(TournamentPage.class.getName());
+        if (!showCatchDogTreatsGameTut)
+            tutorialManager.setTutorialAsSeen(CatchDogTreats.class.getName());
+        if (!showDodgeTheCatsGameTut)
+            tutorialManager.setTutorialAsSeen(DodgeTheCats.class.getName());
+        if (!showTreatTossGameTut)
+            tutorialManager.setTutorialAsSeen(TreatToss.class.getName());
+        if (!showWhackTheCatGameTut)
+            tutorialManager.setTutorialAsSeen(WhackTheCat.class.getName());
+    }
+
+    private void setSettingValues() {
+        float effectVolume = fileManager.getSettingsFile().getFloat(FileSettingsKeys.SETTING_EFFECT_VOLUME);
+        float musicVolume = fileManager.getSettingsFile().getFloat(FileSettingsKeys.SETTING_MUSIC_VOLUME);
+        boolean showAnimationsInTournament = fileManager.getSettingsFile().getBoolean(FileSettingsKeys.SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT);
+
+        settingsManager.setTrackEffectVolume(effectVolume);
+        settingsManager.setTrackSongVolume(musicVolume);
+        settingsManager.setShowAppearAnimationsInTournament(showAnimationsInTournament);
+    }
+
+    private void setPlayerValues() {
+
     }
 
     public boolean hasPlayedBefore() {
