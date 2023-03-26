@@ -145,7 +145,7 @@ public class DataFile {
         if (index == -1)
             return "";
 
-        return line.substring(index);
+        return line.substring(index + 1);
     }
 
     public List<Triple> getListOfDataKeys() {
