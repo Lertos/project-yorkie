@@ -92,6 +92,23 @@ public class DataFile {
         }
     }
 
+    public boolean getBoolean(Enum enumKey) {
+        String enumName = enumKey.name();
+
+        for (Triple triple : listOfDataKeys) {
+            String key = ((Enum) triple.getFirst()).name();
+
+            //If the key does not exist, add it and
+            if (key.equalsIgnoreCase(enumName)) {
+                if (!triple.getSecond().equals(boolean.class))
+                    throw new RuntimeException("The key provided has a different class than the calling method");
+                return Boolean.parseBoolean(triple.getThird().toString());
+            }
+
+        }
+        throw new RuntimeException("No key found with that enumName");
+    }
+
     public String getValueOfKey(Enum enumKey) {
         FileInputStream fis;
 
