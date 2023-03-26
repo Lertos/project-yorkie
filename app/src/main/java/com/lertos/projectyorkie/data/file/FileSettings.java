@@ -19,12 +19,12 @@ public class FileSettings extends DataFile {
     public FileSettings(Context context) {
         super("settings", context);
 
-        setListOfDataKeys();
+        setListOfDefaultKeys();
         setupFile();
     }
 
     @Override
-    protected void setListOfDataKeys() {
-        listOfDataKeys = (ArrayList<Triple>) defaultKeys.clone();
+    protected void setListOfDefaultKeys() {
+        listOfDefaultKeys = (ArrayList<Triple>) defaultKeys.clone();
     }
 }

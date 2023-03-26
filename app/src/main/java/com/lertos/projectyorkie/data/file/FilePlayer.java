@@ -35,12 +35,12 @@ public class FilePlayer extends DataFile {
     public FilePlayer(Context context) {
         super("playerData", context);
 
-        setListOfDataKeys();
+        setListOfDefaultKeys();
         setupFile();
     }
 
     @Override
-    protected void setListOfDataKeys() {
-        listOfDataKeys = (ArrayList<Triple>) defaultKeys.clone();
+    protected void setListOfDefaultKeys() {
+        listOfDefaultKeys = (ArrayList<Triple>) defaultKeys.clone();
     }
 }

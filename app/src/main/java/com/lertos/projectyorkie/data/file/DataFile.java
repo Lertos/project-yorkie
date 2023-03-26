@@ -10,85 +10,93 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import kotlin.Pair;
 import kotlin.Triple;
 
 
 public class DataFile {
 
+    protected List<Triple> listOfDefaultKeys;
     protected List<Triple> listOfDataKeys;
     protected final String fileName;
     protected final String PAIR_SEPARATOR = ":";
     protected Context context;
     protected final String VALUE_SEPARATOR = "|";
-    protected List<String> existingKeys;
 
     public DataFile(String fileName, Context context) {
+        this.listOfDefaultKeys = new ArrayList<>();
         this.listOfDataKeys = new ArrayList<>();
-        this.existingKeys = new ArrayList<>();
         this.fileName = fileName;
         this.context = context;
     }
 
-    protected void setListOfDataKeys() {
+    protected void setListOfDefaultKeys() {
+
     }
 
     protected void setupFile() {
-        getExistingKeys();
-        addMissingDefaults();
+        //If the file already exists, replace the default values with what we have in the file
+        if (doesFileExist()) {
+            loadCurrentKeyValues();
+        } else {
+            for (Triple triple : listOfDefaultKeys)
+                listOfDataKeys.add(triple);
+
+            saveValues();
+        }
     }
 
-    private void getExistingKeys() {
+    private boolean doesFileExist() {
+        String[] files = context.fileList();
+
+        for (String file : files) {
+            if (file.equalsIgnoreCase(fileName))
+                return true;
+        }
+        return false;
+    }
+
+    private void loadCurrentKeyValues() {
         FileInputStream fis;
 
         try {
             fis = context.openFileInput(fileName);
         } catch (Exception e) {
-            return;
+            throw new RuntimeException(e);
         }
 
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+        HashMap<String, String> lines = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
             String line = reader.readLine();
+            Pair<String, String> pair;
 
             while (line != null) {
-                existingKeys.add(getKeyFromLine(line));
+                pair = getPairFromLine(line);
+                lines.put(pair.getFirst(), pair.getSecond());
                 line = reader.readLine();
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-    }
-
-    private void addMissingDefaults() {
-        List<Triple> keysToAdd = new ArrayList<>();
-
-        //Find all missing keys
-        for (Triple triple : listOfDataKeys) {
-            String key = ((Enum) triple.getFirst()).name();
-
-            //If the key does not exist, add it and
-            if (!existingKeys.contains(key))
-                keysToAdd.add(triple);
-        }
-        writeMissingKeysToFile(keysToAdd);
-    }
-
-    private void writeMissingKeysToFile(List<Triple> keysToAdd) {
-        try (FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE + Context.MODE_APPEND)) {
-            StringBuilder sb = new StringBuilder();
-
-            for (Triple triple : keysToAdd)
-                sb.append(((Enum) triple.getFirst()).name()).append(PAIR_SEPARATOR).append(triple.getThird()).append("\n");
-
-            fos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
-        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        }
+
+        //Now we check which triples to pull from the file and which one are new to add going forward
+        for (Triple triple : listOfDefaultKeys) {
+            String key = triple.getFirst().toString();
+
+            //Add existing triples copying everything but the value; which we get from the save file
+            if (lines.containsKey(key)) {
+                Triple newTriple = new Triple<>(key, triple.getSecond(), lines.get(key));
+
+                listOfDataKeys.add(newTriple);
+            }
+            //If the key doesn't exist in the file, it means it's a new key, so add the default value
+            else
+                listOfDataKeys.add(triple);
         }
     }
 
@@ -96,7 +104,7 @@ public class DataFile {
         String enumName = enumKey.name();
 
         for (Triple triple : listOfDataKeys) {
-            String key = ((Enum) triple.getFirst()).name();
+            String key = triple.getFirst().toString();
 
             if (key.equalsIgnoreCase(enumName))
                 return triple;
@@ -150,7 +158,7 @@ public class DataFile {
         int index = -1;
 
         for (int i = 0; i < listOfDataKeys.size(); i++) {
-            String key = ((Enum) listOfDataKeys.get(i).getFirst()).name();
+            String key = listOfDataKeys.get(i).getFirst().toString();
 
             if (key.equalsIgnoreCase(enumName)) {
                 index = i;
@@ -167,55 +175,28 @@ public class DataFile {
         listOfDataKeys.add(index, newTriple);
     }
 
-    //TODO: Remove after getting a working set method for all value types
-    public String getValueOfKey(Enum enumKey) {
-        FileInputStream fis;
+    public void saveValues() {
+        try (FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE)) {
+            StringBuilder sb = new StringBuilder();
 
-        try {
-            fis = context.openFileInput(fileName);
-        } catch (Exception e) {
-            throw new RuntimeException();
-        }
+            for (Triple triple : listOfDataKeys)
+                sb.append(triple.getFirst().toString()).append(PAIR_SEPARATOR).append(triple.getThird().toString()).append("\n");
 
-        InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
-        String line = "";
-        String lineKey;
-
-        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-            line = reader.readLine();
-            lineKey = getKeyFromLine(line);
-
-            while (line != null) {
-                if (!lineKey.equalsIgnoreCase(enumKey.name())) {
-                    line = reader.readLine();
-                    lineKey = getKeyFromLine(line);
-                    continue;
-                } else {
-                    return getValueFromLine(line);
-                }
-            }
+            fos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        throw new RuntimeException();
     }
 
-    private String getKeyFromLine(String line) {
+    private Pair<String, String> getPairFromLine(String line) {
         int index = line.indexOf(PAIR_SEPARATOR);
 
         if (index == -1)
             throw new RuntimeException();
 
-        return line.substring(0, index);
-    }
-
-    private String getValueFromLine(String line) {
-        int index = line.indexOf(PAIR_SEPARATOR);
-
-        if (index == -1)
-            throw new RuntimeException();
-
-        return line.substring(index + 1);
+        return new Pair(line.substring(0, index), line.substring(index + 1));
     }
 
     public List<Triple> getListOfDataKeys() {
