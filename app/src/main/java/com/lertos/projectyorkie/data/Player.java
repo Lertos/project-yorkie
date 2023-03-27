@@ -1,5 +1,6 @@
 package com.lertos.projectyorkie.data;
 
+import com.lertos.projectyorkie.data.file.FilePlayerKeys;
 import com.lertos.projectyorkie.tournament.TournamentRank;
 
 public class Player {
@@ -59,6 +60,7 @@ public class Player {
 
     public void setTournamentRank(TournamentRank tournamentRank) {
         this.tournamentRank = tournamentRank;
+
     }
 
     public int getHighlightColor() {
@@ -74,8 +76,10 @@ public class Player {
     }
 
     public void setPettingHighestThreshold(int pettingHighestThreshold) {
-        if (pettingHighestThreshold > this.pettingHighestThreshold)
+        if (pettingHighestThreshold > this.pettingHighestThreshold) {
             this.pettingHighestThreshold = pettingHighestThreshold;
+            DataManager.getInstance().getFiles().getDataFile().setValue(FilePlayerKeys.DATA_HIGH_SCORE_THRESHOLD, pettingHighestThreshold);
+        }
     }
 
     public int getPettingHighestSquare() {
@@ -83,7 +87,9 @@ public class Player {
     }
 
     public void setPettingHighestSquare(int pettingHighestSquare) {
-        if (pettingHighestSquare > this.pettingHighestSquare)
+        if (pettingHighestSquare > this.pettingHighestSquare) {
             this.pettingHighestSquare = pettingHighestSquare;
+            DataManager.getInstance().getFiles().getDataFile().setValue(FilePlayerKeys.DATA_HIGH_SCORE_SQUARE, pettingHighestSquare);
+        }
     }
 }
