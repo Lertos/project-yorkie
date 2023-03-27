@@ -1,0 +1,14 @@
+package com.lertos.projectyorkie.data.file;
+
+public enum FileTutorialsKeys {
+
+    DATA_SHOW_TUT_HOME,
+    DATA_SHOW_TUT_ACTIVITY,
+    DATA_SHOW_TUT_PETTING,
+    DATA_SHOW_TUT_TOURNAMENT,
+    DATA_SHOW_TUT_CATCH_DOG_TREATS,
+    DATA_SHOW_TUT_DODGE_THE_CATS,
+    DATA_SHOW_TUT_TREAT_TOSS,
+    DATA_SHOW_TUT_WHACK_THE_CAT
+
+}
