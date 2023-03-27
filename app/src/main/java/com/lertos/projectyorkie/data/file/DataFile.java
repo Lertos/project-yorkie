@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie.data.file;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -22,9 +23,10 @@ public class DataFile {
     protected List<Triple> listOfDefaultKeys;
     protected List<Triple> listOfDataKeys;
     protected final String fileName;
-    protected final String PAIR_SEPARATOR = ":";
+    private final String PAIR_SEPARATOR = ":";
     protected Context context;
-    protected final String VALUE_SEPARATOR = "|";
+    private final String VALUE_SEPARATOR = "|";
+    private boolean hasNewChanges = false;
 
     public DataFile(String fileName, Context context) {
         this.listOfDefaultKeys = new ArrayList<>();
@@ -173,9 +175,15 @@ public class DataFile {
 
         listOfDataKeys.remove(index);
         listOfDataKeys.add(index, newTriple);
+
+        //Set to true so that the next save will save this file
+        hasNewChanges = true;
     }
 
     public void saveValues() {
+        if (!hasNewChanges)
+            return;
+
         try (FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE)) {
             StringBuilder sb = new StringBuilder();
 
@@ -188,6 +196,10 @@ public class DataFile {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Log.d(fileName, "FILE SAVED WITH NEW VALUES");
+
+        //Reset back to false so that saves only happen for new changes
+        hasNewChanges = false;
     }
 
     private Pair<String, String> getPairFromLine(String line) {
@@ -202,4 +214,5 @@ public class DataFile {
     public List<Triple> getListOfDataKeys() {
         return listOfDataKeys;
     }
+
 }
