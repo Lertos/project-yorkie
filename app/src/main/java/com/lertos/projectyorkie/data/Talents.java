@@ -10,6 +10,7 @@ import java.util.List;
 public class Talents {
 
     private List<Talent> listTalents;
+    private final String separator;
 
     public static final Talent heartBeater = new Talent(
             "Heart Beater",
@@ -134,6 +135,7 @@ public class Talents {
 
     public Talents() {
         this.listTalents = new ArrayList<>();
+        this.separator = DataManager.getInstance().getFiles().getDataFile().getValueSeparator();
 
         listTalents.add(heartBeater);
         listTalents.add(luckyStreak);
@@ -147,6 +149,32 @@ public class Talents {
         listTalents.add(laxTreatment);
         listTalents.add(canineFocus);
         listTalents.add(cutenessFactor);
+    }
+
+    public void setInitialLevels(String strLevels) {
+        if (strLevels.isEmpty())
+            return;
+
+        String[] levels = strLevels.split(separator);
+
+        if (levels.length != listTalents.size())
+            throw new RuntimeException("Talents: Saved value does not have equal # of elements");
+
+        for (int i = 0; i < levels.length; i++) {
+            int level = Integer.parseInt(levels[i]);
+
+            listTalents.get(i).setCurrentLevel(level);
+        }
+    }
+
+    public String getLevelsAsString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Talent talent : listTalents) {
+            sb.append(talent.getCurrentLevel()).append(separator.replace("\\", ""));
+        }
+        String finalString = sb.toString();
+        return finalString.substring(0, finalString.length() - 1);
     }
 
     public List<Talent> getListTalents() {
