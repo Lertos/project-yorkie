@@ -11,6 +11,7 @@ import com.lertos.projectyorkie.TournamentPage;
 import com.lertos.projectyorkie.data.file.FileManager;
 import com.lertos.projectyorkie.data.file.FilePlayerKeys;
 import com.lertos.projectyorkie.data.file.FileSettingsKeys;
+import com.lertos.projectyorkie.data.file.FileTutorialsKeys;
 import com.lertos.projectyorkie.model.Activity;
 import com.lertos.projectyorkie.model.PackDog;
 import com.lertos.projectyorkie.model.Talent;
@@ -94,15 +95,15 @@ public class DataManager {
     }
 
     private void setTutorialValues() {
-        boolean showHomePageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_HOME);
-        boolean showActivityPageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_ACTIVITY);
-        boolean showPettingPageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_PETTING);
-        boolean showTournamentPageTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_TOURNAMENT);
+        boolean showHomePageTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_HOME);
+        boolean showActivityPageTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_ACTIVITY);
+        boolean showPettingPageTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_PETTING);
+        boolean showTournamentPageTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_TOURNAMENT);
 
-        boolean showCatchDogTreatsGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_CATCH_DOG_TREATS);
-        boolean showDodgeTheCatsGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_DODGE_THE_CATS);
-        boolean showTreatTossGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_TREAT_TOSS);
-        boolean showWhackTheCatGameTut = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_SHOW_TUT_WHACK_THE_CAT);
+        boolean showCatchDogTreatsGameTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_CATCH_DOG_TREATS);
+        boolean showDodgeTheCatsGameTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_DODGE_THE_CATS);
+        boolean showTreatTossGameTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_TREAT_TOSS);
+        boolean showWhackTheCatGameTut = fileManager.getTutorialFile().getBoolean(FileTutorialsKeys.DATA_SHOW_TUT_WHACK_THE_CAT);
 
         if (!showHomePageTut)
             tutorialManager.setTutorialAsSeen(HomePage.class.getName());
