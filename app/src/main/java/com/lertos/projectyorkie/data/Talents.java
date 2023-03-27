@@ -10,7 +10,7 @@ import java.util.List;
 public class Talents {
 
     private List<Talent> listTalents;
-    //Finished adding through code
+
     public static final Talent heartBeater = new Talent(
             "Heart Beater",
             "Increases hearts per second",
@@ -21,7 +21,6 @@ public class Talents {
             3,
             50
     );
-    //Finished adding through code
     public static final Talent luckyStreak = new Talent(
             "Lucky Streak",
             "Increases chance at gaining heart tokens",
@@ -32,7 +31,6 @@ public class Talents {
             3,
             50
     );
-    //Finished adding through code
     public static final Talent bargainMaster = new Talent(
             "Bargain Master",
             "Decreases cost of upgrading talents",
@@ -43,7 +41,6 @@ public class Talents {
             2,
             25
     );
-    //Finished adding through code
     public static final Talent petLover = new Talent(
             "Pet Lover",
             "Decreases cost of upgrading activities",
@@ -54,7 +51,6 @@ public class Talents {
             2,
             25
     );
-    //Finished adding through code
     public static final Talent greatMinds = new Talent(
             "Great Minds",
             "Decreases cost of unlocking activities",
@@ -65,7 +61,6 @@ public class Talents {
             2,
             25
     );
-    //TODO: Still need it in the tournament logic
     public static final Talent purrsuasion = new Talent(
             "Purrsuasion",
             "Use less heart tokens when playing minigames",
@@ -76,7 +71,6 @@ public class Talents {
             5,
             25
     );
-    //Finished adding through code
     public static final Talent strengthInNumbers = new Talent(
             "Strength In Numbers",
             "Get more hearts based on your pack bonus",
@@ -87,7 +81,6 @@ public class Talents {
             0.06,
             100
     );
-    //Finished adding through code
     public static final Talent pettingPower = new Talent(
             "Petting Power",
             "Petting Minigame - Squares don't disappear as quick",
@@ -98,7 +91,6 @@ public class Talents {
             1,
             100
     );
-    //Finished adding through code
     public static final Talent pupPrecision = new Talent(
             "Pup Precision",
             "Petting Minigame - Correct squares add more time to the timer",
@@ -109,7 +101,6 @@ public class Talents {
             0.05,
             50
     );
-    //Finished adding through code
     public static final Talent laxTreatment = new Talent(
             "Lax Treat-ment",
             "Petting Minigame - Lose less time when missing squares",
@@ -120,7 +111,6 @@ public class Talents {
             0.06,
             50
     );
-
     public static final Talent canineFocus = new Talent(
             "Canine Focus",
             "Tournaments - Less reaction time needed for actions",
@@ -131,7 +121,6 @@ public class Talents {
             1,
             100
     );
-
     public static final Talent cutenessFactor = new Talent(
             "Cuteness Factor",
             "Tournaments - Get more points for each action",
