@@ -174,7 +174,6 @@ public class DataManager {
 
                 fileManager.saveFiles();
 
-                Log.d("+-+-+", "FILES SAVED");
                 handler.postDelayed(this, millisecondsPerSave);
             }
         };
