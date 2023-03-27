@@ -93,8 +93,8 @@ public class DataManager {
         talents.setInitialLevels(DataManager.getInstance().getFiles().getDataFile().getString(FilePlayerKeys.DATA_TALENT_LEVELS));
         talentList = talents.getListTalents();
 
+        activities.setInitialLevels(DataManager.getInstance().getFiles().getDataFile().getString(FilePlayerKeys.DATA_ACTIVITY_LEVELS));
         activityList = activities.getListActivities();
-        //TODO: Set activity levels - feed in String with pipes
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();
@@ -180,6 +180,7 @@ public class DataManager {
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
 
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
+                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
 
                 fileManager.saveFiles();
 
