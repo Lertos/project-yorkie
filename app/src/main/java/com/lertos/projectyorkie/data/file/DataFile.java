@@ -25,7 +25,7 @@ public class DataFile {
     protected final String fileName;
     private final String PAIR_SEPARATOR = ":";
     protected Context context;
-    private final String VALUE_SEPARATOR = "|";
+    private final String VALUE_SEPARATOR = "\\|";
     private boolean hasNewChanges = true;
 
     public DataFile(String fileName, Context context) {
@@ -112,6 +112,10 @@ public class DataFile {
                 return triple;
         }
         throw new RuntimeException("No key found with that enumName");
+    }
+
+    public String getValueSeparator() {
+        return VALUE_SEPARATOR;
     }
 
     public boolean getBoolean(Enum enumKey) {
