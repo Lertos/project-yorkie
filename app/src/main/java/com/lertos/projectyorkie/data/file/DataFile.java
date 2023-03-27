@@ -26,7 +26,7 @@ public class DataFile {
     private final String PAIR_SEPARATOR = ":";
     protected Context context;
     private final String VALUE_SEPARATOR = "|";
-    private boolean hasNewChanges = false;
+    private boolean hasNewChanges = true;
 
     public DataFile(String fileName, Context context) {
         this.listOfDefaultKeys = new ArrayList<>();
@@ -209,10 +209,6 @@ public class DataFile {
             throw new RuntimeException();
 
         return new Pair(line.substring(0, index), line.substring(index + 1));
-    }
-
-    public List<Triple> getListOfDataKeys() {
-        return listOfDataKeys;
     }
 
 }
