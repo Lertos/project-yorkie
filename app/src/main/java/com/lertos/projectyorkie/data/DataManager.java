@@ -37,6 +37,9 @@ public class DataManager {
     private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
     private Player playerData;
+    private Talents talents;
+    private PackDogs packDogs;
+    private Activities activities;
     private List<Talent> talentList = new ArrayList<>();
     private List<PackDog> packDogList = new ArrayList<>();
     private List<Activity> activityList = new ArrayList<>();
@@ -78,15 +81,16 @@ public class DataManager {
             Log.d("><><><><", "Time Difference (in seconds): " + (currentTime - lastOnTime) / 1000);
         }
 
-        PackDogs packDogs = new PackDogs();
+        talents = new Talents();
+        packDogs = new PackDogs();
+        activities = new Activities();
+
         packDogList = packDogs.getListPackDogs();
         //TODO: Set unlocked dogs - feed in String with pipes
 
-        Talents talents = new Talents();
+        talents.setInitialLevels(DataManager.getInstance().getFiles().getDataFile().getString(FilePlayerKeys.DATA_TALENT_LEVELS));
         talentList = talents.getListTalents();
-        //TODO: Set talent levels - feed in String with pipes
 
-        Activities activities = new Activities();
         activityList = activities.getListActivities();
         //TODO: Set activity levels - feed in String with pipes
 
@@ -172,6 +176,8 @@ public class DataManager {
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, currentHearts);
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
+
+                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
 
                 fileManager.saveFiles();
 
