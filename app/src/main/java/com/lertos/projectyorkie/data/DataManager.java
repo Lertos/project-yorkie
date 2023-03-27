@@ -81,9 +81,11 @@ public class DataManager {
             Log.d("><><><><", "Time Difference (in seconds): " + (currentTime - lastOnTime) / 1000);
         }
 
-        talents = new Talents();
-        packDogs = new PackDogs();
-        activities = new Activities();
+        String separator = DataManager.getInstance().getFiles().getDataFile().getValueSeparator();
+
+        talents = new Talents(separator);
+        packDogs = new PackDogs(separator);
+        activities = new Activities(separator);
 
         packDogList = packDogs.getListPackDogs();
         //TODO: Set unlocked dogs - feed in String with pipes

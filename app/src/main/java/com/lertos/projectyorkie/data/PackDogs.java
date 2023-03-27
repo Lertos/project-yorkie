@@ -10,9 +10,11 @@ import java.util.List;
 public class PackDogs {
 
     private List<PackDog> listPackDogs;
+    private final String separator;
 
-    public PackDogs() {
+    public PackDogs(String separator) {
         this.listPackDogs = new ArrayList<>();
+        this.separator = separator;
 
         listPackDogs.add(new PackDog("Border Collie", R.mipmap.pack_border_collie));
         listPackDogs.add(new PackDog("Boxer", R.mipmap.pack_boxer));

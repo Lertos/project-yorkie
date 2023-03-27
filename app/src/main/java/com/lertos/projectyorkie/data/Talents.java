@@ -133,9 +133,9 @@ public class Talents {
             100
     );
 
-    public Talents() {
+    public Talents(String separator) {
         this.listTalents = new ArrayList<>();
-        this.separator = DataManager.getInstance().getFiles().getDataFile().getValueSeparator();
+        this.separator = separator;
 
         listTalents.add(heartBeater);
         listTalents.add(luckyStreak);

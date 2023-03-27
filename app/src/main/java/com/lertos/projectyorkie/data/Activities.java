@@ -9,9 +9,11 @@ import java.util.List;
 public class Activities {
 
     private List<Activity> listActivities;
+    private final String separator;
 
-    public Activities() {
+    public Activities(String separator) {
         this.listActivities = new ArrayList<>();
+        this.separator = separator;
 
         listActivities.add(new Activity("Pet Their Head", 2, 0.1));
         listActivities.add(new Activity("Throw the Ball Around", 3, 0.16));
