@@ -28,9 +28,37 @@ public class Activities {
         listActivities.add(new Activity("Stroke Behind the Ears", 12, 5.3));
         listActivities.add(new Activity("Feed Them Premium-Grade Food", 13, 8.9));
 
-        //TODO: Read from the file - or update the list after reading the player data "dogs_unlocked" section
         listActivities.get(0).setUnlocked(true);
         listActivities.get(0).setCurrentLevel(1);
+    }
+
+    public void setInitialLevels(String strLevels) {
+        if (strLevels.isEmpty())
+            return;
+
+        String[] levels = strLevels.split(separator);
+
+        if (levels.length != listActivities.size())
+            throw new RuntimeException("Activities: Saved value does not have equal # of elements");
+
+        for (int i = 0; i < levels.length; i++) {
+            int level = Integer.parseInt(levels[i]);
+
+            if (level > 0) {
+                listActivities.get(i).setUnlocked(true);
+                listActivities.get(i).setCurrentLevel(level);
+            }
+        }
+    }
+
+    public String getLevelsAsString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Activity activity : listActivities) {
+            sb.append(activity.getCurrentLevel()).append(separator.replace("\\", ""));
+        }
+        String finalString = sb.toString();
+        return finalString.substring(0, finalString.length() - 1);
     }
 
     public List<Activity> getListActivities() {
