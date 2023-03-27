@@ -61,6 +61,11 @@ public class Player {
     public void setTournamentRank(TournamentRank tournamentRank) {
         this.tournamentRank = tournamentRank;
 
+        String rankName = this.tournamentRank.getRankDisplay();
+        int rankTier = this.tournamentRank.getTier();
+
+        DataManager.getInstance().getFiles().getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_RANK_NAME, rankName);
+        DataManager.getInstance().getFiles().getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_RANK_TIER, rankTier);
     }
 
     public int getHighlightColor() {
