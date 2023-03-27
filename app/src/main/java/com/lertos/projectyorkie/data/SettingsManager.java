@@ -1,5 +1,7 @@
 package com.lertos.projectyorkie.data;
 
+import com.lertos.projectyorkie.data.file.FileSettingsKeys;
+
 public class SettingsManager {
 
     private float trackEffectVolume;
@@ -15,6 +17,7 @@ public class SettingsManager {
 
     public void setTrackEffectVolume(float trackEffectVolume) {
         this.trackEffectVolume = trackEffectVolume;
+        DataManager.getInstance().getFiles().getSettingsFile().setValue(FileSettingsKeys.SETTING_EFFECT_VOLUME, trackEffectVolume);
     }
 
     public float getTrackSongVolume() {
@@ -23,6 +26,7 @@ public class SettingsManager {
 
     public void setTrackSongVolume(float trackSongVolume) {
         this.trackSongVolume = trackSongVolume;
+        DataManager.getInstance().getFiles().getSettingsFile().setValue(FileSettingsKeys.SETTING_MUSIC_VOLUME, trackSongVolume);
     }
 
     public boolean isShowAppearAnimationsInTournament() {
@@ -31,5 +35,6 @@ public class SettingsManager {
 
     public void setShowAppearAnimationsInTournament(boolean showAppearAnimationsInTournament) {
         this.showAppearAnimationsInTournament = showAppearAnimationsInTournament;
+        DataManager.getInstance().getFiles().getSettingsFile().setValue(FileSettingsKeys.SETTING_SHOW_ANIMATIONS_IN_TOURNAMENT, showAppearAnimationsInTournament);
     }
 }
