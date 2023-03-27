@@ -189,6 +189,10 @@ public class DataManager {
         this.hasPlayedBefore = hasPlayedBefore;
     }
 
+    public FileManager getFiles() {
+        return fileManager;
+    }
+
     public TutorialManager getTutorials() {
         return tutorialManager;
     }
