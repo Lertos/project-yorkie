@@ -75,6 +75,7 @@
             android:textColor="@color/main_text_color" />
 
         <TextView
+            android:id="@+id/tvCloseMessage"
             style="@style/fontSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
