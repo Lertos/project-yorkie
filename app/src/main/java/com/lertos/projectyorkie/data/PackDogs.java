@@ -43,9 +43,38 @@ public class PackDogs {
         listPackDogs.add(new PackDog("Schnauzer", R.mipmap.pack_schnauzer));
         listPackDogs.add(new PackDog("Shih Tzu", R.mipmap.pack_shih_tzu));
         listPackDogs.add(new PackDog("Siberian Husky", R.mipmap.pack_siberian_husky));
+    }
 
-        //TODO: Read from the file - or update the list after reading the player data "dogs_unlocked" section
-        listPackDogs.get(0).setUnlocked(true);
+    public void setInitialUnlocks(String strUnlocks) {
+        if (strUnlocks.isEmpty())
+            return;
+
+        String[] unlocks = strUnlocks.split(separator);
+
+        if (unlocks.length != listPackDogs.size())
+            throw new RuntimeException("PackDogs: Saved value does not have equal # of elements");
+
+        for (int i = 0; i < unlocks.length; i++) {
+            int unlocked = Integer.parseInt(unlocks[i]);
+
+            if (unlocked == 1)
+                listPackDogs.get(i).setUnlocked(true);
+        }
+    }
+
+    public String getUnlocksAsString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (PackDog packDog : listPackDogs) {
+            int isUnlocked = 0;
+
+            if (packDog.isUnlocked())
+                isUnlocked = 1;
+
+            sb.append(String.valueOf(isUnlocked)).append(separator.replace("\\", ""));
+        }
+        String finalString = sb.toString();
+        return finalString.substring(0, finalString.length() - 1);
     }
 
     public List<PackDog> getListPackDogs() {
