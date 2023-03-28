@@ -101,6 +101,9 @@ public class DataManager {
             timeAwayTotalTime = getTimeFromSeconds(timeAwayInSeconds);
             timeAwayHeartsGained = timeAwayInSeconds * playerData.getCurrentHeartsPerSecond();
             timeAwayTokensGained = timeAwayInSeconds * playerData.getCurrentHeartTokensPerSecond();
+
+            addHearts(timeAwayHeartsGained);
+            addHeartTokens(timeAwayTokensGained);
         }
     }
 
