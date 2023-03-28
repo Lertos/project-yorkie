@@ -32,8 +32,6 @@ public class HomePage extends AppCompatActivity {
             loadMainData();
 
             MediaManager.getInstance().playSongTrack(R.raw.music_main_loop, true);
-
-            hasStarted = true;
         }
 
         //Now that the data has loaded, check if this is their first time
@@ -45,12 +43,16 @@ public class HomePage extends AppCompatActivity {
         if (!isPageActive) {
             updateUIWithCurrentData();
             isPageActive = true;
-            prepareToLoadPopup();
         }
 
         Helper.setupBottomButtonBar(this);
         setupRecyclerViews();
         setupPageButtonBar();
+
+        if (!hasStarted) {
+            prepareToLoadPopup();
+            hasStarted = true;
+        }
     }
 
     private void prepareToLoadPopup() {
