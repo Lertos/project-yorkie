@@ -61,6 +61,10 @@ public class DataManager {
 
         hasPlayedBefore = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_HAS_PLAYED_BEFORE);
 
+        //Make sure they don't see the intro past the first time
+        if (!hasPlayedBefore)
+            fileManager.getDataFile().setValue(FilePlayerKeys.DATA_HAS_PLAYED_BEFORE, true);
+
         tutorialManager = new TutorialManager();
         setTutorialValues();
 
