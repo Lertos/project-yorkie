@@ -31,7 +31,6 @@ public class DataManager {
 
     private boolean hasPlayedBefore;
     private static DataManager instance;
-    //TODO: Change to something more reasonable (30s / 60s)
     private final long millisecondsPerSave = 10000;
     private FileManager fileManager;
     private TutorialManager tutorialManager;
@@ -87,8 +86,8 @@ public class DataManager {
         packDogs = new PackDogs(separator);
         activities = new Activities(separator);
 
+        packDogs.setInitialUnlocks(DataManager.getInstance().getFiles().getDataFile().getString(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED));
         packDogList = packDogs.getListPackDogs();
-        //TODO: Set unlocked dogs - feed in String with pipes
 
         talents.setInitialLevels(DataManager.getInstance().getFiles().getDataFile().getString(FilePlayerKeys.DATA_TALENT_LEVELS));
         talentList = talents.getListTalents();
@@ -179,6 +178,7 @@ public class DataManager {
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
 
+                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, packDogs.getUnlocksAsString());
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
                 fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
 
@@ -313,3 +313,4 @@ public class DataManager {
     }
 
 }
+
