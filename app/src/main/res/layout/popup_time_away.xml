@@ -10,15 +10,72 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@drawable/border_white_with_darkest_bg"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="20dp">
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="30dp">
 
         <TextView
             style="@style/fontHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Lorem Ipsum" />
+            android:layout_marginBottom="30dp"
+            android:text="WELCOME BACK!"
+            android:textAlignment="center"
+            android:textColor="@color/gold" />
+
+        <TextView
+            style="@style/fontLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You Were Gone For"
+            android:textAlignment="center" />
+
+        <TextView
+            style="@style/fontHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="1h 2m 5s"
+            android:textAlignment="center"
+            android:textColor="@color/main_text_color" />
+
+        <TextView
+            style="@style/fontLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="And Gained"
+            android:textAlignment="center" />
+
+        <TextView
+            style="@style/fontHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10.1K Hearts"
+            android:textAlignment="center"
+            android:textColor="@color/main_text_color" />
+
+        <TextView
+            style="@style/fontMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="and"
+            android:textAlignment="center" />
+
+        <TextView
+            style="@style/fontHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="45 Tokens"
+            android:textAlignment="center"
+            android:textColor="@color/main_text_color" />
+
+        <TextView
+            style="@style/fontMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap Anywhere to Close"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
