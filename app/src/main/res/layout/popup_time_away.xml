@@ -15,6 +15,7 @@
         android:paddingVertical="30dp">
 
         <TextView
+            android:id="@+id/tvPopupHeader"
             style="@style/fontHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,14 +25,15 @@
             android:textColor="@color/gold" />
 
         <TextView
-            style="@style/fontLarge"
+            style="@style/fontMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="You Were Gone For"
             android:textAlignment="center" />
 
         <TextView
-            style="@style/fontHeader"
+            android:id="@+id/tvPopupTimeAway"
+            style="@style/fontLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -40,14 +42,15 @@
             android:textColor="@color/main_text_color" />
 
         <TextView
-            style="@style/fontLarge"
+            style="@style/fontMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="And Gained"
             android:textAlignment="center" />
 
         <TextView
-            style="@style/fontHeader"
+            android:id="@+id/tvPopupHeartsGained"
+            style="@style/fontLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="10.1K Hearts"
@@ -55,14 +58,15 @@
             android:textColor="@color/main_text_color" />
 
         <TextView
-            style="@style/fontMedium"
+            style="@style/fontSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="and"
             android:textAlignment="center" />
 
         <TextView
-            style="@style/fontHeader"
+            android:id="@+id/tvPopupTokensGained"
+            style="@style/fontLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
@@ -71,7 +75,7 @@
             android:textColor="@color/main_text_color" />
 
         <TextView
-            style="@style/fontMedium"
+            style="@style/fontSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tap Anywhere to Close"
