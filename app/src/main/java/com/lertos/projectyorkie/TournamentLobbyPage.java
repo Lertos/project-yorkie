@@ -99,8 +99,10 @@ public class TournamentLobbyPage extends AppCompatActivity {
         findViewById(R.id.btnEndTutorial).setOnClickListener(v -> {
             findViewById(R.id.linGameTutorialHeader).setVisibility(View.GONE);
 
-            if (!tournamentMaster.isGameListEmpty())
+            if (!tournamentMaster.isGameListEmpty()) {
+                tournamentMaster.removeTutorialStub();
                 tournamentMaster.startNextGame();
+            }
         });
 
         findViewById(R.id.btnMarkTutorialAsSeen).setOnClickListener(v -> {

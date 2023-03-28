@@ -297,6 +297,10 @@ public class TournamentMaster {
         currentGame.startGame();
     }
 
+    public void removeTutorialStub() {
+        ((ViewGroup) inflatedStub.getParent()).removeView(inflatedStub);
+    }
+
     public void loadGameTutorial() {
         lobbyPage.findViewById(R.id.linGameTutorialHeader).setVisibility(View.VISIBLE);
 
