@@ -22,16 +22,14 @@
         Each activity has a different curve; don\'t put all your eggs in one basket!
     </string>
     <string name="tutorial_petting_page">
-        The Petting minigame is useful for turning Heart Tokens into Hearts\n\n\n
+        The Petting minigame turns Heart Tokens into Hearts\n\n\n
         The goal is to tap on the square that appears as quick as possible\n\n\n
-        Every square clicked will increase the speed. If it\'s too fast, upgrade the "Petting"-specific Talents!\n\n\n
-        Every 10 squares will bump you into a new "threshold" so future runs can be set to the right difficulty\n\n\n
-        You will always start at the threshold below your highest
+        Every square clicked will increase the speed\n\n\n
+        Every 10 squares will bump you into a new "threshold" so future runs can be set to the right difficulty
     </string>
     <string name="tutorial_tournament_page">
-        The Tournament is a fun and rewarding way to turn your Heart Tokens into Hearts\n\n\n
-        You will compete against 3 AI in 4 minigames, trying to get the highest score\n\n\n
-        There is also a ranking system to give better rewards and beat stronger opponents!\n\n\n
+        The Tournament is a fun way to turn your Heart Tokens into Hearts\n\n\n
+        You will compete against AI in FOUR different minigames\n\n\n
         FIRST place increases your rank, and you can unlock a new Pack Dog!\n\n\n
         LAST place means you lose a rank and your entire bet...
     </string>
