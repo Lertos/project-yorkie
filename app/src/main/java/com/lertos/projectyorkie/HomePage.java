@@ -50,7 +50,8 @@ public class HomePage extends AppCompatActivity {
         setupPageButtonBar();
 
         if (!hasStarted) {
-            prepareToLoadPopup();
+            if (DataManager.getInstance().getTimeAwayTotalTime() != null)
+                prepareToLoadPopup();
             hasStarted = true;
         }
     }
@@ -62,7 +63,16 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                loadTimeAwayPopup();
+
+                View view = loadTimeAwayPopup();
+
+                String timeAwayTotalTime = DataManager.getInstance().getTimeAwayTotalTime();
+                double timeAwayHeartsGained = DataManager.getInstance().getTimeAwayHeartsGained();
+                double timeAwayTokensGained = DataManager.getInstance().getTimeAwayTokensGained();
+
+                ((TextView) view.findViewById(R.id.tvPopupTimeAway)).setText(timeAwayTotalTime);
+                ((TextView) view.findViewById(R.id.tvPopupHeartsGained)).setText(IdleNumber.getStrNumber(timeAwayHeartsGained) + " Hearts");
+                ((TextView) view.findViewById(R.id.tvPopupTokensGained)).setText(IdleNumber.getStrNumber(timeAwayTokensGained) + " Tokens");
             }
         });
     }
@@ -87,7 +97,7 @@ public class HomePage extends AppCompatActivity {
         handler.post(runnable);
     }
 
-    private void loadTimeAwayPopup() {
+    private View loadTimeAwayPopup() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_time_away, null);
 
@@ -96,12 +106,14 @@ public class HomePage extends AppCompatActivity {
 
         //4th argument ignores clicks/taps outside the popup
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        
+
         //The view passed doesn't matter, it is only used for the window token
         popupWindow.showAtLocation(findViewById(R.id.relScreen), Gravity.CENTER, 0, 0);
 
         //Dismiss the popup when ignore clicks to anything else
         popupView.setOnClickListener(v -> popupWindow.dismiss());
+
+        return popupWindow.getContentView();
     }
 
     //To ensure the start logic only happens when the app initially starts or this activity is destroyed
