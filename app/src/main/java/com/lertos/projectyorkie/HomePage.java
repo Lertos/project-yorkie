@@ -6,6 +6,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,6 +75,9 @@ public class HomePage extends AppCompatActivity {
                 ((TextView) view.findViewById(R.id.tvPopupTimeAway)).setText(timeAwayTotalTime);
                 ((TextView) view.findViewById(R.id.tvPopupHeartsGained)).setText(IdleNumber.getStrNumber(timeAwayHeartsGained) + " Hearts");
                 ((TextView) view.findViewById(R.id.tvPopupTokensGained)).setText(IdleNumber.getStrNumber(timeAwayTokensGained) + " Tokens");
+
+                Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha_on_off);
+                view.findViewById(R.id.tvCloseMessage).startAnimation(anim);
             }
         });
     }
@@ -111,7 +116,11 @@ public class HomePage extends AppCompatActivity {
         popupWindow.showAtLocation(findViewById(R.id.relScreen), Gravity.CENTER, 0, 0);
 
         //Dismiss the popup when ignore clicks to anything else
-        popupView.setOnClickListener(v -> popupWindow.dismiss());
+        popupView.setOnClickListener(v -> {
+            v.findViewById(R.id.tvCloseMessage).animate().cancel();
+
+            popupWindow.dismiss();
+        });
 
         return popupWindow.getContentView();
     }
