@@ -2,7 +2,6 @@ package com.lertos.projectyorkie.data;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 
 import com.lertos.projectyorkie.ActivityPage;
 import com.lertos.projectyorkie.HomePage;
@@ -30,6 +29,9 @@ import java.util.Random;
 public class DataManager {
 
     private boolean hasPlayedBefore;
+    private String timeAwayTotalTime;
+    private double timeAwayHeartsGained;
+    private double timeAwayTokensGained;
     private static DataManager instance;
     private final long millisecondsPerSave = 10000;
     private FileManager fileManager;
@@ -70,16 +72,6 @@ public class DataManager {
 
         setPlayerValues();
 
-        //TODO: Add hearts for the time gone
-        String strLastTimeSaved = fileManager.getDataFile().getString(FilePlayerKeys.DATA_LAST_TIME_ON);
-
-        if (!strLastTimeSaved.isEmpty()) {
-            long currentTime = System.currentTimeMillis();
-            long lastOnTime = Long.parseLong(strLastTimeSaved);
-
-            Log.d("><><><><", "Time Difference (in seconds): " + (currentTime - lastOnTime) / 1000);
-        }
-
         String separator = DataManager.getInstance().getFiles().getDataFile().getValueSeparator();
 
         talents = new Talents(separator);
@@ -97,6 +89,52 @@ public class DataManager {
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();
+
+        //Add currencies for the time spent away
+        String strLastTimeSaved = fileManager.getDataFile().getString(FilePlayerKeys.DATA_LAST_TIME_ON);
+
+        if (!strLastTimeSaved.isEmpty()) {
+            long currentTime = System.currentTimeMillis();
+            long lastOnTime = Long.parseLong(strLastTimeSaved);
+            long timeAwayInSeconds = (currentTime - lastOnTime) / 1000;
+
+            timeAwayTotalTime = getTimeFromSeconds(timeAwayInSeconds);
+            timeAwayHeartsGained = timeAwayInSeconds * playerData.getCurrentHeartsPerSecond();
+            timeAwayTokensGained = timeAwayInSeconds * playerData.getCurrentHeartTokensPerSecond();
+        }
+    }
+
+    private String getTimeFromSeconds(long totalSeconds) {
+        long runningSeconds = totalSeconds;
+        long hours = (int) Math.floor(runningSeconds / 3600);
+
+        runningSeconds -= hours * 3600;
+
+        long minutes = (int) Math.floor(runningSeconds / 60);
+
+        runningSeconds -= minutes * 60;
+
+        StringBuilder sb = new StringBuilder();
+
+        if (hours > 0)
+            sb.append(hours).append("h ");
+        if (minutes > 0)
+            sb.append(minutes).append("m ");
+        sb.append(runningSeconds).append("s");
+
+        return sb.toString();
+    }
+
+    public String getTimeAwayTotalTime() {
+        return timeAwayTotalTime;
+    }
+
+    public double getTimeAwayHeartsGained() {
+        return timeAwayHeartsGained;
+    }
+
+    public double getTimeAwayTokensGained() {
+        return timeAwayTokensGained;
     }
 
     private void setTutorialValues() {
