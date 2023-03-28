@@ -2,7 +2,12 @@ package com.lertos.projectyorkie;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,11 +45,24 @@ public class HomePage extends AppCompatActivity {
         if (!isPageActive) {
             updateUIWithCurrentData();
             isPageActive = true;
+            prepareToLoadPopup();
         }
 
         Helper.setupBottomButtonBar(this);
         setupRecyclerViews();
         setupPageButtonBar();
+    }
+
+    private void prepareToLoadPopup() {
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.relScreen);
+        ViewTreeObserver vto = layout.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                loadTimeAwayPopup();
+            }
+        });
     }
 
     private void loadMainData() {
@@ -65,6 +83,23 @@ public class HomePage extends AppCompatActivity {
             }
         };
         handler.post(runnable);
+    }
+
+    private void loadTimeAwayPopup() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_time_away, null);
+
+        int width = RelativeLayout.LayoutParams.MATCH_PARENT;
+        int height = RelativeLayout.LayoutParams.MATCH_PARENT;
+
+        //4th argument ignores clicks/taps outside the popup
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        
+        //The view passed doesn't matter, it is only used for the window token
+        popupWindow.showAtLocation(findViewById(R.id.relScreen), Gravity.CENTER, 0, 0);
+
+        //Dismiss the popup when ignore clicks to anything else
+        popupView.setOnClickListener(v -> popupWindow.dismiss());
     }
 
     //To ensure the start logic only happens when the app initially starts or this activity is destroyed
