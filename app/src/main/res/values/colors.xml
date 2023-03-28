@@ -9,6 +9,7 @@
     <color name="light_blue">#1AD4FF</color>
     <color name="main_text_color">#85F1FF</color>
     <color name="black">#FF000000</color>
+    <color name="black_faded">#8F000000</color>
     <color name="pink">#FFA1FD</color>
     <color name="yellow">#FFEB3B</color>
     <color name="gold">#DE5635</color>
