@@ -77,7 +77,7 @@ public class ActivityPage extends AppCompatActivity {
                 if (!isPageActive)
                     handler.removeCallbacks(this);
                 else
-                    handler.postDelayed(this, 500);
+                    handler.postDelayed(this, 250);
             }
         };
         handler.post(runnable);

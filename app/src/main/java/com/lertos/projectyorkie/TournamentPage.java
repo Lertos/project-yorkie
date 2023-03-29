@@ -157,7 +157,7 @@ public class TournamentPage extends AppCompatActivity {
                 if (!isPageActive)
                     handler.removeCallbacks(this);
                 else
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, 500);
             }
         };
         handler.post(runnable);
