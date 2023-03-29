@@ -146,6 +146,8 @@ public class PettingPage extends AppCompatActivity {
     }
 
     private void setPlayerScoreDataUI() {
+        pettingMaster = new PettingMaster();
+
         ((TextView) findViewById(R.id.tvHighestThreshold)).setText(
                 Helper.createSpannable(
                         "Threshold:",
