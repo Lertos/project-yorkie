@@ -113,7 +113,7 @@ public class PettingPage extends AppCompatActivity {
             pettingMaster = new PettingMaster();
 
             //Check if the player can afford to play
-            double cost = pettingMaster.getHeartTokensToEnter();
+            double cost = pettingMaster.getStartCost();
             boolean canAfford = Helper.canAffordHeartTokens(cost);
 
             if (!canAfford) {

@@ -68,10 +68,6 @@ public class PettingMaster {
         DataManager.getInstance().addHearts(endReward);
     }
 
-    public double getHeartTokensToEnter() {
-        return costHeartTokensPerThreshold * startThreshold;
-    }
-
     public int getStartThreshold() {
         return startThreshold;
     }
