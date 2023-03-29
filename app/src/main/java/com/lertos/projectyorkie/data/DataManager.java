@@ -33,7 +33,9 @@ public class DataManager {
     private double timeAwayHeartsGained;
     private double timeAwayTokensGained;
     private static DataManager instance;
-    private final long millisecondsPerSave = 10000;
+    private final long millisecondsPerSave = 3000;
+    private final long millisecondsPerSaveForced = 15000;
+    private long currentMillisecondsSinceSave = 0;
     private FileManager fileManager;
     private TutorialManager tutorialManager;
     private SettingsManager settingsManager;
@@ -214,20 +216,28 @@ public class DataManager {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                double currentHearts = playerData.getCurrentHearts();
-                double currentHeartTokens = playerData.getCurrentHeartTokens();
-                String timeSinceSave = String.valueOf(System.currentTimeMillis());
+                //If a forced save is needed, or any change has been made, save the files
+                if (currentMillisecondsSinceSave >= millisecondsPerSaveForced || fileManager.isAnySaveNeeded()) {
+                    double currentHearts = playerData.getCurrentHearts();
+                    double currentHeartTokens = playerData.getCurrentHeartTokens();
+                    String timeSinceSave = String.valueOf(System.currentTimeMillis());
 
-                //Saving these here as they are updated every second; not writing to a file every second...
-                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, currentHearts);
-                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
-                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
+                    //Saving these here as they are updated every second; not writing to a file every second...
+                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, currentHearts);
+                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
+                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
 
-                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, packDogs.getUnlocksAsString());
-                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
-                fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
+                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, packDogs.getUnlocksAsString());
+                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
+                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
 
-                fileManager.saveFiles();
+                    fileManager.saveFiles();
+
+                    //Reset the time since saved
+                    currentMillisecondsSinceSave = 0;
+                } else {
+                    currentMillisecondsSinceSave += millisecondsPerSave;
+                }
 
                 handler.postDelayed(this, millisecondsPerSave);
             }
@@ -358,4 +368,3 @@ public class DataManager {
     }
 
 }
-
