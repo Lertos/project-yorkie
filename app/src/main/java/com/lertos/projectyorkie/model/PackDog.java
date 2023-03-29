@@ -1,5 +1,7 @@
 package com.lertos.projectyorkie.model;
 
+import com.lertos.projectyorkie.data.DataManager;
+
 public class PackDog {
 
     private final String name;
@@ -30,5 +32,7 @@ public class PackDog {
 
     public void setUnlocked(boolean unlocked) {
         this.unlocked = unlocked;
+
+        DataManager.getInstance().getFiles().getDataFile().setHasNewChanges(true);
     }
 }

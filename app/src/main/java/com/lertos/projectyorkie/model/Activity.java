@@ -42,7 +42,10 @@ public class Activity {
         this.currentLevel = currentLevel;
     }
 
-    public void setUnlocked(boolean unlocked) { isUnlocked = unlocked; }
+    public void setUnlocked(boolean unlocked) {
+        isUnlocked = unlocked;
+        DataManager.getInstance().getFiles().getDataFile().setHasNewChanges(true);
+    }
 
     public void levelUp() {
         this.currentLevel += 1;
@@ -52,6 +55,8 @@ public class Activity {
             MediaManager.getInstance().playEffectTrack(R.raw.effect_dog_bark);
         } else
             MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
+
+        DataManager.getInstance().getFiles().getDataFile().setHasNewChanges(true);
     }
 
     public boolean isUnlocked() {
@@ -126,5 +131,6 @@ public class Activity {
             }
         }
         currentLevel = level;
+        DataManager.getInstance().getFiles().getDataFile().setHasNewChanges(true);
     }
 }

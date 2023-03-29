@@ -63,6 +63,8 @@ public class Talent {
     public void levelUp() {
         this.currentLevel += 1;
         MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
+
+        DataManager.getInstance().getFiles().getDataFile().setHasNewChanges(true);
     }
 
     public double getUpgradeCost(int level) {
@@ -102,6 +104,8 @@ public class Talent {
         }
         currentLevel = level;
         MediaManager.getInstance().playEffectTrack(R.raw.effect_levelup);
+
+        DataManager.getInstance().getFiles().getDataFile().setHasNewChanges(true);
     }
 
     private double getBonus(int level) {
