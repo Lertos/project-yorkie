@@ -184,6 +184,10 @@ public class DataFile {
         hasNewChanges = true;
     }
 
+    public boolean hasNewChanges() {
+        return hasNewChanges;
+    }
+
     public void saveValues() {
         if (!hasNewChanges)
             return;
