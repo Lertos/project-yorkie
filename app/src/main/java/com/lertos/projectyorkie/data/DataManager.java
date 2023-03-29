@@ -216,8 +216,8 @@ public class DataManager {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                //If a forced save is needed, or any change has been made, save the files
-                if (currentMillisecondsSinceSave >= millisecondsPerSaveForced || fileManager.isAnySaveNeeded()) {
+                //If a forced save is needed, update the important info
+                if (currentMillisecondsSinceSave >= millisecondsPerSaveForced) {
                     double currentHearts = playerData.getCurrentHearts();
                     double currentHeartTokens = playerData.getCurrentHeartTokens();
                     String timeSinceSave = String.valueOf(System.currentTimeMillis());
@@ -230,7 +230,9 @@ public class DataManager {
                     fileManager.getDataFile().setValue(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, packDogs.getUnlocksAsString());
                     fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
                     fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
-
+                }
+                //If any changes were made, save them
+                if (fileManager.isAnySaveNeeded()) {
                     fileManager.saveFiles();
 
                     //Reset the time since saved
