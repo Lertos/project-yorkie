@@ -188,6 +188,10 @@ public class DataFile {
         return hasNewChanges;
     }
 
+    public void setHasNewChanges(boolean hasNewChanges) {
+        this.hasNewChanges = hasNewChanges;
+    }
+
     public void saveValues() {
         if (!hasNewChanges)
             return;
