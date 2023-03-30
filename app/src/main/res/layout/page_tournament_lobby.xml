@@ -430,7 +430,7 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/fontGigantic"
+                style="@style/fontHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
@@ -440,7 +440,7 @@
 
             <TextView
                 android:id="@+id/tvFinalPositionHeader"
-                style="@style/fontLarge"
+                style="@style/fontMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -448,7 +448,7 @@
 
             <TextView
                 android:id="@+id/tvFinalPosition"
-                style="@style/fontHeader"
+                style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -458,7 +458,7 @@
 
             <TextView
                 android:id="@+id/tvInitialBetHeader"
-                style="@style/fontLarge"
+                style="@style/fontMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -466,7 +466,7 @@
 
             <TextView
                 android:id="@+id/tvInitialBet"
-                style="@style/fontHeader"
+                style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -484,7 +484,7 @@
 
             <TextView
                 android:id="@+id/tvHeartsGained"
-                style="@style/fontHeader"
+                style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -494,7 +494,7 @@
 
             <TextView
                 android:id="@+id/tvRankChangeHeader"
-                style="@style/fontLarge"
+                style="@style/fontMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -502,7 +502,7 @@
 
             <TextView
                 android:id="@+id/tvPreviousRank"
-                style="@style/fontHeader"
+                style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -511,7 +511,7 @@
 
             <TextView
                 android:id="@+id/tvRankChangeSpacer"
-                style="@style/fontMedium"
+                style="@style/fontSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -519,7 +519,7 @@
 
             <TextView
                 android:id="@+id/tvNewRank"
-                style="@style/fontHeader"
+                style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -540,7 +540,7 @@
 
             <TextView
                 android:id="@+id/tvUnlockedDog"
-                style="@style/fontLarge"
+                style="@style/fontMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
