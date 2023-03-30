@@ -173,7 +173,7 @@ public class TournamentMaster {
 
     public List<TournamentContestant> getContestants() {
         contestants.sort(new SortByScore());
-        return Collections.unmodifiableList(contestants);
+        return contestants;
     }
 
     public void processEndOfTournament() {
@@ -357,7 +357,8 @@ public class TournamentMaster {
             if (contestant.isPlayer())
                 contestant.addToCurrentScore(currentGame.score);
             else {
-                int scoreToAdd = rng.nextInt(highScoreBound - lowScoreBound) + lowScoreBound;
+                //Math.max because bounds must be positive; so if they get 0 it will crash
+                int scoreToAdd = rng.nextInt(Math.max(1, highScoreBound - lowScoreBound)) + lowScoreBound;
                 contestant.addToCurrentScore(scoreToAdd);
             }
         }
