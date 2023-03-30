@@ -138,7 +138,7 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/border_with_dark_bg"
                 android:gravity="center"
@@ -149,8 +149,10 @@
                     style="@style/fontMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
-                    android:text="Easy"
+                    android:layout_marginHorizontal="6dp"
+                    android:elegantTextHeight="true"
+                    android:text="Easy\n(+0%)"
+                    android:textAlignment="center"
                     android:theme="@style/baseRadioButton" />
 
                 <RadioButton
@@ -158,8 +160,10 @@
                     style="@style/fontMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
-                    android:text="Normal"
+                    android:layout_marginHorizontal="6dp"
+                    android:elegantTextHeight="true"
+                    android:text="Normal\n(+2%)"
+                    android:textAlignment="center"
                     android:theme="@style/baseRadioButton" />
 
                 <RadioButton
@@ -167,8 +171,10 @@
                     style="@style/fontMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
-                    android:text="Hard"
+                    android:layout_marginHorizontal="6dp"
+                    android:elegantTextHeight="true"
+                    android:text="Hard\n(+4%)"
+                    android:textAlignment="center"
                     android:theme="@style/baseRadioButton" />
 
             </RadioGroup>
@@ -194,7 +200,7 @@
                 style="@style/basicSlider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/border_with_dark_bg"
                 android:stepSize="10.0"
