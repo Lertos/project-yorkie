@@ -487,9 +487,18 @@
                 style="@style/fontLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="PH"
+                android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:id="@+id/tvHeartsGainedPercent"
+                style="@style/fontMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="(Initial Bet + 20%)"
                 android:textColor="@color/main_text_color" />
 
             <TextView
