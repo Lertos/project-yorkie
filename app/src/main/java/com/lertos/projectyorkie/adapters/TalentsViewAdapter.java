@@ -111,7 +111,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
         StringBuilder currentBonusStr = new StringBuilder(" ");
         currentBonusStr.append(talentList.get(position).getBonusSignPrefix());
-        currentBonusStr.append(IdleNumber.getStrNumber(talentList.get(position).getCurrentDisplayBonus()));
+        currentBonusStr.append(String.format("%.2f", talentList.get(position).getCurrentDisplayBonus()));
         currentBonusStr.append(talentList.get(position).getBonusTypeSuffix());
 
         holder.tvCurrentBonus.setText(
@@ -124,7 +124,7 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
         StringBuilder nextBonusStr = new StringBuilder(" ");
         nextBonusStr.append(talentList.get(position).getBonusSignPrefix());
-        nextBonusStr.append(IdleNumber.getStrNumber(talentList.get(position).getNextDisplayBonus()));
+        nextBonusStr.append(String.format("%.2f", talentList.get(position).getNextDisplayBonus()));
         nextBonusStr.append(talentList.get(position).getBonusTypeSuffix());
 
         holder.tvNextBonus.setText(
