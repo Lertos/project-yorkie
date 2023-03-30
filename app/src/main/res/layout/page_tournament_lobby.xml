@@ -462,7 +462,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Hearts Bet" />
+                android:text="Hearts You Wagered" />
 
             <TextView
                 android:id="@+id/tvInitialBet"
@@ -480,7 +480,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Hearts Gained" />
+                android:text="Hearts You Won" />
 
             <TextView
                 android:id="@+id/tvHeartsGained"
