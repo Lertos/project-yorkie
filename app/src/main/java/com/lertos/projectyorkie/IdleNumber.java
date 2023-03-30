@@ -6,6 +6,9 @@ import java.util.Map;
 public class IdleNumber {
 
     public static final Map<Integer, String> digitIdentifiers = new LinkedHashMap<Integer, String>() {{
+        put(18, "QI");
+        put(15, "QA");
+        put(12, "T");
         put(9, "B");
         put(6, "M");
         put(3, "K");
