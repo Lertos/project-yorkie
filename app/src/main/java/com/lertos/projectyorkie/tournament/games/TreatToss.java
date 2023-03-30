@@ -22,8 +22,8 @@ public class TreatToss extends TournamentGame {
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
     private Runnable collisionRunnable;
-    private final double secondsLostForMiss = 3;
-    private final double secondsGainedForHit = 1;
+    private final double secondsLostForMiss = 5;
+    private final double secondsGainedForHit = 0.5;
     private final double baseTimeOfTreatMovement = 2.5;
     private final double scorePerHit = 75;
     private final int initialTimeOfTreatMovement;
