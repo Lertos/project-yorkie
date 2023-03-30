@@ -20,6 +20,7 @@ public class TournamentPage extends AppCompatActivity {
     static boolean isPageActive = false;
     private Toast toastMsg;
     private Slider sliderBetAmount;
+    private TextView tvCurrentRank;
     private TextView tvBetAmount;
     private TextView tvCurrentHeartTokens;
     private TextView tvCurrentHeartTokensPerSec;
@@ -39,6 +40,7 @@ public class TournamentPage extends AppCompatActivity {
         sliderBetAmount = findViewById(R.id.sliderBetAmount);
         tvBetAmount = findViewById(R.id.tvBetAmount);
 
+        tvCurrentRank = findViewById(R.id.tvCurrentRank);
         tvCurrentHeartTokens = findViewById(R.id.tvCurrentHeartTokens);
         tvCurrentHeartTokensPerSec = findViewById(R.id.tvCurrentHeartTokensPerSec);
 
@@ -125,6 +127,8 @@ public class TournamentPage extends AppCompatActivity {
         //Choose a default value for the difficulty
         ((RadioButton) findViewById(R.id.rbDifficultyNormal)).setChecked(true);
         pickDifficultyOption(TournamentDifficulty.NORMAL);
+
+        tvCurrentRank.setText(DataManager.getInstance().getPlayerData().getTournamentRank().getRankDisplay());
 
         ((Button) findViewById(R.id.btnMoveToLobby)).setText(
                 Helper.createSpannable(
