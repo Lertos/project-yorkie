@@ -31,6 +31,7 @@ public class TournamentMaster {
     private final ArrayList<TournamentContestant> contestants;
     private final TournamentDifficulty tournamentDifficulty;
     private final double initialBet;
+    private double rewardBonusPercentage;
     private Random rng;
     private int playerFinalPosition;
     private double playerFinalReward;
@@ -184,16 +185,30 @@ public class TournamentMaster {
 
     private void processFinalReward() {
         double rewardMultiplier = 0.0;
+        double rankBonusPercentage = DataManager.getInstance().getPlayerData().getTournamentRank().getRankRewardPercentage();
 
+        //Get the bonus from the players rank
         if (playerFinalPosition == 0) {
-            rewardMultiplier = 1.75;
-        } else if (playerFinalPosition == 1) {
-            rewardMultiplier = 1.25;
-        } else if (playerFinalPosition == 2) {
+            rewardMultiplier += rankBonusPercentage;
+        } else if (playerFinalPosition == 1 || playerFinalPosition == 2) {
             rewardMultiplier = 1.0;
         }
 
+        //Get the bonus from the chosen difficulty
+        switch (tournamentDifficulty) {
+            case EASY:
+                break;
+            case NORMAL:
+                rewardMultiplier += 0.02;
+                break;
+            case HARD:
+                rewardMultiplier += 0.04;
+                break;
+        }
+
         playerFinalReward = initialBet * rewardMultiplier;
+        //-1 so we get raw percentage value (0.20 instead of 1.20)
+        rewardBonusPercentage = rewardMultiplier - 1;
 
         DataManager.getInstance().addHearts(playerFinalReward);
     }
@@ -204,9 +219,7 @@ public class TournamentMaster {
         if (playerFinalPosition == 0) {
             rankDirection = 1;
             DataManager.getInstance().getPlayerData().getTournamentRank().increaseTier();
-        } else if (playerFinalPosition == 1) {
-            rankDirection = 0;
-        } else if (playerFinalPosition == 2) {
+        } else if (playerFinalPosition == 1 || playerFinalPosition == 2) {
             rankDirection = 0;
         } else {
             rankDirection = -1;
@@ -226,6 +239,10 @@ public class TournamentMaster {
 
     public int getRankDirection() {
         return rankDirection;
+    }
+
+    public double getRewardBonusPercentage() {
+        return rewardBonusPercentage;
     }
 
     public PackDog getRandomDog() {
