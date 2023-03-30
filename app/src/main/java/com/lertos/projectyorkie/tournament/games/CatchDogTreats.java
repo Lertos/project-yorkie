@@ -24,7 +24,7 @@ public class CatchDogTreats extends TournamentGame {
     private final Handler disappearTimeHandler = new Handler();
     private final double secondsLostWhenMissed = 4;
     private final double secondsGainedWhenCorrect = 1;
-    private final double baseDisappearTime = 3.5;
+    private final double baseDisappearTime = 3.0;
     private final double scorePerClick = 50;
     private final int initialSquareDisappearTime;
     private Runnable disappearTimeRunnable;
@@ -36,8 +36,8 @@ public class CatchDogTreats extends TournamentGame {
     private int timeToFall;
     private int timeToScaleUp;
     private int currentSquareDisappearTime;
-    //Starting at 2 so the math works better
-    private int currentSquare = 2;
+    //Starting higher so the math works better
+    private int currentSquare = 3;
 
     public CatchDogTreats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);
@@ -147,6 +147,9 @@ public class CatchDogTreats extends TournamentGame {
     private void handleSquareClicked(ImageView fallingSquare) {
         addTimeToTimer(secondsGainedWhenCorrect);
         currentSquare++;
+
+        //Making them fall a little quicker each time
+        timeToFall -= 20;
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);

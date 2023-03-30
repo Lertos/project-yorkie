@@ -35,15 +35,15 @@ public class WhackTheCat extends TournamentGame {
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
     private final double secondsLostWhenMissed = 4;
-    private final double secondsGainedWhenCorrect = 1;
-    private final double baseDisappearTime = 3.5;
+    private final double secondsGainedWhenCorrect = 0.5;
+    private final double baseDisappearTime = 3.0;
     private final double scorePerClick = 50;
     private int timeToRise;
     private int timeToDisappear;
     private final int initialSquareDisappearTime;
     private int currentSquareDisappearTime;
-    //Starting at 2 so the math works better
-    private int currentSquare = 2;
+    //Starting higher so the math works better
+    private int currentSquare = 3;
 
     public WhackTheCat(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);
@@ -259,13 +259,13 @@ public class WhackTheCat extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerClick * 14;
+                score = scorePerClick * 17;
                 break;
             case NORMAL:
-                score = scorePerClick * 19;
+                score = scorePerClick * 24;
                 break;
             case HARD:
-                score = scorePerClick * 24;
+                score = scorePerClick * 30;
                 break;
         }
         return (int) Math.round(score);

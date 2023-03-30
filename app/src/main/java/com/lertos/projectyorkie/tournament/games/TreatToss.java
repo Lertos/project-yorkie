@@ -43,7 +43,8 @@ public class TreatToss extends TournamentGame {
     private boolean isReadyForNewTreat = true;
     private int timeOfTreatToss = 400;
     private int timeOfTreatMovement;
-    private int currentTreat = 1;
+    //Starting higher so the math works better
+    private int currentTreat = 3;
 
     public TreatToss(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);

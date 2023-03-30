@@ -27,7 +27,7 @@ public class DodgeTheCats extends TournamentGame {
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
     private Runnable collisionRunnable;
-    private final double secondsLostWhenHit = 4;
+    private final double secondsLostWhenHit = 5;
     private final double secondsGainedWhenDodged = 0.5;
     private final double baseTimeOfCatFalling = 3.5;
     private final double scorePerDodge = 50;
@@ -51,7 +51,7 @@ public class DodgeTheCats extends TournamentGame {
     private int timeBetweenCats = maxFallTime;
     private int timeOfCatFalling;
     private int previousLaneIndex = 1;
-    private int currentWave = 1;
+    private int currentWave = 2;
     private int currentCatInWave = 1;
     private int catsPerWave = 6;
 
@@ -287,10 +287,10 @@ public class DodgeTheCats extends TournamentGame {
                 score = scorePerDodge * 13;
                 break;
             case NORMAL:
-                score = scorePerDodge * 18;
+                score = scorePerDodge * 16;
                 break;
             case HARD:
-                score = scorePerDodge * 23;
+                score = scorePerDodge * 20;
                 break;
         }
         return (int) Math.round(score);
