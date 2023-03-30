@@ -6,7 +6,7 @@ public class PackDog {
 
     private final String name;
     private final int avatar;
-    private final double addedBonus = 2.5;
+    private final double addedBonus = 0.3;
     private boolean unlocked = false;
 
     public PackDog(String name, int avatar) {
