@@ -182,14 +182,14 @@ public class TournamentLobbyPage extends AppCompatActivity {
             if (randomDog.isUnlocked()) {
                 ((TextView) findViewById(R.id.tvUnlockedDog)).setText("Already Unlocked...");
             } else {
-                ((TextView) findViewById(R.id.tvUnlockedDog)).setText("NEW UNLOCK: " + randomDog.getName());
+                ((TextView) findViewById(R.id.tvUnlockedDog)).setText("NEW UNLOCK\n" + randomDog.getName());
                 randomDog.setUnlocked(true);
             }
         }
     }
 
     private void animateTournamentEndScreenInfo() {
-        int timePerAction = 800;
+        int timePerAction = 600;
 
         ViewGroup linTournamentEndScreen = findViewById(R.id.linTournamentEndScreen);
         ArrayList<View> views = new ArrayList<>();
