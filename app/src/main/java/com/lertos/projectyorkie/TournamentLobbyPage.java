@@ -148,10 +148,19 @@ public class TournamentLobbyPage extends AppCompatActivity {
         String playerPosition = tournamentMaster.getPlayerPosition();
         String initialBet = IdleNumber.getStrNumber(tournamentMaster.getInitialBet());
         String endReward = IdleNumber.getStrNumber(tournamentMaster.getPlayerFinalReward());
+        String bonusPercentage = String.valueOf((int) (tournamentMaster.getRewardBonusPercentage() * 100));
 
         ((TextView) findViewById(R.id.tvFinalPosition)).setText(playerPosition + " place");
         ((TextView) findViewById(R.id.tvInitialBet)).setText(initialBet);
         ((TextView) findViewById(R.id.tvHeartsGained)).setText(endReward);
+
+        if (playerPosition.contains("1")) {
+            ((TextView) findViewById(R.id.tvHeartsGainedPercent)).setText("(Initial Bet + " + bonusPercentage + "%)");
+        } else if (playerPosition.contains("4")) {
+            ((TextView) findViewById(R.id.tvHeartsGainedPercent)).setText("(Lost Your Bet)");
+        } else {
+            ((TextView) findViewById(R.id.tvHeartsGainedPercent)).setText("(Won Back Your Bet)");
+        }
 
         int rankDirection = tournamentMaster.getRankDirection();
 
