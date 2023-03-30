@@ -98,14 +98,6 @@
                     android:layout_gravity="center_horizontal"
                     android:text="Show Animations in Tournament" />
 
-                <CheckBox
-                    android:id="@+id/cbShowTournamentTutorials"
-                    style="@style/fontSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Show Tournament Tutorials" />
-
             </LinearLayout>
 
             <Button
