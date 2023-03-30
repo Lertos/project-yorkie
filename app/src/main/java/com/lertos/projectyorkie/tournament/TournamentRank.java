@@ -1,5 +1,8 @@
 package com.lertos.projectyorkie.tournament;
 
+import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.file.FilePlayerKeys;
+
 public class TournamentRank {
 
     //Tiers go from V > IV > III > II > I for example,
@@ -79,15 +82,18 @@ public class TournamentRank {
             //If they are at the max division - there is nothing to do; reset to default
             if (newDivision == null) {
                 tier = maxTier;
+                saveRankToFile();
                 return false;
             }
             //If they are not at max division
             else {
                 division = newDivision;
                 tier = startTier;
+                saveRankToFile();
                 return true;
             }
         }
+        saveRankToFile();
         return false;
     }
 
@@ -101,16 +107,24 @@ public class TournamentRank {
             //If they are at the bottom division - there is nothing to do; reset to default
             if (newDivision == null) {
                 tier = startTier;
+                saveRankToFile();
                 return false;
             }
             //If they are not at the bottom division
             else {
                 division = newDivision;
                 tier = maxTier;
+                saveRankToFile();
                 return true;
             }
         }
+        saveRankToFile();
         return false;
+    }
+
+    private void saveRankToFile() {
+        DataManager.getInstance().getFiles().getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_RANK_NAME, division.getDisplayStr());
+        DataManager.getInstance().getFiles().getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_RANK_TIER, tier);
     }
 
     public String getRankDisplay() {
