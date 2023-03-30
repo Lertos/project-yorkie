@@ -87,22 +87,28 @@ public class WhackTheCat extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                timeToRise = 1200;
+                timeToRise = 1100;
                 break;
             case NORMAL:
                 timeToRise = 1000;
                 break;
             case HARD:
-                timeToRise = 800;
+                timeToRise = 900;
                 break;
         }
 
         timeToDisappear = 0;
 
         switch (tournamentDifficulty) {
-            case EASY: timeToDisappear = 1600; break;
-            case NORMAL: timeToDisappear = 1300; break;
-            case HARD: timeToDisappear = 1000; break;
+            case EASY:
+                timeToDisappear = 1500;
+                break;
+            case NORMAL:
+                timeToDisappear = 1300;
+                break;
+            case HARD:
+                timeToDisappear = 1100;
+                break;
         }
     }
 
@@ -262,10 +268,10 @@ public class WhackTheCat extends TournamentGame {
                 score = scorePerClick * 19;
                 break;
             case NORMAL:
-                score = scorePerClick * 25;
+                score = scorePerClick * 23;
                 break;
             case HARD:
-                score = scorePerClick * 31;
+                score = scorePerClick * 27;
                 break;
         }
         return (int) Math.round(score);
