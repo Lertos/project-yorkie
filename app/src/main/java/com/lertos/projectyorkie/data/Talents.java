@@ -19,7 +19,7 @@ public class Talents {
             1,
             5,
             0,
-            3,
+            0.3,
             50
     );
     public static final Talent luckyStreak = new Talent(
@@ -29,7 +29,7 @@ public class Talents {
             1,
             5,
             0,
-            3,
+            0.4,
             50
     );
     public static final Talent bargainMaster = new Talent(
@@ -39,7 +39,7 @@ public class Talents {
             -1,
             6,
             0,
-            2,
+            0.5,
             25
     );
     public static final Talent petLover = new Talent(
@@ -49,7 +49,7 @@ public class Talents {
             -1,
             6,
             0,
-            2,
+            0.5,
             25
     );
     public static final Talent greatMinds = new Talent(
@@ -59,7 +59,7 @@ public class Talents {
             -1,
             6,
             0,
-            2,
+            0.5,
             25
     );
     public static final Talent purrsuasion = new Talent(
@@ -69,7 +69,7 @@ public class Talents {
             -1,
             6,
             0,
-            5,
+            0.5,
             25
     );
     public static final Talent strengthInNumbers = new Talent(
@@ -79,7 +79,7 @@ public class Talents {
             1,
             4.5,
             0,
-            0.06,
+            0.05,
             100
     );
     public static final Talent pettingPower = new Talent(
