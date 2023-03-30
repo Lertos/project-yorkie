@@ -235,7 +235,7 @@ public class TournamentMaster {
             return null;
 
         List<TournamentContestant> finalContestants = getContestants();
-        int randIndex = rng.nextInt(finalContestants.size()) + 1;
+        int randIndex = rng.nextInt(finalContestants.size() - 1) + 1;
 
         return finalContestants.get(randIndex).getPackDog();
     }
