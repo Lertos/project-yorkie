@@ -18,14 +18,6 @@ public class TournamentRank {
         this.tier = defaultTier;
     }
 
-    public TournamentDivision getDivision() {
-        return division;
-    }
-
-    public int getTier() {
-        return tier;
-    }
-
     public void setDivision(TournamentDivision division) {
         if (division != null)
             this.division = division;
@@ -174,6 +166,21 @@ public class TournamentRank {
         rankNumber += (startTier + 1) - tier;
 
         return rankNumber;
+    }
+
+    public double getRankRewardPercentage() {
+        int rankValue = getRankValue();
+
+        //Double the %
+        rankValue *= 2;
+
+        //Get the percentage value
+        double percentage = rankValue / 100.0;
+
+        //Add 1.0 to it so it can be easily multiplied
+        percentage += 1.0;
+
+        return percentage;
     }
 
 }
