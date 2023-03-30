@@ -265,13 +265,13 @@ public class WhackTheCat extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerClick * 19;
+                score = scorePerClick * 17;
                 break;
             case NORMAL:
-                score = scorePerClick * 23;
+                score = scorePerClick * 21;
                 break;
             case HARD:
-                score = scorePerClick * 27;
+                score = scorePerClick * 25;
                 break;
         }
         return (int) Math.round(score);
