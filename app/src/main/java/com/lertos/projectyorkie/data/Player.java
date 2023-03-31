@@ -43,7 +43,8 @@ public class Player {
     }
 
     public void setCurrentHearts(double currentHearts) {
-        this.currentHearts = currentHearts;
+        //Math.max is to make sure it can never go negative
+        this.currentHearts = Math.max(0.0, currentHearts);
     }
 
     public double getCurrentHeartTokens() {
@@ -51,7 +52,8 @@ public class Player {
     }
 
     public void setCurrentHeartTokens(double currentHeartTokens) {
-        this.currentHeartTokens = currentHeartTokens;
+        //Math.max is to make sure it can never go negative
+        this.currentHeartTokens = Math.max(0.0, currentHeartTokens);
     }
 
     public TournamentRank getTournamentRank() {
