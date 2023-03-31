@@ -110,7 +110,7 @@ public class TreatToss extends TournamentGame {
         ivTreatAvatar.setVisibility(View.VISIBLE);
 
         //Set these so we don't have to calculate these everytime we want to use them
-        avatarCollisionHeight = avatarWidth;
+        avatarCollisionHeight = (avatarWidth / 3) * 2;
     }
 
     private void setupOnClickListeners() {
