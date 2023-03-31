@@ -53,8 +53,8 @@ public class Activity {
     }
 
     public double getUnlockCost() {
-        int unlockLevel = 15;
-        double cost = getIncome(unlockLevel * orderPosition) / 10.0 + (orderPosition * 2500.0);
+        int unlockLevel = 15 * orderPosition + orderPosition;
+        double cost = getIncome(unlockLevel) + (orderPosition * orderPosition * 6750.0);
         double multiplier = Talents.greatMinds.getCurrentBonus();
 
         if (multiplier != 0)
