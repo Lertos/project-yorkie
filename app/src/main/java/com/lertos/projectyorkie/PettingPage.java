@@ -22,7 +22,7 @@ import java.util.Random;
 public class PettingPage extends AppCompatActivity {
 
     private PettingMaster pettingMaster;
-    private Rect pettingLayout = new Rect();
+    private final Rect pettingLayout = new Rect();
     private ImageButton focusButton;
     private LinearProgressIndicator indicator;
     private final int timerMax = 1000;
@@ -58,7 +58,7 @@ public class PettingPage extends AppCompatActivity {
         //This makes sure the progress moves smoothly. 100 max makes it decrease in a choppy manner
         indicator.setMax(timerMax);
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.linMainSection);
+        LinearLayout layout = findViewById(R.id.linMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -94,7 +94,7 @@ public class PettingPage extends AppCompatActivity {
         super.onPause();
         isPlaying = false;
         isPageActive = false;
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }
@@ -108,7 +108,7 @@ public class PettingPage extends AppCompatActivity {
 
     private void setOnClickListeners() {
         //Start the petting mini game
-        ((Button) findViewById(R.id.btnStart)).setOnClickListener(v -> {
+        findViewById(R.id.btnStart).setOnClickListener(v -> {
             //Create a new instance of the petting mini game master
             pettingMaster = new PettingMaster();
 
@@ -130,7 +130,7 @@ public class PettingPage extends AppCompatActivity {
             pettingMaster.start();
         });
 
-        ((ImageButton) findViewById(R.id.btnPettingFocus)).setOnClickListener(v -> handleSquareClick(true, false));
+        findViewById(R.id.btnPettingFocus).setOnClickListener(v -> handleSquareClick(true, false));
     }
 
     private void setupUI() {
@@ -209,9 +209,7 @@ public class PettingPage extends AppCompatActivity {
         tvRewardAmount.setVisibility(View.VISIBLE);
         tvRewardAmount.setAlpha(0);
 
-        tvRewardAmount.animate().alpha(1).scaleX(3).scaleY(3).setDuration(1200).withEndAction(() -> {
-            tvRewardAmount.animate().scaleX(1).scaleY(1).setDuration(400);
-        });
+        tvRewardAmount.animate().alpha(1).scaleX(3).scaleY(3).setDuration(1200).withEndAction(() -> tvRewardAmount.animate().scaleX(1).scaleY(1).setDuration(400));
 
         //Hide the generated square
         focusButton.setVisibility(View.INVISIBLE);
@@ -262,8 +260,8 @@ public class PettingPage extends AppCompatActivity {
             long timeToDisappear = Math.round(pettingMaster.getCurrentSquareDisappearTime() * 1000);
             focusButton.animate().alpha(0f).setDuration(timeToDisappear);
 
-            timerRunnable = () -> handleSquareDisappearing();
-            disappearTimeHandler.postDelayed(timerRunnable, (long) timeToDisappear);
+            timerRunnable = this::handleSquareDisappearing;
+            disappearTimeHandler.postDelayed(timerRunnable, timeToDisappear);
         }
     }
 
