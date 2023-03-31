@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.Helper;
-import com.lertos.projectyorkie.IdleNumber;
 import com.lertos.projectyorkie.R;
 import com.lertos.projectyorkie.data.DataManager;
 import com.lertos.projectyorkie.model.PackDog;
@@ -32,9 +31,7 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pack_dog, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -69,9 +66,9 @@ public class PackViewAdapter extends RecyclerView.Adapter<PackViewAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView tvDogAvatar;
-        private TextView tvDogName;
-        private TextView tvDogAddedBonus;
+        private final ImageView tvDogAvatar;
+        private final TextView tvDogName;
+        private final TextView tvDogAddedBonus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

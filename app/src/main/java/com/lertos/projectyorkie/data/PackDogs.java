@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PackDogs {
 
-    private List<PackDog> listPackDogs;
+    private final List<PackDog> listPackDogs;
     private final String separator;
 
     public PackDogs(String separator) {
@@ -71,7 +71,7 @@ public class PackDogs {
             if (packDog.isUnlocked())
                 isUnlocked = 1;
 
-            sb.append(String.valueOf(isUnlocked)).append(separator.replace("\\", ""));
+            sb.append(isUnlocked).append(separator.replace("\\", ""));
         }
         String finalString = sb.toString();
         return finalString.substring(0, finalString.length() - 1);

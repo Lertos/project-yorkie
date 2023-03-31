@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Activities {
 
-    private List<Activity> listActivities;
+    private final List<Activity> listActivities;
     private final String separator;
 
     public Activities(String separator) {

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Talents {
 
-    private List<Talent> listTalents;
+    private final List<Talent> listTalents;
     private final String separator;
 
     public static final Talent heartBeater = new Talent(

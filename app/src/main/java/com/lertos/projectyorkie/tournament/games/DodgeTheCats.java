@@ -27,17 +27,14 @@ public class DodgeTheCats extends TournamentGame {
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
     private Runnable collisionRunnable;
-    private final double secondsLostWhenHit = 5;
-    private final double secondsGainedWhenDodged = 0.5;
-    private final double baseTimeOfCatFalling = 3.5;
     private final double scorePerDodge = 50;
     private final int initialTimeOfCatFalling;
-    private GestureDetector gestureDetector;
+    private final GestureDetector gestureDetector;
     private ImageView ivCatAvatar;
     private ImageView ivYorkieAvatar;
     private int playerY;
     private int playerCollisionHeight;
-    private ArrayList<ImageView> fallingCats = new ArrayList<>();
+    private final ArrayList<ImageView> fallingCats = new ArrayList<>();
     private int laneX1;
     private int laneX2;
     private int laneX3;
@@ -45,7 +42,6 @@ public class DodgeTheCats extends TournamentGame {
     private int laneWidth;
     private int headerHeight;
     private int sectionHeight;
-    private int timeToSwitchLanes = 75;
     private int timeBetweenWaves;
     private final int maxFallTime = 1700;
     private int timeBetweenCats = maxFallTime;
@@ -53,7 +49,7 @@ public class DodgeTheCats extends TournamentGame {
     private int previousLaneIndex = 1;
     private int currentWave = 2;
     private int currentCatInWave = 1;
-    private int catsPerWave = 6;
+    private final int catsPerWave = 6;
 
     public DodgeTheCats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);
@@ -66,7 +62,7 @@ public class DodgeTheCats extends TournamentGame {
 
     protected void setupUI() {
         //Need the layout to be inflated before doing math using the variables produced inside this block
-        RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
+        RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -80,15 +76,16 @@ public class DodgeTheCats extends TournamentGame {
 
                 //Assign the lane info so the cloned avatars can copy their sizes and positions
                 //NOTE: the lane X's will be off by the amount of the parent's margin, so we add that
-                View laneParentContainer = (View) parentView.findViewById(R.id.ivLaneSpace1).getParent();
+                ImageView ivLaneSpace = parentView.findViewById(R.id.ivLaneSpace1);
+                View laneParentContainer = (View) ivLaneSpace.getParent();
                 int parentMargin = (int) laneParentContainer.getX();
 
-                laneX1 = (int) parentView.findViewById(R.id.ivLaneSpace1).getX() + parentMargin;
+                laneX1 = (int) ivLaneSpace.getX() + parentMargin;
                 laneX2 = (int) parentView.findViewById(R.id.ivLaneSpace2).getX() + parentMargin;
                 laneX3 = (int) parentView.findViewById(R.id.ivLaneSpace3).getX() + parentMargin;
 
                 //Assign the simple width of the square to copy later
-                laneWidth = parentView.findViewById(R.id.ivLaneSpace1).getWidth();
+                laneWidth = ivLaneSpace.getWidth();
 
                 //Get the game screen bounds
                 Rect headerLayout = new Rect();
@@ -177,9 +174,7 @@ public class DodgeTheCats extends TournamentGame {
                 ImageView catToAnimate = catToRemove;
 
                 catToRemove.animate().cancel();
-                catToRemove.animate().rotation(360).scaleY(0).scaleX(0).setDuration(300).withEndAction(() -> {
-                    catToAnimate.setVisibility(View.GONE);
-                });
+                catToRemove.animate().rotation(360).scaleY(0).scaleX(0).setDuration(300).withEndAction(() -> catToAnimate.setVisibility(View.GONE));
 
                 fallingCats.remove(catToRemove);
                 handlePlayerHit();
@@ -194,7 +189,7 @@ public class DodgeTheCats extends TournamentGame {
             if (!isPlaying)
                 return;
 
-            int postDelay = 0;
+            int postDelay;
 
             //If there are no more cats to send this wave, wait for the next wave and reset counter
             if (currentCatInWave >= catsPerWave) {
@@ -247,7 +242,7 @@ public class DodgeTheCats extends TournamentGame {
         previousLaneIndex = randomLane;
 
         newImage.setX(newX);
-        newImage.setY(0 - ivCatAvatar.getMinimumHeight());
+        newImage.setY(-ivCatAvatar.getMinimumHeight());
 
         ((ViewGroup) ivCatAvatar.getParent()).addView(newImage);
 
@@ -268,14 +263,14 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void handlePlayerHit() {
-        addTimeToTimer(-secondsLostWhenHit);
+        addTimeToTimer(-5);
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_whacked);
     }
 
     private void handlePlayerDodge() {
-        addTimeToTimer(secondsGainedWhenDodged);
+        addTimeToTimer(0.5);
         addScore(scorePerDodge);
     }
 
@@ -298,7 +293,7 @@ public class DodgeTheCats extends TournamentGame {
 
     private int calculateInitialTimeOfCatFalling() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
-        double timeInSeconds = (canineFocus + baseTimeOfCatFalling) / tournamentRankValue;
+        double timeInSeconds = (canineFocus + 3.5) / tournamentRankValue;
         int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 
         return timeInMilliseconds;
@@ -363,7 +358,7 @@ public class DodgeTheCats extends TournamentGame {
 
         private void animateMoveToLane(int xToMoveTo) {
             ivYorkieAvatar.animate().cancel();
-            ivYorkieAvatar.animate().translationX(xToMoveTo).setDuration(timeToSwitchLanes);
+            ivYorkieAvatar.animate().translationX(xToMoveTo).setDuration(75);
         }
     }
 }

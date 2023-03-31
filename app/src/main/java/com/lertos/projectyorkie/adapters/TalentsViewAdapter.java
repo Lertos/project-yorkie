@@ -145,14 +145,14 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvTalentName;
-        private TextView tvTalentDescription;
-        private TextView tvTalentLevel;
-        private TextView tvCurrentBonus;
-        private TextView tvNextBonus;
-        private TextView tvNextCost;
-        private Button btnUpgradeMax;
-        private Button btnUpgradeSingle;
+        private final TextView tvTalentName;
+        private final TextView tvTalentDescription;
+        private final TextView tvTalentLevel;
+        private final TextView tvCurrentBonus;
+        private final TextView tvNextBonus;
+        private final TextView tvNextCost;
+        private final Button btnUpgradeMax;
+        private final Button btnUpgradeSingle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

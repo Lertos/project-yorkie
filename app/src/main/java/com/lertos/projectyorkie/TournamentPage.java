@@ -58,7 +58,7 @@ public class TournamentPage extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         isPageActive = false;
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }
@@ -76,7 +76,7 @@ public class TournamentPage extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
-        ((Button) findViewById(R.id.btnMoveToLobby)).setOnClickListener(v -> {
+        findViewById(R.id.btnMoveToLobby).setOnClickListener(v -> {
             if (difficulty == null) {
                 if (toastMsg != null)
                     toastMsg.cancel();
@@ -104,15 +104,9 @@ public class TournamentPage extends AppCompatActivity {
             startActivity(intent);
         });
 
-        findViewById(R.id.rbDifficultyEasy).setOnClickListener(v -> {
-            pickDifficultyOption(TournamentDifficulty.EASY);
-        });
-        findViewById(R.id.rbDifficultyNormal).setOnClickListener(v -> {
-            pickDifficultyOption(TournamentDifficulty.NORMAL);
-        });
-        findViewById(R.id.rbDifficultyHard).setOnClickListener(v -> {
-            pickDifficultyOption(TournamentDifficulty.HARD);
-        });
+        findViewById(R.id.rbDifficultyEasy).setOnClickListener(v -> pickDifficultyOption(TournamentDifficulty.EASY));
+        findViewById(R.id.rbDifficultyNormal).setOnClickListener(v -> pickDifficultyOption(TournamentDifficulty.NORMAL));
+        findViewById(R.id.rbDifficultyHard).setOnClickListener(v -> pickDifficultyOption(TournamentDifficulty.HARD));
 
         sliderBetAmount.addOnChangeListener((slider, value, fromUser) -> {
             double currentHearts = DataManager.getInstance().getPlayerData().getCurrentHearts();

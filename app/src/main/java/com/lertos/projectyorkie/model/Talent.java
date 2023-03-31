@@ -11,8 +11,6 @@ public class Talent {
     private final String description;
     private final TalentBonusType bonusType;
     private final int bonusSign;
-    private final double costConstant = 500.0;
-    private final double costBase = 5.0;
     private final double costExponentNumerator;
     private final double bonusBase;
     private final double bonusAddedPerLevel;
@@ -68,6 +66,8 @@ public class Talent {
     }
 
     public double getUpgradeCost(int level) {
+        double costConstant = 500.0;
+        double costBase = 5.0;
         double cost;
         double multiplier = Talents.bargainMaster.getCurrentBonus();
 

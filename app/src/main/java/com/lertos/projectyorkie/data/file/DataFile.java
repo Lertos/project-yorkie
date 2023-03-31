@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,7 +24,6 @@ public class DataFile {
     protected final String fileName;
     private final String PAIR_SEPARATOR = ":";
     protected Context context;
-    private final String VALUE_SEPARATOR = "\\|";
     private boolean hasNewChanges = true;
 
     public DataFile(String fileName, Context context) {
@@ -115,7 +113,7 @@ public class DataFile {
     }
 
     public String getValueSeparator() {
-        return VALUE_SEPARATOR;
+        return "\\|";
     }
 
     public boolean getBoolean(Enum enumKey) {
@@ -203,8 +201,6 @@ public class DataFile {
                 sb.append(triple.getFirst().toString()).append(PAIR_SEPARATOR).append(triple.getThird().toString()).append("\n");
 
             fos.write(sb.toString().getBytes(StandardCharsets.UTF_8));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

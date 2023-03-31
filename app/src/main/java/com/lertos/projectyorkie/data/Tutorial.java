@@ -8,7 +8,7 @@ public class Tutorial {
     private final int layoutId;
     private final int viewStubId;
     private boolean hasPlayerSeen;
-    private FileTutorialsKeys fileKey;
+    private final FileTutorialsKeys fileKey;
 
     public Tutorial(String gameClassName, int layoutId, int viewStubId, boolean hasPlayerSeen, FileTutorialsKeys fileKey) {
         this.matchingClassName = gameClassName;

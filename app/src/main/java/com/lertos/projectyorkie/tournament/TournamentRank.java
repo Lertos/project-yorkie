@@ -9,13 +9,11 @@ public class TournamentRank {
     private final int startTier = 5;
     private final int maxTier = 1;
     private TournamentDivision division;
-    private TournamentDivision defaultDivision = TournamentDivision.WOOD;
     private int tier;
-    private int defaultTier = startTier;
 
     public TournamentRank() {
-        this.division = defaultDivision;
-        this.tier = defaultTier;
+        this.division = TournamentDivision.WOOD;
+        this.tier = startTier;
     }
 
     public void setDivision(TournamentDivision division) {
@@ -65,7 +63,7 @@ public class TournamentRank {
     }
 
     //Returns true if they move up a division, false otherwise
-    public boolean increaseTier() {
+    public void increaseTier() {
         tier--;
 
         if (tier < maxTier) {
@@ -74,23 +72,18 @@ public class TournamentRank {
             //If they are at the max division - there is nothing to do; reset to default
             if (newDivision == null) {
                 tier = maxTier;
-                saveRankToFile();
-                return false;
             }
             //If they are not at max division
             else {
                 division = newDivision;
                 tier = startTier;
-                saveRankToFile();
-                return true;
             }
         }
         saveRankToFile();
-        return false;
     }
 
     //Returns true if they move down a division, false otherwise
-    public boolean decreaseTier() {
+    public void decreaseTier() {
         tier++;
 
         if (tier > startTier) {
@@ -99,19 +92,14 @@ public class TournamentRank {
             //If they are at the bottom division - there is nothing to do; reset to default
             if (newDivision == null) {
                 tier = startTier;
-                saveRankToFile();
-                return false;
             }
             //If they are not at the bottom division
             else {
                 division = newDivision;
                 tier = maxTier;
-                saveRankToFile();
-                return true;
             }
         }
         saveRankToFile();
-        return false;
     }
 
     private void saveRankToFile() {
@@ -120,11 +108,7 @@ public class TournamentRank {
     }
 
     public String getRankDisplay() {
-        StringBuilder sb = new StringBuilder(division.getDisplayStr());
-        sb.append(" ");
-        sb.append(getRomanNumeral(tier));
-
-        return sb.toString();
+        return division.getDisplayStr() + " " + getRomanNumeral(tier);
     }
 
     private String getRomanNumeral(int number) {

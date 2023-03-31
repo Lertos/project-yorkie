@@ -9,19 +9,8 @@ public class Activity {
 
     private final String name;
     private int currentLevel = 0;
-    private final int unlockLevel = 15;
-    private double baseHeartTokensPerSecond;
+    private final double baseHeartTokensPerSecond;
     private final int orderPosition;
-    private final double costConstant = 8.0;
-    private final double costBase = 36.0;
-    private final double costExponent = 2.5;
-    private final double costGrowthConstant = 1.30;
-    private final double costGrowthMultiplier = 0.005;
-    private final double incomeConstant = 4.0;
-    private final double incomeBase = 15.0;
-    private final double incomeExponent = 1.5;
-    private final double incomeGrowthConstant = 1.05;
-    private final double incomeGrowthMultiplier = 0.0025;
     private boolean isUnlocked = false;
 
     public Activity(String name, int orderPosition, double baseHeartTokensPerSecond) {
@@ -64,6 +53,7 @@ public class Activity {
     }
 
     public double getUnlockCost() {
+        int unlockLevel = 15;
         double cost = getIncome(unlockLevel * orderPosition) / 10.0 + (orderPosition * 2500.0);
         double multiplier = Talents.greatMinds.getCurrentBonus();
 
@@ -74,9 +64,16 @@ public class Activity {
     }
 
     public double getUpgradeCost(int level) {
+        double costExponent = 2.5;
+        double costBase = 36.0;
+        double costConstant = 8.0;
+
         double consistentHalf = costConstant + costBase * Math.pow(orderPosition, costExponent);
         double cost;
         double multiplier = Talents.petLover.getCurrentBonus();
+
+        double costGrowthMultiplier = 0.005;
+        double costGrowthConstant = 1.30;
 
         if (level == -1)
             cost = consistentHalf * Math.pow((costGrowthConstant - (orderPosition * costGrowthMultiplier)), currentLevel);
@@ -90,6 +87,12 @@ public class Activity {
     }
 
     private double getIncome(int level) {
+        double incomeGrowthMultiplier = 0.0025;
+        double incomeGrowthConstant = 1.05;
+        double incomeExponent = 1.5;
+        double incomeBase = 15.0;
+        double incomeConstant = 4.0;
+
         double totalIncome = incomeConstant + incomeBase * Math.pow(orderPosition, incomeExponent) * Math.pow((incomeGrowthConstant + (orderPosition * incomeGrowthMultiplier)), level);
         double heartsMultiplier = Talents.heartBeater.getCurrentBonus();
         double packMultiplier = DataManager.getInstance().getTotalPackMultiplier();

@@ -36,14 +36,12 @@ public class TournamentContestant {
         currentScore = 0;
     }
 
-    public double addToCurrentScore(double scoreToAdd) {
+    public void addToCurrentScore(double scoreToAdd) {
         currentScore += scoreToAdd;
 
         if (currentScore < 0)
             currentScore = 0;
 
         totalScore += currentScore;
-
-        return currentScore;
     }
 }

@@ -22,9 +22,6 @@ public class TreatToss extends TournamentGame {
     private final Handler gameLoopTimeHandler = new Handler();
     private Runnable gameLoopTimeRunnable;
     private Runnable collisionRunnable;
-    private final double secondsLostForMiss = 5;
-    private final double secondsGainedForHit = 0.5;
-    private final double baseTimeOfTreatMovement = 2.5;
     private final double scorePerHit = 75;
     private final int initialTimeOfTreatMovement;
     private ImageView ivYorkieAvatar;
@@ -41,7 +38,7 @@ public class TreatToss extends TournamentGame {
     private boolean isBeingTossed = false;
     private boolean isInDeathAnimation = false;
     private boolean isReadyForNewTreat = true;
-    private int timeOfTreatToss = 400;
+    private final int timeOfTreatToss = 400;
     private int timeOfTreatMovement;
     //Starting higher so the math works better
     private int currentTreat = 3;
@@ -55,7 +52,7 @@ public class TreatToss extends TournamentGame {
 
     protected void setupUI() {
         //Need the layout to be inflated before doing math using the variables produced inside this block
-        RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
+        RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -77,7 +74,7 @@ public class TreatToss extends TournamentGame {
                 sectionWidth = gameLayout.width();
 
                 //Now that we know all the measurements, let's get the Y positions
-                yorkieY = (int) headerHeight;
+                yorkieY = headerHeight;
                 treatY = sectionHeight - ivSizeToCopy.getHeight();
 
                 //These methods require the variables assigned up above so they need to be in this block
@@ -126,7 +123,7 @@ public class TreatToss extends TournamentGame {
 
             ivTreatAvatar.animate().cancel();
 
-            ivTreatAvatar.animate().translationY(0 - avatarCollisionHeight).setDuration(timeOfTreatToss).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
+            ivTreatAvatar.animate().translationY(-avatarCollisionHeight).setDuration(timeOfTreatToss).setInterpolator(new LinearInterpolator()).withEndAction(() -> {
                 //If there was no collision with the player, they missed so punish them
                 if (!isReadyForNewTreat && isBeingTossed) {
                     handleTreatMiss();
@@ -222,22 +219,20 @@ public class TreatToss extends TournamentGame {
         ivTreatAvatar.setRotation(0);
 
         ivTreatAvatar.animate().cancel();
-        ivTreatAvatar.animate().translationX(xToSendTo).setDuration(timeOfTreatMovement).withEndAction(() -> {
-            isAnimating = false;
-        });
+        ivTreatAvatar.animate().translationX(xToSendTo).setDuration(timeOfTreatMovement).withEndAction(() -> isAnimating = false);
 
         isAnimating = true;
     }
 
     private void handleTreatMiss() {
-        addTimeToTimer(-secondsLostForMiss);
+        addTimeToTimer(-5);
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_miss_with_treat);
     }
 
     private void handlePlayerHitWithTreat() {
-        addTimeToTimer(secondsGainedForHit);
+        addTimeToTimer(0.5);
         currentTreat++;
 
         if (isPlaying)
@@ -265,7 +260,7 @@ public class TreatToss extends TournamentGame {
 
     private int calculateInitialTimeOfTreatMovement() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
-        double timeInSeconds = (canineFocus + baseTimeOfTreatMovement) / tournamentRankValue;
+        double timeInSeconds = (canineFocus + 2.5) / tournamentRankValue;
         int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 
         return timeInMilliseconds;

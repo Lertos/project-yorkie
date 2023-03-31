@@ -7,10 +7,10 @@ import java.util.List;
 
 public class FileManager {
 
-    private List<DataFile> filesToSave;
-    private FileSettings fileSettings;
-    private FilePlayer filePlayer;
-    private FileTutorials fileTutorials;
+    private final List<DataFile> filesToSave;
+    private final FileSettings fileSettings;
+    private final FilePlayer filePlayer;
+    private final FileTutorials fileTutorials;
 
     public FileManager(Context context) {
         filesToSave = new ArrayList<>();

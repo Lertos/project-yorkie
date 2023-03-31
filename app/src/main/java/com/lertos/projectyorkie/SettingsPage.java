@@ -42,7 +42,7 @@ public class SettingsPage extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }

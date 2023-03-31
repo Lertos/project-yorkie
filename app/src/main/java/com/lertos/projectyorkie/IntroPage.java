@@ -28,7 +28,7 @@ public class IntroPage extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }
@@ -76,9 +76,7 @@ public class IntroPage extends AppCompatActivity {
                             tvLine5.animate().alpha(1f).setDuration(timeBetween * 2).withEndAction(() -> {
                                 MediaManager.getInstance().playSongTrack(R.raw.music_main_loop, true);
 
-                                tvLine6.animate().alpha(1f).setDuration(timeBetween / 2).withEndAction(() -> {
-                                    findViewById(R.id.btnConfirm).setVisibility(View.VISIBLE);
-                                });
+                                tvLine6.animate().alpha(1f).setDuration(timeBetween / 2).withEndAction(() -> findViewById(R.id.btnConfirm).setVisibility(View.VISIBLE));
                             });
                         });
                     });

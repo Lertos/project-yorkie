@@ -35,21 +35,11 @@ public class Helper {
     }
 
     public static void setupBottomButtonBar(AppCompatActivity activity) {
-        activity.findViewById(R.id.btnHome).setOnClickListener(v -> {
-            chooseActivityToSwitchTo(activity, HomePage.class);
-        });
-        activity.findViewById(R.id.btnActivities).setOnClickListener(v -> {
-            chooseActivityToSwitchTo(activity, ActivityPage.class);
-        });
-        activity.findViewById(R.id.btnPetting).setOnClickListener(v -> {
-            chooseActivityToSwitchTo(activity, PettingPage.class);
-        });
-        activity.findViewById(R.id.btnTournament).setOnClickListener(v -> {
-            chooseActivityToSwitchTo(activity, TournamentPage.class);
-        });
-        activity.findViewById(R.id.btnSettings).setOnClickListener(v -> {
-            chooseActivityToSwitchTo(activity, SettingsPage.class);
-        });
+        activity.findViewById(R.id.btnHome).setOnClickListener(v -> chooseActivityToSwitchTo(activity, HomePage.class));
+        activity.findViewById(R.id.btnActivities).setOnClickListener(v -> chooseActivityToSwitchTo(activity, ActivityPage.class));
+        activity.findViewById(R.id.btnPetting).setOnClickListener(v -> chooseActivityToSwitchTo(activity, PettingPage.class));
+        activity.findViewById(R.id.btnTournament).setOnClickListener(v -> chooseActivityToSwitchTo(activity, TournamentPage.class));
+        activity.findViewById(R.id.btnSettings).setOnClickListener(v -> chooseActivityToSwitchTo(activity, SettingsPage.class));
     }
 
     public static void chooseActivityToSwitchTo(AppCompatActivity activity, Class desiredClass) {

@@ -25,18 +25,14 @@ import java.util.Set;
 
 public class WhackTheCat extends TournamentGame {
 
-    private ArrayList<View> avatars;
-    private ArrayList<View> avatarsInUse;
+    private final ArrayList<View> avatars;
+    private final ArrayList<View> avatarsInUse;
     private final int sizeAvatarInDP = 40;
     private final int sizeSquareInDP = 55;
-    private final int numberOfRows = 3;
-    private final int numberOfCols = 3;
     private final Handler disappearTimeHandler = new Handler();
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
     private final double secondsLostWhenMissed = 4;
-    private final double secondsGainedWhenCorrect = 0.5;
-    private final double baseDisappearTime = 3.0;
     private final double scorePerClick = 50;
     private int timeToRise;
     private int timeToDisappear;
@@ -57,7 +53,7 @@ public class WhackTheCat extends TournamentGame {
 
     protected void setupUI() {
         //Need the layout to be inflated before doing math using the variables produced inside this block
-        RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
+        RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -115,11 +111,13 @@ public class WhackTheCat extends TournamentGame {
     private void addImagesToView() {
         RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         //These are to give even spacing, so: (SPACE) (OBJ) (SPACE) (OBJ) (SPACE) for example
+        int numberOfCols = 3;
+        int numberOfRows = 3;
         int xFraction = sectionWidth / ((numberOfCols * 2) + 1);
         int yFraction = sectionHeight / ((numberOfRows * 2) + 1);
 
-        for (int i=0; i<numberOfRows; i++) {
-            for (int j=0; j<numberOfCols; j++) {
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfCols; j++) {
                 View view = LayoutInflater.from(parentView).inflate(R.layout.sub_page_whack_cat_item, null);
 
                 RelativeLayout.LayoutParams params = createLayoutParams();
@@ -156,13 +154,11 @@ public class WhackTheCat extends TournamentGame {
         return avatar;
     }
 
-    private ImageView setMaxDimensionsForSquare(ViewGroup imageGroup) {
+    private void setMaxDimensionsForSquare(ViewGroup imageGroup) {
         ImageView square = ((ImageView) imageGroup.getChildAt(1));
 
         square.setMinimumHeight(pixelValue(sizeSquareInDP));
         square.setMaxHeight(pixelValue(sizeSquareInDP));
-
-        return square;
     }
 
     private void setupOnClickListeners() {
@@ -173,9 +169,7 @@ public class WhackTheCat extends TournamentGame {
                     handleSquareClicked();
 
                     //Animate the transition back to the avatars original position
-                    v.animate().translationY(0).setDuration(100).withEndAction(() -> {
-                        avatarsInUse.remove(view);
-                    });
+                    v.animate().translationY(0).setDuration(100).withEndAction(() -> avatarsInUse.remove(view));
                 }
                 //If the player clicks an inactive spot (wrong click / timing / spamming) - take time away
                 else {
@@ -186,7 +180,7 @@ public class WhackTheCat extends TournamentGame {
     }
 
     private void handleSquareClicked() {
-        addTimeToTimer(secondsGainedWhenCorrect);
+        addTimeToTimer(0.5);
         currentSquare++;
 
         if (isPlaying)
@@ -279,7 +273,7 @@ public class WhackTheCat extends TournamentGame {
 
     private int calculateInitialDisappearTime() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
-        double timeInSeconds = (canineFocus + baseDisappearTime) / tournamentRankValue;
+        double timeInSeconds = (canineFocus + 3.0) / tournamentRankValue;
         int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 
         return timeInMilliseconds;

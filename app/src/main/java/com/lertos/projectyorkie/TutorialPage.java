@@ -51,7 +51,7 @@ public class TutorialPage extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }
@@ -118,8 +118,6 @@ public class TutorialPage extends AppCompatActivity {
         ViewStub stub = findViewById(viewStubId);
 
         stub.setLayoutResource(layoutId);
-
-        if (stub != null)
-            stub.inflate();
+        stub.inflate();
     }
 }

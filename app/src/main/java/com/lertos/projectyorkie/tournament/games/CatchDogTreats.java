@@ -22,9 +22,6 @@ import java.util.ArrayList;
 public class CatchDogTreats extends TournamentGame {
 
     private final Handler disappearTimeHandler = new Handler();
-    private final double secondsLostWhenMissed = 4;
-    private final double secondsGainedWhenCorrect = 1;
-    private final double baseDisappearTime = 3.0;
     private final double scorePerClick = 50;
     private final int initialSquareDisappearTime;
     private Runnable disappearTimeRunnable;
@@ -48,7 +45,7 @@ public class CatchDogTreats extends TournamentGame {
 
     protected void setupUI() {
         //Need the layout to be inflated before doing math using the variables produced inside this block
-        RelativeLayout layout = (RelativeLayout) parentView.findViewById(R.id.relMainSection);
+        RelativeLayout layout = parentView.findViewById(R.id.relMainSection);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -145,6 +142,7 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void handleSquareClicked(ImageView fallingSquare) {
+        double secondsGainedWhenCorrect = 1;
         addTimeToTimer(secondsGainedWhenCorrect);
         currentSquare++;
 
@@ -165,6 +163,7 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void handleWrongClick() {
+        double secondsLostWhenMissed = 4;
         addTimeToTimer(-secondsLostWhenMissed);
 
         if (isPlaying)
@@ -215,11 +214,10 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private float getCorrectedX(float dropSquareX, int mainSquareWidth, int dropSquareWidth) {
-        float xPos = dropSquareX;
         int widthDifference = dropSquareWidth - mainSquareWidth;
         int halfWidthDifference = Math.round(widthDifference / 2);
 
-        return xPos + halfWidthDifference;
+        return dropSquareX + halfWidthDifference;
     }
 
     protected int getAverageScore() {
@@ -241,6 +239,7 @@ public class CatchDogTreats extends TournamentGame {
 
     private int calculateInitialDisappearTime() {
         int tournamentRankValue = DataManager.getInstance().getPlayerData().getTournamentRank().getRankValue();
+        double baseDisappearTime = 3.0;
         double timeInSeconds = (canineFocus + baseDisappearTime) / tournamentRankValue;
         int timeInMilliseconds = (int) Math.round(timeInSeconds * 1000);
 

@@ -115,11 +115,11 @@ public class DataManager {
 
     private String getTimeFromSeconds(long totalSeconds) {
         long runningSeconds = totalSeconds;
-        long hours = (int) Math.floor(runningSeconds / 3600);
+        long hours = (int) Math.floor(runningSeconds / 3600.0);
 
         runningSeconds -= hours * 3600;
 
-        long minutes = (int) Math.floor(runningSeconds / 60);
+        long minutes = (int) Math.floor(runningSeconds / 60.0);
 
         runningSeconds -= minutes * 60;
 

@@ -24,15 +24,13 @@ public class TournamentMaster {
 
     private final TournamentLobbyPage lobbyPage;
     private View inflatedStub;
-    private final int maxAIContestants = 3;
-    private final double maxScoreModifier = 0.3;
-    private ArrayList<TournamentGame> listOfGames;
+    private final ArrayList<TournamentGame> listOfGames;
     private TournamentGame currentGame;
     private final ArrayList<TournamentContestant> contestants;
     private final TournamentDifficulty tournamentDifficulty;
     private final double initialBet;
     private double rewardBonusPercentage;
-    private Random rng;
+    private final Random rng;
     private int playerFinalPosition;
     private double playerFinalReward;
     private String previousRank;
@@ -83,9 +81,8 @@ public class TournamentMaster {
             return;
 
         int randIndex = rng.nextInt(listOfGames.size());
-        TournamentGame nextGame = listOfGames.get(randIndex);
 
-        currentGame = nextGame;
+        currentGame = listOfGames.get(randIndex);
     }
 
     public String getCurrentGameName() {
@@ -151,7 +148,9 @@ public class TournamentMaster {
         PackDog player = new PackDog("You", R.mipmap.portrait_loki);
         contestantList.add(new TournamentContestant(player, true));
 
-        for (int i=0; i < maxAIContestants; i++) {
+        int maxAIContestants = 3;
+
+        for (int i = 0; i < maxAIContestants; i++) {
             PackDog newPackDog = null;
             boolean alreadyExists = true;
 
@@ -364,6 +363,8 @@ public class TournamentMaster {
     }
 
     private void updateContestantScores() {
+        double maxScoreModifier = 0.3;
+
         int averageScore = currentGame.getAverageScore();
         int scoreBound = (int) Math.round(averageScore * maxScoreModifier);
         int lowScoreBound = averageScore - scoreBound;

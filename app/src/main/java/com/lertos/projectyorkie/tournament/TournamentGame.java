@@ -19,7 +19,7 @@ public abstract class TournamentGame {
     protected Random rng = new Random();
     private final String gameTitle;
     private final String gameHint;
-    private TournamentMaster tournamentMaster;
+    private final TournamentMaster tournamentMaster;
     protected TournamentDifficulty tournamentDifficulty;
     protected AppCompatActivity parentView;
     protected boolean isPlaying = false;

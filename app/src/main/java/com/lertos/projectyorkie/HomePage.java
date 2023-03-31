@@ -59,7 +59,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void prepareToLoadPopup() {
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.relScreen);
+        RelativeLayout layout = findViewById(R.id.relScreen);
         ViewTreeObserver vto = layout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -137,7 +137,7 @@ public class HomePage extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         isPageActive = false;
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }

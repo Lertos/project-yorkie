@@ -34,9 +34,7 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-
-        return holder;
+        return new ViewHolder(view);
     }
 
     private void displayNotEnoughHeartsToast(View view) {
@@ -167,14 +165,14 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvActivityName;
-        private TextView tvActivityLevel;
-        private TextView tvCurrentOutput;
-        private TextView tvNextOutput;
-        private TextView tvUpgradeCost;
-        private Button btnUpgradeMax;
-        private Button btnUpgradeSingle;
-        private Button btnUpgradeUnlock;
+        private final TextView tvActivityName;
+        private final TextView tvActivityLevel;
+        private final TextView tvCurrentOutput;
+        private final TextView tvNextOutput;
+        private final TextView tvUpgradeCost;
+        private final Button btnUpgradeMax;
+        private final Button btnUpgradeSingle;
+        private final Button btnUpgradeUnlock;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

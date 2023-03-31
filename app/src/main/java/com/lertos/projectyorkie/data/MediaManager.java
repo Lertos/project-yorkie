@@ -65,9 +65,7 @@ public class MediaManager {
 
         trackEffect.setVolume(trackEffectVolume, trackEffectVolume);
 
-        trackEffect.setOnCompletionListener(mediaPlayer -> {
-            trackEffect.release();
-        });
+        trackEffect.setOnCompletionListener(mediaPlayer -> trackEffect.release());
 
         trackEffect.start();
     }

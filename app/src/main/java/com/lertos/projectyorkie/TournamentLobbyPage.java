@@ -66,7 +66,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         isPageActive = false;
-        if (MediaManager.getInstance().switchedScreens == false)
+        if (!MediaManager.getInstance().switchedScreens)
             MediaManager.getInstance().pauseSong();
         MediaManager.getInstance().switchedScreens = false;
     }
@@ -116,21 +116,10 @@ public class TournamentLobbyPage extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnLeaveScoreScreen).setOnClickListener(v -> {
-            currentGameEnded();
-        });
-
-        findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> {
-            super.finish();
-        });
-
-        findViewById(R.id.btnSeeEndResults).setOnClickListener(v -> {
-            showTournamentEndScreen();
-        });
-
-        findViewById(R.id.btnEndTournament).setOnClickListener(v -> {
-            super.finish();
-        });
+        findViewById(R.id.btnLeaveScoreScreen).setOnClickListener(v -> currentGameEnded());
+        findViewById(R.id.btnLeaveTournament).setOnClickListener(v -> super.finish());
+        findViewById(R.id.btnSeeEndResults).setOnClickListener(v -> showTournamentEndScreen());
+        findViewById(R.id.btnEndTournament).setOnClickListener(v -> super.finish());
     }
 
     private void showTournamentEndScreen() {
@@ -221,9 +210,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
 
                 views.remove(0);
 
-                currentView.animate().alpha(1).setDuration(timePerAction).withEndAction(() -> {
-                    MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
-                });
+                currentView.animate().alpha(1).setDuration(timePerAction).withEndAction(() -> MediaManager.getInstance().playEffectTrack(R.raw.effect_correct));
 
                 handler.postDelayed(this, timePerAction);
             }
@@ -276,9 +263,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
                 dogLayout2.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
                     MediaManager.getInstance().playEffectTrack(R.raw.effect_popup_4);
 
-                    dogLayout1.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(() -> {
-                        showBottomSectionInfo();
-                    });
+                    dogLayout1.animate().alpha(1).setDuration(msToShowEachContestant).withEndAction(this::showBottomSectionInfo);
                 });
             });
         });
