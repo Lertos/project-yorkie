@@ -18,7 +18,7 @@ public class FilePlayer extends DataFile {
             new Triple(FilePlayerKeys.DATA_CURRENT_RANK_NAME, String.class, "Wood"),
             new Triple(FilePlayerKeys.DATA_CURRENT_RANK_TIER, int.class, "5"),
             new Triple(FilePlayerKeys.DATA_CURRENT_HEARTS, double.class, "1000"),
-            new Triple(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, double.class, "5000"),
+            new Triple(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, double.class, "7500"),
             new Triple(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, String.class, ""),
             new Triple(FilePlayerKeys.DATA_TALENT_LEVELS, String.class, ""),
             new Triple(FilePlayerKeys.DATA_ACTIVITY_LEVELS, String.class, "")
