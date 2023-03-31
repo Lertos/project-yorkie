@@ -13,12 +13,11 @@
     <string name="tutorial_home_page">
         The Home Page is used to upgrade your Talents, check your pack of dogs, and see your currency\n\n\n
         There are two currencies: Hearts and Heart Tokens. Both can be gained passively (see the Activities page)\n\n\n
-        Talents give an overall bonus to multiple aspects of the game. Upgrade these with your Heart currency\n\n\n
-        Each dog from your pack gives a multiplier bonus to your Hearts per second
+        Talents give an overall bonus to multiple aspects of the game\n\n\n
+        Each dog in your pack gives a multiplier bonus to your Hearts per second
     </string>
     <string name="tutorial_activity_page">
         Activities are the main way to gain more Hearts and Heart Tokens passively (even while offline)\n\n\n
-        Upgrading them will yield higher returns\n\n\n
         Each activity has a different curve; don\'t put all your eggs in one basket!
     </string>
     <string name="tutorial_petting_page">
