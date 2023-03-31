@@ -15,7 +15,8 @@ public class PettingMaster {
     private final int startThreshold;
     private final int costHeartTokensPerThreshold = 1500;
     private final int squaresPerThreshold = 10;
-    private final double rewardMultiplier = 1.5;
+    private final double baseRewardMultiplier = 50.0;
+    private final double rewardMultiplierPerThreshold = 7.5;
     private final double baseDisappearTime = 4.5;
     private double endReward = 0;
     private double currentSquareDisappearTime;
@@ -134,29 +135,20 @@ public class PettingMaster {
 
     public double getHeartsReward() {
         double heartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
-        double heartTokensPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartTokensPerSecond();
-        double heartsPerToken = heartsPerSecond / heartTokensPerSecond;
-        double heartsReward;
+        double rewardMultiplier = baseRewardMultiplier;
 
-        //Get the reward for threshold, the uncompleted threshold, find the difference, then find the reward for the highest square
-        if (currentSquareNumber % squaresPerThreshold == 0)
-            heartsReward = heartsPerToken * (costHeartTokensPerThreshold * currentThreshold);
-        else {
-            double thresholdReward = heartsPerToken * (costHeartTokensPerThreshold * (currentThreshold / squaresPerThreshold));
-            double finishedSquares = currentSquareNumber - currentThreshold;
-            double finishedSquaresRatio = finishedSquares / squaresPerThreshold;
-            double rewardForRatio = heartsPerToken * finishedSquaresRatio;
+        //Apply the reward bonus for the amount of thresholds
+        rewardMultiplier += currentThreshold * rewardMultiplierPerThreshold;
 
-            heartsReward = thresholdReward + rewardForRatio;
+        //If there are leftover squares
+        if (currentSquareNumber % squaresPerThreshold != 0) {
+            int remainingSquares = currentSquareNumber % squaresPerThreshold;
+            double rewardPerSquare = rewardMultiplierPerThreshold / squaresPerThreshold;
+
+            rewardMultiplier += remainingSquares * rewardPerSquare;
         }
 
-        //Apply the multipliers
-        double packMultiplier = DataManager.getInstance().getTotalPackMultiplier();
-
-        if (packMultiplier != 0)
-            heartsReward *= packMultiplier;
-
-        return heartsReward * rewardMultiplier;
+        return heartsPerSecond * rewardMultiplier;
     }
 
     public double getEndReward() {
