@@ -32,7 +32,7 @@ public class IdleNumber {
         sb.append(strNumber.substring(0, importantDigits));
         if (importantDigits != 0 && highestDigit != 0) {
             sb.append(".");
-            sb.append(strNumber.charAt(importantDigits));
+            sb.append(strNumber.substring(importantDigits, importantDigits + 2));
         }
         sb.append(identifier);
 
