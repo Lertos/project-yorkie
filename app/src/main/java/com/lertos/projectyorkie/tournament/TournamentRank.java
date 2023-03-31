@@ -1,6 +1,7 @@
 package com.lertos.projectyorkie.tournament;
 
 import com.lertos.projectyorkie.data.DataManager;
+import com.lertos.projectyorkie.data.Talents;
 import com.lertos.projectyorkie.data.file.FilePlayerKeys;
 
 public class TournamentRank {
@@ -58,6 +59,11 @@ public class TournamentRank {
                 heartTokens = 0;
         }
         heartTokens += heartTokens / (double) tier;
+
+        double multiplier = Talents.purrsuasion.getCurrentBonus();
+
+        if (multiplier != 0)
+            heartTokens -= Math.abs(heartTokens * multiplier) - Math.abs(heartTokens);
 
         return heartTokens;
     }
