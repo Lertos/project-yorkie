@@ -8,16 +8,10 @@ import com.lertos.projectyorkie.data.Talents;
 public class PettingMaster {
 
     private final double puppyPower;
-    private final double baseSecondsLostWhenMissed = 4;
-    private final double baseSecondsGainedWhenCorrect = 1;
     private final double secondsLostWhenMissed;
     private final double secondsGainedWhenCorrect;
     private final int startThreshold;
-    private final int costHeartTokensPerThreshold = 1500;
     private final int squaresPerThreshold = 10;
-    private final double baseRewardMultiplier = 50.0;
-    private final double rewardMultiplierPerThreshold = 7.5;
-    private final double baseDisappearTime = 4.5;
     private double endReward = 0;
     private double currentSquareDisappearTime;
     private int currentSquareNumber;
@@ -25,9 +19,12 @@ public class PettingMaster {
     private final double timerStartValue = 30.0;
     private double currentTimeLeft;
     private boolean isActive = true;
-    private int millisecondsPerUpdate = 100;
+    private final int millisecondsPerUpdate = 100;
 
     public PettingMaster() {
+        double baseSecondsLostWhenMissed = 4;
+        double baseSecondsGainedWhenCorrect = 1;
+
         this.puppyPower = Talents.pettingPower.getCurrentBonus();
         this.secondsLostWhenMissed = baseSecondsLostWhenMissed - Talents.laxTreatment.getCurrentBonus();
         this.secondsGainedWhenCorrect = baseSecondsGainedWhenCorrect + Talents.pupPrecision.getCurrentBonus();
@@ -81,6 +78,7 @@ public class PettingMaster {
     }
 
     public double getStartCost() {
+        int costHeartTokensPerThreshold = 1500;
         double cost = Math.max(costHeartTokensPerThreshold, costHeartTokensPerThreshold * startThreshold);
         double multiplier = Talents.purrsuasion.getCurrentBonus();
 
@@ -130,10 +128,14 @@ public class PettingMaster {
     }
 
     private double calculateNextDisappearTime() {
+        double baseDisappearTime = 4.5;
         return (puppyPower + baseDisappearTime) / (double) currentSquareNumber;
     }
 
     public double getHeartsReward() {
+        double baseRewardMultiplier = 50.0;
+        double rewardMultiplierPerThreshold = 7.5;
+
         double heartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
         double rewardMultiplier = baseRewardMultiplier;
 
