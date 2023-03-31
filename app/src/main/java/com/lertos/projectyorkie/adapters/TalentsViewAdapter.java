@@ -165,7 +165,6 @@ public class TalentsViewAdapter extends RecyclerView.Adapter<TalentsViewAdapter.
             tvNextCost = itemView.findViewById(R.id.tvHeartsToUpgrade);
             btnUpgradeMax = itemView.findViewById(R.id.btnUpgradeMax);
             btnUpgradeSingle = itemView.findViewById(R.id.btnUpgradeSingle);
-
         }
     }
 

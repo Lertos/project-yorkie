@@ -185,7 +185,6 @@ public class ActivityViewAdapter extends RecyclerView.Adapter<ActivityViewAdapte
             btnUpgradeMax = itemView.findViewById(R.id.btnUpgradeMax);
             btnUpgradeSingle = itemView.findViewById(R.id.btnUpgradeSingle);
             btnUpgradeUnlock = itemView.findViewById(R.id.btnUpgradeUnlock);
-
         }
     }
 
