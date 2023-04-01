@@ -2,14 +2,7 @@ package com.lertos.projectyorkie;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,37 +71,14 @@ public class HomePage extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         isPageActive = true;
+
         if (DataManager.getInstance().isMinimized()) {
             if (DataManager.getInstance().getTimeAwayTotalTime() != null)
-                prepareToLoadPopup();
+                new PopupTimeAway(this, R.id.relScreen);
             DataManager.getInstance().setMinimized(false);
         }
         updateUIWithCurrentData();
         MediaManager.getInstance().startSong();
-    }
-
-    private void prepareToLoadPopup() {
-        RelativeLayout layout = findViewById(R.id.relScreen);
-        ViewTreeObserver vto = layout.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-                View view = loadTimeAwayPopup();
-
-                String timeAwayTotalTime = DataManager.getInstance().getTimeAwayTotalTime();
-                double timeAwayHeartsGained = DataManager.getInstance().getTimeAwayHeartsGained();
-                double timeAwayTokensGained = DataManager.getInstance().getTimeAwayTokensGained();
-
-                ((TextView) view.findViewById(R.id.tvPopupTimeAway)).setText(timeAwayTotalTime);
-                ((TextView) view.findViewById(R.id.tvPopupHeartsGained)).setText(IdleNumber.getStrNumber(timeAwayHeartsGained) + " Hearts");
-                ((TextView) view.findViewById(R.id.tvPopupTokensGained)).setText(IdleNumber.getStrNumber(timeAwayTokensGained) + " Tokens");
-
-                Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha_on_off);
-                view.findViewById(R.id.tvCloseMessage).startAnimation(anim);
-            }
-        });
     }
 
     private void loadMainData() {
@@ -116,29 +86,6 @@ public class HomePage extends AppCompatActivity {
         MediaManager.getInstance().start(this);
         DataManager.getInstance().start(this);
         DataManager.getInstance().getPlayerData().setHighlightColor(ContextCompat.getColor(this, R.color.main_text_color));
-    }
-
-    private View loadTimeAwayPopup() {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_time_away, null);
-
-        int width = RelativeLayout.LayoutParams.MATCH_PARENT;
-        int height = RelativeLayout.LayoutParams.MATCH_PARENT;
-
-        //4th argument ignores clicks/taps outside the popup
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-
-        //The view passed doesn't matter, it is only used for the window token
-        popupWindow.showAtLocation(findViewById(R.id.relScreen), Gravity.CENTER, 0, 0);
-
-        //Dismiss the popup when ignore clicks to anything else
-        popupView.setOnClickListener(v -> {
-            v.findViewById(R.id.tvCloseMessage).animate().cancel();
-
-            popupWindow.dismiss();
-        });
-
-        return popupWindow.getContentView();
     }
 
     private void setupRecyclerViews() {
