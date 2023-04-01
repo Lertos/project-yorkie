@@ -48,6 +48,7 @@ public class TreatToss extends TournamentGame {
 
         initialTimeOfTreatMovement = calculateInitialTimeOfTreatMovement();
         timeOfTreatMovement = initialTimeOfTreatMovement;
+        setNextTimeOfTreatMovement();
     }
 
     protected void setupUI() {
@@ -157,7 +158,7 @@ public class TreatToss extends TournamentGame {
                     }
                 }
             }
-            handler.postDelayed(collisionRunnable, 50);
+            handler.postDelayed(collisionRunnable, 25);
         };
         handler.post(collisionRunnable);
     }
@@ -267,7 +268,7 @@ public class TreatToss extends TournamentGame {
     }
 
     private void setNextTimeOfTreatMovement() {
-        timeOfTreatMovement = (int) Math.floor(initialTimeOfTreatMovement / ((currentTreat + 1) / 2.0)); //+1 is so math works better
+        timeOfTreatMovement = (int) Math.min(1500, Math.floor(initialTimeOfTreatMovement / ((currentTreat + 1) / 2.0))); //+1 is so math works better
     }
 
 }

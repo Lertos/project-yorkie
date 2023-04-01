@@ -49,6 +49,7 @@ public class WhackTheCat extends TournamentGame {
 
         initialSquareDisappearTime = calculateInitialDisappearTime();
         currentSquareDisappearTime = initialSquareDisappearTime;
+        setNextDisappearTime();
     }
 
     protected void setupUI() {
@@ -280,7 +281,7 @@ public class WhackTheCat extends TournamentGame {
     }
 
     private void setNextDisappearTime() {
-        currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / (currentSquare / 2.0));
+        currentSquareDisappearTime = (int) Math.min(1500, Math.floor(initialSquareDisappearTime / (currentSquare / 2.0)));
     }
 
 }

@@ -49,7 +49,7 @@ public class DodgeTheCats extends TournamentGame {
     private int previousLaneIndex = 1;
     private int currentWave = 2;
     private int currentCatInWave = 1;
-    private final int catsPerWave = 6;
+    private final int catsPerWave = 5;
 
     public DodgeTheCats(TournamentMaster tournamentMaster, TournamentDifficulty difficulty, AppCompatActivity view, String gameTitle, String gameHint) {
         super(tournamentMaster, difficulty, view, gameTitle, gameHint);
@@ -58,6 +58,7 @@ public class DodgeTheCats extends TournamentGame {
 
         initialTimeOfCatFalling = calculateInitialTimeOfCatFalling();
         timeOfCatFalling = initialTimeOfCatFalling;
+        setNextTimeOfCatFalling();
     }
 
     protected void setupUI() {
@@ -179,7 +180,7 @@ public class DodgeTheCats extends TournamentGame {
                 fallingCats.remove(catToRemove);
                 handlePlayerHit();
             }
-            handler.postDelayed(collisionRunnable, 100);
+            handler.postDelayed(collisionRunnable, 50);
         };
         handler.post(collisionRunnable);
     }
@@ -279,13 +280,13 @@ public class DodgeTheCats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerDodge * 13;
+                score = scorePerDodge * 15;
                 break;
             case NORMAL:
-                score = scorePerDodge * 16;
+                score = scorePerDodge * 19;
                 break;
             case HARD:
-                score = scorePerDodge * 20;
+                score = scorePerDodge * 23;
                 break;
         }
         return (int) Math.round(score);
@@ -300,7 +301,7 @@ public class DodgeTheCats extends TournamentGame {
     }
 
     private void setNextTimeOfCatFalling() {
-        timeOfCatFalling = (int) Math.floor(initialTimeOfCatFalling / ((currentWave + 1) / 2.0)); //+1 is so math works better
+        timeOfCatFalling = (int) Math.min(2000, Math.floor(initialTimeOfCatFalling / ((currentWave + 1) / 2.0))); //+1 is so math works better
     }
 
     private void setTimeBetweenCats() {

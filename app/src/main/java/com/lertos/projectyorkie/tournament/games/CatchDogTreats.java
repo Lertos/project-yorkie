@@ -41,6 +41,7 @@ public class CatchDogTreats extends TournamentGame {
 
         initialSquareDisappearTime = calculateInitialDisappearTime();
         currentSquareDisappearTime = initialSquareDisappearTime;
+        setNextDisappearTime();
     }
 
     protected void setupUI() {
@@ -82,13 +83,13 @@ public class CatchDogTreats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                timeToFall = 1200;
+                timeToFall = 1300;
                 break;
             case NORMAL:
-                timeToFall = 1000;
+                timeToFall = 1100;
                 break;
             case HARD:
-                timeToFall = 800;
+                timeToFall = 900;
                 break;
         }
 
@@ -147,7 +148,7 @@ public class CatchDogTreats extends TournamentGame {
         currentSquare++;
 
         //Making them fall a little quicker each time
-        timeToFall -= 20;
+        timeToFall = Math.max(400, timeToFall - 20);
 
         if (isPlaying)
             MediaManager.getInstance().playEffectTrack(R.raw.effect_correct);
@@ -247,7 +248,7 @@ public class CatchDogTreats extends TournamentGame {
     }
 
     private void setNextDisappearTime() {
-        currentSquareDisappearTime = (int) Math.floor(initialSquareDisappearTime / (currentSquare / 2.0));
+        currentSquareDisappearTime = (int) Math.min(1500, Math.floor(initialSquareDisappearTime / (currentSquare / 2.0)));
     }
 
 }
