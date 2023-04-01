@@ -116,10 +116,6 @@ public class DataManager {
         }
 
         setTimeAwayValue();
-
-        //Start the repeating loops
-        startAutoSaveRunnable();
-        startMainGameLoop();
     }
 
     private void setTimeAwayValue() {
