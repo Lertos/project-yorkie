@@ -63,8 +63,7 @@ public class TutorialPage extends AppCompatActivity {
         super.onResume();
 
         if (DataManager.getInstance().isMinimized()) {
-            if (DataManager.getInstance().getTimeAwayTotalTime() != null)
-                new PopupTimeAway(this, R.id.btnConfirm);
+            new PopupTimeAway(this, R.id.btnConfirm);
             DataManager.getInstance().setMinimized(false);
         }
 

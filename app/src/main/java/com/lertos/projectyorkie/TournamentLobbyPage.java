@@ -79,8 +79,7 @@ public class TournamentLobbyPage extends AppCompatActivity {
         isPageActive = true;
 
         if (DataManager.getInstance().isMinimized()) {
-            if (DataManager.getInstance().getTimeAwayTotalTime() != null)
-                new PopupTimeAway(this, R.id.relScreen);
+            new PopupTimeAway(this, R.id.relScreen);
             DataManager.getInstance().setMinimized(false);
         }
         MediaManager.getInstance().startSong();
