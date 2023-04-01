@@ -30,7 +30,7 @@ public class DataManager {
 
     private boolean hasPlayedBefore;
     public boolean switchedScreens = false;
-    private boolean isMinimized;
+    private boolean isMinimized = true;
     private String timeAwayTotalTime;
     private double timeAwayHeartsGained;
     private double timeAwayTokensGained;
@@ -64,7 +64,6 @@ public class DataManager {
         fileManager = new FileManager(context);
 
         hasPlayedBefore = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_HAS_PLAYED_BEFORE);
-        isMinimized = false;
 
         //Make sure they don't see the intro past the first time
         if (!hasPlayedBefore)
@@ -98,8 +97,6 @@ public class DataManager {
 
         setHeartsPerSecond();
         setHeartTokensPerSecond();
-
-        processTimeAwayRewards();
     }
 
     private void processTimeAwayRewards() {
@@ -119,6 +116,10 @@ public class DataManager {
         }
 
         setTimeAwayValue();
+
+        //Start the repeating loops
+        startAutoSaveRunnable();
+        startMainGameLoop();
     }
 
     private void setTimeAwayValue() {
@@ -239,10 +240,6 @@ public class DataManager {
         rank.setTier(currentTier);
 
         playerData.setTournamentRank(rank);
-
-        //Start the repeating loops
-        startAutoSaveRunnable();
-        startMainGameLoop();
     }
 
     private void startAutoSaveRunnable() {
