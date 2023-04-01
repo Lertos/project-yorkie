@@ -33,7 +33,7 @@ public class TournamentPage extends AppCompatActivity {
         setContentView(R.layout.page_tournament);
 
         if (!isPageActive) {
-            updateUIWithCurrentHeartTokens();
+            updateUIWithCurrentData();
             isPageActive = true;
         }
 
@@ -68,18 +68,14 @@ public class TournamentPage extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-
-        if (!isPageActive) {
-            updateUIWithCurrentHeartTokens();
-            isPageActive = true;
-        }
+        isPageActive = true;
 
         if (DataManager.getInstance().isMinimized()) {
             if (DataManager.getInstance().getTimeAwayTotalTime() != null)
                 new PopupTimeAway(this, R.id.relScreen);
             DataManager.getInstance().setMinimized(false);
         }
-
+        updateUIWithCurrentData();
         MediaManager.getInstance().startSong();
         setupUI();
     }
@@ -153,7 +149,7 @@ public class TournamentPage extends AppCompatActivity {
         difficulty = chosenDifficulty;
     }
 
-    private void updateUIWithCurrentHeartTokens() {
+    private void updateUIWithCurrentData() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override

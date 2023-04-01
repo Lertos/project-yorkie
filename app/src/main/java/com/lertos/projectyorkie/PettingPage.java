@@ -42,7 +42,7 @@ public class PettingPage extends AppCompatActivity {
         setContentView(R.layout.page_petting);
 
         if (!isPageActive) {
-            updateUIWithCurrentHeartTokens();
+            updateUIWithCurrentData();
             isPageActive = true;
         }
 
@@ -112,6 +112,7 @@ public class PettingPage extends AppCompatActivity {
                 new PopupTimeAway(this, R.id.relScreen);
             DataManager.getInstance().setMinimized(false);
         }
+        updateUIWithCurrentData();
         MediaManager.getInstance().startSong();
     }
 
@@ -288,7 +289,7 @@ public class PettingPage extends AppCompatActivity {
         focusButton.setY(yPos);
     }
 
-    private void updateUIWithCurrentHeartTokens() {
+    private void updateUIWithCurrentData() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override

@@ -32,7 +32,7 @@ public class ActivityPage extends AppCompatActivity {
         Helper.setupBottomButtonBar(this);
 
         if (!isPageActive) {
-            updateUIWithCurrentHearts();
+            updateUIWithCurrentData();
             isPageActive = true;
         }
 
@@ -70,10 +70,11 @@ public class ActivityPage extends AppCompatActivity {
                 new PopupTimeAway(this, R.id.relScreen);
             DataManager.getInstance().setMinimized(false);
         }
+        updateUIWithCurrentData();
         MediaManager.getInstance().startSong();
     }
 
-    private void updateUIWithCurrentHearts() {
+    private void updateUIWithCurrentData() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
