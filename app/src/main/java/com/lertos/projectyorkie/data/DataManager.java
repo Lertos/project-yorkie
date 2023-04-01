@@ -29,6 +29,8 @@ import java.util.Random;
 public class DataManager {
 
     private boolean hasPlayedBefore;
+    public boolean switchedScreens = false;
+    private boolean isMinimized;
     private String timeAwayTotalTime;
     private double timeAwayHeartsGained;
     private double timeAwayTokensGained;
@@ -62,6 +64,7 @@ public class DataManager {
         fileManager = new FileManager(context);
 
         hasPlayedBefore = fileManager.getDataFile().getBoolean(FilePlayerKeys.DATA_HAS_PLAYED_BEFORE);
+        isMinimized = false;
 
         //Make sure they don't see the intro past the first time
         if (!hasPlayedBefore)
@@ -96,7 +99,10 @@ public class DataManager {
         setHeartsPerSecond();
         setHeartTokensPerSecond();
 
-        //Add currencies for the time spent away
+        processTimeAwayRewards();
+    }
+
+    private void processTimeAwayRewards() {
         String strLastTimeSaved = fileManager.getDataFile().getString(FilePlayerKeys.DATA_LAST_TIME_ON);
 
         if (!strLastTimeSaved.isEmpty()) {
@@ -111,6 +117,12 @@ public class DataManager {
             addHearts(timeAwayHeartsGained);
             addHeartTokens(timeAwayTokensGained);
         }
+
+        setTimeAwayValue();
+    }
+
+    private void setTimeAwayValue() {
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, String.valueOf(System.currentTimeMillis()));
     }
 
     private String getTimeFromSeconds(long totalSeconds) {
@@ -132,6 +144,27 @@ public class DataManager {
         sb.append(runningSeconds).append("s");
 
         return sb.toString();
+    }
+
+    public boolean isMinimized() {
+        return isMinimized;
+    }
+
+    public void setMinimized(boolean minimized) {
+        this.isMinimized = minimized;
+
+        //If application was reopened, start all loops back up
+        if (!minimized) {
+            processTimeAwayRewards();
+
+            startAutoSaveRunnable();
+            startMainGameLoop();
+        }
+        //If minimized, make sure to save all data
+        else {
+            saveImportantData();
+            fileManager.saveFiles();
+        }
     }
 
     public String getTimeAwayTotalTime() {
@@ -207,29 +240,19 @@ public class DataManager {
 
         playerData.setTournamentRank(rank);
 
-        //Start the auto-saving runnable
-        autoSaveRunnable();
+        //Start the repeating loops
+        startAutoSaveRunnable();
+        startMainGameLoop();
     }
 
-    private void autoSaveRunnable() {
+    private void startAutoSaveRunnable() {
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 //If a forced save is needed, update the important info
                 if (currentMillisecondsSinceSave >= millisecondsPerSaveForced) {
-                    double currentHearts = playerData.getCurrentHearts();
-                    double currentHeartTokens = playerData.getCurrentHeartTokens();
-                    String timeSinceSave = String.valueOf(System.currentTimeMillis());
-
-                    //Saving these here as they are updated every second; not writing to a file every second...
-                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, currentHearts);
-                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
-                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_LAST_TIME_ON, timeSinceSave);
-
-                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, packDogs.getUnlocksAsString());
-                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
-                    fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
+                    saveImportantData();
                 }
                 //If any changes were made, save them
                 if (fileManager.isAnySaveNeeded()) {
@@ -241,7 +264,42 @@ public class DataManager {
                     currentMillisecondsSinceSave += millisecondsPerSave;
                 }
 
-                handler.postDelayed(this, millisecondsPerSave);
+                if (isMinimized)
+                    handler.removeCallbacks(this);
+                else
+                    handler.postDelayed(this, millisecondsPerSave);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    private void saveImportantData() {
+        double currentHearts = playerData.getCurrentHearts();
+        double currentHeartTokens = playerData.getCurrentHeartTokens();
+
+        //Saving these here as they are updated every second; not writing to a file every second...
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEARTS, currentHearts);
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_CURRENT_HEART_TOKENS, currentHeartTokens);
+
+        setTimeAwayValue();
+
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_PACK_DOGS_UNLOCKED, packDogs.getUnlocksAsString());
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_TALENT_LEVELS, talents.getLevelsAsString());
+        fileManager.getDataFile().setValue(FilePlayerKeys.DATA_ACTIVITY_LEVELS, activities.getLevelsAsString());
+    }
+
+    private void startMainGameLoop() {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                DataManager.getInstance().calculateHeartsPerSecond();
+                DataManager.getInstance().calculateHeartTokensPerSecond();
+
+                if (isMinimized)
+                    handler.removeCallbacks(this);
+                else
+                    handler.postDelayed(this, 1000);
             }
         };
         handler.post(runnable);

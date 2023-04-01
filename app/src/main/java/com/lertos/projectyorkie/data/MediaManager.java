@@ -8,7 +8,6 @@ public class MediaManager {
     private static MediaManager instance;
     private Context context;
     private MediaPlayer trackSong;
-    public boolean switchedScreens = false;
     private float trackEffectVolume;
     private float trackSongVolume;
 

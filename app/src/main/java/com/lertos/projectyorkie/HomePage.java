@@ -32,7 +32,6 @@ public class HomePage extends AppCompatActivity {
         //Since this is the main/launcher activity, load the data here
         if (!hasStarted) {
             loadMainData();
-
             MediaManager.getInstance().playSongTrack(R.raw.music_main_loop, true);
         }
 
@@ -51,11 +50,41 @@ public class HomePage extends AppCompatActivity {
         setupRecyclerViews();
         setupPageButtonBar();
 
-        if (!hasStarted) {
+        if (!hasStarted)
+            hasStarted = true;
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
+        //To ensure the start logic only happens when the app initially starts or this activity is destroyed
+        if (isFinishing())
+            hasStarted = false;
+
+        isPageActive = false;
+        MediaManager.getInstance().stopSong();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        isPageActive = false;
+
+        if (!DataManager.getInstance().switchedScreens) {
+            MediaManager.getInstance().pauseSong();
+            DataManager.getInstance().setMinimized(true);
+        }
+        DataManager.getInstance().switchedScreens = false;
+    }
+
+    protected void onResume() {
+        super.onResume();
+        isPageActive = true;
+        if (DataManager.getInstance().isMinimized()) {
             if (DataManager.getInstance().getTimeAwayTotalTime() != null)
                 prepareToLoadPopup();
-            hasStarted = true;
+            DataManager.getInstance().setMinimized(false);
         }
+        updateUIWithCurrentData();
+        MediaManager.getInstance().startSong();
     }
 
     private void prepareToLoadPopup() {
@@ -87,19 +116,6 @@ public class HomePage extends AppCompatActivity {
         MediaManager.getInstance().start(this);
         DataManager.getInstance().start(this);
         DataManager.getInstance().getPlayerData().setHighlightColor(ContextCompat.getColor(this, R.color.main_text_color));
-
-        //Run the game loop
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                DataManager.getInstance().calculateHeartsPerSecond();
-                DataManager.getInstance().calculateHeartTokensPerSecond();
-
-                handler.postDelayed(this, 1000);
-            }
-        };
-        handler.post(runnable);
     }
 
     private View loadTimeAwayPopup() {
@@ -123,29 +139,6 @@ public class HomePage extends AppCompatActivity {
         });
 
         return popupWindow.getContentView();
-    }
-
-    //To ensure the start logic only happens when the app initially starts or this activity is destroyed
-    protected void onDestroy() {
-        super.onDestroy();
-        if (isFinishing())
-            hasStarted = false;
-        isPageActive = false;
-        MediaManager.getInstance().stopSong();
-    }
-
-    protected void onPause() {
-        super.onPause();
-        isPageActive = false;
-        if (!MediaManager.getInstance().switchedScreens)
-            MediaManager.getInstance().pauseSong();
-        MediaManager.getInstance().switchedScreens = false;
-    }
-
-    protected void onResume() {
-        super.onResume();
-        isPageActive = true;
-        MediaManager.getInstance().startSong();
     }
 
     private void setupRecyclerViews() {

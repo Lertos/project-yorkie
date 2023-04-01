@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lertos.projectyorkie.adapters.BindDataToView;
 import com.lertos.projectyorkie.data.DataManager;
-import com.lertos.projectyorkie.data.MediaManager;
 import com.lertos.projectyorkie.data.Tutorial;
 
 import java.util.List;
@@ -76,7 +75,7 @@ public class Helper {
             intent = new Intent(activity, desiredClass);
         }
 
-        MediaManager.getInstance().switchedScreens = true;
+        DataManager.getInstance().switchedScreens = true;
 
         activity.startActivity(intent);
         //Stop the animation of switching between activities

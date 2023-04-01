@@ -58,9 +58,12 @@ public class TournamentPage extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         isPageActive = false;
-        if (!MediaManager.getInstance().switchedScreens)
+
+        if (!DataManager.getInstance().switchedScreens) {
             MediaManager.getInstance().pauseSong();
-        MediaManager.getInstance().switchedScreens = false;
+            DataManager.getInstance().setMinimized(true);
+        }
+        DataManager.getInstance().switchedScreens = false;
     }
 
     protected void onResume() {
@@ -99,7 +102,7 @@ public class TournamentPage extends AppCompatActivity {
             intent.putExtra("STR_DIFFICULTY", difficulty.getDisplayStr());
             intent.putExtra("DOUBLE_BET_AMOUNT", (Double) heartsBet);
 
-            MediaManager.getInstance().switchedScreens = true;
+            DataManager.getInstance().switchedScreens = true;
 
             startActivity(intent);
         });
