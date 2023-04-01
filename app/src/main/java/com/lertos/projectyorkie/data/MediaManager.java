@@ -36,6 +36,9 @@ public class MediaManager {
     }
 
     private void resetSongTrack() {
+        if (trackSong == null)
+            return;
+
         if (trackSong.isPlaying())
             trackSong.stop();
 
