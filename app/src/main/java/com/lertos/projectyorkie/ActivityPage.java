@@ -64,6 +64,12 @@ public class ActivityPage extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         isPageActive = true;
+
+        if (DataManager.getInstance().isMinimized()) {
+            if (DataManager.getInstance().getTimeAwayTotalTime() != null)
+                new PopupTimeAway(this, R.id.relScreen);
+            DataManager.getInstance().setMinimized(false);
+        }
         MediaManager.getInstance().startSong();
     }
 

@@ -52,6 +52,12 @@ public class SettingsPage extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
+
+        if (DataManager.getInstance().isMinimized()) {
+            if (DataManager.getInstance().getTimeAwayTotalTime() != null)
+                new PopupTimeAway(this, R.id.relScreen);
+            DataManager.getInstance().setMinimized(false);
+        }
         MediaManager.getInstance().startSong();
     }
 
