@@ -247,13 +247,13 @@ public class TreatToss extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerHit * 8;
+                score = scorePerHit * 9;
                 break;
             case NORMAL:
-                score = scorePerHit * 12;
+                score = scorePerHit * 11;
                 break;
             case HARD:
-                score = scorePerHit * 16;
+                score = scorePerHit * 13;
                 break;
         }
         return (int) Math.round(score);
