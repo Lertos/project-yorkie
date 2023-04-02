@@ -11,24 +11,26 @@ An Android mobile idle game where you strive to earn as many hearts as possible 
 
 ## Screenshots
 
-Compete against AI to climb the Tournament ladder!
 
-![Climbing the Tournament Ladder](ss_3.png)
+### Compete against AI to climb the Tournament ladder!
 
-Play fun minigames to earn more hearts!
+![Climbing the Tournament Ladder](screenshots/ss_3.png)
 
-![Petting Minigame](ss_2.png)
+### Play fun minigames to earn more hearts!
 
-![Whack a Cat Minigame](ss_4.png)
+![Petting Minigame](screenshots/ss_2.png)
 
-Try to beat your opponents whose difficulty only gets harder!
 
-![Petting Minigame](ss_5.png)
+![Whack a Cat Minigame](screenshots/ss_4.png)
 
-Collect dogs after winning first place in the Tournament!
+### Try to beat your opponents whose difficulty only gets harder!
 
-![Petting Minigame](ss_6.png)
+![Petting Minigame](screenshots/ss_5.png)
 
-Gain resources while offline - because I respect your time!
+### Collect dogs after winning first place in the Tournament!
 
-![Petting Minigame](ss_1.png)
+![Petting Minigame](screenshots/ss_6.png)
+
+### Gain resources while offline - because I respect your time!
+
+![Petting Minigame](screenshots/ss_1.png)
