@@ -134,7 +134,7 @@ public class PettingMaster {
 
     public double getHeartsReward() {
         double baseRewardMultiplier = 50.0;
-        double rewardMultiplierPerThreshold = 7.5;
+        double rewardMultiplierPerThreshold = 15.5;
 
         double heartsPerSecond = DataManager.getInstance().getPlayerData().getCurrentHeartsPerSecond();
         double rewardMultiplier = baseRewardMultiplier;
