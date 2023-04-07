@@ -33,7 +33,7 @@ public class WhackTheCat extends TournamentGame {
     private Runnable disappearTimeRunnable;
     private int sectionWidth, sectionHeight;
     private final double secondsLostWhenMissed = 4;
-    private final double scorePerClick = 50;
+    private final double scorePerClick = 20;
     private int timeToRise;
     private int timeToDisappear;
     private final int initialSquareDisappearTime;
