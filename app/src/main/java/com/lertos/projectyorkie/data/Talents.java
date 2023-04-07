@@ -20,7 +20,7 @@ public class Talents {
             5,
             0,
             0.3,
-            50
+            200
     );
     public static final Talent luckyStreak = new Talent(
             "Lucky Streak",
@@ -30,7 +30,7 @@ public class Talents {
             5,
             0,
             0.4,
-            50
+            200
     );
     public static final Talent bargainMaster = new Talent(
             "Bargain Master",
@@ -40,7 +40,7 @@ public class Talents {
             6,
             0,
             0.5,
-            25
+            200
     );
     public static final Talent petLover = new Talent(
             "Pet Lover",
@@ -50,7 +50,7 @@ public class Talents {
             6,
             0,
             0.5,
-            25
+            200
     );
     public static final Talent greatMinds = new Talent(
             "Great Minds",
@@ -60,7 +60,7 @@ public class Talents {
             6,
             0,
             0.5,
-            25
+            200
     );
     public static final Talent purrsuasion = new Talent(
             "Purrsuasion",
@@ -70,7 +70,7 @@ public class Talents {
             6,
             0,
             0.5,
-            25
+            200
     );
     public static final Talent strengthInNumbers = new Talent(
             "Strength In Numbers",
@@ -79,8 +79,8 @@ public class Talents {
             1,
             4.5,
             0,
-            0.05,
-            100
+            0.1,
+            200
     );
     public static final Talent pettingPower = new Talent(
             "Petting Power",
@@ -90,7 +90,7 @@ public class Talents {
             4.5,
             1,
             1,
-            100
+            500
     );
     public static final Talent pupPrecision = new Talent(
             "Pup Precision",
@@ -100,7 +100,7 @@ public class Talents {
             5,
             0,
             0.05,
-            50
+            200
     );
     public static final Talent laxTreatment = new Talent(
             "Lax Treat-ment",
@@ -110,7 +110,7 @@ public class Talents {
             5,
             0,
             0.06,
-            50
+            200
     );
     public static final Talent canineFocus = new Talent(
             "Canine Focus",
@@ -120,7 +120,7 @@ public class Talents {
             4.5,
             1,
             1,
-            100
+            200
     );
     public static final Talent cutenessFactor = new Talent(
             "Cuteness Factor",
@@ -130,7 +130,7 @@ public class Talents {
             4.5,
             0,
             0.06,
-            100
+            200
     );
 
     public Talents(String separator) {
