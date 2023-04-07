@@ -78,7 +78,7 @@ public class PettingMaster {
     }
 
     public double getStartCost() {
-        int costHeartTokensPerThreshold = 1500;
+        int costHeartTokensPerThreshold = 700;
         double cost = Math.max(costHeartTokensPerThreshold, costHeartTokensPerThreshold * startThreshold);
         double multiplier = Talents.purrsuasion.getCurrentBonus();
 
