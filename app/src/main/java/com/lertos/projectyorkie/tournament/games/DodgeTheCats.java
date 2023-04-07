@@ -43,7 +43,7 @@ public class DodgeTheCats extends TournamentGame {
     private int headerHeight;
     private int sectionHeight;
     private int timeBetweenWaves;
-    private final int maxFallTime = 1700;
+    private final int maxFallTime = 1200;
     private int timeBetweenCats = maxFallTime;
     private int timeOfCatFalling;
     private int previousLaneIndex = 1;
@@ -280,13 +280,13 @@ public class DodgeTheCats extends TournamentGame {
 
         switch (tournamentDifficulty) {
             case EASY:
-                score = scorePerDodge * 13;
+                score = scorePerDodge * 15;
                 break;
             case NORMAL:
-                score = scorePerDodge * 17;
+                score = scorePerDodge * 19;
                 break;
             case HARD:
-                score = scorePerDodge * 21;
+                score = scorePerDodge * 23;
                 break;
         }
         return (int) Math.round(score);
