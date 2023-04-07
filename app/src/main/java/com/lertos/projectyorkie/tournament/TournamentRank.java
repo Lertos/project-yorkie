@@ -23,7 +23,7 @@ public class TournamentRank {
     }
 
     public void setTier(int tier) {
-        if (tier > maxTier && tier < startTier)
+        if (tier >= maxTier && tier <= startTier)
             this.tier = tier;
     }
 
